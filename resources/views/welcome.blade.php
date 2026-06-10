@@ -46,8 +46,7 @@
         </div>
 
         <p style="font-size:.85rem;color:#555;max-width:280px;line-height:1.6;margin:0;">
-            Forma parte de una casa que represente tus habilidades,
-            valores y visión profesional.
+          El Sistema de Identidad Institucional Académica de la UTL. Descubre tu casa, explora los dominios académicos y conecta con tu identidad universitaria.
         </p>
 
         <div style="display:flex;gap:.75rem;">
