@@ -255,11 +255,18 @@ min-height:550px;
         margin-top:2rem;
         ">
 
-            <a href="{{ route('casas') }}"
-               class="gold-btn"
-               style="text-decoration:none;">
-                Conocer mi casa
-            </a>
+<a href="{{ route('welcome') }}"
+   style="
+   background:#C6A050;
+   color:#06060F !important;
+   padding:.9rem 2rem;
+   border-radius:4px;
+   text-decoration:none;
+   font-weight:700;
+   display:inline-block;
+   ">
+    Inicio
+</a>
 
             <button onclick="goToStage(1)"
                     style="
