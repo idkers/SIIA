@@ -448,10 +448,20 @@ min-height:550px;
 </div>
 
 {{-- ═══ FOOTER PLACEHOLDER ════════════════════════════════════════════════ --}}
-<footer style="border:1px solid #ccc;border-radius:6px;
-               padding:2rem;background:#f0f0f0;text-align:center;
-               color:#aaa;font-size:.85rem;letter-spacing:.08em;">
-    [ FOOTER ]
+<footer style="
+    margin-top:4rem;
+
+    height:250px;
+
+    border:1px solid rgba(139,105,20,.35);
+
+    background:rgba(6,6,15,.45);
+
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+
+    position:relative;
+"> [FOOTER CON INFORMACIÓN DE LA UTL Y NUESTRA]
 </footer>
 
 @endsection
