@@ -90,14 +90,7 @@ min-height:500px;
                 Iniciar exploración
             </a>
 
-            <a href="#puntos" style="
-            border:1px solid #8D6627;
-            color:#F0EAD8;
-            padding:.9rem 2rem;
-            text-decoration:none;
-            ">
-                Ver puntos de interés
-            </a>
+
 
         </div>
 
