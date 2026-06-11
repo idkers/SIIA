@@ -99,45 +99,122 @@ min-height:550px;
 {{-- ETAPA 2: Pregunta --}}
 <div id="stage-2" class="stage" style="display:none;">
 
-    <section style="border:1px solid #ccc;border-radius:6px;
-                    padding:2.5rem 2rem;margin-bottom:1.5rem;background:#fff;
-                    display:flex;flex-direction:column;align-items:center;gap:1.5rem;
-                    min-height:420px;position:relative;">
+<section style="
+    border:1px solid #8B6914;
+    border-radius:10px;
+    padding:2.5rem 2rem;
+    margin-bottom:1.5rem;
+    background:#14141F;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:1.5rem;
+    min-height:420px;
+    position:relative;
+    box-shadow:0 0 25px rgba(198,160,80,.12);
+">
 
-        <div style="position:absolute;top:1rem;right:1.5rem;
-                    font-size:.65rem;color:#bbb;letter-spacing:.06em;text-align:right;line-height:1.7;">
-            Fondo cósmico con<br>transparencia /<br>partículas animadas
+    <div style="
+        position:absolute;
+        top:1rem;
+        right:1.5rem;
+        font-size:.65rem;
+        color:#707085;
+        letter-spacing:.06em;
+        text-align:right;
+        line-height:1.7;">
+        Fondo cósmico con<br>transparencia /<br>partículas animadas
+    </div>
+
+    <div style="text-align:center;">
+
+        <div style="
+            font-family:'Headland One', serif;
+            font-size:1.3rem;
+            color:#C8A84B;
+            letter-spacing:.08em;">
+            SIIA
         </div>
 
-        <div style="text-align:center;">
-            <div style="font-size:1.1rem;font-weight:700;color:#333;letter-spacing:.05em;">SIIA</div>
-            <p style="font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:#aaa;margin:.2rem 0 0;">[Pregunta]</p>
-        </div>
+        <p style="
+            font-size:.65rem;
+            text-transform:uppercase;
+            letter-spacing:.15em;
+            color:#E8C96A;
+            margin:.2rem 0 0;">
+            [Pregunta]
+        </p>
 
-        <div style="display:flex;align-items:center;gap:1.5rem;">
-            <button style="width:34px;height:34px;border:1px solid #ccc;background:#fff;
-                           border-radius:50%;font-size:1.1rem;color:#555;cursor:pointer;">‹</button>
+    </div>
 
-            <div style="width:200px;height:200px;background:#e8e8e8;
-                        border:1px dashed #bbb;border-radius:4px;
-                        display:flex;align-items:center;justify-content:center;
-                        font-size:.75rem;color:#999;text-align:center;padding:1rem;">
-                [ Imagen de<br>referencia ]
-            </div>
+    <div style="display:flex;align-items:center;gap:1.5rem;">
 
-            <button style="width:34px;height:34px;border:1px solid #ccc;background:#fff;
-                           border-radius:50%;font-size:1.1rem;color:#555;cursor:pointer;">›</button>
-        </div>
-
-        <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#bbb;margin:0;">[Opción]</p>
-
-        <button onclick="goToStage(3)"
-                style="padding:.45rem 1.8rem;border:1px solid #333;border-radius:4px;
-                       font-size:.85rem;font-weight:600;color:#333;
-                       background:#fff;cursor:pointer;">
-            Siguiente
+        <button style="
+            width:34px;
+            height:34px;
+            border:1px solid #8B6914;
+            background:#1A1424;
+            border-radius:50%;
+            font-size:1.1rem;
+            color:#E8C96A;
+            cursor:pointer;">
+            ‹
         </button>
-    </section>
+
+        <div style="
+            width:200px;
+            height:200px;
+            background:#1A1424;
+            border:1px dashed #C6A050;
+            border-radius:6px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:.75rem;
+            color:#B0A898;
+            text-align:center;
+            padding:1rem;">
+            [ Imagen de<br>referencia ]
+        </div>
+
+        <button style="
+            width:34px;
+            height:34px;
+            border:1px solid #8B6914;
+            background:#1A1424;
+            border-radius:50%;
+            font-size:1.1rem;
+            color:#E8C96A;
+            cursor:pointer;">
+            ›
+        </button>
+
+    </div>
+
+    <p style="
+        font-size:.7rem;
+        text-transform:uppercase;
+        letter-spacing:.12em;
+        color:#F0EAD8;
+        margin:0;">
+        [Opción]
+    </p>
+
+    <button onclick="goToStage(3)"
+            style="
+            padding:.65rem 2rem;
+            border:none;
+            border-radius:6px;
+            font-size:.85rem;
+            font-weight:700;
+            color:#06060F;
+            background:#C6A050;
+            cursor:pointer;
+            transition:.3s;">
+        Siguiente
+    </button>
+
+</section>
 
 </div>
 
@@ -183,7 +260,16 @@ min-height:600px;
     </p>
 
     <button onclick="goToStage(4)"
-            class="gold-btn">
+        class="gold-btn"
+    style="
+    background:#C6A050 !important;
+    color:#06060F !important;
+    border:none !important;
+    padding:.9rem 2rem !important;
+    font-weight:700 !important;
+    border-radius:4px !important;
+    cursor:pointer;
+    ">
         Ver resultado
     </button>
 
