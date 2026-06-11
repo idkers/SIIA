@@ -149,17 +149,7 @@ min-height:550px;
 
     <div style="display:flex;align-items:center;gap:1.5rem;">
 
-        <button style="
-            width:34px;
-            height:34px;
-            border:1px solid #8B6914;
-            background:#1A1424;
-            border-radius:50%;
-            font-size:1.1rem;
-            color:#E8C96A;
-            cursor:pointer;">
-            ‹
-        </button>
+
 
         <div style="
             width:200px;
