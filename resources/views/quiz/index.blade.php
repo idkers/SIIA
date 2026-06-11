@@ -461,7 +461,22 @@ min-height:550px;
     -webkit-backdrop-filter:blur(8px);
 
     position:relative;
-"> [FOOTER CON INFORMACIÓN DE LA UTL Y NUESTRA]
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+">
+
+    <span style="
+        font-family:'Headland One', serif;
+        color:#C8A84B;
+        font-size:2rem;
+        letter-spacing:.08em;
+        text-align:center;
+    ">
+        [FOOTER CON INFORMACIÓN DE LA UTL Y NUESTRA]
+    </span>
+
 </footer>
 
 @endsection
