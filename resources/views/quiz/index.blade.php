@@ -29,58 +29,62 @@
 {{-- ETAPA 1: Inicio del quiz --}}
 <div id="stage-1" class="stage">
 
-    <section style="display:grid;grid-template-columns:1fr 1fr;
-                    border:1px solid #ccc;border-radius:6px;
-                    overflow:hidden;margin-bottom:1.5rem;min-height:320px;">
+   <section style="
+background:
+linear-gradient(rgba(6,6,15,.85),rgba(6,6,15,.95));
+border:1px solid #8B6914;
+border-radius:10px;
+padding:4rem;
+display:grid;
+grid-template-columns:1fr 1fr;
+align-items:center;
+min-height:550px;
+">
 
-        <div style="padding:2rem;display:flex;flex-direction:column;
-                    justify-content:center;gap:1rem;
-                    border-right:1px solid #ccc;background:#fff;">
+    <div>
 
-            <div style="width:160px;height:60px;background:#e8e8e8;
-                        border:1px dashed #999;border-radius:4px;
-                        display:flex;align-items:center;justify-content:center;
-                        font-size:.75rem;color:#888;">
-                [ Logo / Título SIIA ]
-            </div>
+        <p style="color:#E8C96A;letter-spacing:4px;">
+            CEREMONIA DE SELECCIÓN
+        </p>
 
-            <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#999;margin:0;">
-                Orientación
-            </p>
+        <h1 class="siia-title"
+            style="font-size:4rem;color:#C8A84B;margin:0;">
+            LA GARRITA
+            <br>
+            SELECCIONADORA
+        </h1>
 
-            <h1 style="font-size:1.4rem;font-weight:700;color:#222;margin:0;line-height:1.3;">
-                Descubre tu casa académica
-            </h1>
+        <p style="
+        color:#F0EAD8;
+        line-height:1.8;
+        max-width:500px;
+        margin-top:1.5rem;
+        ">
+            Descubre qué casa académica representa mejor tus talentos,
+            intereses y fortalezas dentro de la Universidad Tecnológica de León.
+        </p>
 
-            <p style="font-size:.85rem;color:#555;max-width:300px;line-height:1.6;margin:0;">
-                La garrita seleccionadora analizará las características de tu perfil intelectual,
-                para revelar la casa cuya filosofía y competencias convergen con tu trayectoria.
-            </p>
+        <button onclick="goToStage(2)"
+                class="gold-btn"
+                style="margin-top:2rem;">
+            Comenzar
+        </button>
 
-            <div>
-                <button onclick="goToStage(2)"
-                        style="padding:.45rem 1.4rem;border:1px solid #333;border-radius:4px;
-                               font-size:.85rem;font-weight:600;color:#333;
-                               background:#fff;cursor:pointer;">
-                    Iniciar navegación
-                </button>
-            </div>
-        </div>
+    </div>
 
-        <div style="background:#f0f0f0;display:flex;align-items:center;
-                    justify-content:center;min-height:280px;">
-            <div style="width:200px;height:220px;background:#ddd;
-                        border:1px dashed #999;border-radius:4px;
-                        display:flex;flex-direction:column;align-items:center;
-                        justify-content:center;gap:.4rem;
-                        font-size:.75rem;color:#888;text-align:center;padding:1rem;">
-                <span style="font-size:1.8rem;"></span>
-                [ Imagen de garrita ]
-            </div>
-        </div>
-    </section>
+    <div style="
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    ">
 
-</div>
+        <img src="/img/garrita.png"
+             class="float"
+             style="max-width:350px;">
+
+    </div>
+
+</section>
 
 {{-- ETAPA 2: Pregunta --}}
 <div id="stage-2" class="stage" style="display:none;">
@@ -130,98 +134,139 @@
 {{-- ETAPA 3: Procesando --}}
 <div id="stage-3" class="stage" style="display:none;">
 
-    <section style="border:1px solid #ccc;border-radius:6px;
-                    padding:2.5rem 2rem;margin-bottom:1.5rem;background:#fff;
-                    display:flex;flex-direction:column;align-items:center;gap:1.5rem;
-                    min-height:420px;position:relative;">
+  
+  <section
+style="
+background:
+radial-gradient(circle,#2B1F3D 0%,#06060F 70%);
+border:1px solid #8B6914;
+border-radius:10px;
+padding:4rem;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:2rem;
+min-height:600px;
+">
 
-        <div style="position:absolute;top:1rem;right:1.5rem;
-                    font-size:.65rem;color:#bbb;letter-spacing:.06em;text-align:right;line-height:1.7;">
-            Fondo cósmico con<br>transparencia /<br>partículas animadas
-        </div>
+    <h2 class="siia-title"
+        style="color:#C8A84B;font-size:3rem;">
+        SIIA
+    </h2>
 
-        <div style="font-size:1.1rem;font-weight:700;color:#333;letter-spacing:.05em;">SIIA</div>
+    <div class="float">
 
-        <p style="font-size:.8rem;color:#888;letter-spacing:.08em;text-align:center;margin:0;">
-            La garrita está seleccionando<br>tu camino…
-        </p>
+        <img src="/img/garrita.png"
+             style="width:260px;">
 
-        <div style="width:220px;height:220px;background:#e8e8e8;
-                    border:1px dashed #bbb;border-radius:4px;
-                    display:flex;flex-direction:column;align-items:center;
-                    justify-content:center;gap:.4rem;
-                    font-size:.75rem;color:#999;text-align:center;padding:1rem;">
-            <span style="font-size:2rem;"></span>
-            [ Imagen de garrita<br>[Animada] ]
-        </div>
+    </div>
 
-        <button onclick="goToStage(4)"
-                style="padding:.45rem 1.8rem;border:1px solid #333;border-radius:4px;
-                       font-size:.85rem;font-weight:600;color:#333;
-                       background:#fff;cursor:pointer;">
-            Siguiente
-        </button>
-    </section>
+    <p style="
+    color:#F0EAD8;
+    text-align:center;
+    line-height:2;
+    ">
+        La garrita está observando tu potencial...
+        <br>
+        Analizando afinidades académicas...
+    </p>
 
-</div>
+    <button onclick="goToStage(4)"
+            class="gold-btn">
+        Ver resultado
+    </button>
+
+</section></div>
 
 {{-- ETAPA 4: Resultado --}}
 <div id="stage-4" class="stage" style="display:none;">
 
-    <section style="display:grid;grid-template-columns:1fr 1fr;
-                    border:1px solid #ccc;border-radius:6px;
-                    overflow:hidden;margin-bottom:1.5rem;min-height:320px;">
+    <section
+style="
+background:#06060F;
+border:1px solid #8B6914;
+border-radius:10px;
+padding:4rem;
+display:grid;
+grid-template-columns:1fr 1fr;
+align-items:center;
+min-height:550px;
+">
 
-        <div style="background:#f0f0f0;display:flex;align-items:center;
-                    justify-content:center;min-height:280px;">
-            <div style="width:220px;height:240px;background:#ddd;
-                        border:1px dashed #999;border-radius:4px;
-                        display:flex;flex-direction:column;align-items:center;
-                        justify-content:center;gap:.4rem;
-                        font-size:.75rem;color:#888;text-align:center;padding:1rem;">
-                <span style="font-size:1.8rem;">🛡</span>
-                [ Logo de<br>casa resultante ]
-            </div>
+    <div style="
+    display:flex;
+    justify-content:center;
+    ">
+
+        <img src="/img/casa-leon.png"
+             style="max-width:320px;">
+
+    </div>
+
+    <div>
+
+        <p style="
+        color:#E8C96A;
+        letter-spacing:4px;
+        ">
+            TU DESTINO ES
+        </p>
+
+        <h1 class="siia-title"
+            style="
+            color:#C8A84B;
+            font-size:5rem;
+            margin:0;
+            ">
+            LEÓN
+        </h1>
+
+        <p style="
+        color:#E8C96A;
+        font-style:italic;
+        font-size:1.2rem;
+        ">
+            "Liderazgo y fortaleza"
+        </p>
+
+        <p style="
+        color:#F0EAD8;
+        line-height:1.8;
+        max-width:450px;
+        ">
+            Las características de tu perfil muestran una fuerte afinidad
+            con las carreras asociadas a esta casa académica.
+        </p>
+
+        <div style="
+        display:flex;
+        gap:1rem;
+        margin-top:2rem;
+        ">
+
+            <a href="{{ route('casas') }}"
+               class="gold-btn"
+               style="text-decoration:none;">
+                Conocer mi casa
+            </a>
+
+            <button onclick="goToStage(1)"
+                    style="
+                    background:transparent;
+                    border:1px solid #8B6914;
+                    color:#F0EAD8;
+                    padding:.9rem 2rem;
+                    cursor:pointer;
+                    ">
+                Repetir quiz
+            </button>
+
         </div>
 
-        <div style="padding:2rem;display:flex;flex-direction:column;
-                    justify-content:center;gap:.9rem;
-                    border-left:1px solid #ccc;background:#fff;">
+    </div>
 
-            <div style="font-size:1.1rem;font-weight:700;color:#333;letter-spacing:.05em;">SIIA</div>
-
-            <p style="font-size:.75rem;color:#999;text-transform:uppercase;letter-spacing:.1em;margin:0;">
-                Las características de tu perfil apuntan hacia:
-            </p>
-
-            <h2 style="font-size:1.8rem;font-weight:700;color:#222;margin:0;letter-spacing:.06em;">
-                CASA X
-            </h2>
-
-            <p style="font-size:.9rem;color:#777;font-style:italic;margin:0;">
-                "Frase representativa"
-            </p>
-
-            <p style="font-size:.8rem;color:#666;line-height:1.6;margin:0;max-width:280px;">
-                Ejemplo: 
-            </p>
-
-            <div style="display:flex;gap:.75rem;">
-                <a href="{{ route('welcome') }}"
-                   style="padding:.45rem 1.2rem;border:1px solid #333;border-radius:4px;
-                          font-size:.85rem;font-weight:600;color:#333;
-                          text-decoration:none;background:#fff;">
-                    Inicio
-                </a>
-                <button onclick="goToStage(1)"
-                        style="padding:.45rem 1.2rem;border:1px solid #aaa;border-radius:4px;
-                               font-size:.85rem;color:#555;background:#fff;cursor:pointer;">
-                    Repetir
-                </button>
-            </div>
-        </div>
-    </section>
-
+</section>
 </div>
 
 {{-- ═══ FOOTER PLACEHOLDER ════════════════════════════════════════════════ --}}

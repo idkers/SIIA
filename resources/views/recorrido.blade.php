@@ -168,4 +168,4 @@ margin-bottom:2rem;
     [ FOOTER ]
 </footer>
 
-@endsectionq
+@endsection
