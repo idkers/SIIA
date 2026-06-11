@@ -85,6 +85,7 @@ min-height:550px;
     </div>
 
 </section>
+</div>
 
 {{-- ETAPA 2: Pregunta --}}
 <div id="stage-2" class="stage" style="display:none;">
