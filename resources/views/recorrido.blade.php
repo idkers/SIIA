@@ -50,7 +50,7 @@
 
         <a href="{{ route('quiz') }}"
            style="
-           color:#E8C96A;
+           color:#F0EAD8;
            text-decoration:none;
            font-size:.8rem;
            letter-spacing:.08em;
@@ -60,7 +60,7 @@
 
         <a href="{{ route('recorrido') }}"
            style="
-           color:#F0EAD8;
+           color: #E8C96A;
            text-decoration:none;
            font-size:.8rem;
            letter-spacing:.08em;
