@@ -64,11 +64,20 @@ min-height:550px;
             intereses y fortalezas dentro de la Universidad Tecnológica de León.
         </p>
 
-        <button onclick="goToStage(2)"
-                class="gold-btn"
-                style="margin-top:2rem;">
-            Comenzar
-        </button>
+<button
+    onclick="goToStage(2)"
+    class="gold-btn"
+    style="
+    background:#C6A050 !important;
+    color:#06060F !important;
+    border:none !important;
+    padding:.9rem 2rem !important;
+    font-weight:700 !important;
+    border-radius:4px !important;
+    cursor:pointer;
+    ">
+    Comenzar
+</button>
 
     </div>
 
