@@ -25,48 +25,114 @@
 </nav>
 
 {{-- ═══ HERO ═══════════════════════════════════════════════════════════════ --}}
-<section style="display:grid;grid-template-columns:1fr 1fr;
-                border:1px solid #ccc;border-radius:6px;
-                overflow:hidden;margin-bottom:1.5rem;min-height:280px;">
+<section style="
+background:linear-gradient(rgba(6,6,15,.85),rgba(6,6,15,.95)),
+url('/img/campus-bg.jpg');
+background-size:cover;
+background-position:center;
+border:1px solid #8B6914;
+border-radius:10px;
+overflow:hidden;
+margin-bottom:2rem;
+display:grid;
+grid-template-columns:1fr 1fr;
+min-height:500px;
+">
 
-    <div style="padding:2rem;display:flex;flex-direction:column;
-                justify-content:center;gap:1rem;
-                border-right:1px solid #ccc;background:#fff;">
+    <div style="
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:4rem;
+    ">
 
-        <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#999;margin:0;">
-            Recorrido Virtual
-        </p>
+        <span style="
+        color:#E8C96A;
+        letter-spacing:4px;
+        text-transform:uppercase;
+        font-size:.8rem;
+        ">
+            Exploración UTL
+        </span>
 
-        <h1 style="font-size:1.4rem;font-weight:700;color:#222;margin:0;line-height:1.3;">
-            Explora el campus de la UTL
+        <h1 style="
+        font-family:'Headland One',serif;
+        color:#C8A84B;
+        font-size:4rem;
+        margin:.5rem 0;
+        ">
+            RECORRIDO
+            <br>
+            VIRTUAL
         </h1>
 
-        <p style="font-size:.85rem;color:#555;max-width:300px;line-height:1.6;margin:0;">
-            Conoce los espacios académicos, laboratorios y áreas que conforman
-            la Universidad Tecnológica de León con un divertido juego.
+        <p style="
+        color:#F0EAD8;
+        line-height:1.8;
+        max-width:500px;
+        ">
+            Descubre laboratorios, edificios académicos,
+            áreas deportivas y espacios emblemáticos de la
+            Universidad Tecnológica de León mediante una
+            experiencia inmersiva.
         </p>
 
-        <div>
-            <a href="#puntos"
-               style="padding:.45rem 1.4rem;border:1px solid #333;border-radius:4px;
-                      font-size:.85rem;font-weight:600;color:#333;
-                      text-decoration:none;background:#fff;display:inline-block;">
-                Iniciar recorrido
+        <div style="margin-top:2rem;display:flex;gap:1rem;">
+
+            <a href="#mapa" style="
+            background:#C6A050;
+            color:#06060F;
+            padding:.9rem 2rem;
+            text-decoration:none;
+            font-weight:700;
+            border-radius:4px;
+            ">
+                Iniciar exploración
             </a>
+
+            <a href="#puntos" style="
+            border:1px solid #8D6627;
+            color:#F0EAD8;
+            padding:.9rem 2rem;
+            text-decoration:none;
+            ">
+                Ver puntos de interés
+            </a>
+
         </div>
+
     </div>
 
-    <div style="background:#f0f0f0;display:flex;align-items:center;
-                justify-content:center;min-height:260px;">
-        <div style="width:200px;height:200px;background:#ddd;
-                    border:1px dashed #999;border-radius:4px;
-                    display:flex;flex-direction:column;align-items:center;
-                    justify-content:center;gap:.4rem;
-                    font-size:.75rem;color:#888;text-align:center;padding:1rem;">
-            <span style="font-size:1.8rem;"></span>
-            [ Enlace del video a YouTube<br>del campus ]
+    <div style="
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:2rem;
+    ">
+
+        <div style="
+        width:100%;
+        max-width:600px;
+        aspect-ratio:16/9;
+        border:2px solid #C6A050;
+        border-radius:10px;
+        overflow:hidden;
+        background:#14141F;
+        ">
+
+            <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/TU_VIDEO"
+                title="Recorrido UTL"
+                frameborder="0"
+                allowfullscreen>
+            </iframe>
+
         </div>
+
     </div>
+
 </section>
 
 {{-- ═══ MAPA ════════════════════════════════════════════════════════════════ --}}
@@ -97,4 +163,4 @@
     [ FOOTER ]
 </footer>
 
-@endsection
+@endsectionq
