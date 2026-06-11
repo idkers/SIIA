@@ -4,24 +4,119 @@
 @section('content')
 
 {{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
-<nav style="display:flex;align-items:center;justify-content:space-between;
-            padding:.75rem 1.5rem;border:1px solid #ccc;border-radius:6px;
-            margin-bottom:1.5rem;background:#f9f9f9;">
-    <span style="font-weight:700;font-size:.95rem;color:#333;">UTL</span>
-    <div style="display:flex;gap:1.5rem;">
-        <a href="{{ route('welcome') }}"  style="font-size:.85rem;color:#555;text-decoration:none;">Inicio</a>
-        <a href="{{ route('quiz') }}"     style="font-size:.85rem;color:#333;text-decoration:none;font-weight:600;">Quiz</a>
-        <a href="{{ route('recorrido') }}" style="font-size:.85rem;color:#555;text-decoration:none;">Recorrido</a>
-        <a href="{{ route('dominios') }}"  style="font-size:.85rem;color:#555;text-decoration:none;">Dominios</a>
-        <a href="{{ route('casas') }}"     style="font-size:.85rem;color:#555;text-decoration:none;">Casas</a>
-    </div>
-    <div style="display:flex;align-items:center;gap:.75rem;">
-        <a href="#" style="font-size:.85rem;color:#555;text-decoration:none;
-                   border:1px solid #bbb;padding:.3rem .9rem;border-radius:4px;">
-            Ingresar
+<nav style="
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:.9rem 2.5rem;
+
+    background:rgba(6,6,15,.55);
+
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+
+    border-bottom:1px solid rgba(200,168,75,.15);
+
+    margin-bottom:1.5rem;
+">
+
+    <!-- Logo -->
+    <span style="
+        font-family:'Headland One', serif;
+        font-size:1.2rem;
+        color:#C8A84B;
+        letter-spacing:.08em;
+    ">
+        UTL
+    </span>
+
+    <!-- Menú -->
+    <div style="
+        display:flex;
+        gap:3rem;
+        align-items:center;
+    ">
+
+        <a href="{{ route('welcome') }}"
+           style="
+           color:#F0EAD8;
+           text-decoration:none;
+           font-size:.8rem;
+           letter-spacing:.08em;
+        ">
+            INICIO
         </a>
-        <div style="width:32px;height:32px;border-radius:50%;background:#ddd;border:1px solid #bbb;"></div>
+
+        <a href="{{ route('quiz') }}"
+           style="
+           color:#E8C96A;
+           text-decoration:none;
+           font-size:.8rem;
+           letter-spacing:.08em;
+        ">
+            QUIZ
+        </a>
+
+        <a href="{{ route('recorrido') }}"
+           style="
+           color:#F0EAD8;
+           text-decoration:none;
+           font-size:.8rem;
+           letter-spacing:.08em;
+        ">
+            RECORRIDO
+        </a>
+
+        <a href="{{ route('dominios') }}"
+           style="
+           color:#F0EAD8;
+           text-decoration:none;
+           font-size:.8rem;
+           letter-spacing:.08em;
+        ">
+            DOMINIOS
+        </a>
+
+        <a href="{{ route('casas') }}"
+           style="
+           color:#F0EAD8;
+           text-decoration:none;
+           font-size:.8rem;
+           letter-spacing:.08em;
+        ">
+            CASAS
+        </a>
+
     </div>
+
+    <!-- Perfil -->
+    <div style="
+        display:flex;
+        align-items:center;
+        gap:1rem;
+    ">
+
+        <a href="#"
+           style="
+           color:#F0EAD8;
+           text-decoration:none;
+           font-size:.8rem;
+           letter-spacing:.08em;
+        ">
+            INGRESAR
+        </a>
+
+        <div style="
+            width:28px;
+            height:28px;
+            border-radius:50%;
+            background:#EAEAEA;
+        ">
+        </div>
+
+    </div>
+
 </nav>
 
 {{-- ═══ ETAPAS ═══════════════════════════════════════════════════════════════ --}}
