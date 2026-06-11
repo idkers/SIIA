@@ -136,27 +136,39 @@ min-height:500px;
 </section>
 
 {{-- ═══ MAPA ════════════════════════════════════════════════════════════════ --}}
-<section style="border:1px solid #ccc;border-radius:6px;
-                padding:2rem;margin-bottom:1.5rem;background:#fff;">
+<section id="mapa" style="
+background:#14141F;
+border:1px solid #8B6914;
+border-radius:10px;
+padding:3rem;
+margin-bottom:2rem;
+">
 
-    <p style="text-align:center;font-size:.7rem;text-transform:uppercase;
-              letter-spacing:.1em;color:#999;margin-bottom:.3rem;">
-        Orientación espacial
-    </p>
-    <h2 style="text-align:center;font-size:1.3rem;font-weight:700;
-               color:#222;margin-bottom:1.2rem;">
-        Mapa del campus
+    <h2 style="
+    text-align:center;
+    color:#FFFFFF;
+    font-family:'Headland One',serif;
+    margin-bottom:2rem;
+    ">
+        ───── MAPA DEL CAMPUS ─────
     </h2>
 
-    <div style="height:280px;background:#e8e8e8;border:1px dashed #bbb;
-                border-radius:4px;display:flex;align-items:center;
-                justify-content:center;font-size:.85rem;color:#aaa;
-                letter-spacing:.08em;">
-        🗺 &nbsp;[ Mapa interactivo del campus UTL ]
+    <div style="
+    height:500px;
+    background:#1A1424;
+    border:2px solid #C6A050;
+    border-radius:8px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#F0EAD8;
+    ">
+        [Mapa interactivo]
     </div>
+
 </section>
 
-{{-- ═══ FOOTER PLACEHOLDER ════════════════════════════════════════════════ --}}
+{{-- ═══ FOOTER PLACEHOLDER ═══════════════════════════════════════════════ --}}
 <footer style="border:1px solid #ccc;border-radius:6px;
                padding:2rem;background:#f0f0f0;text-align:center;
                color:#aaa;font-size:.85rem;letter-spacing:.08em;">
