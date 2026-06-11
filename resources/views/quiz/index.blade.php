@@ -90,45 +90,68 @@ min-height:550px;
 {{-- ETAPA 2: Pregunta --}}
 <div id="stage-2" class="stage" style="display:none;">
 
-    <section style="border:1px solid #ccc;border-radius:6px;
-                    padding:2.5rem 2rem;margin-bottom:1.5rem;background:#fff;
-                    display:flex;flex-direction:column;align-items:center;gap:1.5rem;
-                    min-height:420px;position:relative;">
+<section class="dark-card"
+style="
+padding:3rem;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:2rem;
+min-height:600px;
+">
 
-        <div style="position:absolute;top:1rem;right:1.5rem;
-                    font-size:.65rem;color:#bbb;letter-spacing:.06em;text-align:right;line-height:1.7;">
-            Fondo cósmico con<br>transparencia /<br>partículas animadas
+    <span style="color:#B0A898;">
+        Pregunta 1 de 10
+    </span>
+
+    <h2 class="siia-title"
+        style="color:white;font-size:2.5rem;">
+        ¿Qué actividad disfrutas más?
+    </h2>
+
+    <div style="
+    width:250px;
+    height:250px;
+    border:1px solid #8B6914;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#B0A898;
+    ">
+        Imagen
+    </div>
+
+    <div style="
+    width:100%;
+    max-width:700px;
+    display:grid;
+    gap:1rem;
+    ">
+
+        <div class="quiz-option">
+            Resolver problemas complejos
         </div>
 
-        <div style="text-align:center;">
-            <div style="font-size:1.1rem;font-weight:700;color:#333;letter-spacing:.05em;">SIIA</div>
-            <p style="font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:#aaa;margin:.2rem 0 0;">[Pregunta]</p>
+        <div class="quiz-option">
+            Diseñar nuevas soluciones
         </div>
 
-        <div style="display:flex;align-items:center;gap:1.5rem;">
-            <button style="width:34px;height:34px;border:1px solid #ccc;background:#fff;
-                           border-radius:50%;font-size:1.1rem;color:#555;cursor:pointer;">‹</button>
-
-            <div style="width:200px;height:200px;background:#e8e8e8;
-                        border:1px dashed #bbb;border-radius:4px;
-                        display:flex;align-items:center;justify-content:center;
-                        font-size:.75rem;color:#999;text-align:center;padding:1rem;">
-                [ Imagen de<br>referencia ]
-            </div>
-
-            <button style="width:34px;height:34px;border:1px solid #ccc;background:#fff;
-                           border-radius:50%;font-size:1.1rem;color:#555;cursor:pointer;">›</button>
+        <div class="quiz-option">
+            Liderar equipos
         </div>
 
-        <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#bbb;margin:0;">[Opción]</p>
+        <div class="quiz-option">
+            Crear experiencias innovadoras
+        </div>
 
-        <button onclick="goToStage(3)"
-                style="padding:.45rem 1.8rem;border:1px solid #333;border-radius:4px;
-                       font-size:.85rem;font-weight:600;color:#333;
-                       background:#fff;cursor:pointer;">
-            Siguiente
-        </button>
-    </section>
+    </div>
+
+    <button onclick="goToStage(3)"
+            class="gold-btn">
+        Siguiente
+    </button>
+
+</section>
 
 </div>
 
@@ -178,7 +201,8 @@ min-height:600px;
         Ver resultado
     </button>
 
-</section></div>
+</section>
+</div>
 
 {{-- ETAPA 4: Resultado --}}
 <div id="stage-4" class="stage" style="display:none;">
