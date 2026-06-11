@@ -57,7 +57,7 @@
                 Iniciar
             </a>
             <a href="{{ route('casas') }}"
-               style="padding:.45rem 1.2rem;border:1px solid #aaa;border-radius:4px;
+               style="padding:.45rem 1.2rem;border:1px solid #145395;border-radius:4px;
                       font-size:.85rem;color:#555;text-decoration:none;background:#fff;">
                 Conocer las casas
             </a>

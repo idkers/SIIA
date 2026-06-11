@@ -17,7 +17,7 @@
     </div>
     <div style="display:flex;align-items:center;gap:.75rem;">
         <a href="#" style="font-size:.85rem;color:#555;text-decoration:none;
-                   border:1px solid #bbb;padding:.3rem .9rem;border-radius:4px;">
+                   border:1px solid #ff0303;padding:.3rem .9rem;border-radius:4px;">
             Ingresar
         </a>
         <div style="width:32px;height:32px;border-radius:50%;background:#ddd;border:1px solid #bbb;"></div>
