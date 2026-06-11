@@ -201,7 +201,7 @@ min-height:550px;
     justify-content:center;
     ">
 
-        <img src="/img/casa-x.png"
+        <img src="/img/casa-xy.png"
              style="max-width:320px;">
 
     </div>
@@ -229,7 +229,7 @@ min-height:550px;
         font-style:italic;
         font-size:1.2rem;
         ">
-            "Características de perfil relacionadas a esta casa académica"
+            "Características de perfil relacionadas a esta casa académica."
         </p>
 
         <p style="
