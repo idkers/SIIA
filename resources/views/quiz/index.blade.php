@@ -182,9 +182,9 @@ min-height:550px;
     align-items:center;
     ">
 
-        <img src="../imagenes/pata.png"
-             class="float"
-             style="max-width:350px;">
+ <img src="{{ asset('imagenes/pata.png') }}"
+     class="float"
+     style="max-width:350px;">
 
     </div>
 
