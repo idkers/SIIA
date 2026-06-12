@@ -407,7 +407,9 @@ min-height:550px;
         line-height:1.8;
         max-width:450px;
         ">
-            Tu perfil muestra:
+            Tu perfil muestra una afinidad natural con la casa Ignisculina, los Alquimistas del Sabor. 
+            Eres una persona que transforma el caos en excelencia mediante una combinación única de creatividad vibrante y disciplina técnica. Prosperas en ambientes dinámicos, utilizando tu instinto práctico para resolver cualquier reto al instante. Tu mayor virtud es el espíritu de servicio: entiendes 
+            la cocina como un arte noble donde la precisión y el cuidadose unen para crear experiencias que nutren el alma.
         </p>
 
         <div style="
