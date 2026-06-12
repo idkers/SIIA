@@ -166,10 +166,10 @@ min-height:500px;
         line-height:1.8;
         max-width:500px;
         ">
-            Descubre laboratorios, edificios académicos,
+            ¡Descubre laboratorios, edificios académicos,
             áreas deportivas y espacios emblemáticos de la
             Universidad Tecnológica de León mediante una
-            experiencia inmersiva.
+            experiencia inmersiva con nuestro nuevo videojuego!
         </p>
 
         <div style="margin-top:2rem;display:flex;gap:1rem;">
@@ -182,7 +182,7 @@ min-height:500px;
             font-weight:700;
             border-radius:4px;
             ">
-                Iniciar exploración
+                Descargar
             </a>
 
 
