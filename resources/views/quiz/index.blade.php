@@ -319,8 +319,8 @@ min-height:600px;
 
     <div class="float">
 
-        <img src="../imagenes/pata.png"
-             style="width:260px;">
+        <img src="../imagenes/garra.png"
+             style="width:300px;">
 
     </div>
 
