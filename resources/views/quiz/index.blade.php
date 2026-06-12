@@ -207,6 +207,7 @@ min-height:550px;
     ),
     url('{{ asset('imagenes/fondoquiz.png') }}');
 
+
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
@@ -390,7 +391,7 @@ min-height:550px;
             font-size:5rem;
             margin:0;
             ">
-            Casa
+            Casa Ignisculin (Gastronomía)
         </h1>
 
         <p style="
@@ -398,7 +399,7 @@ min-height:550px;
         font-style:italic;
         font-size:1.2rem;
         ">
-            "Características de perfil relacionadas a esta casa académica."
+            "En la llama, está la verdad de tu vocación."
         </p>
 
         <p style="
