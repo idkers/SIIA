@@ -184,7 +184,7 @@ min-height:550px;
 
  <img src="{{ asset('imagenes/pata.png') }}"
      class="float"
-     style="max-width:350px;">
+     style="max-width:650px;">
 
     </div>
 
