@@ -329,7 +329,7 @@ min-height:600px;
     text-align:center;
     line-height:2;
     ">
-        La garrita está observando tu potencial...
+        La garra está observando tu potencial...
         <br>
         Analizando afinidades académicas...
     </p>
@@ -371,8 +371,8 @@ min-height:550px;
     justify-content:center;
     ">
 
-        <img src="/img/casa-xy.png"
-             style="max-width:320px;">
+        <img src="../imagenes/gastronomia2.png"
+             style="max-width:500px;">
 
     </div>
 
