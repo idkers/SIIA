@@ -5,22 +5,29 @@
 
 {{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
 <nav style="display:flex;align-items:center;justify-content:space-between;
-            padding:.75rem 1.5rem;border:1px solid #ccc;border-radius:6px;
-            margin-bottom:1.5rem;background:#f9f9f9;">
-    <span style="font-weight:700;font-size:.95rem;color:#333;">UTL</span>
-    <div style="display:flex;gap:1.5rem;">
-        <a href="{{ route('welcome') }}"   style="font-size:.85rem;color:#555;text-decoration:none;">Inicio</a>
-        <a href="{{ route('quiz') }}"      style="font-size:.85rem;color:#555;text-decoration:none;">Quiz</a>
-        <a href="{{ route('recorrido') }}" style="font-size:.85rem;color:#555;text-decoration:none;">Recorrido</a>
-        <a href="{{ route('dominios') }}"  style="font-size:.85rem;color:#555;text-decoration:none;">Dominios</a>
-        <a href="{{ route('casas') }}"     style="font-size:.85rem;color:#333;text-decoration:none;font-weight:600;">Casas</a>
+            padding:.75rem 2rem;
+            background:#06060F;
+            border-bottom:1px solid #2B1F3D;
+            margin-bottom:0;">
+    <span style="font-weight:700;font-size:1rem;color:#C8A84B;
+                 letter-spacing:.12em;font-family:'Headland One',serif;">
+        UTL
+    </span>
+    <div style="display:flex;gap:2rem;">
+        <a href="{{ route('welcome') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
+        <a href="{{ route('quiz') }}"          style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
+        <a href="{{ route('recorrido') }}"     style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
+        <a href="{{ route('dominios') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
+        <a href="{{ route('casas') }}"         style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
     </div>
     <div style="display:flex;align-items:center;gap:.75rem;">
-        <a href="#" style="font-size:.85rem;color:#555;text-decoration:none;
-                   border:1px solid #bbb;padding:.3rem .9rem;border-radius:4px;">
+        <a href="#"
+           style="font-size:.82rem;color:#B0A898;text-decoration:none;
+                  letter-spacing:.08em;text-transform:uppercase;">
             Ingresar
         </a>
-        <div style="width:32px;height:32px;border-radius:50%;background:#ddd;border:1px solid #bbb;"></div>
+        <div style="width:32px;height:32px;border-radius:50%;
+                    background:#2B1F3D;border:1px solid #6B5020;"></div>
     </div>
 </nav>
 

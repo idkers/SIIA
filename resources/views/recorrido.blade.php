@@ -4,119 +4,31 @@
 @section('content')
 
 {{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
-<nav style="
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:.9rem 2.5rem;
-
-    background:rgba(6,6,15,.55);
-
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-
-    border-bottom:1px solid rgba(200,168,75,.15);
-
-    margin-bottom:1.5rem;
-">
-
-    <!-- Logo -->
-    <span style="
-        font-family:'Headland One', serif;
-        font-size:1.2rem;
-        color:#C8A84B;
-        letter-spacing:.08em;
-    ">
+<nav style="display:flex;align-items:center;justify-content:space-between;
+            padding:.75rem 2rem;
+            background:#06060F;
+            border-bottom:1px solid #2B1F3D;
+            margin-bottom:0;">
+    <span style="font-weight:700;font-size:1rem;color:#C8A84B;
+                 letter-spacing:.12em;font-family:'Headland One',serif;">
         UTL
     </span>
-
-    <!-- Menú -->
-    <div style="
-        display:flex;
-        gap:3rem;
-        align-items:center;
-    ">
-
-        <a href="{{ route('welcome') }}"
-           style="
-           color:#F0EAD8;
-           text-decoration:none;
-           font-size:.8rem;
-           letter-spacing:.08em;
-        ">
-            INICIO
-        </a>
-
-        <a href="{{ route('quiz') }}"
-           style="
-           color:#F0EAD8;
-           text-decoration:none;
-           font-size:.8rem;
-           letter-spacing:.08em;
-        ">
-            QUIZ
-        </a>
-
-        <a href="{{ route('recorrido') }}"
-           style="
-           color: #E8C96A;
-           text-decoration:none;
-           font-size:.8rem;
-           letter-spacing:.08em;
-        ">
-            RECORRIDO
-        </a>
-
-        <a href="{{ route('dominios') }}"
-           style="
-           color:#F0EAD8;
-           text-decoration:none;
-           font-size:.8rem;
-           letter-spacing:.08em;
-        ">
-            DOMINIOS
-        </a>
-
-        <a href="{{ route('casas') }}"
-           style="
-           color:#F0EAD8;
-           text-decoration:none;
-           font-size:.8rem;
-           letter-spacing:.08em;
-        ">
-            CASAS
-        </a>
-
+    <div style="display:flex;gap:2rem;">
+        <a href="{{ route('welcome') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
+        <a href="{{ route('quiz') }}"          style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
+        <a href="{{ route('recorrido') }}"     style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
+        <a href="{{ route('dominios') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
+        <a href="{{ route('casas') }}"         style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
     </div>
-
-    <!-- Perfil -->
-    <div style="
-        display:flex;
-        align-items:center;
-        gap:1rem;
-    ">
-
+    <div style="display:flex;align-items:center;gap:.75rem;">
         <a href="#"
-           style="
-           color:#F0EAD8;
-           text-decoration:none;
-           font-size:.8rem;
-           letter-spacing:.08em;
-        ">
-            INGRESAR
+           style="font-size:.82rem;color:#B0A898;text-decoration:none;
+                  letter-spacing:.08em;text-transform:uppercase;">
+            Ingresar
         </a>
-
-        <div style="
-            width:28px;
-            height:28px;
-            border-radius:50%;
-            background:#EAEAEA;
-        ">
-        </div>
-
+        <div style="width:32px;height:32px;border-radius:50%;
+                    background:#2B1F3D;border:1px solid #6B5020;"></div>
     </div>
-
 </nav>
 
 {{-- ═══ HERO ═══════════════════════════════════════════════════════════════ --}}
