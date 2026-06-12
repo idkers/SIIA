@@ -144,7 +144,7 @@ min-height:550px;
 
         <h1 class="siia-title"
             style="font-size:4rem;color:#C8A84B;margin:0;">
-            LA GARRITA
+            LA GARRA
             <br>
             SELECCIONADORA
         </h1>
@@ -182,7 +182,7 @@ min-height:550px;
     align-items:center;
     ">
 
-        <img src="/img/garrita.png"
+        <img src="/imagenes/pata.png"
              class="float"
              style="max-width:350px;">
 
