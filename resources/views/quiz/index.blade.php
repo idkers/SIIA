@@ -182,7 +182,7 @@ min-height:550px;
     align-items:center;
     ">
 
-        <img src="/imagenes/pata.png"
+        <img src="../imagenes/pata.png"
              class="float"
              style="max-width:350px;">
 
@@ -319,7 +319,7 @@ min-height:600px;
 
     <div class="float">
 
-        <img src="/img/garrita.png"
+        <img src="../imagenes/pata.png"
              style="width:260px;">
 
     </div>
