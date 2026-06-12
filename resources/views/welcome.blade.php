@@ -329,7 +329,7 @@
         font-size:.8rem;
         letter-spacing:.08em;
     ">
-        © {{ date('Y') }} SIIA · Sistema Inteligente de Identidad Académica
+        © {{ date('Y') }} SIIA · Sistema Integral de Identidad Académica
     </div>
 
 </footer>
