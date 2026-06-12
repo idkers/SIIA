@@ -199,27 +199,26 @@ min-height:550px;
     border-radius:10px;
     padding:2.5rem 2rem;
     margin-bottom:1.5rem;
-    background:#14141F;
+
+    background:
+    linear-gradient(
+        rgba(6,6,15,.75),
+        rgba(6,6,15,.85)
+    ),
+    url('{{ asset('imagenes/fondoquiz.png') }}');
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:1.5rem;
     min-height:420px;
     position:relative;
-    box-shadow:0 0 25px rgba(198,160,80,.12);
 ">
 
-    <div style="
-        position:absolute;
-        top:1rem;
-        right:1.5rem;
-        font-size:.65rem;
-        color:#707085;
-        letter-spacing:.06em;
-        text-align:right;
-        line-height:1.7;">
-        Fondo cósmico con<br>transparencia /<br>partículas animadas
-    </div>
 
     <div style="text-align:center;">
 
