@@ -32,27 +32,53 @@
 </nav>
 
 {{-- ═══ ENCABEZADO ════════════════════════════════════════════════════════ --}}
-<section style="border:1px solid #ccc;border-radius:6px;
-                padding:2rem;margin-bottom:1.5rem;background:#fff;text-align:center;">
-    <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#999;margin-bottom:.3rem;">
-        Universidad Tecnológica de León
+<section style="
+    padding:5rem 2rem;
+    text-align:center;
+    background:linear-gradient(180deg,#06060F,#0D0D1A);
+    border-bottom:1px solid rgba(200,168,75,.15);
+">
+
+    <p style="
+        color:#E8C96A;
+        text-transform:uppercase;
+        letter-spacing:.2em;
+        font-size:.75rem;
+        margin-bottom:.8rem;
+    ">
+        Sistema Integral de Identidad Académica
     </p>
-    <h1 style="font-size:1.5rem;font-weight:700;color:#222;margin-bottom:.6rem;">
+
+    <h1 style="
+        color:#FFFFFF;
+        font-size:3rem;
+        font-family:'Headland One',serif;
+        margin-bottom:1rem;
+    ">
         Dominios Académicos
     </h1>
-    <p style="font-size:.85rem;color:#666;max-width:440px;margin:0 auto;line-height:1.6;">
-        Cada dominio agrupa carreras con filosofía y competencias afines.
-        Explora los ejes que estructuran la identidad académica de la UTL.
+
+    <p style="
+        max-width:750px;
+        margin:auto;
+        color:#F0EAD8;
+        line-height:1.9;
+        font-size:1rem;
+    ">
+        Los dominios representan grandes áreas del conocimiento dentro de la
+        Universidad Tecnológica de León. Cada uno reúne carreras con intereses,
+        habilidades y enfoques profesionales afines.
     </p>
+
 </section>
 
 @php
 $dominios = [
 
     [
-        'icono'    => '',
-        'nombre'   => 'Ingenierías',
-        'desc'     => 'Carreras enfocadas en la optimización de sistemas, procesos industriales y sostenibilidad.',
+        'nombre' => 'Ingenierías',
+        'color' => '#0057B8',
+        'desc' => 'Carreras enfocadas en la optimización de sistemas, procesos industriales y sostenibilidad.',
         'carreras' => [
             'Ingeniería en Logística',
             'Ingeniería en Mantenimiento Industrial',
@@ -61,9 +87,9 @@ $dominios = [
     ],
 
     [
-        'icono'    => '',
-        'nombre'   => 'Tecnologías de la Información',
-        'desc'     => 'Carreras enfocadas en el desarrollo tecnológico y la innovación digital.',
+        'nombre' => 'Tecnologías de la Información',
+        'color' => '#6B3FA0',
+        'desc' => 'Carreras enfocadas en el desarrollo tecnológico y la innovación digital.',
         'carreras' => [
             'Entornos Virtuales',
             'Ciencia de Datos',
@@ -74,9 +100,9 @@ $dominios = [
     ],
 
     [
-        'icono'    => '',
-        'nombre'   => 'Ingeniería Industrial',
-        'desc'     => 'Carreras orientadas a la mejora de procesos productivos.',
+        'nombre' => 'Ingenierías Industriales',
+        'color' => '#FF5C00',
+        'desc' => 'Carreras orientadas a la mejora de procesos productivos.',
         'carreras' => [
             'Automotriz',
             'Procesos Productivos',
@@ -86,9 +112,9 @@ $dominios = [
     ],
 
     [
-        'icono'    => '',
-        'nombre'   => 'Mecatrónica',
-        'desc'     => 'Integración de automatización, robótica y sistemas inteligentes.',
+        'nombre' => 'Mecatrónicas',
+        'color' => '#C8102E',
+        'desc' => 'Integración de automatización, robótica y sistemas inteligentes.',
         'carreras' => [
             'Manufactura Flexible',
             'Optomecatrónica',
@@ -97,9 +123,9 @@ $dominios = [
     ],
 
     [
-        'icono'    => '',
-        'nombre'   => 'Licenciaturas',
-        'desc'     => 'Formación profesional enfocada en servicios, negocios y gestión.',
+        'nombre' => 'Licenciaturas',
+        'color' => '#1F3D2B',
+        'desc' => 'Formación profesional enfocada en servicios, negocios y gestión.',
         'carreras' => [
             'Gastronomía',
             'Administración',
@@ -111,48 +137,181 @@ $dominios = [
 ];
 @endphp
 
-{{-- ═══ GRID DE DOMINIOS ══════════════════════════════════════════════════ --}}
-<section style="border:1px solid #ccc;border-radius:6px;
-                padding:1.5rem;margin-bottom:1.5rem;background:#fff;">
+{{-- ═══ EXPLICACIÓN ═══════════════════════════════════════════════════════ --}}
+<section style="
+    max-width:1200px;
+    margin:3rem auto;
+    padding:0 2rem;
+">
 
-    <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;
-              color:#999;margin-bottom:1rem;">
-        Los 5 dominios
-    </p>
+    <div style="
+        background:#14141F;
+        border:1px solid rgba(200,168,75,.15);
+        border-radius:16px;
+        padding:2rem;
+    ">
 
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;">
+        <h2 style="
+            color:#C8A84B;
+            font-family:'Headland One',serif;
+            margin-bottom:1rem;
+        ">
+            ¿Qué es un dominio?
+        </h2>
+
+        <p style="
+            color:#F0EAD8;
+            line-height:1.9;
+            margin:0;
+        ">
+            Los dominios agrupan carreras que comparten intereses,
+            competencias y áreas de conocimiento similares.
+            Dentro de SIIA representan los grandes caminos académicos
+            que estructuran la identidad universitaria de cada estudiante.
+        </p>
+
+    </div>
+
+</section>
+
+{{-- ═══ DOMINIOS ══════════════════════════════════════════════════════════ --}}
+<section style="
+    max-width:1400px;
+    margin:auto;
+    padding:0 2rem 4rem;
+">
+
+    <div style="
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+        gap:1.5rem;
+    ">
+
         @foreach($dominios as $dom)
-        <div style="border:1px solid #ccc;border-radius:6px;
-                    padding:.75rem;background:#f9f9f9;
-                    display:flex;flex-direction:column;gap:.5rem;">
 
-            <div style="width:100%;aspect-ratio:1;background:#e0e0e0;
-                        border:1px dashed #bbb;border-radius:4px;
-                        display:flex;align-items:center;justify-content:center;
-                        font-size:2rem;">
-                {{ $dom['icono'] }}
-            </div>
+        <div style="
+            background:#14141F;
+            border:1px solid rgba(200,168,75,.15);
+            border-radius:18px;
+            overflow:hidden;
+            transition:.3s;
+            height:100%;
+            display:flex;
+            flex-direction:column;
+        ">
 
-            <p style="font-size:.82rem;font-weight:700;color:#222;margin:0;">
-                {{ $dom['nombre'] }}
-            </p>
+            <div style="
+                height:8px;
+                background:{{ $dom['color'] }};
+            "></div>
 
-            <p style="font-size:.72rem;color:#666;line-height:1.5;margin:0;">
-                {{ $dom['desc'] }}
-            </p>
+            <div style="padding:1.5rem;display:flex;flex-direction:column;height:100%;">
 
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto;">
-                @foreach($dom['carreras'] as $c)
-                <span style="font-size:.65rem;padding:2px 7px;
-                             border:1px solid #ccc;border-radius:20px;color:#666;">
-                    {{ $c }}
-                </span>
-                @endforeach
+                {{-- NO MODIFICAR (AQUÍ VA EL LOGO) --}}
+                <div style="
+                    width:100%;
+                    aspect-ratio:1;
+                    background:#1D1D2B;
+                    border:1px dashed rgba(255,255,255,.15);
+                    border-radius:12px;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    margin-bottom:1.5rem;
+                ">
+                    {{ $dom['icono'] ?? '' }}
+                </div>
+
+                <h3 style="
+                    color:#FFFFFF;
+                    font-size:1.15rem;
+                    margin-bottom:.8rem;
+                    font-family:'Headland One',serif;
+                ">
+                    {{ $dom['nombre'] }}
+                </h3>
+
+                <p style="
+                    color:#B0A898;
+                    line-height:1.7;
+                    margin-bottom:1.5rem;
+                    flex-grow:1;
+                ">
+                    {{ $dom['desc'] }}
+                </p>
+
+                <div style="
+                    display:flex;
+                    flex-wrap:wrap;
+                    gap:.5rem;
+                ">
+
+                    @foreach($dom['carreras'] as $c)
+
+                    <span style="
+                        background:rgba(255,255,255,.04);
+                        border:1px solid rgba(255,255,255,.08);
+                        color:#F0EAD8;
+                        padding:.4rem .75rem;
+                        border-radius:50px;
+                        font-size:.72rem;
+                    ">
+                        {{ $c }}
+                    </span>
+
+                    @endforeach
+
+                </div>
+
             </div>
 
         </div>
+
         @endforeach
+
     </div>
+
+</section>
+
+{{-- ═══ CTA ═══════════════════════════════════════════════════════════════ --}}
+<section style="
+    padding:5rem 2rem;
+    text-align:center;
+    background:#0D0D1A;
+    border-top:1px solid rgba(200,168,75,.12);
+    border-bottom:1px solid rgba(200,168,75,.12);
+">
+
+    <h2 style="
+        color:#FFFFFF;
+        font-family:'Headland One',serif;
+        margin-bottom:1rem;
+    ">
+        Descubre tu camino académico
+    </h2>
+
+    <p style="
+        max-width:650px;
+        margin:auto auto 2rem;
+        color:#F0EAD8;
+        line-height:1.8;
+    ">
+        Realiza el cuestionario SIIA y descubre qué dominio y qué casa
+        representan mejor tus intereses, habilidades y forma de aprender.
+    </p>
+
+    <a href="{{ route('quiz') }}"
+       style="
+            display:inline-block;
+            background:#C6A050;
+            color:#06060F;
+            text-decoration:none;
+            padding:.9rem 2rem;
+            border-radius:8px;
+            font-weight:700;
+       ">
+        Realizar Test
+    </a>
 
 </section>
 
