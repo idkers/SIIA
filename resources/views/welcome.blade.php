@@ -14,7 +14,7 @@
         UTL
     </span>
     <div style="display:flex;gap:2rem;">
-        <a href="{{ route('welcome') }}"      style="font-size:.82rem;color:#E8C96A;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
+        <a href="{{ route('welcome') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
         <a href="{{ route('quiz') }}"          style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
         <a href="{{ route('recorrido') }}"     style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
         <a href="{{ route('dominios') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
@@ -27,66 +27,116 @@
             Ingresar
         </a>
         <div style="width:32px;height:32px;border-radius:50%;
-                    background:#2B1F3D;border:1px solid #6B5020;"></div>
+            background:#4A3560;border:1px solid #6B5080;"></div>
     </div>
 </nav>
 
 {{-- ═══ HERO ═════════════════════════════════════════════════════════════════ --}}
 <section id="hero"
-         style="display:grid;grid-template-columns:1fr 1fr;
-                min-height:400px;
+         style="position:relative;
+                height:calc(100vh - 50px);
+                overflow:hidden;
                 background:#06060F;">
 
-    {{-- Columna izquierda --}}
-    <div style="padding:3rem 3rem 3rem 4rem;display:flex;flex-direction:column;
-                justify-content:center;gap:1.5rem;">
+    {{-- Imagen de fondo --}}
+    <div style="position:absolute;inset:0;
+                background-image:url('{{ asset('images/hero-leon.png') }}');
+                background-size:cover;
+                background-position:right center;">
+    </div>
 
-        {{-- Título SIIA --}}
-        <div style="font-family:'Headland One',serif;font-size:5rem;font-weight:700;
-                    color:#C8A84B;letter-spacing:.04em;line-height:1;
-                    text-shadow:0 2px 24px rgba(198,160,80,.25);">
+    {{-- Degradado izquierda --}}
+    <div style="position:absolute;inset:0;
+                background:linear-gradient(
+    to right,
+    #06060F 0%,
+    #06060F 23%,
+    rgba(6,6,15,.7) 45%,
+    rgba(6,6,15,.2) 65%,
+    transparent 100%
+);">
+    </div>
+
+    {{-- Contenido --}}
+    <div style="position:relative;z-index:1;
+            height:100%;
+            width:50%;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            padding-left:0;
+            padding:0 2rem;
+            gap:1.5rem;">
+
+        {{-- SIIA ejemplo --}}
+        <h1 style="margin:0;padding:0;
+                   font-family:'Headland One',serif;
+                   font-size:clamp(9rem,15vw,14rem);
+                   font-weight:700;
+                   line-height:0.85;
+                   letter-spacing:.02em;
+                background:linear-gradient(
+    to bottom,
+    #E8C96A 0%,
+    #C8A84B 20%,
+    #C6A050 40%,
+    #8D6627 60%,
+    #6B5020 80%,
+    #8B6914 100%
+);
+                   -webkit-background-clip:text;
+                   -webkit-text-fill-color:transparent;
+                   background-clip:text;">
             SIIA
-        </div>
+        </h1>
 
-        <p style="font-size:.82rem;color:#F0EAD8;max-width:320px;line-height:1.8;
-                  margin:0;letter-spacing:.04em;text-transform:uppercase;">
-            Forma parte de una casa que represente<br>tus habilidades, valores y visión profesional.
-        </p>
+        {{-- TEXTO bajo SIIA --}}
+        <p style="margin:0;
+          font-size:1.03rem;
+          color:#D8D0C0;
+          letter-spacing:.10em;
+          text-transform:uppercase;
+          line-height:2;
+          color:#F0EAD8;
+          max-width:480px;
+          text-align:center;">
+    Forma parte de una casa que represente
+    tus habilidades, valores y visión profesional.
+</p>
 
-        <div style="display:flex;gap:1rem;">
+        <div style="display:flex;gap:1.5rem;margin-top:.5rem;">
             <a href="{{ route('quiz') }}"
-               style="padding:.6rem 1.8rem;
-                      background:linear-gradient(135deg,#C6A050,#8D6627);
-                      border:1px solid #C6A050;border-radius:4px;
-                      font-size:.85rem;font-weight:600;color:#06060F;
-                      text-decoration:none;letter-spacing:.06em;">
-                Iniciar
-            </a>
-            <a href="{{ route('casas') }}"
-               style="padding:.6rem 1.8rem;
-                      border:1px solid #8D6627;border-radius:4px;
-                      font-size:.85rem;color:#F0EAD8;text-decoration:none;
-                      background:transparent;letter-spacing:.06em;">
-                Conocer las casas
-            </a>
+   style="display:inline-block;
+          padding:.85rem 3rem;
+          background:linear-gradient(135deg,#C6A050,#8D6627);
+border:1px solid #C6A050;
+color:#06060F;
+          border-radius:3px;
+          font-size:1rem;
+          font-weight:700;
+          color:#1A1000;
+          text-decoration:none;
+          letter-spacing:.05em;">
+    Iniciar
+</a>
+<a href="{{ route('casas') }}"
+   style="display:inline-block;
+          padding:.85rem 3rem;
+          border:1px solid #7A6030;
+          border-radius:3px;
+          font-size:1rem;
+          color:#E8E0D0;
+          text-decoration:none;
+          background:transparent;
+          letter-spacing:.05em;">
+    Conocer las casas
+</a>
         </div>
     </div>
 
-    {{-- Columna derecha: imagen hero --}}
-    <div style="background:#06060F;display:flex;align-items:center;
-                justify-content:center;min-height:360px;
-                border-left:1px solid #2B1F3D;">
-        <div style="width:240px;height:240px;
-                    background:#14141F;
-                    border:1px dashed #2B1F3D;border-radius:4px;
-                    display:flex;flex-direction:column;align-items:center;
-                    justify-content:center;gap:.4rem;
-                    font-size:.75rem;color:#707085;text-align:center;padding:1rem;">
-            <span style="font-size:2rem;opacity:.4;">🖼</span>
-            [ Imagen / ilustración hero ]
-        </div>
-    </div>
 </section>
+
 
 {{-- ═══ SECCIÓN: DESCUBRE TU IDENTIDAD ════════════════════════════════════ --}}
 <section id="identidad"
@@ -241,97 +291,13 @@
 </section>
 
 {{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
-<footer style="
-    padding:3rem 4rem;
-    background:#06060F;
-    border-top:1px solid #2B1F3D;
-">
-
-    <div style="
-        display:flex;
-        justify-content:space-around;
-        flex-wrap:wrap;
-        gap:3rem;
-    ">
-
-        <!-- Información UTL -->
-        <div style="
-            text-align:left;
-            max-width:400px;
-        ">
-
-            <h3 style="
-                font-family:'Headland One', serif;
-                color:#C8A84B;
-                margin-bottom:1rem;
-                font-size:1.4rem;
-            ">
-                Universidad Tecnológica de León
-            </h3>
-
-            <p style="
-                color:#F0EAD8;
-                line-height:1.8;
-                margin:0;
-            ">
-                Blvd. Universidad Tecnológica #225 Col. San Carlos<br>
-                C.P. 37670 León, Gto. México<br><br>
-
-                difusion@utleon.edu.mx<br><br>
-
-                (477) 7 10 00 20
-            </p>
-
-        </div>
-
-        <!-- Información del proyecto -->
-        <div style="
-            text-align:left;
-            max-width:450px;
-        ">
-
-            <h3 style="
-                font-family:'Headland One', serif;
-                color:#C8A84B;
-                margin-bottom:1rem;
-                font-size:1.4rem;
-            ">
-                Desarrolladores del Proyecto
-            </h3>
-
-            <p style="
-                color:#F0EAD8;
-                line-height:2;
-                margin:0;
-            ">
-                <strong>Citlalli Méndez</strong><br>
-                citlallialejandrams@gmail.com
-                <br><br>
-
-                <strong>Miryam Muñoz</strong><br>
-                miryammunoz26@gmail.com
-                <br><br>
-
-                <strong>Carlo Flores</strong><br>
-                carlofernandoflores2006@gmail.com
-            </p>
-
-        </div>
-
-    </div>
-
-    <div style="
-        margin-top:2.5rem;
-        border-top:1px solid rgba(200,168,75,.15);
-        padding-top:1.5rem;
-        text-align:center;
-        color:#707085;
-        font-size:.8rem;
-        letter-spacing:.08em;
-    ">
-        © {{ date('Y') }} SIIA · Sistema Integral de Identidad Académica
-    </div>
-
+<footer style="padding:2rem 4rem;
+               background:#06060F;
+               border-top:1px solid #2B1F3D;
+               text-align:center;
+               color:#707085;font-size:.8rem;letter-spacing:.1em;
+               text-transform:uppercase;">
+    [ FOOTER ]
 </footer>
 
 @endsection
