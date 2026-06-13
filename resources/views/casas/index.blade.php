@@ -51,7 +51,7 @@ $casas = [
 
     // ── INGENIERÍAS ──────────────────────────────────────────────────────
     [
-        'imagen'  => 'img/casas/logistica.jpeg',
+        'imagen'  => 'imagenes/casas/logistica.jpeg',
         'nombre'  => 'Ingeniería en Logística',
         'dominio' => 'Ingenierías',
         'color'   => '#0057B8',
@@ -60,7 +60,7 @@ $casas = [
         'desc'    => 'Te gusta planear, coordinar recursos y optimizar procesos.',
     ],
     [
-        'imagen'  => 'img/casas/mantenimiento.jpg',
+        'imagen'  => 'imagenes/casas/mantenimiento.jpg',
         'nombre'  => 'Ingeniería en Mantenimiento Industrial',
         'dominio' => 'Ingenierías',
         'color'   => '#003A5D',
@@ -69,7 +69,7 @@ $casas = [
         'desc'    => 'Diagnóstico y mantenimiento de maquinaria industrial.',
     ],
     [
-        'imagen'  => 'img/casas/ambiental.jpg',
+        'imagen'  => 'imagenes/casas/ambiental.jpg',
         'nombre'  => 'Ingeniería Ambiental y Sustentabilidad',
         'dominio' => 'Ingenierías',
         'color'   => '#43B02A',
@@ -80,7 +80,7 @@ $casas = [
 
     // ── TECNOLOGÍAS DE LA INFORMACIÓN ────────────────────────────────────
     [
-        'imagen'  => 'img/casas/entornos.jpg',
+        'imagen'  => 'imagenes/casas/entornos.jpg',
         'nombre'  => 'Entornos Virtuales y Negocios Digitales',
         'dominio' => 'Tecnologías de la Información',
         'color'   => '#6B3FA0',
@@ -89,7 +89,7 @@ $casas = [
         'desc'    => 'Desarrollo de productos digitales interactivos.',
     ],
     [
-        'imagen'  => 'img/casas/datos.png',
+        'imagen'  => 'imagenes/casas/datos.png',
         'nombre'  => 'Ciencia de Datos',
         'dominio' => 'Tecnologías de la Información',
         'color'   => '#2E6F95',
@@ -98,7 +98,7 @@ $casas = [
         'desc'    => 'Interpretación y análisis de datos.',
     ],
     [
-        'imagen'  => 'img/casas/software.png',
+        'imagen'  => 'imagenes/casas/software.png',
         'nombre'  => 'Desarrollo de Software',
         'dominio' => 'Tecnologías de la Información',
         'color'   => '#2563EB',
@@ -107,7 +107,7 @@ $casas = [
         'desc'    => 'Creación de aplicaciones y sistemas.',
     ],
     [
-        'imagen'  => 'img/casas/redes.jpg',
+        'imagen'  => 'imagenes/casas/redes.jpg',
         'nombre'  => 'Infraestructura de Redes',
         'dominio' => 'Tecnologías de la Información',
         'color'   => '#0EA5A4',
@@ -116,7 +116,7 @@ $casas = [
         'desc'    => 'Administración de redes y servidores.',
     ],
     [
-        'imagen'  => 'img/casas/ia.jpg',
+        'imagen'  => 'imagenes/casas/ia.jpg',
         'nombre'  => 'Inteligencia Artificial',
         'dominio' => 'Tecnologías de la Información',
         'color'   => '#8A2BE2',
@@ -127,7 +127,7 @@ $casas = [
 
     // ── INGENIERÍA INDUSTRIAL ─────────────────────────────────────────────
     [
-        'imagen'  => 'img/casas/automotriz.jpg',
+        'imagen'  => 'imagenes/casas/automotriz.jpg',
         'nombre'  => 'Automotriz',
         'dominio' => 'Ingeniería Industrial',
         'color'   => '#DC2626',
@@ -136,7 +136,7 @@ $casas = [
         'desc'    => 'Mejora de procesos automotrices.',
     ],
     [
-        'imagen'  => 'img/casas/productivos.png',
+        'imagen'  => 'imagenes/casas/productivos.png',
         'nombre'  => 'Procesos Productivos',
         'dominio' => 'Ingeniería Industrial',
         'color'   => '#ED8B00',
@@ -145,7 +145,7 @@ $casas = [
         'desc'    => 'Gestión de operaciones industriales.',
     ],
     [
-        'imagen'  => 'img/casas/plasticos.jpg',
+        'imagen'  => 'imagenes/casas/plasticos.jpg',
         'nombre'  => 'Moldeo de Plásticos',
         'dominio' => 'Ingeniería Industrial',
         'color'   => '#9C3D0C',
@@ -154,7 +154,7 @@ $casas = [
         'desc'    => 'Diseño y fabricación de productos plásticos.',
     ],
     [
-        'imagen'  => 'img/casas/calzado.jpg',
+        'imagen'  => 'imagenes/casas/calzado.jpg',
         'nombre'  => 'Calzado',
         'dominio' => 'Ingeniería Industrial',
         'color'   => '#C46210',
@@ -165,7 +165,7 @@ $casas = [
 
     // ── MECATRÓNICA ───────────────────────────────────────────────────────
     [
-        'imagen'  => 'img/casas/manufactura.jpg',
+        'imagen'  => 'imagenes/casas/manufactura.jpg',
         'nombre'  => 'Manufactura Flexible',
         'dominio' => 'Mecatrónica',
         'color'   => '#7C3AED',
@@ -174,7 +174,7 @@ $casas = [
         'desc'    => 'Sistemas automatizados de producción.',
     ],
     [
-        'imagen'  => 'img/casas/optomecatronica.jpg',
+        'imagen'  => 'imagenes/casas/optomecatronica.jpg',
         'nombre'  => 'Optomecatrónica',
         'dominio' => 'Mecatrónica',
         'color'   => '#A50034',
@@ -183,7 +183,7 @@ $casas = [
         'desc'    => 'Sistemas ópticos y electrónicos.',
     ],
     [
-        'imagen'  => 'img/casas/automatizacion.jpg',
+        'imagen'  => 'imagenes/casas/automatizacion.jpg',
         'nombre'  => 'Automatización',
         'dominio' => 'Mecatrónica',
         'color'   => '#FF3B30',
@@ -194,7 +194,7 @@ $casas = [
 
     // ── LICENCIATURAS ─────────────────────────────────────────────────────
     [
-        'imagen'  => 'img/casas/gastronomia.jpg',
+        'imagen'  => 'imagenes/casas/gastronomia.jpg',
         'nombre'  => 'Gastronomía',
         'dominio' => 'Licenciaturas',
         'color'   => '#EBA42D',
@@ -203,7 +203,7 @@ $casas = [
         'desc'    => 'Experiencias culinarias y hospitalidad.',
     ],
     [
-        'imagen'  => 'img/casas/administracion.jpg',
+        'imagen'  => 'imagenes/casas/administracion.jpg',
         'nombre'  => 'Administración',
         'dominio' => 'Licenciaturas',
         'color'   => '#1F3D2B',
@@ -212,7 +212,7 @@ $casas = [
         'desc'    => 'Gestión de empresas y recursos.',
     ],
     [
-        'imagen'  => 'img/casas/turismo.png',
+        'imagen'  => 'imagenes/casas/turismo.png',
         'nombre'  => 'Turismo',
         'dominio' => 'Licenciaturas',
         'color'   => '#00A3E0',
@@ -221,7 +221,7 @@ $casas = [
         'desc'    => 'Experiencias turísticas y culturales.',
     ],
     [
-        'imagen'  => 'img/casas/mercadotecnia.jpg',
+        'imagen'  => 'imagenes/casas/mercadotecnia.jpg',
         'nombre'  => 'Innovación de Negocios y Mercadotecnia',
         'dominio' => 'Licenciaturas',
         'color'   => '#E4007C',
