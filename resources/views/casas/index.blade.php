@@ -44,7 +44,8 @@
         Descubre cuál resuena con tu vocación y forma de ver el mundo.
     </p>
 </section>
-
+<br>
+<br>
 @php
 $casas = [
 
