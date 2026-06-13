@@ -14,335 +14,417 @@
         UTL
     </span>
     <div style="display:flex;gap:2rem;">
-        <a href="{{ route('welcome') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
-        <a href="{{ route('quiz') }}"          style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
-        <a href="{{ route('recorrido') }}"     style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
-        <a href="{{ route('dominios') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
-        <a href="{{ route('casas') }}"         style="font-size:.82rem;color:#E8C96A;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
+        <a href="{{ route('welcome') }}"  style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
+        <a href="{{ route('quiz') }}"     style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
+        <a href="{{ route('recorrido') }}"style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
+        <a href="{{ route('dominios') }}" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
+        <a href="{{ route('casas') }}"    style="font-size:.82rem;color:#E8C96A;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
     </div>
     <div style="display:flex;align-items:center;gap:.75rem;">
-        <a href="#"
-           style="font-size:.82rem;color:#B0A898;text-decoration:none;
-                  letter-spacing:.08em;text-transform:uppercase;">
-            Ingresar
-        </a>
-        <div style="width:32px;height:32px;border-radius:50%;
-                    background:#2B1F3D;border:1px solid #6B5020;"></div>
+        <a href="#" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
+        <div style="width:32px;height:32px;border-radius:50%;background:#2B1F3D;border:1px solid #6B5020;"></div>
     </div>
 </nav>
 
 {{-- ═══ ENCABEZADO ════════════════════════════════════════════════════════ --}}
-<section style="border:1px solid #ccc;border-radius:6px;
-                padding:2rem;margin-bottom:1.5rem;background:#fff;text-align:center;">
-    <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#999;margin-bottom:.3rem;">
-        Identidad Académica
+<section style="
+    padding:5rem 2rem;
+    text-align:center;
+    background:linear-gradient(180deg,#06060F,#0D0D1A);
+    border-bottom:1px solid rgba(200,168,75,.15);
+">
+    <p style="color:#E8C96A;text-transform:uppercase;letter-spacing:.2em;font-size:.75rem;margin-bottom:.8rem;">
+        Sistema Integral de Identidad Académica
     </p>
-    <h1 style="font-size:1.5rem;font-weight:700;color:#222;margin-bottom:.6rem;">
-        Las Casas de la UTL
+    <h1 style="color:#FFFFFF;font-size:3rem;font-family:'Headland One',serif;margin-bottom:1rem;">
+        Casas Académicas
     </h1>
-    <p style="font-size:.85rem;color:#666;max-width:460px;margin:0 auto;line-height:1.6;">
-        Cada casa representa una constelación de valores, competencias y filosofías académicas.
-        Descubre cuál resuena con tu trayectoria intelectual.
+    <p style="max-width:750px;margin:auto;color:#F0EAD8;line-height:1.9;font-size:1rem;">
+        Cada casa representa una carrera con su propia identidad, valores y filosofía académica.
+        Descubre cuál resuena con tu vocación y forma de ver el mundo.
     </p>
 </section>
 
+{{-- ═══ EXPLICACIÓN ════════════════════════════════════════════════════════ --}}
+<section style="max-width:1200px;margin:3rem auto;padding:0 2rem;">
+    <div style="background:#14141F;border:1px solid rgba(200,168,75,.15);border-radius:16px;padding:2rem;">
+        <h2 style="color:#C8A84B;font-family:'Headland One',serif;margin-bottom:1rem;">
+            ¿Qué es una casa?
+        </h2>
+        <p style="color:#F0EAD8;line-height:1.9;margin:0;">
+            Las casas agrupan a estudiantes de una misma carrera bajo una identidad compartida:
+            valores, colores y una filosofía que refleja su perfil académico y profesional.
+            Dentro de SIIA, tu casa es el corazón de tu identidad universitaria.
+        </p>
+    </div>
+</section>
 
-{{-- ═══ FILTROS ════════════════════════════════════════════════════════════ --}}
-<div style="display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap;align-items:center;">
-    <span style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#aaa;margin-right:.3rem;">Filtrar:</span>
-    <button style="font-size:.78rem;color:#222;border:1px solid #333;padding:.3rem .9rem;border-radius:4px;background:#fff;cursor:pointer;">Todos</button>
-    <button style="font-size:.78rem;color:#777;border:1px solid #ddd;padding:.3rem .9rem;border-radius:4px;background:#f9f9f9;cursor:pointer;">Ingenierías</button>
-    <button style="font-size:.78rem;color:#777;border:1px solid #ddd;padding:.3rem .9rem;border-radius:4px;background:#f9f9f9;cursor:pointer;">Tecnologías de la Información</button>
-    <button style="font-size:.78rem;color:#777;border:1px solid #ddd;padding:.3rem .9rem;border-radius:4px;background:#f9f9f9;cursor:pointer;">Ingeniería Industrial</button>
-   <button style="font-size:.78rem;color:#777;border:1px solid #ddd;padding:.3rem .9rem;border-radius:4px;background:#f9f9f9;cursor:pointer;">Mecatrónica</button>
-    <button style="font-size:.78rem;color:#777;border:1px solid #ddd;padding:.3rem .9rem;border-radius:4px;background:#f9f9f9;cursor:pointer;">Licenciaturas</button>
-</div>
-
-{{-- ═══ GRID DE CASAS ══════════════════════════════════════════════════════ --}}
 @php
 $casas = [
 
-['','Ingeniería en Logística','Ingenierías',
-'Organización y eficiencia',
-['Responsabilidad','Organización','Eficiencia'],
-'Te gusta planear, coordinar recursos y optimizar procesos.'],
+    // ── INGENIERÍAS ──────────────────────────────────────────────────────
+    [
+        'nombre'  => 'Ingeniería en Logística',
+        'dominio' => 'Ingenierías',
+        'color'   => '#0057B8',
+        'frase'   => 'Organización y eficiencia',
+        'valores' => ['Responsabilidad', 'Organización', 'Eficiencia'],
+        'desc'    => 'Te gusta planear, coordinar recursos y optimizar procesos.',
+    ],
+    [
+        'nombre'  => 'Ingeniería en Mantenimiento Industrial',
+        'dominio' => 'Ingenierías',
+        'color'   => '#003A5D',
+        'frase'   => 'Mantén el sistema en marcha',
+        'valores' => ['Compromiso', 'Precisión', 'Responsabilidad'],
+        'desc'    => 'Diagnóstico y mantenimiento de maquinaria industrial.',
+    ],
+    [
+        'nombre'  => 'Ingeniería Ambiental y Sustentabilidad',
+        'dominio' => 'Ingenierías',
+        'color'   => '#43B02A',
+        'frase'   => 'Innovar para cuidar el planeta',
+        'valores' => ['Ética', 'Compromiso', 'Responsabilidad Social'],
+        'desc'    => 'Desarrollo de soluciones ambientales sostenibles.',
+    ],
 
-['','Ingeniería en Mantenimiento Industrial','Ingenierías',
-'Mantén el sistema en marcha',
-['Compromiso','Precisión','Responsabilidad'],
-'Diagnóstico y mantenimiento de maquinaria industrial.'],
+    // ── TECNOLOGÍAS DE LA INFORMACIÓN ────────────────────────────────────
+    [
+        'nombre'  => 'Entornos Virtuales y Negocios Digitales',
+        'dominio' => 'Tecnologías de la Información',
+        'color'   => '#6B3FA0',
+        'frase'   => 'Crear experiencias digitales',
+        'valores' => ['Creatividad', 'Innovación', 'Adaptación'],
+        'desc'    => 'Desarrollo de productos digitales interactivos.',
+    ],
+    [
+        'nombre'  => 'Ciencia de Datos',
+        'dominio' => 'Tecnologías de la Información',
+        'color'   => '#2E6F95',
+        'frase'   => 'Los datos cuentan historias',
+        'valores' => ['Objetividad', 'Precisión', 'Pensamiento Crítico'],
+        'desc'    => 'Interpretación y análisis de datos.',
+    ],
+    [
+        'nombre'  => 'Desarrollo de Software',
+        'dominio' => 'Tecnologías de la Información',
+        'color'   => '#2563EB',
+        'frase'   => 'Construye el futuro',
+        'valores' => ['Innovación', 'Perseverancia', 'Aprendizaje Continuo'],
+        'desc'    => 'Creación de aplicaciones y sistemas.',
+    ],
+    [
+        'nombre'  => 'Infraestructura de Redes',
+        'dominio' => 'Tecnologías de la Información',
+        'color'   => '#0EA5A4',
+        'frase'   => 'Todo conectado',
+        'valores' => ['Responsabilidad', 'Orden', 'Seguridad'],
+        'desc'    => 'Administración de redes y servidores.',
+    ],
+    [
+        'nombre'  => 'Inteligencia Artificial',
+        'dominio' => 'Tecnologías de la Información',
+        'color'   => '#8A2BE2',
+        'frase'   => 'Piensa diferente',
+        'valores' => ['Creatividad', 'Innovación', 'Pensamiento Crítico'],
+        'desc'    => 'Desarrollo de soluciones inteligentes.',
+    ],
 
-['','Ingeniería Ambiental y Sustentabilidad','Ingenierías',
-'Innovar para cuidar el planeta',
-['Ética','Compromiso','Responsabilidad Social'],
-'Desarrollo de soluciones ambientales sostenibles.'],
+    // ── INGENIERÍA INDUSTRIAL ─────────────────────────────────────────────
+    [
+        'nombre'  => 'Automotriz',
+        'dominio' => 'Ingeniería Industrial',
+        'color'   => '#FF5C00',
+        'frase'   => 'Optimizar la industria',
+        'valores' => ['Eficiencia', 'Liderazgo', 'Compromiso'],
+        'desc'    => 'Mejora de procesos automotrices.',
+    ],
+    [
+        'nombre'  => 'Procesos Productivos',
+        'dominio' => 'Ingeniería Industrial',
+        'color'   => '#ED8B00',
+        'frase'   => 'Mejora continua',
+        'valores' => ['Orden', 'Eficiencia', 'Mejora Continua'],
+        'desc'    => 'Gestión de operaciones industriales.',
+    ],
+    [
+        'nombre'  => 'Moldeo de Plásticos',
+        'dominio' => 'Ingeniería Industrial',
+        'color'   => '#FFA300',
+        'frase'   => 'Innovar con materiales',
+        'valores' => ['Precisión', 'Responsabilidad', 'Innovación'],
+        'desc'    => 'Diseño y fabricación de productos plásticos.',
+    ],
+    [
+        'nombre'  => 'Calzado',
+        'dominio' => 'Ingeniería Industrial',
+        'color'   => '#C46210',
+        'frase'   => 'Diseño y producción',
+        'valores' => ['Creatividad', 'Calidad', 'Trabajo en Equipo'],
+        'desc'    => 'Industria del calzado y manufactura.',
+    ],
 
-['','Entornos Virtuales y Negocios Digitales','Tecnologías de la Información',
-'Crear experiencias digitales',
-['Creatividad','Innovación','Adaptación'],
-'Desarrollo de productos digitales interactivos.'],
+    // ── MECATRÓNICA ───────────────────────────────────────────────────────
+    [
+        'nombre'  => 'Manufactura Flexible',
+        'dominio' => 'Mecatrónica',
+        'color'   => '#C8102E',
+        'frase'   => 'Automatiza el futuro',
+        'valores' => ['Innovación', 'Precisión', 'Creatividad'],
+        'desc'    => 'Sistemas automatizados de producción.',
+    ],
+    [
+        'nombre'  => 'Optomecatrónica',
+        'dominio' => 'Mecatrónica',
+        'color'   => '#A50034',
+        'frase'   => 'Tecnología de precisión',
+        'valores' => ['Precisión', 'Responsabilidad', 'Innovación'],
+        'desc'    => 'Sistemas ópticos y electrónicos.',
+    ],
+    [
+        'nombre'  => 'Automatización',
+        'dominio' => 'Mecatrónica',
+        'color'   => '#FF3B30',
+        'frase'   => 'Control inteligente',
+        'valores' => ['Eficiencia', 'Compromiso', 'Innovación'],
+        'desc'    => 'Automatización de procesos industriales.',
+    ],
 
-['','Ciencia de Datos','Tecnologías de la Información',
-'Los datos cuentan historias',
-['Objetividad','Precisión','Pensamiento Crítico'],
-'Interpretación y análisis de datos.'],
-
-['','Desarrollo de Software','Tecnologías de la Información',
-'Construye el futuro',
-['Innovación','Perseverancia','Aprendizaje Continuo'],
-'Creación de aplicaciones y sistemas.'],
-
-['','Infraestructura de Redes','Tecnologías de la Información',
-'Todo conectado',
-['Responsabilidad','Orden','Seguridad'],
-'Administración de redes y servidores.'],
-
-['','Inteligencia Artificial','Tecnologías de la Información',
-'Piensa diferente',
-['Creatividad','Innovación','Pensamiento Crítico'],
-'Desarrollo de soluciones inteligentes.'],
-
-['','Automotriz','Ingeniería Industrial',
-'Optimizar la industria',
-['Eficiencia','Liderazgo','Compromiso'],
-'Mejora de procesos automotrices.'],
-
-['','Procesos Productivos','Ingeniería Industrial',
-'Mejora continua',
-['Orden','Eficiencia','Mejora Continua'],
-'Gestión de operaciones industriales.'],
-
-['','Moldeo de Plásticos','Ingeniería Industrial',
-'Innovar con materiales',
-['Precisión','Responsabilidad','Innovación'],
-'Diseño y fabricación de productos plásticos.'],
-
-['','Calzado','Ingeniería Industrial',
-'Diseño y producción',
-['Creatividad','Calidad','Trabajo en Equipo'],
-'Industria del calzado y manufactura.'],
-
-['','Manufactura Flexible','Mecatrónica',
-'Automatiza el futuro',
-['Innovación','Precisión','Creatividad'],
-'Sistemas automatizados de producción.'],
-
-['','Optomecatrónica','Mecatrónica',
-'Tecnología de precisión',
-['Precisión','Responsabilidad','Innovación'],
-'Sistemas ópticos y electrónicos.'],
-
-['','Automatización','Mecatrónica',
-'Control inteligente',
-['Eficiencia','Compromiso','Innovación'],
-'Automatización de procesos industriales.'],
-
-['','Gastronomía','Licenciaturas',
-'Crear experiencias',
-['Servicio','Creatividad','Disciplina'],
-'Experiencias culinarias y hospitalidad.'],
-
-['','Administración','Licenciaturas',
-'Dirigir con estrategia',
-['Liderazgo','Responsabilidad','Ética'],
-'Gestión de empresas y recursos.'],
-
-['','Turismo','Licenciaturas',
-'Conectar culturas',
-['Servicio','Empatía','Creatividad'],
-'Experiencias turísticas y culturales.'],
-
-['','Innovación de Negocios y Mercadotecnia','Licenciaturas',
-'Impulsar ideas',
-['Innovación','Liderazgo','Comunicación'],
-'Marketing y desarrollo de negocios.']
+    // ── LICENCIATURAS ─────────────────────────────────────────────────────
+    [
+        'nombre'  => 'Gastronomía',
+        'dominio' => 'Licenciaturas',
+        'color'   => '#EBA42D',
+        'frase'   => 'Crear experiencias',
+        'valores' => ['Servicio', 'Creatividad', 'Disciplina'],
+        'desc'    => 'Experiencias culinarias y hospitalidad.',
+    ],
+    [
+        'nombre'  => 'Administración',
+        'dominio' => 'Licenciaturas',
+        'color'   => '#1F3D2B',
+        'frase'   => 'Dirigir con estrategia',
+        'valores' => ['Liderazgo', 'Responsabilidad', 'Ética'],
+        'desc'    => 'Gestión de empresas y recursos.',
+    ],
+    [
+        'nombre'  => 'Turismo',
+        'dominio' => 'Licenciaturas',
+        'color'   => '#00A3E0',
+        'frase'   => 'Conectar culturas',
+        'valores' => ['Servicio', 'Empatía', 'Creatividad'],
+        'desc'    => 'Experiencias turísticas y culturales.',
+    ],
+    [
+        'nombre'  => 'Innovación de Negocios y Mercadotecnia',
+        'dominio' => 'Licenciaturas',
+        'color'   => '#E4007C',
+        'frase'   => 'Impulsar ideas',
+        'valores' => ['Innovación', 'Liderazgo', 'Comunicación'],
+        'desc'    => 'Marketing y desarrollo de negocios.',
+    ],
 
 ];
 @endphp
 
-<section style="border:1px solid #ccc;border-radius:6px;
-                padding:1.5rem;margin-bottom:1.5rem;background:#fff;">
+{{-- ═══ FILTROS ════════════════════════════════════════════════════════════ --}}
+<style>
+    .filtro-btn {
+        font-size:.78rem;
+        color:#B0A898;
+        border:1px solid rgba(200,168,75,.2);
+        padding:.35rem 1rem;
+        border-radius:50px;
+        background:transparent;
+        cursor:pointer;
+        letter-spacing:.06em;
+        transition: border-color .2s, color .2s, background .2s;
+        font-family:inherit;
+    }
+    .filtro-btn:hover,
+    .filtro-btn.activo {
+        border-color:#C8A84B;
+        color:#E8C96A;
+        background:rgba(200,168,75,.08);
+    }
+    .casa-card {
+        background:#14141F;
+        border:1px solid rgba(200,168,75,.15);
+        border-radius:18px;
+        overflow:hidden;
+        transition: border-color .35s ease, box-shadow .35s ease;
+        display:flex;
+        flex-direction:column;
+    }
+    .casa-card:hover {
+        border-color: rgba(200,168,75,.85);
+        box-shadow: 0 0 0 1px rgba(200,168,75,.4), 0 0 18px rgba(200,168,75,.18);
+    }
+</style>
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;" id="casasGrid">
-        @foreach($casas as $i => $casa)
-        <div onclick="selectCasa({{ $i }})"
-             id="casa-card-{{ $i }}"
-             style="border:1px solid {{ $i===0?'#333':'#ccc' }};border-radius:6px;
-                    padding:.75rem;background:{{ $i===0?'#f5f5f5':'#f9f9f9' }};
-                    display:flex;flex-direction:column;gap:.5rem;cursor:pointer;
-                    transition:border-color .15s;">
-
-            <div style="width:100%;aspect-ratio:1;background:#e0e0e0;
-                        border:1px dashed #bbb;border-radius:4px;
-                        display:flex;align-items:center;justify-content:center;
-                        font-size:.72rem;color:#999;text-align:center;padding:.5rem;">
-                {{ $casa[0] }}<br>[ Escudo<br>{{ $casa[1] }} ]
-            </div>
-
-            <p style="font-size:.82rem;font-weight:700;color:#222;margin:0;">{{ $casa[1] }}</p>
-            <p style="font-size:.75rem;color:#555;margin:0;">{{ $casa[2] }}</p>
-            <p style="font-size:.72rem;color:#888;font-style:italic;margin:0;">{{ $casa[3] }}</p>
-
-            <div style="display:flex;flex-wrap:wrap;gap:3px;">
-                @foreach($casa[4] as $v)
-                <span style="font-size:.65rem;padding:2px 6px;
-                             border:1px solid #ccc;border-radius:20px;color:#666;">
-                    {{ $v }}
-                </span>
-                @endforeach
-            </div>
-
-            <p style="font-size:.68rem;color:#999;line-height:1.4;margin:0;">{{ $casa[5] }}</p>
-        </div>
-        @endforeach
+<section style="max-width:1400px;margin:0 auto 2rem;padding:0 2rem;">
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;">
+        <span style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:#707085;margin-right:.25rem;">Filtrar:</span>
+        <button class="filtro-btn activo" onclick="filtrar(this,'Todos')">Todos</button>
+        <button class="filtro-btn" onclick="filtrar(this,'Ingenierías')">Ingenierías</button>
+        <button class="filtro-btn" onclick="filtrar(this,'Tecnologías de la Información')">Tecnologías de la Información</button>
+        <button class="filtro-btn" onclick="filtrar(this,'Ingeniería Industrial')">Ingeniería Industrial</button>
+        <button class="filtro-btn" onclick="filtrar(this,'Mecatrónica')">Mecatrónica</button>
+        <button class="filtro-btn" onclick="filtrar(this,'Licenciaturas')">Licenciaturas</button>
     </div>
 </section>
 
-{{-- ═══ CTA QUIZ ═══════════════════════════════════════════════════════════ --}}
-<section style="border:1px solid #ccc;border-radius:6px;
-                padding:2.5rem;margin-bottom:1.5rem;background:#fff;text-align:center;">
-    <h2 style="font-size:1.2rem;font-weight:700;color:#222;margin-bottom:.6rem;">
-        ¿Cuál es tu casa?
-    </h2>
-    <p style="font-size:.85rem;color:#666;max-width:380px;margin:0 auto 1.2rem;line-height:1.6;">
-        Responde el quiz del astrolabio y descubre con precisión qué casa
-        converge con tu perfil intelectual y profesional.
-    </p>
-    <a href="{{ route('quiz') }}"
-       style="display:inline-block;padding:.5rem 2rem;
-              border:1px solid #555;border-radius:4px;
-              font-size:.9rem;font-weight:600;color:#333;
-              text-decoration:none;background:#fff;">
-        Tomar el quiz
-    </a>
-</section>
+{{-- ═══ GRID DE CASAS ══════════════════════════════════════════════════════ --}}
+<section style="max-width:1400px;margin:auto;padding:0 2rem 4rem;">
 
-{{-- ═══ FOOTER PLACEHOLDER ════════════════════════════════════════════════ --}}
-<footer style="
-    padding:3rem 4rem;
-    background:#06060F;
-    border-top:1px solid #2B1F3D;
-">
-
-    <div style="
-        display:flex;
-        justify-content:space-around;
-        flex-wrap:wrap;
-        gap:3rem;
+    <div id="casasGrid" style="
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+        gap:1.5rem;
     ">
 
-        <!-- Información UTL -->
-        <div style="
-            text-align:left;
-            max-width:400px;
-        ">
+        @foreach($casas as $casa)
 
-            <h3 style="
-                font-family:'Headland One', serif;
-                color:#C8A84B;
-                margin-bottom:1rem;
-                font-size:1.4rem;
-            ">
+        <div class="casa-card" data-dominio="{{ $casa['dominio'] }}">
+
+            <div style="height:8px;background:{{ $casa['color'] }};"></div>
+
+            <div style="padding:1.5rem;display:flex;flex-direction:column;height:100%;">
+
+                {{-- NO MODIFICAR (AQUÍ VA EL ESCUDO) --}}
+                <div style="
+                    width:100%;
+                    aspect-ratio:1;
+                    background:#1D1D2B;
+                    border:1px dashed rgba(255,255,255,.15);
+                    border-radius:12px;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    margin-bottom:1.5rem;
+                "></div>
+
+                <p style="
+                    font-size:.7rem;
+                    text-transform:uppercase;
+                    letter-spacing:.12em;
+                    color:#707085;
+                    margin-bottom:.4rem;
+                ">{{ $casa['dominio'] }}</p>
+
+                <h3 style="
+                    color:#FFFFFF;
+                    font-size:1.05rem;
+                    margin-bottom:.4rem;
+                    font-family:'Headland One',serif;
+                ">{{ $casa['nombre'] }}</h3>
+
+                <p style="
+                    color:#C8A84B;
+                    font-size:.82rem;
+                    font-style:italic;
+                    margin-bottom:.9rem;
+                ">{{ $casa['frase'] }}</p>
+
+                <p style="
+                    color:#B0A898;
+                    line-height:1.7;
+                    font-size:.9rem;
+                    margin-bottom:1.5rem;
+                    flex-grow:1;
+                ">{{ $casa['desc'] }}</p>
+
+                <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
+                    @foreach($casa['valores'] as $v)
+                    <span style="
+                        background:rgba(255,255,255,.04);
+                        border:1px solid rgba(255,255,255,.08);
+                        color:#F0EAD8;
+                        padding:.4rem .75rem;
+                        border-radius:50px;
+                        font-size:.72rem;
+                    ">{{ $v }}</span>
+                    @endforeach
+                </div>
+
+            </div>
+
+        </div>
+
+        @endforeach
+
+    </div>
+
+</section>
+
+{{-- ═══ CTA ═══════════════════════════════════════════════════════════════ --}}
+<section style="
+    padding:5rem 2rem;
+    text-align:center;
+    background:#0D0D1A;
+    border-top:1px solid rgba(200,168,75,.12);
+    border-bottom:1px solid rgba(200,168,75,.12);
+">
+    <h2 style="color:#FFFFFF;font-family:'Headland One',serif;margin-bottom:1rem;">
+        Descubre tu casa académica
+    </h2>
+    <p style="max-width:650px;margin:auto auto 2rem;color:#F0EAD8;line-height:1.8;">
+        Realiza el cuestionario SIIA y descubre qué casa y qué dominio
+        representan mejor tus intereses, habilidades y forma de aprender.
+    </p>
+    <a href="{{ route('quiz') }}" style="
+        display:inline-block;
+        background:#C6A050;
+        color:#06060F;
+        text-decoration:none;
+        padding:.9rem 2rem;
+        border-radius:8px;
+        font-weight:700;
+    ">Realizar Test</a>
+</section>
+
+{{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
+<footer style="padding:3rem 4rem;background:#06060F;border-top:1px solid #2B1F3D;">
+    <div style="display:flex;justify-content:space-around;flex-wrap:wrap;gap:3rem;">
+        <div style="text-align:left;max-width:400px;">
+            <h3 style="font-family:'Headland One',serif;color:#C8A84B;margin-bottom:1rem;font-size:1.4rem;">
                 Universidad Tecnológica de León
             </h3>
-
-            <p style="
-                color:#F0EAD8;
-                line-height:1.8;
-                margin:0;
-            ">
+            <p style="color:#F0EAD8;line-height:1.8;margin:0;">
                 Blvd. Universidad Tecnológica #225 Col. San Carlos<br>
                 C.P. 37670 León, Gto. México<br><br>
-
                 difusion@utleon.edu.mx<br><br>
-
                 (477) 7 10 00 20
             </p>
-
         </div>
-
-        <!-- Información del proyecto -->
-        <div style="
-            text-align:left;
-            max-width:450px;
-        ">
-
-            <h3 style="
-                font-family:'Headland One', serif;
-                color:#C8A84B;
-                margin-bottom:1rem;
-                font-size:1.4rem;
-            ">
+        <div style="text-align:left;max-width:450px;">
+            <h3 style="font-family:'Headland One',serif;color:#C8A84B;margin-bottom:1rem;font-size:1.4rem;">
                 Desarrolladores del Proyecto
             </h3>
-
-            <p style="
-                color:#F0EAD8;
-                line-height:2;
-                margin:0;
-            ">
-                <strong>Citlalli Méndez</strong><br>
-                citlallialejandrams@gmail.com
-                <br><br>
-
-                <strong>Miryam Muñoz</strong><br>
-                miryammunoz26@gmail.com
-                <br><br>
-
-                <strong>Carlo Flores</strong><br>
-                carlofernandoflores2006@gmail.com
+            <p style="color:#F0EAD8;line-height:2;margin:0;">
+                <strong>Citlalli Méndez</strong><br>citlallialejandrams@gmail.com<br><br>
+                <strong>Miryam Muñoz</strong><br>miryammunoz26@gmail.com<br><br>
+                <strong>Carlo Flores</strong><br>carlofernandoflores2006@gmail.com
             </p>
-
         </div>
-
     </div>
-
-    <div style="
-        margin-top:2.5rem;
-        border-top:1px solid rgba(200,168,75,.15);
-        padding-top:1.5rem;
-        text-align:center;
-        color:#707085;
-        font-size:.8rem;
-        letter-spacing:.08em;
-    ">
+    <div style="margin-top:2.5rem;border-top:1px solid rgba(200,168,75,.15);padding-top:1.5rem;text-align:center;color:#707085;font-size:.8rem;letter-spacing:.08em;">
         © {{ date('Y') }} SIIA · Sistema Integral de Identidad Académica
     </div>
-
 </footer>
 
 @endsection
 
 @section('extra-js')
 <script>
+function filtrar(btn, dominio) {
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+    btn.classList.add('activo');
 
-function selectCasa(idx) {
-    // Update card styles
-    casasData.forEach((_, i) => {
-        const c = document.getElementById('casa-card-' + i);
-        c.style.border     = i === idx ? '1px solid #333' : '1px solid #ccc';
-        c.style.background = i === idx ? '#f5f5f5'       : '#f9f9f9';
+    document.querySelectorAll('.casa-card').forEach(card => {
+        const coincide = dominio === 'Todos' || card.dataset.dominio === dominio;
+        card.style.display = coincide ? 'flex' : 'none';
     });
-
-    const d = casasData[idx];
-
-    // Update featured
-    document.getElementById('feat-icon').textContent    = d.icon;
-    document.getElementById('feat-escudo').textContent  = '[ Escudo ' + d.nombre + ' ]';
-    document.getElementById('feat-dominio').textContent = 'Casa · ' + d.dominio;
-    document.getElementById('feat-nombre').textContent  = d.nombre;
-    document.getElementById('feat-frase').textContent   = d.frase;
-    document.getElementById('feat-desc').textContent    = d.desc;
-    document.getElementById('feat-s1').textContent      = d.s1;
-    document.getElementById('feat-s2').textContent      = d.s2;
-    document.getElementById('feat-s3').textContent      = d.s3;
-
-    const vals = document.getElementById('feat-valores');
-    vals.innerHTML = d.valores.map(v =>
-        `<span style="font-size:.72rem;padding:2px 9px;border:1px solid #ccc;border-radius:20px;color:#666;">${v}</span>`
-    ).join('');
-
-    document.getElementById('featured').scrollIntoView({ behavior:'smooth', block:'nearest' });
 }
 </script>
 @endsection
