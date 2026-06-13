@@ -77,7 +77,7 @@ $dominios = [
 
     [
         'nombre' => 'Ingenierías',
-        'color' => '#0057B8',
+        'color' => '#075E56',
         'desc' => 'Carreras enfocadas en la optimización de sistemas, procesos industriales y sostenibilidad.',
         'carreras' => [
             'Ingeniería en Logística',
@@ -88,7 +88,7 @@ $dominios = [
 
     [
         'nombre' => 'Tecnologías de la Información',
-        'color' => '#6B3FA0',
+        'color' => '#420FDB',
         'desc' => 'Carreras enfocadas en el desarrollo tecnológico y la innovación digital.',
         'carreras' => [
             'Entornos Virtuales',
@@ -101,7 +101,7 @@ $dominios = [
 
     [
         'nombre' => 'Ingenierías Industriales',
-        'color' => '#FF5C00',
+        'color' => '#CC7135',
         'desc' => 'Carreras orientadas a la mejora de procesos productivos.',
         'carreras' => [
             'Automotriz',
@@ -113,7 +113,7 @@ $dominios = [
 
     [
         'nombre' => 'Mecatrónicas',
-        'color' => '#C8102E',
+        'color' => '#A81E1E',
         'desc' => 'Integración de automatización, robótica y sistemas inteligentes.',
         'carreras' => [
             'Manufactura Flexible',
@@ -124,7 +124,7 @@ $dominios = [
 
     [
         'nombre' => 'Licenciaturas',
-        'color' => '#1F3D2B',
+        'color' => '#FAE469',
         'desc' => 'Formación profesional enfocada en servicios, negocios y gestión.',
         'carreras' => [
             'Gastronomía',
