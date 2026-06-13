@@ -175,6 +175,23 @@ $dominios = [
 </section>
 
 {{-- ═══ DOMINIOS ══════════════════════════════════════════════════════════ --}}
+<style>
+    .dominio-card {
+        background:#14141F;
+        border:1px solid rgba(200,168,75,.15);
+        border-radius:18px;
+        overflow:hidden;
+        transition:.3s;
+        height:100%;
+        display:flex;
+        flex-direction:column;
+    }
+    .dominio-card:hover {
+        border-color: rgba(200,168,75,.85);
+        box-shadow: 0 0 0 1px rgba(200,168,75,.4), 0 0 18px rgba(200,168,75,.18);
+    }
+</style>
+
 <section style="
     max-width:1400px;
     margin:auto;
@@ -189,16 +206,7 @@ $dominios = [
 
         @foreach($dominios as $dom)
 
-        <div style="
-            background:#14141F;
-            border:1px solid rgba(200,168,75,.15);
-            border-radius:18px;
-            overflow:hidden;
-            transition:.3s;
-            height:100%;
-            display:flex;
-            flex-direction:column;
-        ">
+        <div class="dominio-card">
 
             <div style="
                 height:8px;
