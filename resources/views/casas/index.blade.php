@@ -45,20 +45,6 @@
     </p>
 </section>
 
-{{-- ═══ EXPLICACIÓN ════════════════════════════════════════════════════════ --}}
-<section style="max-width:1200px;margin:3rem auto;padding:0 2rem;">
-    <div style="background:#14141F;border:1px solid rgba(200,168,75,.15);border-radius:16px;padding:2rem;">
-        <h2 style="color:#C8A84B;font-family:'Headland One',serif;margin-bottom:1rem;">
-            ¿Qué es una casa?
-        </h2>
-        <p style="color:#F0EAD8;line-height:1.9;margin:0;">
-            Las casas agrupan a estudiantes de una misma carrera bajo una identidad compartida:
-            valores, colores y una filosofía que refleja su perfil académico y profesional.
-            Dentro de SIIA, tu casa es el corazón de tu identidad universitaria.
-        </p>
-    </div>
-</section>
-
 @php
 $casas = [
 
