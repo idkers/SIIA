@@ -182,7 +182,6 @@ $dominios = [
         border-radius:18px;
         overflow:hidden;
         transition: border-color .35s ease, box-shadow .35s ease;
-        height:100%;
         display:flex;
         flex-direction:column;
     }
@@ -195,11 +194,13 @@ $dominios = [
         grid-template-columns:repeat(3,1fr);
         gap:1.5rem;
         margin-bottom:1.5rem;
+        align-items:start;
     }
     .dominios-fila-bottom {
         display:grid;
         grid-template-columns:repeat(2,1fr);
         gap:1.5rem;
+        align-items:start;
     }
     @media(max-width:900px){
         .dominios-fila-top,
@@ -223,48 +224,48 @@ $dominios = [
         @foreach($grupo as $dom)
         <div class="dominio-card">
 
-            <div style="height:8px;background:{{ $dom['color'] }};"></div>
+            <div style="height:6px;background:{{ $dom['color'] }};"></div>
 
-            <div style="padding:1.5rem;display:flex;flex-direction:column;height:100%;">
+            <div style="padding:1.25rem;display:flex;flex-direction:column;">
 
                 {{-- NO MODIFICAR (AQUÍ VA EL LOGO) --}}
                 <div style="
                     width:100%;
-                    aspect-ratio:1;
+                    aspect-ratio:16/7;
                     background:#1D1D2B;
                     border:1px dashed rgba(255,255,255,.15);
-                    border-radius:12px;
+                    border-radius:10px;
                     display:flex;
                     align-items:center;
                     justify-content:center;
-                    margin-bottom:1.5rem;
+                    margin-bottom:1.25rem;
                 ">
                     {{ $dom['icono'] ?? '' }}
                 </div>
 
                 <h3 style="
                     color:#FFFFFF;
-                    font-size:1.15rem;
-                    margin-bottom:.8rem;
+                    font-size:1.05rem;
+                    margin-bottom:.6rem;
                     font-family:'Headland One',serif;
                 ">{{ $dom['nombre'] }}</h3>
 
                 <p style="
                     color:#B0A898;
-                    line-height:1.7;
-                    margin-bottom:1.5rem;
-                    flex-grow:1;
+                    line-height:1.6;
+                    font-size:.88rem;
+                    margin-bottom:1.25rem;
                 ">{{ $dom['desc'] }}</p>
 
-                <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
+                <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
                     @foreach($dom['carreras'] as $c)
                     <span style="
                         background:rgba(255,255,255,.04);
                         border:1px solid rgba(255,255,255,.08);
                         color:#F0EAD8;
-                        padding:.4rem .75rem;
+                        padding:.3rem .65rem;
                         border-radius:50px;
-                        font-size:.72rem;
+                        font-size:.7rem;
                     ">{{ $c }}</span>
                     @endforeach
                 </div>
