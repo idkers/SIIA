@@ -121,7 +121,7 @@ $casas = [
     [
         'nombre'  => 'Automotriz',
         'dominio' => 'Ingeniería Industrial',
-        'color'   => '#FF5C00',
+        'color'   => '#DC2626',
         'frase'   => 'Optimizar la industria',
         'valores' => ['Eficiencia', 'Liderazgo', 'Compromiso'],
         'desc'    => 'Mejora de procesos automotrices.',
@@ -137,7 +137,7 @@ $casas = [
     [
         'nombre'  => 'Moldeo de Plásticos',
         'dominio' => 'Ingeniería Industrial',
-        'color'   => '#FFA300',
+        'color'   => '#9C3D0C',
         'frase'   => 'Innovar con materiales',
         'valores' => ['Precisión', 'Responsabilidad', 'Innovación'],
         'desc'    => 'Diseño y fabricación de productos plásticos.',
@@ -155,7 +155,7 @@ $casas = [
     [
         'nombre'  => 'Manufactura Flexible',
         'dominio' => 'Mecatrónica',
-        'color'   => '#C8102E',
+        'color'   => '#7C3AED',
         'frase'   => 'Automatiza el futuro',
         'valores' => ['Innovación', 'Precisión', 'Creatividad'],
         'desc'    => 'Sistemas automatizados de producción.',
