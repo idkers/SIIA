@@ -175,35 +175,55 @@ $dominios = [
 </section>
 
 {{-- ═══ DOMINIOS ══════════════════════════════════════════════════════════ --}}
-<section style="
-    max-width:1400px;
-    margin:auto;
-    padding:0 2rem 4rem;
-">
-
-    <div style="
+<style>
+    .dominio-card {
+        background:#14141F;
+        border:1px solid rgba(200,168,75,.15);
+        border-radius:18px;
+        overflow:hidden;
+        transition: border-color .35s ease, box-shadow .35s ease;
+        height:100%;
+        display:flex;
+        flex-direction:column;
+    }
+    .dominio-card:hover {
+        border-color: rgba(200,168,75,.85);
+        box-shadow: 0 0 0 1px rgba(200,168,75,.4), 0 0 18px rgba(200,168,75,.18);
+    }
+    .dominios-fila-top {
         display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+        grid-template-columns:repeat(3,1fr);
         gap:1.5rem;
-    ">
+        margin-bottom:1.5rem;
+    }
+    .dominios-fila-bottom {
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:1.5rem;
+    }
+    @media(max-width:900px){
+        .dominios-fila-top,
+        .dominios-fila-bottom { grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:560px){
+        .dominios-fila-top,
+        .dominios-fila-bottom { grid-template-columns:1fr; }
+    }
+</style>
 
-        @foreach($dominios as $dom)
+<section style="max-width:1400px;margin:auto;padding:0 2rem 4rem;">
 
-        <div style="
-            background:#14141F;
-            border:1px solid rgba(200,168,75,.15);
-            border-radius:18px;
-            overflow:hidden;
-            transition:.3s;
-            height:100%;
-            display:flex;
-            flex-direction:column;
-        ">
+    @php
+        $top    = array_slice($dominios, 0, 3);
+        $bottom = array_slice($dominios, 3);
+    @endphp
 
-            <div style="
-                height:8px;
-                background:{{ $dom['color'] }};
-            "></div>
+    @foreach([['dominios-fila-top',$top],['dominios-fila-bottom',$bottom]] as [$clase,$grupo])
+    <div class="{{ $clase }}">
+        @foreach($grupo as $dom)
+        <div class="dominio-card">
+
+            <div style="height:8px;background:{{ $dom['color'] }};"></div>
 
             <div style="padding:1.5rem;display:flex;flex-direction:column;height:100%;">
 
@@ -227,27 +247,17 @@ $dominios = [
                     font-size:1.15rem;
                     margin-bottom:.8rem;
                     font-family:'Headland One',serif;
-                ">
-                    {{ $dom['nombre'] }}
-                </h3>
+                ">{{ $dom['nombre'] }}</h3>
 
                 <p style="
                     color:#B0A898;
                     line-height:1.7;
                     margin-bottom:1.5rem;
                     flex-grow:1;
-                ">
-                    {{ $dom['desc'] }}
-                </p>
+                ">{{ $dom['desc'] }}</p>
 
-                <div style="
-                    display:flex;
-                    flex-wrap:wrap;
-                    gap:.5rem;
-                ">
-
+                <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
                     @foreach($dom['carreras'] as $c)
-
                     <span style="
                         background:rgba(255,255,255,.04);
                         border:1px solid rgba(255,255,255,.08);
@@ -255,21 +265,16 @@ $dominios = [
                         padding:.4rem .75rem;
                         border-radius:50px;
                         font-size:.72rem;
-                    ">
-                        {{ $c }}
-                    </span>
-
+                    ">{{ $c }}</span>
                     @endforeach
-
                 </div>
 
             </div>
 
         </div>
-
         @endforeach
-
     </div>
+    @endforeach
 
 </section>
 
