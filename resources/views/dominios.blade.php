@@ -176,41 +176,55 @@ $dominios = [
 
 {{-- ═══ DOMINIOS ══════════════════════════════════════════════════════════ --}}
 <section style="
-    max-width:1400px;
+    max-width:1500px;
     margin:auto;
-    padding:0 2rem 4rem;
+    padding:4rem 2rem;
 ">
 
     <div style="
-        display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-        gap:1.5rem;
+        text-align:center;
+        margin-bottom:3rem;
     ">
 
-        @foreach($dominios as $dom)
-
-        <div style="
-            background:#14141F;
-            border:1px solid rgba(200,168,75,.15);
-            border-radius:18px;
-            overflow:hidden;
-            transition:.3s;
-            height:100%;
-            display:flex;
-            flex-direction:column;
+        <p style="
+            color:#E8C96A;
+            text-transform:uppercase;
+            letter-spacing:.2em;
+            font-size:.75rem;
+            margin-bottom:.5rem;
         ">
+            Explora los dominios
+        </p>
+
+        <h2 style="
+            color:white;
+            font-family:'Headland One',serif;
+            font-size:2.5rem;
+            margin:0;
+        ">
+            Los Cinco Dominios Académicos
+        </h2>
+
+    </div>
+
+    {{-- FILA SUPERIOR --}}
+    <div class="dominios-grid">
+
+        @foreach(array_slice($dominios,0,3) as $dom)
+
+        <div class="dominio-card">
 
             <div style="
-                height:8px;
+                height:7px;
                 background:{{ $dom['color'] }};
             "></div>
 
-            <div style="padding:1.5rem;display:flex;flex-direction:column;height:100%;">
+            <div style="padding:1.5rem;">
 
-                {{-- NO MODIFICAR (AQUÍ VA EL LOGO) --}}
+                {{-- LOGO --}}
                 <div style="
                     width:100%;
-                    aspect-ratio:1;
+                    height:220px;
                     background:#1D1D2B;
                     border:1px dashed rgba(255,255,255,.15);
                     border-radius:12px;
@@ -223,41 +237,133 @@ $dominios = [
                 </div>
 
                 <h3 style="
-                    color:#FFFFFF;
-                    font-size:1.15rem;
-                    margin-bottom:.8rem;
+                    color:white;
+                    text-align:center;
                     font-family:'Headland One',serif;
+                    margin-bottom:1rem;
+                    min-height:55px;
                 ">
                     {{ $dom['nombre'] }}
                 </h3>
 
                 <p style="
                     color:#B0A898;
+                    text-align:center;
                     line-height:1.7;
                     margin-bottom:1.5rem;
-                    flex-grow:1;
                 ">
                     {{ $dom['desc'] }}
                 </p>
 
                 <div style="
-                    display:flex;
-                    flex-wrap:wrap;
-                    gap:.5rem;
+                    border-top:1px solid rgba(255,255,255,.08);
+                    padding-top:1rem;
                 ">
+
+                    <p style="
+                        color:#E8C96A;
+                        text-transform:uppercase;
+                        letter-spacing:.15em;
+                        font-size:.7rem;
+                        text-align:center;
+                        margin-bottom:1rem;
+                    ">
+                        Carreras
+                    </p>
 
                     @foreach($dom['carreras'] as $c)
 
-                    <span style="
-                        background:rgba(255,255,255,.04);
-                        border:1px solid rgba(255,255,255,.08);
+                    <div style="
                         color:#F0EAD8;
-                        padding:.4rem .75rem;
-                        border-radius:50px;
-                        font-size:.72rem;
+                        margin-bottom:.6rem;
+                        font-size:.85rem;
                     ">
-                        {{ $c }}
-                    </span>
+                        ✦ {{ $c }}
+                    </div>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+
+        </div>
+
+        @endforeach
+
+    </div>
+
+    {{-- FILA INFERIOR --}}
+    <div class="fila-inferior">
+
+        @foreach(array_slice($dominios,3,2) as $dom)
+
+        <div class="dominio-card">
+
+            <div style="
+                height:7px;
+                background:{{ $dom['color'] }};
+            "></div>
+
+            <div style="padding:1.5rem;">
+
+                <div style="
+                    width:100%;
+                    height:220px;
+                    background:#1D1D2B;
+                    border:1px dashed rgba(255,255,255,.15);
+                    border-radius:12px;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    margin-bottom:1.5rem;
+                ">
+                    {{ $dom['icono'] ?? '' }}
+                </div>
+
+                <h3 style="
+                    color:white;
+                    text-align:center;
+                    font-family:'Headland One',serif;
+                    margin-bottom:1rem;
+                ">
+                    {{ $dom['nombre'] }}
+                </h3>
+
+                <p style="
+                    color:#B0A898;
+                    text-align:center;
+                    line-height:1.7;
+                    margin-bottom:1.5rem;
+                ">
+                    {{ $dom['desc'] }}
+                </p>
+
+                <div style="
+                    border-top:1px solid rgba(255,255,255,.08);
+                    padding-top:1rem;
+                ">
+
+                    <p style="
+                        color:#E8C96A;
+                        text-transform:uppercase;
+                        letter-spacing:.15em;
+                        font-size:.7rem;
+                        text-align:center;
+                        margin-bottom:1rem;
+                    ">
+                        Carreras
+                    </p>
+
+                    @foreach($dom['carreras'] as $c)
+
+                    <div style="
+                        color:#F0EAD8;
+                        margin-bottom:.6rem;
+                        font-size:.85rem;
+                    ">
+                        ✦ {{ $c }}
+                    </div>
 
                     @endforeach
 
