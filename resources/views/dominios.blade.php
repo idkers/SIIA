@@ -176,42 +176,15 @@ $dominios = [
 
 {{-- ═══ DOMINIOS ══════════════════════════════════════════════════════════ --}}
 <section style="
-    max-width:1500px;
+    max-width:1400px;
     margin:auto;
-    padding:4rem 2rem;
+    padding:0 2rem 4rem;
 ">
 
     <div style="
-        text-align:center;
-        margin-bottom:3rem;
-    ">
-
-        <p style="
-            color:#E8C96A;
-            text-transform:uppercase;
-            letter-spacing:.2em;
-            font-size:.75rem;
-            margin-bottom:.5rem;
-        ">
-            Explora los dominios
-        </p>
-
-        <h2 style="
-            color:#FFFFFF;
-            font-family:'Headland One',serif;
-            font-size:2.2rem;
-            margin:0;
-        ">
-            Los Cinco Dominios Académicos
-        </h2>
-
-    </div>
-
-    <div style="
         display:grid;
-        grid-template-columns:repeat(5,220px);
-        justify-content:center;
-        gap:1.2rem;
+        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+        gap:1.5rem;
     ">
 
         @foreach($dominios as $dom)
@@ -222,77 +195,71 @@ $dominios = [
             border-radius:18px;
             overflow:hidden;
             transition:.3s;
+            height:100%;
             display:flex;
             flex-direction:column;
-            min-height:430px;
-            box-shadow:0 0 20px rgba(0,0,0,.25);
         ">
 
-            {{-- Línea superior del dominio --}}
             <div style="
-                height:6px;
+                height:8px;
                 background:{{ $dom['color'] }};
             "></div>
 
-            <div style="
-                padding:1rem;
-                display:flex;
-                flex-direction:column;
-                height:100%;
-            ">
+            <div style="padding:1.5rem;display:flex;flex-direction:column;height:100%;">
 
-                {{-- AQUÍ VA EL LOGO --}}
+                {{-- NO MODIFICAR (AQUÍ VA EL LOGO) --}}
                 <div style="
                     width:100%;
-                    height:170px;
+                    aspect-ratio:1;
                     background:#1D1D2B;
                     border:1px dashed rgba(255,255,255,.15);
                     border-radius:12px;
                     display:flex;
                     align-items:center;
                     justify-content:center;
-                    margin-bottom:1rem;
+                    margin-bottom:1.5rem;
                 ">
                     {{ $dom['icono'] ?? '' }}
                 </div>
 
                 <h3 style="
                     color:#FFFFFF;
-                    text-align:center;
-                    font-size:1rem;
+                    font-size:1.15rem;
                     margin-bottom:.8rem;
                     font-family:'Headland One',serif;
-                    min-height:48px;
                 ">
                     {{ $dom['nombre'] }}
                 </h3>
 
                 <p style="
                     color:#B0A898;
-                    font-size:.8rem;
-                    line-height:1.6;
-                    text-align:center;
-                    margin-bottom:1rem;
+                    line-height:1.7;
+                    margin-bottom:1.5rem;
+                    flex-grow:1;
                 ">
                     {{ $dom['desc'] }}
                 </p>
 
                 <div style="
-                    margin-top:auto;
-                    text-align:center;
+                    display:flex;
+                    flex-wrap:wrap;
+                    gap:.5rem;
                 ">
 
+                    @foreach($dom['carreras'] as $c)
+
                     <span style="
-                        display:inline-block;
-                        padding:.45rem .9rem;
-                        border-radius:50px;
                         background:rgba(255,255,255,.04);
                         border:1px solid rgba(255,255,255,.08);
                         color:#F0EAD8;
+                        padding:.4rem .75rem;
+                        border-radius:50px;
                         font-size:.72rem;
                     ">
-                        {{ count($dom['carreras']) }} carreras
+                        {{ $c }}
                     </span>
+
+                    @endforeach
 
                 </div>
 
