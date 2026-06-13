@@ -89,7 +89,7 @@ $casas = [
         'desc'    => 'Desarrollo de productos digitales interactivos.',
     ],
     [
-        'imagen'  => 'img/casas/ciencia.jpg',
+        'imagen'  => 'img/casas/datos.png',
         'nombre'  => 'Ciencia de Datos',
         'dominio' => 'Tecnologías de la Información',
         'color'   => '#2E6F95',
