@@ -344,13 +344,13 @@ min-height:550px;
 </a>
 
 <button onclick="descargarResultado()"
-style="
-background:transparent;
-border:1px solid #8B6914;
-color:#F0EAD8;
-padding:.9rem 2rem;
-cursor:pointer;
-">
+        style="
+        background:transparent;
+        border:1px solid #8B6914;
+        color:#F0EAD8;
+        padding:.9rem 2rem;
+        cursor:pointer;
+        ">
     Compartir resultado
 </button>
 
@@ -359,53 +359,6 @@ cursor:pointer;
     </div>
 
 </section>
-</div>
-    <img src="{{ asset('imagenes/gastronomia2.png') }}"
-         style="
-         width:600px;
-         margin-bottom:80px;
-         ">
-
-    <h1 style="
-        font-family:'Headland One', serif;
-        color:#C8A84B;
-        font-size:90px;
-        text-align:center;
-        margin:0;
-    ">
-        CASA IGNISCULIN
-    </h1>
-
-    <p style="
-        color:#E8C96A;
-        font-size:40px;
-        text-align:center;
-        margin-top:30px;
-        ">
-        "En la llama, está la verdad de tu vocación."
-    </p>
-
-    <p style="
-        color:#F0EAD8;
-        font-size:32px;
-        text-align:center;
-        line-height:1.8;
-        max-width:850px;
-        margin-top:60px;
-    ">
-        Tu perfil muestra una afinidad natural con la casa Ignisculin,
-        los Alquimistas del Sabor.
-    </p>
-
-    <div style="
-        margin-top:120px;
-        color:#707085;
-        font-size:28px;
-        letter-spacing:4px;
-    ">
-        SIIA · Sistema Inteligente de Identidad Académica
-    </div>
-
 </div>
 
 {{-- ═══ FOOTER PLACEHOLDER ════════════════════════════════════════════════ --}}
@@ -499,27 +452,6 @@ cursor:pointer;
     ">
         © {{ date('Y') }} SIIA · Sistema Integral de Identidad Académica
     </div>
-    <div id="instagram-card"
-style="
-position:absolute;
-left:-99999px;
-
-width:1080px;
-height:1920px;
-
-background:#06060F;
-
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-
-padding:80px;
-
-box-sizing:border-box;
-">
-
-
 
 </footer>
 @endsection
@@ -534,22 +466,18 @@ function goToStage(n) {
 
 </script>
 <script>
-<script>
-
 function descargarResultado() {
 
-    const card = document.getElementById('instagram-card');
+    const card = document.getElementById('resultado-card');
 
-    html2canvas(card,{
-        width:1080,
-        height:1920,
-        scale:1,
-        backgroundColor:'#06060F'
+    html2canvas(card, {
+        backgroundColor: '#06060F',
+        scale: 2
     }).then(canvas => {
 
         const link = document.createElement('a');
 
-        link.download = 'resultado-siia-story.png';
+        link.download = 'mi-casa-academica-siia.png';
 
         link.href = canvas.toDataURL('image/png');
 
@@ -558,8 +486,6 @@ function descargarResultado() {
     });
 
 }
-
-</script>
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 @endsection
