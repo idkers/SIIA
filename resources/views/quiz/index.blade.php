@@ -360,6 +360,53 @@ cursor:pointer;
 
 </section>
 </div>
+    <img src="{{ asset('imagenes/gastronomia2.png') }}"
+         style="
+         width:600px;
+         margin-bottom:80px;
+         ">
+
+    <h1 style="
+        font-family:'Headland One', serif;
+        color:#C8A84B;
+        font-size:90px;
+        text-align:center;
+        margin:0;
+    ">
+        CASA IGNISCULIN
+    </h1>
+
+    <p style="
+        color:#E8C96A;
+        font-size:40px;
+        text-align:center;
+        margin-top:30px;
+        ">
+        "En la llama, está la verdad de tu vocación."
+    </p>
+
+    <p style="
+        color:#F0EAD8;
+        font-size:32px;
+        text-align:center;
+        line-height:1.8;
+        max-width:850px;
+        margin-top:60px;
+    ">
+        Tu perfil muestra una afinidad natural con la casa Ignisculin,
+        los Alquimistas del Sabor.
+    </p>
+
+    <div style="
+        margin-top:120px;
+        color:#707085;
+        font-size:28px;
+        letter-spacing:4px;
+    ">
+        SIIA · Sistema Inteligente de Identidad Académica
+    </div>
+
+</div>
 
 {{-- ═══ FOOTER PLACEHOLDER ════════════════════════════════════════════════ --}}
 <footer style="
@@ -472,53 +519,7 @@ padding:80px;
 box-sizing:border-box;
 ">
 
-    <img src="{{ asset('imagenes/gastronomia2.png') }}"
-         style="
-         width:600px;
-         margin-bottom:80px;
-         ">
 
-    <h1 style="
-        font-family:'Headland One', serif;
-        color:#C8A84B;
-        font-size:90px;
-        text-align:center;
-        margin:0;
-    ">
-        CASA IGNISCULIN
-    </h1>
-
-    <p style="
-        color:#E8C96A;
-        font-size:40px;
-        text-align:center;
-        margin-top:30px;
-        ">
-        "En la llama, está la verdad de tu vocación."
-    </p>
-
-    <p style="
-        color:#F0EAD8;
-        font-size:32px;
-        text-align:center;
-        line-height:1.8;
-        max-width:850px;
-        margin-top:60px;
-    ">
-        Tu perfil muestra una afinidad natural con la casa Ignisculin,
-        los Alquimistas del Sabor.
-    </p>
-
-    <div style="
-        margin-top:120px;
-        color:#707085;
-        font-size:28px;
-        letter-spacing:4px;
-    ">
-        SIIA · Sistema Inteligente de Identidad Académica
-    </div>
-
-</div>
 
 </footer>
 @endsection
