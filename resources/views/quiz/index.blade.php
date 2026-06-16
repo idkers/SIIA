@@ -343,16 +343,16 @@ min-height:550px;
     Inicio
 </a>
 
-            <button onclick="goToStage(1)"
-                    style="
-                    background:transparent;
-                    border:1px solid #8B6914;
-                    color:#F0EAD8;
-                    padding:.9rem 2rem;
-                    cursor:pointer;
-                    ">
-                Repetir quiz
-            </button>
+<button onclick="descargarResultado()"
+        style="
+        background:transparent;
+        border:1px solid #8B6914;
+        color:#F0EAD8;
+        padding:.9rem 2rem;
+        cursor:pointer;
+        ">
+    Compartir resultado
+</button>
 
         </div>
 
