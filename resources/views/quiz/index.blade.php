@@ -342,23 +342,101 @@ min-height:550px;
    ">
     Inicio
 </a>
+function descargarResultado() {
 
-<button onclick="descargarResultado()"
-        style="
-        background:transparent;
-        border:1px solid #8B6914;
-        color:#F0EAD8;
-        padding:.9rem 2rem;
-        cursor:pointer;
-        ">
-    Compartir resultado
-</button>
+    html2canvas(
+        document.getElementById('instagram-card'),
+        {
+            width:1080,
+            height:1920,
+            scale:1,
+            backgroundColor:'#06060F'
+        }
+    ).then(canvas => {
+
+        const link = document.createElement('a');
+
+        link.download = 'resultado-siia-instagram.png';
+
+        link.href = canvas.toDataURL('image/png');
+
+        link.click();
+
+    });
+
+}
 
         </div>
 
     </div>
 
 </section>
+<div id="instagram-card" style="
+    width:1080px;
+    height:1920px;
+
+    background:#06060F;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    padding:80px;
+    box-sizing:border-box;
+
+    position:absolute;
+    left:-99999px;
+">
+
+    <img src="{{ asset('imagenes/gastronomia2.png') }}"
+         style="
+         width:700px;
+         max-width:100%;
+         margin-bottom:80px;
+    ">
+
+    <p style="
+        color:#E8C96A;
+        letter-spacing:8px;
+        font-size:32px;
+        margin-bottom:20px;
+    ">
+        TU DESTINO ES
+    </p>
+
+    <h1 style="
+        font-family:'Headland One', serif;
+        color:#C8A84B;
+        font-size:90px;
+        text-align:center;
+        margin:0;
+    ">
+        Casa Ignisculin
+    </h1>
+
+    <p style="
+        color:#E8C96A;
+        font-style:italic;
+        font-size:40px;
+        text-align:center;
+        margin:40px 0;
+    ">
+        "En la llama, está la verdad de tu vocación."
+    </p>
+
+    <p style="
+        color:#F0EAD8;
+        font-size:32px;
+        line-height:1.8;
+        text-align:center;
+        max-width:800px;
+    ">
+        Tu perfil muestra una afinidad natural con la casa Ignisculina,
+        los Alquimistas del Sabor.
+    </p>
+
+</div>
 </div>
 
 {{-- ═══ FOOTER PLACEHOLDER ════════════════════════════════════════════════ --}}
