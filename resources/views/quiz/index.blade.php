@@ -463,6 +463,8 @@ function goToStage(n) {
     document.getElementById('stage-' + n).style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+</script>
 <script>
 function descargarResultado() {
 
@@ -484,7 +486,6 @@ function descargarResultado() {
     });
 
 }
-</script>
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 @endsection
