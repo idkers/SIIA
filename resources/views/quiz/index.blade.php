@@ -266,7 +266,7 @@ min-height:600px;
 {{-- ETAPA 4: Resultado --}}
 <div id="stage-4" class="stage" style="display:none;">
 
-    <section
+<section id="resultado-card"
 style="
 background:#06060F;
 border:1px solid #8B6914;
@@ -463,5 +463,28 @@ function goToStage(n) {
     document.getElementById('stage-' + n).style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+<script>
+function descargarResultado() {
+
+    const card = document.getElementById('resultado-card');
+
+    html2canvas(card, {
+        backgroundColor: '#06060F',
+        scale: 2
+    }).then(canvas => {
+
+        const link = document.createElement('a');
+
+        link.download = 'mi-casa-academica-siia.png';
+
+        link.href = canvas.toDataURL('image/png');
+
+        link.click();
+
+    });
+
+}
 </script>
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 @endsection
