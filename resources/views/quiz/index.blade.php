@@ -324,49 +324,38 @@ min-height:550px;
             la cocina como un arte noble donde la precisión y el cuidadose unen para crear experiencias que nutren el alma.
         </p>
 
-        <div style="
-        display:flex;
-        gap:1rem;
-        margin-top:2rem;
-        ">
+<div style="
+display:flex;
+gap:1rem;
+margin-top:2rem;
+">
 
-<a href="{{ route('welcome') }}"
-   style="
-   background:#C6A050;
-   color:#06060F !important;
-   padding:.9rem 2rem;
-   border-radius:4px;
-   text-decoration:none;
-   font-weight:700;
-   display:inline-block;
-   ">
-    Inicio
-</a>
-function descargarResultado() {
+    <a href="{{ route('welcome') }}"
+       style="
+       background:#C6A050;
+       color:#06060F !important;
+       padding:.9rem 2rem;
+       border-radius:4px;
+       text-decoration:none;
+       font-weight:700;
+       display:inline-block;
+       ">
+        Inicio
+    </a>
 
-    html2canvas(
-        document.getElementById('instagram-card'),
-        {
-            width:1080,
-            height:1920,
-            scale:1,
-            backgroundColor:'#06060F'
-        }
-    ).then(canvas => {
+    <button onclick="descargarResultado()"
+            style="
+            background:transparent;
+            border:1px solid #8B6914;
+            color:#F0EAD8;
+            padding:.9rem 2rem;
+            cursor:pointer;
+            border-radius:4px;
+            ">
+        Compartir resultado
+    </button>
 
-        const link = document.createElement('a');
-
-        link.download = 'resultado-siia-instagram.png';
-
-        link.href = canvas.toDataURL('image/png');
-
-        link.click();
-
-    });
-
-}
-
-        </div>
+</div>
 
     </div>
 
@@ -543,19 +532,25 @@ function goToStage(n) {
 }
 
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <script>
 function descargarResultado() {
 
-    const card = document.getElementById('resultado-card');
+    const card = document.getElementById('instagram-card');
 
     html2canvas(card, {
+        width: 1080,
+        height: 1920,
+        scale: 1,
         backgroundColor: '#06060F',
-        scale: 2
+        useCORS: true
     }).then(canvas => {
 
         const link = document.createElement('a');
 
-        link.download = 'mi-casa-academica-siia.png';
+        link.download = 'resultado-siia-instagram.png';
 
         link.href = canvas.toDataURL('image/png');
 
@@ -565,5 +560,4 @@ function descargarResultado() {
 
 }
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 @endsection
