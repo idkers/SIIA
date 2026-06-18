@@ -269,11 +269,11 @@ pointer-events:none;
         muted
         loop
         playsinline
-        style="
-            width:500px;
-            max-width:100%;
-            border-radius:8px;
-            display:block;
+  style="
+    width:220px;
+    max-width:100%;
+    border-radius:8px;
+    display:block;
         ">
 
         <source src="{{ asset('videos/garrita.mp4') }}" type="video/mp4">
