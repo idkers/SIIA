@@ -209,16 +209,20 @@ min-height:550px;
 <div id="stage-3" class="stage" style="display:none;">
 
   
-<div style="
-position:absolute;
-inset:0;
-background-image:
-radial-gradient(#E8C96A 1px, transparent 1px);
-background-size:120px 120px;
-opacity:.08;
-pointer-events:none;
+  <section
+style="
+background:
+radial-gradient(circle,#2B1F3D 0%,#06060F 70%);
+border:1px solid #8B6914;
+border-radius:10px;
+padding:4rem;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:2rem;
+min-height:600px;
 ">
-</div>
 
     <h2 class="siia-title"
         style="color:#C8A84B;font-size:3rem;">
