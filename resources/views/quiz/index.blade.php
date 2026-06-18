@@ -229,12 +229,25 @@ min-height:600px;
         SIIA
     </h2>
 
-    <div class="float">
+<div class="float">
 
-        <img src="../imagenes/garra.png"
-             style="width:300px;">
+    <video
+        autoplay
+        muted
+        loop
+        playsinline
+        style="
+            width:260px;
+            background:transparent;
+        ">
 
-    </div>
+        <source src="{{ asset('videos/garrita.mp4') }}" type="video/mp4">
+
+        Tu navegador no soporta video HTML5.
+
+    </video>
+
+</div>
 
     <p style="
     color:#F0EAD8;
