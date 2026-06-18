@@ -249,10 +249,19 @@ pointer-events:none;
     </h2>
 
 <div style="
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
     padding:1rem;
-    border:1px solid rgba(200,168,75,.3);
+    margin:2rem auto;
+
+    border:1px solid rgba(200,168,75,.25);
     border-radius:12px;
-    background:rgba(43,31,61,.15);
+
+    background:rgba(0,0,0,.20);
+
+    width:fit-content;
 ">
 
     <video
@@ -261,8 +270,10 @@ pointer-events:none;
         loop
         playsinline
         style="
-            width:280px;
+            width:500px;
+            max-width:100%;
             border-radius:8px;
+            display:block;
         ">
 
         <source src="{{ asset('videos/garrita.mp4') }}" type="video/mp4">
