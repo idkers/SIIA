@@ -223,6 +223,16 @@ justify-content:center;
 gap:2rem;
 min-height:600px;
 ">
+<div style="
+position:absolute;
+inset:0;
+background-image:
+radial-gradient(#E8C96A 1px, transparent 1px);
+background-size:120px 120px;
+opacity:.08;
+pointer-events:none;
+">
+</div>
 
     <h2 class="siia-title"
         style="color:#C8A84B;font-size:3rem;">
