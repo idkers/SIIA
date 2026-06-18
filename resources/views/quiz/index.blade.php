@@ -208,8 +208,7 @@ min-height:550px;
 {{-- ETAPA 3: Procesando --}}
 <div id="stage-3" class="stage" style="display:none;">
 
-  
-<section style="
+ <section style="
 background:
 radial-gradient(
 circle at top right,
@@ -228,6 +227,12 @@ linear-gradient(
 border:1px solid rgba(200,168,75,.35);
 border-radius:10px;
 padding:2.5rem 2rem;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
 position:relative;
 overflow:hidden;
 ">
