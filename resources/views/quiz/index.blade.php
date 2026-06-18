@@ -212,16 +212,28 @@ min-height:550px;
   <section
 style="
 background:
-radial-gradient(circle,#2B1F3D 0%,#06060F 70%);
-border:1px solid #8B6914;
+<section style="
+background:
+radial-gradient(
+circle at top right,
+rgba(232,201,106,.25) 0%,
+rgba(200,168,75,.12) 20%,
+transparent 45%
+),
+linear-gradient(
+135deg,
+#06060F 0%,
+#120D08 30%,
+#1A1208 60%,
+#06060F 100%
+);
+
+border:1px solid rgba(200,168,75,.35);
 border-radius:10px;
-padding:4rem;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-gap:2rem;
-min-height:600px;
+padding:2.5rem 2rem;
+position:relative;
+overflow:hidden;
+">
 ">
 
     <h2 class="siia-title"
