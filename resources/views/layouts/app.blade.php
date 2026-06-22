@@ -17,20 +17,43 @@
             z-index: -1;
             pointer-events: none;
         }
+
+        /* ── Layout base: body y contenedor crecen, footer al fondo ── */
+        html { height: 100%; }
+        body {
+            min-height: 100vh;
+            min-height: 100dvh; /* mejor soporte en móvil */
+            display: flex;
+            flex-direction: column;
+            background: #06060F;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
         #siia-content {
             position: relative;
             z-index: 1;
+            /* Crece para llenar el espacio disponible */
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+        /* El footer dentro de #siia-content no crece */
+        #siia-content > footer,
+        #siia-content footer#footer-main {
+            flex-shrink: 0;
+            margin-top: auto; /* empuja hacia abajo si el contenido es corto */
         }
 
         * { box-sizing: border-box; }
 
-       nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
 
         footer {
             position: relative;
@@ -93,7 +116,7 @@
         }
     </style>
 </head>
-<body style="background:#06060F;color:white;margin:0;padding:0;">
+<body>
 
     <canvas id="siia-particles"></canvas>
 
@@ -171,7 +194,7 @@
             bCol[i*3]=c[0]; bCol[i*3+1]=c[1]; bCol[i*3+2]=c[2];
         }
         const bGeo = new THREE.BufferGeometry();
-        bGeo.setAttribute('position', new THREE.BufferAttribute(bPos, 3));
+        bGeo.setAttribute('position', new THREE.BufferAttribute(bCol, 3));
         bGeo.setAttribute('color',    new THREE.BufferAttribute(bCol, 3));
         const bright = new THREE.Points(bGeo, new THREE.PointsMaterial({
             size: 0.10, vertexColors: true, transparent: true,
