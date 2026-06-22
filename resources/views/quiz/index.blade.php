@@ -70,7 +70,7 @@
         flex: 1;
     }
 
-    /* ── ETAPA 1 ── */
+    /* ── ETAPA 1 — base (desktop) ── */
     #stage-1-inner {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -82,33 +82,29 @@
     #stage-1-title { font-size: 4rem; }
     #stage-1-img   { max-width: 820px; width: 100%; display: block; }
 
-    @media screen and (max-width: 768px) {
-        .stage-wrap { padding: .75rem !important; }
-
-        #stage-1-inner {
-            display: grid !important;
-            grid-template-columns: 1fr !important;
-            padding: 2rem 1.25rem !important;
-            min-height: auto !important;
-            text-align: center !important;
-        }
-        #stage-1-title { font-size: 2.4rem !important; }
-        /* Imagen grande y centrada en móvil */
-        #stage-1-img {
-            max-width: 72vw !important;
-            width: 72vw !important;
-            margin: 0 auto !important;
-            display: block !important;
-        }
-        #stage-1-img-wrap {
-            order: -1 !important;
-            display: flex !important;
-            justify-content: center !important;
-            width: 100% !important;
-        }
-        #stage-1-desc  { max-width: 100% !important; }
-        #stage-1-btn   { width: 100% !important; }
+    /* mobile — clase aplicada por JS para garantizar que funcione */
+    #stage-1-inner.mobile-layout {
+        grid-template-columns: 1fr !important;
+        padding: 2rem 1.25rem !important;
+        min-height: auto !important;
+        text-align: center !important;
     }
+    #stage-1-inner.mobile-layout #stage-1-title {
+        font-size: 2.2rem !important;
+    }
+    #stage-1-inner.mobile-layout #stage-1-img-wrap {
+        order: -1;
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+    #stage-1-inner.mobile-layout #stage-1-img {
+        width: 70vw !important;
+        max-width: 70vw !important;
+        margin: 0 auto !important;
+    }
+    #stage-1-inner.mobile-layout #stage-1-desc { max-width: 100% !important; }
+    #stage-1-inner.mobile-layout #stage-1-btn  { width: 100% !important; }
 
     /* ── ETAPA 2 ── */
     #stage-2-inner {
@@ -543,6 +539,19 @@
         document.getElementById('stage-' + n).style.display = 'flex';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // Aplica layout móvil via JS (más confiable que media queries en algunos navegadores móviles)
+    function applyMobileLayout() {
+        const inner = document.getElementById('stage-1-inner');
+        if (!inner) return;
+        if (window.innerWidth <= 768) {
+            inner.classList.add('mobile-layout');
+        } else {
+            inner.classList.remove('mobile-layout');
+        }
+    }
+    applyMobileLayout();
+    window.addEventListener('resize', applyMobileLayout);
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
