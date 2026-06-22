@@ -574,7 +574,7 @@ margin-top:2rem;
 </footer>
 @endsection
 
-@section('extra-js')
+@push('extra-js')
 <script>
 function goToStage(n) {
     document.querySelectorAll('.stage').forEach(s => s.style.display = 'none');
@@ -611,4 +611,4 @@ function descargarResultado() {
 
 }
 </script>
-@endsection
+@endpush
