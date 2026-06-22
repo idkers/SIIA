@@ -175,8 +175,8 @@
 
 @php
 $casas = [
-    ['imagen'=>'imagenes/casas/logistica.jpeg','nombre'=>'Ingeniería en Logística','dominio'=>'Ingenierías','color'=>'#0057B8','frase'=>'Organización y eficiencia','valores'=>['Responsabilidad','Organización','Eficiencia'],'desc'=>'Te gusta planear, coordinar recursos y optimizar procesos.'],
-    ['imagen'=>'imagenes/casas/mantenimiento.jpeg','nombre'=>'Ingeniería en Mantenimiento Industrial','dominio'=>'Ingenierías','color'=>'#003A5D','frase'=>'Mantén el sistema en marcha','valores'=>['Compromiso','Precisión','Responsabilidad'],'desc'=>'Diagnóstico y mantenimiento de maquinaria industrial.'],
+    ['imagen'=>'imagenes/casas/logistica.jpg','nombre'=>'Ingeniería en Logística','dominio'=>'Ingenierías','color'=>'#0057B8','frase'=>'Organización y eficiencia','valores'=>['Responsabilidad','Organización','Eficiencia'],'desc'=>'Te gusta planear, coordinar recursos y optimizar procesos.'],
+    ['imagen'=>'imagenes/casas/mantenimiento.jpg','nombre'=>'Ingeniería en Mantenimiento Industrial','dominio'=>'Ingenierías','color'=>'#003A5D','frase'=>'Mantén el sistema en marcha','valores'=>['Compromiso','Precisión','Responsabilidad'],'desc'=>'Diagnóstico y mantenimiento de maquinaria industrial.'],
     ['imagen'=>'imagenes/casas/ambiental.jpg','nombre'=>'Ingeniería Ambiental y Sustentabilidad','dominio'=>'Ingenierías','color'=>'#43B02A','frase'=>'Innovar para cuidar el planeta','valores'=>['Ética','Compromiso','Responsabilidad Social'],'desc'=>'Desarrollo de soluciones ambientales sostenibles.'],
     ['imagen'=>'imagenes/casas/entornos.jpg','nombre'=>'Entornos Virtuales y Negocios Digitales','dominio'=>'Tecnologías de la Información','color'=>'#6B3FA0','frase'=>'Crear experiencias digitales','valores'=>['Creatividad','Innovación','Adaptación'],'desc'=>'Desarrollo de productos digitales interactivos.'],
     ['imagen'=>'imagenes/casas/datos.png','nombre'=>'Ciencia de Datos','dominio'=>'Tecnologías de la Información','color'=>'#2E6F95','frase'=>'Los datos cuentan historias','valores'=>['Objetividad','Precisión','Pensamiento Crítico'],'desc'=>'Interpretación y análisis de datos.'],
