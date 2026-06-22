@@ -94,7 +94,7 @@ min-height:550px;
     align-items:center;
     ">
 
- <img src="{{ asset('imagenes/pata.png') }}"
+ <img src="{{ asset('imagenes/pata.webp') }}"
      class="float"
      style="max-width:820px;">
 
