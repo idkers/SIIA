@@ -117,7 +117,7 @@ min-height:550px;
         rgba(6,6,15,.75),
         rgba(6,6,15,.85)
     ),
-    url('{{ asset('imagenes/fondoquiz.png') }}');
+    url('{{ asset('imagenes/fondoquiz.webp') }}');
 
 
     background-size:cover;
