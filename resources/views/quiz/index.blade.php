@@ -12,6 +12,17 @@
         flex-direction: column;
         min-height: 100vh;
     }
+    /* Anular cualquier min-height que el layout padre ponga en main u otros wrappers */
+    body > main,
+    body > .main-content,
+    body > #app,
+    body > #content,
+    body > .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: unset !important;
+    }
     /* El wrapper del contenido de @yield('content') debe crecer */
     .page-content-wrapper {
         flex: 1 0 auto;
@@ -69,23 +80,34 @@
         gap: 2rem;
     }
     #stage-1-title { font-size: 4rem; }
-    #stage-1-img   { max-width: 820px; width: 100%; }
+    #stage-1-img   { max-width: 820px; width: 100%; display: block; }
 
-    @media (max-width: 768px) {
-        .stage-wrap { padding: .75rem; }
+    @media screen and (max-width: 768px) {
+        .stage-wrap { padding: .75rem !important; }
 
         #stage-1-inner {
-            grid-template-columns: 1fr;
-            padding: 2rem 1.25rem;
-            min-height: auto;
-            text-align: center;
+            display: grid !important;
+            grid-template-columns: 1fr !important;
+            padding: 2rem 1.25rem !important;
+            min-height: auto !important;
+            text-align: center !important;
         }
         #stage-1-title { font-size: 2.4rem !important; }
-        /* Imagen grande en móvil para que se aprecie */
-        #stage-1-img   { max-width: 80vw; margin: 0 auto; }
-        #stage-1-img-wrap { order: -1; }
+        /* Imagen grande y centrada en móvil */
+        #stage-1-img {
+            max-width: 72vw !important;
+            width: 72vw !important;
+            margin: 0 auto !important;
+            display: block !important;
+        }
+        #stage-1-img-wrap {
+            order: -1 !important;
+            display: flex !important;
+            justify-content: center !important;
+            width: 100% !important;
+        }
         #stage-1-desc  { max-width: 100% !important; }
-        #stage-1-btn   { width: 100%; }
+        #stage-1-btn   { width: 100% !important; }
     }
 
     /* ── ETAPA 2 ── */
