@@ -85,12 +85,20 @@
     /* mobile — clase aplicada por JS para garantizar que funcione */
     #stage-1-inner.mobile-layout {
         grid-template-columns: 1fr !important;
-        padding: 2rem 1.25rem !important;
+        padding: 2rem 1rem !important;
         min-height: auto !important;
         text-align: center !important;
+        /* Evita que el contenido se desborde */
+        overflow: hidden !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
     #stage-1-inner.mobile-layout #stage-1-title {
-        font-size: 2.2rem !important;
+        /* clamp: nunca mas grande de lo que cabe */
+        font-size: clamp(1.6rem, 8vw, 2.4rem) !important;
+        line-height: 1.15 !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
     }
     #stage-1-inner.mobile-layout #stage-1-img-wrap {
         order: -1;
@@ -99,12 +107,19 @@
         width: 100% !important;
     }
     #stage-1-inner.mobile-layout #stage-1-img {
-        width: 70vw !important;
-        max-width: 70vw !important;
+        width: 65vw !important;
+        max-width: 65vw !important;
         margin: 0 auto !important;
     }
-    #stage-1-inner.mobile-layout #stage-1-desc { max-width: 100% !important; }
-    #stage-1-inner.mobile-layout #stage-1-btn  { width: 100% !important; }
+    #stage-1-inner.mobile-layout #stage-1-desc {
+        max-width: 100% !important;
+        font-size: .9rem !important;
+        line-height: 1.7 !important;
+    }
+    #stage-1-inner.mobile-layout #stage-1-btn {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
 
     /* ── ETAPA 2 ── */
     #stage-2-inner {
