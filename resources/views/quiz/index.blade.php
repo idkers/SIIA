@@ -269,21 +269,7 @@ pointer-events:none;
     width:fit-content;
 ">
 
-    <video
-        autoplay
-        muted
-        loop
-        playsinline
-  style="
-    width:220px;
-    max-width:100%;
-    border-radius:8px;
-    display:block;
-        ">
 
-        <source src="{{ asset('videos/garrita.mp4') }}" type="video/mp4">
-
-    </video>
 
 </div>
 
