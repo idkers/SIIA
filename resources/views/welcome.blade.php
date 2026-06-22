@@ -338,12 +338,12 @@
 
 @push('extra-js')
 <script>
-    const heroImg = document.querySelector('#hero > div:first-of-type');
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        const scale = 1 + scrolled * 0.0003;
-        heroImg.style.transform = `scale(${scale})`;
-    }, { passive: true });
+    // const heroImg = document.querySelector('#hero > div:first-of-type');
+    // window.addEventListener('scroll', () => {
+    //     const scrolled = window.scrollY;
+    //     const scale = 1 + scrolled * 0.0003;
+    //     heroImg.style.transform = `scale(${scale})`;
+    // }, { passive: true });
 </script>
 @endpush
 
