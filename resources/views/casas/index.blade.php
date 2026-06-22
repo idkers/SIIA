@@ -50,12 +50,18 @@
         grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
         gap:1.5rem;
     }
-    /* En móvil: 1 columna, imagen más grande */
+    .casa-card-body { padding:1.5rem; }
     @media (max-width: 600px) {
-        .casas-section { padding:0 .75rem 3rem; }
-        #casasGrid { grid-template-columns:1fr; gap:1.25rem; }
-        /* La imagen cuadrada en móvil sube a aspect-ratio 4/3 para verse mejor */
-        .casa-img-wrap { aspect-ratio:4/3 !important; }
+        .casa-card-body { padding:.85rem !important; }
+    }
+    /* Movil: 2 columnas compactas */
+    @media (max-width: 600px) {
+        .casas-section { padding:0 .6rem 3rem; }
+        #casasGrid { grid-template-columns: repeat(2, 1fr); gap:.6rem; }
+        .casa-img-wrap { aspect-ratio: 4/3 !important; }
+        .casa-card h3  { font-size:.82rem !important; }
+        .casa-card > div { padding:.85rem !important; }
+        .casa-card span  { font-size:.62rem !important; padding:.25rem .45rem !important; }
     }
     @media (min-width: 601px) and (max-width: 900px) {
         #casasGrid { grid-template-columns:repeat(2,1fr); }
@@ -207,7 +213,7 @@ $casas = [
 
             <div style="height:8px;background:{{ $casa['color'] }};"></div>
 
-            <div style="padding:1.5rem;display:flex;flex-direction:column;height:100%;">
+            <div class="casa-card-body" style="display:flex;flex-direction:column;height:100%;">
 
                 {{-- IMAGEN --}}
                 <div class="casa-img-wrap"
