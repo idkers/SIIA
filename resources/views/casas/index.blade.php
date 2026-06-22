@@ -44,11 +44,15 @@
     }
 
     /* ── Grid de casas ── */
-    .casas-section { max-width:1400px; margin:auto; padding:0 2rem 4rem; }
-@media (max-width: 900px) {
-    #casasGrid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.casas-section {
+    max-width: 1400px !important;
+    width: 100% !important;
+}
+
+#casasGrid {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
 }
 
 @media (max-width: 600px) {
