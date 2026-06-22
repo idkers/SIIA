@@ -9,30 +9,29 @@
             background:rgba(6,6,15,0.6);
             backdrop-filter:blur(12px);
             -webkit-backdrop-filter:blur(12px);
-            z-index:10;
+            position:sticky;
+            top:0;
+            z-index:100;
             isolation:isolate;
             margin-bottom:0;">
-
-
     <span style="font-weight:700;font-size:1.4rem;color:#C8A84B;
                  letter-spacing:.12em;font-family:'Headland One',serif;">
         UTL
     </span>
     <div style="display:flex;gap:2rem;">
-        <a href="{{ route('welcome') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
-        <a href="{{ route('quiz') }}"          style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
-        <a href="{{ route('recorrido') }}"     style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
-        <a href="{{ route('dominios') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
-        <a href="{{ route('casas') }}"         style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
+        <a href="{{ route('welcome') }}"  style="font-size:.82rem;color:#E8C96A;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
+        <a href="{{ route('quiz') }}"     style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
+        <a href="{{ route('recorrido') }}" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
+        <a href="{{ route('dominios') }}" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
+        <a href="{{ route('casas') }}"    style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
     </div>
     <div style="display:flex;align-items:center;gap:.75rem;">
-        <a href="#"
-           style="font-size:.82rem;color:#B0A898;text-decoration:none;
-                  letter-spacing:.08em;text-transform:uppercase;">
+        <a href="#" style="font-size:.82rem;color:#B0A898;text-decoration:none;
+                           letter-spacing:.08em;text-transform:uppercase;">
             Ingresar
         </a>
         <div style="width:32px;height:32px;border-radius:50%;
-            background:#4A3560;border:1px solid #6B5080;"></div>
+                    background:#4A3560;border:1px solid #6B5080;"></div>
     </div>
 </nav>
 
@@ -41,7 +40,7 @@
          style="position:relative;
                 height:calc(100vh - 50px);
                 overflow:hidden;
-                background:rgba(6,6,15,.92);">
+                background:#06060F;">
 
     {{-- Imagen de fondo --}}
     <div style="position:absolute;inset:0;
@@ -50,45 +49,42 @@
                 background-position:right center;">
     </div>
 
-    {{------ Degradado izquierda --------}}
+    {{-- Degradado izquierda --}}
     <div style="position:absolute;inset:0;
                 background:linear-gradient(
-    to right,
-    rgba(15,10,3,0.95) 0%,
-    rgba(12,8,2,0.90) 23%,
-    rgba(6,6,15,.7) 45%,
-    rgba(6,6,15,.2) 65%,
-    transparent 100%
-);
-">
+                    to right,
+                    rgba(15,10,3,0.95) 0%,
+                    rgba(12,8,2,0.90) 23%,
+                    rgba(6,6,15,.7) 45%,
+                    rgba(6,6,15,.2) 65%,
+                    transparent 100%
+                );">
     </div>
 
-    {{ Degradado inferior imagen a negro }}
-<div style="position:absolute;
-            bottom:0;left:0;right:0;
-            height:35%;
-            background:linear-gradient(
-                to bottom,
-                transparent 0%,
-                rgba(6,6,15,.6) 50%,
-                #06060F 100%
-            );
-            z-index:1;">
-</div>
+    {{-- Degradado inferior --}}
+    <div style="position:absolute;
+                bottom:0;left:0;right:0;
+                height:35%;
+                background:linear-gradient(
+                    to bottom,
+                    transparent 0%,
+                    rgba(6,6,15,.6) 50%,
+                    #06060F 100%
+                );
+                z-index:1;">
+    </div>
 
-    {{------- Contenido ----------}}
-    <div style="position:relative;z-index:1;
-            height:100%;
-            width:50%;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            padding-left:0;
-            padding:0 2rem;
-            gap:1.5rem;">
+    {{-- Contenido --}}
+    <div style="position:relative;z-index:2;
+                height:100%;
+                width:50%;
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items:center;
+                padding:0 2rem;
+                gap:1.5rem;">
 
-        {{-- SIIA grand--}}
         <h1 style="margin:0;padding:0;
                    font-family:'Headland One',serif;
                    font-size:clamp(9rem,15vw,14rem);
@@ -110,7 +106,6 @@
             SIIA
         </h1>
 
-        {{-- TEXTO bajo SIIA --}}
         <p style="margin:0;
                   font-size:1.03rem;
                   letter-spacing:.10em;
@@ -154,33 +149,27 @@
 
 </section>
 
-
 {{-- ═══ SECCIÓN: DESCUBRE TU IDENTIDAD ════════════════════════════════════ --}}
 <section id="identidad"
          style="padding:3rem 4rem;
                 background:rgba(6,6,15,0.15);">
 
- <div style="display:flex;align-items:center;gap:1.5rem;justify-content:center;margin-bottom:.5rem;">
-    <div style="height:1px;width:200px;background:linear-gradient(to left, #8D6627, transparent);"></div>
-    <p style="margin:0;font-size:.7rem;text-transform:uppercase;
-              letter-spacing:.14em;color:#707085;white-space:nowrap;">
-        Descubre tu identidad académica
-    </p>
-    <div style="height:1px;width:200px;background:linear-gradient(to right, #8D6627, transparent);"></div>
-</div>
+    <div style="display:flex;align-items:center;gap:1.5rem;justify-content:center;margin-bottom:.5rem;">
+        <div style="height:1px;width:200px;background:linear-gradient(to left, #8D6627, transparent);"></div>
+        <p style="margin:0;font-size:.7rem;text-transform:uppercase;
+                  letter-spacing:.14em;color:#707085;white-space:nowrap;">
+            Descubre tu identidad académica
+        </p>
+        <div style="height:1px;width:200px;background:linear-gradient(to right, #8D6627, transparent);"></div>
+    </div>
 
-   
-</div>
+    <h2 style="text-align:center;font-size:1.5rem;font-weight:700;
+               color:#FFFFFF;margin-bottom:2rem;
+               font-family:'Headland One',serif;letter-spacing:.10em;
+               text-transform:uppercase;">
+        ¿A qué casa de la UTL perteneces?
+    </h2>
 
-<h2 style="text-align:center;font-size:1.5rem;font-weight:700;
-           color:#FFFFFF;margin-bottom:2rem;
-           font-family:'Headland One',serif;letter-spacing:.10em;
-           text-transform:uppercase;">
-    ¿A qué casa de la UTL perteneces?
-</h2>
-
-
-    {{-- 3 placeholders de casas --}}
     <div style="display:flex;gap:1.25rem;justify-content:center;margin-bottom:2rem;">
         @for ($i = 0; $i < 3; $i++)
         <div style="width:190px;height:190px;
@@ -211,34 +200,34 @@
 <section id="dominios"
          style="padding:3rem 4rem;
                 background:rgba(6,6,15,0.15);">
-<div style="display:flex;align-items:center;gap:1.5rem;justify-content:center;margin-bottom:.5rem;">
-    <div style="flex:1;height:1px;background:linear-gradient(to left, #8D6627, transparent);max-width:200px;"></div>
-    <h2 style="margin:0;font-size:1.5rem;font-weight:700;
-               color:#FFFFFF;font-family:'Headland One',serif;
-               letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;">
-        Dominios Académicos
-    </h2>
-    <div style="flex:1;height:1px;background:linear-gradient(to right, #8D6627, transparent);max-width:200px;"></div>
-</div>
 
-<p style="text-align:center;font-size:.75rem;color:#B0A898;
-          max-width:420px;margin:0 auto 2rem;line-height:1.7;
-          letter-spacing:.08em;text-transform:uppercase;">
-    Explora los dominios académicos que conforman la Universidad Tecnológica de León.
-</p>
+    <div style="display:flex;align-items:center;gap:1.5rem;justify-content:center;margin-bottom:.5rem;">
+        <div style="height:1px;width:200px;background:linear-gradient(to left, #8D6627, transparent);"></div>
+        <h2 style="margin:0;font-size:1.5rem;font-weight:700;
+                   color:#FFFFFF;font-family:'Headland One',serif;
+                   letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;">
+            Dominios Académicos
+        </h2>
+        <div style="height:1px;width:200px;background:linear-gradient(to right, #8D6627, transparent);"></div>
+    </div>
+
+    <p style="text-align:center;font-size:.75rem;color:#B0A898;
+              max-width:420px;margin:0 auto 2rem;line-height:1.7;
+              letter-spacing:.08em;text-transform:uppercase;">
+        Explora los dominios académicos que conforman la Universidad Tecnológica de León.
+    </p>
+
     {{-- Banner del dominio activo --}}
     <div style="border:1px solid #2B1F3D;border-radius:6px;
                 padding:1.2rem 1.5rem;display:flex;align-items:flex-start;
                 gap:1.25rem;margin-bottom:1.5rem;
                 background:#14141F;">
-
         <div style="width:56px;height:56px;flex-shrink:0;
                     background:#0D0D1A;border:1px dashed #2B1F3D;border-radius:4px;
                     display:flex;flex-direction:column;align-items:center;
                     justify-content:center;font-size:.65rem;color:#707085;text-align:center;">
             Ícono<br>dominio
         </div>
-
         <div>
             <p style="font-size:.95rem;font-weight:700;color:#F0EAD8;margin-bottom:.3rem;
                       font-family:'Headland One',serif;letter-spacing:.04em;">
@@ -250,9 +239,8 @@
         </div>
     </div>
 
-    {{-- Carrusel de casas --}}
+    {{-- Carrusel --}}
     <div style="position:relative;">
-
         <button onclick="document.getElementById('carousel').scrollBy({left:-260,behavior:'smooth'})"
                 style="position:absolute;left:-18px;top:50%;transform:translateY(-50%);
                        width:32px;height:32px;border-radius:50%;
@@ -264,50 +252,33 @@
         <div id="carousel"
              style="display:grid;grid-template-columns:repeat(4,1fr);
                     gap:.85rem;overflow:hidden;">
-
             @for ($i = 0; $i < 4; $i++)
             <div style="border:1px solid #2B1F3D;border-radius:6px;
-                        padding:.85rem;
-                        background:#14141F;
+                        padding:.85rem;background:#14141F;
                         display:flex;flex-direction:column;gap:.5rem;">
-
-                <div style="width:100%;aspect-ratio:1;
-                            background:#0D0D1A;
+                <div style="width:100%;aspect-ratio:1;background:#0D0D1A;
                             border:1px dashed #2B1F3D;border-radius:4px;
                             display:flex;align-items:center;justify-content:center;
                             font-size:.72rem;color:#707085;text-align:center;padding:.5rem;">
                     [ Escudo /<br>imagen casa ]
                 </div>
-
                 <p style="font-size:.82rem;font-weight:700;color:#F0EAD8;margin:0;
-                           font-family:'Headland One',serif;">
-                    Nombre casa
-                </p>
-                <p style="font-size:.75rem;color:#B0A898;margin:0;">
-                    Nombre carrera
-                </p>
-                <p style="font-size:.72rem;color:#C8A84B;font-style:italic;margin:0;">
-                    Frase distintiva
-                </p>
-
+                           font-family:'Headland One',serif;">Nombre casa</p>
+                <p style="font-size:.75rem;color:#B0A898;margin:0;">Nombre carrera</p>
+                <p style="font-size:.72rem;color:#C8A84B;font-style:italic;margin:0;">Frase distintiva</p>
                 <div style="display:flex;flex-wrap:wrap;gap:3px;">
-                    <span style="font-size:.65rem;padding:2px 7px;
-                                 border:1px solid #2B1F3D;border-radius:20px;
-                                 color:#707085;background:#0D0D1A;">valor</span>
-                    <span style="font-size:.65rem;padding:2px 7px;
-                                 border:1px solid #2B1F3D;border-radius:20px;
-                                 color:#707085;background:#0D0D1A;">valor</span>
-                    <span style="font-size:.65rem;padding:2px 7px;
-                                 border:1px solid #2B1F3D;border-radius:20px;
-                                 color:#707085;background:#0D0D1A;">valor</span>
+                    <span style="font-size:.65rem;padding:2px 7px;border:1px solid #2B1F3D;
+                                 border-radius:20px;color:#707085;background:#0D0D1A;">valor</span>
+                    <span style="font-size:.65rem;padding:2px 7px;border:1px solid #2B1F3D;
+                                 border-radius:20px;color:#707085;background:#0D0D1A;">valor</span>
+                    <span style="font-size:.65rem;padding:2px 7px;border:1px solid #2B1F3D;
+                                 border-radius:20px;color:#707085;background:#0D0D1A;">valor</span>
                 </div>
-
                 <p style="font-size:.68rem;color:#707085;line-height:1.5;margin:0;">
                     Significado del escudo, relación con la carrera y sus valores.
                 </p>
             </div>
             @endfor
-
         </div>
 
         <button onclick="document.getElementById('carousel').scrollBy({left:260,behavior:'smooth'})"
@@ -320,108 +291,54 @@
     </div>
 </section>
 
-{{-- ═══ FOOTER PLACEHOLDER ════════════════════════════════════════════════ --}}
+{{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
 <footer style="
     padding:3rem 4rem;
     background:#06060F;
-   
+    border-top:1px solid #2B1F3D;
     position:relative;
     z-index:10;
-    isolation:isolate;
-">
+    isolation:isolate;">
 
-    <div style="
-        display:flex;
-        justify-content:space-around;
-        flex-wrap:wrap;
-        gap:3rem;
-    ">
-
-        <!-- Informacion UTL -->
-        <div style="
-            text-align:left;
-            max-width:400px;
-        ">
-
-            <h3 style="
-                font-family:'Headland One', serif;
-                color:#C8A84B;
-                margin-bottom:1rem;
-                font-size:1.4rem;
-            ">
+    <div style="display:flex;justify-content:space-around;flex-wrap:wrap;gap:3rem;">
+        <div style="text-align:left;max-width:400px;">
+            <h3 style="font-family:'Headland One',serif;color:#C8A84B;
+                       margin-bottom:1rem;font-size:1.4rem;">
                 Universidad Tecnológica de León
             </h3>
-
-            <p style="
-                color:#F0EAD8;
-                line-height:1.8;
-                margin:0;
-            ">
+            <p style="color:#F0EAD8;line-height:1.8;margin:0;">
                 Blvd. Universidad Tecnológica #225 Col. San Carlos<br>
                 C.P. 37670 León, Gto. México<br><br>
-
                 difusion@utleon.edu.mx<br><br>
-
                 (477) 7 10 00 20
             </p>
-
         </div>
-
-        <!-- Informacion del proyecto -->
-        <div style="
-            text-align:left;
-            max-width:450px;
-        ">
-
-            <h3 style="
-                font-family:'Headland One', serif;
-                color:#C8A84B;
-                margin-bottom:1rem;
-                font-size:1.4rem;
-            ">
+        <div style="text-align:left;max-width:450px;">
+            <h3 style="font-family:'Headland One',serif;color:#C8A84B;
+                       margin-bottom:1rem;font-size:1.4rem;">
                 Desarrolladores del Proyecto
             </h3>
-
-            <p style="
-                color:#F0EAD8;
-                line-height:2;
-                margin:0;
-            ">
+            <p style="color:#F0EAD8;line-height:2;margin:0;">
                 <strong>Citlalli Méndez</strong><br>
-                citlallialejandrams@gmail.com
-                <br><br>
-
+                citlallialejandrams@gmail.com<br><br>
                 <strong>Miryam Muñoz</strong><br>
-                miryammunoz26@gmail.com
-                <br><br>
-
+                miryammunoz26@gmail.com<br><br>
                 <strong>Carlo Flores</strong><br>
                 carlofernandoflores2006@gmail.com
             </p>
-
         </div>
-
     </div>
 
-    <div style="
-        margin-top:2.5rem;
-        border-top:1px solid rgba(200,168,75,.15);
-        padding-top:1.5rem;
-        text-align:center;
-        color:#707085;
-        font-size:.8rem;
-        letter-spacing:.08em;
-    ">
+    <div style="margin-top:2.5rem;border-top:1px solid rgba(200,168,75,.15);
+                padding-top:1.5rem;text-align:center;color:#707085;
+                font-size:.8rem;letter-spacing:.08em;">
         © {{ date('Y') }} SIIA · Sistema Integral de Identidad Académica
     </div>
-
 </footer>
 
-<!-- PARALLAX  ZOOM  HEADER-->
 @push('extra-js')
 <script>
     const heroImg = document.querySelector('#hero > div:first-of-type');
-    
     window.addEventListener('scroll', () => {
         const scrolled = window.scrollY;
         const scale = 1 + scrolled * 0.0003;
