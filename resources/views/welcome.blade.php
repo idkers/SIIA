@@ -438,6 +438,7 @@
         © {{ date('Y') }} SIIA · Sistema Integral de Identidad Académica
     </div>
 </footer>
+@endsection
 @push('extra-js')
 <script>
     const btn  = document.getElementById('hamburgerBtn');
@@ -454,4 +455,3 @@
 </script>
 @endpush
 
-@endsection
