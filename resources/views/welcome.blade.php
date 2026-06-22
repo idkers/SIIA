@@ -44,7 +44,7 @@
 
     {{-- Imagen de fondo --}}
     <div style="position:absolute;inset:0;
-                background-image:url('{{ asset('imagenes/hero-leon.png') }}');
+                background-image:url('{{ asset('imagenes/hero-leon.webp') }}');
                 background-size:cover;
                 background-position:right center;">
     </div>
