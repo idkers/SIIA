@@ -416,15 +416,9 @@
     }
 </style>
 
-<footer id="footer-main"
-        style="padding:3rem 4rem;
-               background:#06060F;
-               border-top:1px solid #2B1F3D;
-               position:relative;
-               z-index:10;
-               isolation:isolate;">
-
-    <div id="footer-grid">
+{{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
+<footer style="padding:3rem 4rem;background:#06060F;border-top:1px solid #2B1F3D;">
+    <div class="footer-grid">
         <div style="text-align:left;max-width:400px;">
             <h3 style="font-family:'Headland One',serif;color:#C8A84B;
                        margin-bottom:1rem;font-size:1.4rem;">
@@ -452,13 +446,14 @@
             </p>
         </div>
     </div>
-
     <div style="margin-top:2.5rem;border-top:1px solid rgba(200,168,75,.15);
                 padding-top:1.5rem;text-align:center;color:#707085;
                 font-size:.8rem;letter-spacing:.08em;">
         © {{ date('Y') }} SIIA · Sistema Integral de Identidad Académica
     </div>
 </footer>
+
+</div>{{-- /page-wrap --}}
 
 @push('extra-js')
 <script>
