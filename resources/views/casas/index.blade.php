@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('title', 'Casas — SIIA')
 
 @section('content')
@@ -35,6 +34,7 @@
                     background:#4A3560;border:1px solid #6B5080;"></div>
     </div>
 </nav>
+
 {{-- ═══ ENCABEZADO ════════════════════════════════════════════════════════ --}}
 <section style="
     padding:5rem 2rem;
@@ -53,9 +53,8 @@
         Descubre cuál resuena con tu vocación y forma de ver el mundo.
     </p>
 </section>
-
-<br><br>
-
+<br>
+<br>
 @php
 $casas = [
 
@@ -243,7 +242,7 @@ $casas = [
 ];
 @endphp
 
-{{-- ═══ ESTILOS ════════════════════════════════════════════════════════════ --}}
+{{-- ═══ FILTROS ════════════════════════════════════════════════════════════ --}}
 <style>
     .filtro-btn {
         font-size:.78rem;
@@ -276,12 +275,8 @@ $casas = [
         border-color: rgba(200,168,75,.85);
         box-shadow: 0 0 0 1px rgba(200,168,75,.4), 0 0 18px rgba(200,168,75,.18);
     }
-    .casa-card.oculta {
-        display:none;
-    }
 </style>
 
-{{-- ═══ FILTROS ════════════════════════════════════════════════════════════ --}}
 <section style="max-width:1400px;margin:0 auto 2rem;padding:0 2rem;">
     <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;">
         <span style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:#707085;margin-right:.25rem;">Filtrar:</span>
@@ -311,6 +306,7 @@ $casas = [
 
             <div style="padding:1.5rem;display:flex;flex-direction:column;height:100%;">
 
+                {{-- NO MODIFICAR (AQUÍ VA EL ESCUDO) --}}
                 {{-- ESCUDO / IMAGEN --}}
                 <div style="
                     width:100%;
@@ -450,16 +446,11 @@ $casas = [
 @section('extra-js')
 <script>
 function filtrar(btn, dominio) {
-    // Quitar clase activo de todos los botones
-    document.querySelectorAll('.filtro-btn').forEach(function(b) {
-        b.classList.remove('activo');
-    });
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
     btn.classList.add('activo');
 
-    // Mostrar u ocultar cards según el dominio seleccionado
-    document.querySelectorAll('.casa-card').forEach(function(card) {
-        var dominioCard = card.getAttribute('data-dominio').trim();
-        var coincide = dominio === 'Todos' || dominioCard === dominio.trim();
+    document.querySelectorAll('.casa-card').forEach(card => {
+        const coincide = dominio === 'Todos' || card.dataset.dominio === dominio;
         card.style.display = coincide ? 'flex' : 'none';
     });
 }
