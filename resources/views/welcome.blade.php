@@ -405,18 +405,6 @@
 </section>
 
 {{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
-<style>
-    #footer-grid { display:flex; justify-content:space-around; flex-wrap:wrap; gap:3rem; }
-
-    @media (max-width: 600px) {
-        #footer-main   { padding: 2.5rem 1.25rem !important; }
-        #footer-grid   { flex-direction: column; gap: 2rem; }
-        #footer-grid > div { max-width: 100% !important; }
-        #footer-grid h3 { font-size: 1.15rem !important; }
-    }
-</style>
-
-{{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
 <footer id="footer-casas"
         style="background:#06060F;border-top:1px solid #2B1F3D;">
     <div id="footer-casas-grid">
