@@ -60,6 +60,13 @@
         flex: 1;
         display: flex;
         flex-direction: column;
+        /* Evita desbordamiento horizontal */
+        overflow-x: hidden;
+        box-sizing: border-box;
+        width: 100%;
+    }
+    @media (max-width: 768px) {
+        .stage-wrap { padding: .6rem !important; }
     }
     .stage {
         flex: 1;
@@ -148,18 +155,25 @@
     #stage-3-video { width: 220px; }
 
     @media (max-width: 768px) {
-        #stage-3-inner { padding: 2rem 1.25rem; }
-        /* Video lo suficientemente grande para apreciarse */
+        #stage-3-inner {
+            padding: 2rem 1rem !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+            align-items: center !important;
+        }
+        #stage-3-title { font-size: 2rem !important; }
+        #stage-3-video-wrap {
+            width: 85vw !important;
+            max-width: 85vw !important;
+            margin: 1rem auto !important;
+            box-sizing: border-box !important;
+        }
         #stage-3-video {
-            width: min(72vw, 320px) !important;
+            width: 100% !important;
             height: auto !important;
         }
-        #stage-3-btn   { width: 100%; }
-        #stage-3-title { font-size: 2.2rem !important; }
-        /* El contenedor del video también crece */
-        #stage-3-video-wrap {
-            width: min(80vw, 360px) !important;
-        }
+        #stage-3-btn { width: 100% !important; box-sizing: border-box !important; }
     }
 
     /* ── ETAPA 4 ── */
@@ -177,19 +191,33 @@
 
     @media (max-width: 768px) {
         #stage-4-inner {
-            grid-template-columns: 1fr;
-            padding: 2rem 1.25rem;
-            min-height: auto;
-            text-align: center;
+            grid-template-columns: 1fr !important;
+            padding: 2rem 1rem !important;
+            min-height: auto !important;
+            text-align: left !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+            width: 100% !important;
         }
         #stage-4-img-wrap { display: flex; justify-content: center; order: -1; }
-        /* Imagen del resultado grande en móvil */
-        #stage-4-img      { max-width: min(88vw, 420px); width: 100%; }
-        #stage-4-result-title { font-size: 2.6rem !important; }
-        #stage-4-desc     { max-width: 100% !important; }
-        #stage-4-btns     { flex-direction: column; }
+        #stage-4-img      { max-width: min(85vw, 380px) !important; width: 100% !important; }
+        #stage-4-result-title {
+            font-size: clamp(1.6rem, 7vw, 2.2rem) !important;
+            word-break: break-word !important;
+            line-height: 1.2 !important;
+        }
+        #stage-4-desc {
+            max-width: 100% !important;
+            font-size: .9rem !important;
+            line-height: 1.7 !important;
+        }
+        #stage-4-btns { flex-direction: column; }
         #stage-4-btns a,
-        #stage-4-btns button { width: 100%; text-align: center; box-sizing: border-box; }
+        #stage-4-btns button {
+            width: 100% !important;
+            text-align: center !important;
+            box-sizing: border-box !important;
+        }
     }
 
     /* ── FOOTER ── */
@@ -382,7 +410,9 @@
                         border:1px solid rgba(200,168,75,.25);
                         border-radius:12px;
                         background:rgba(0,0,0,.20);
-                        width:fit-content;">
+                        width:fit-content;
+                        max-width:100%;
+                        box-sizing:border-box;">
                 <video id="stage-3-video"
                        autoplay muted loop playsinline
                        style="max-width:100%;border-radius:8px;display:block;">
