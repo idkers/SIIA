@@ -417,8 +417,9 @@
 </style>
 
 {{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
-<footer style="padding:3rem 4rem;background:#06060F;border-top:1px solid #2B1F3D;">
-    <div class="footer-grid">
+<footer id="footer-casas"
+        style="background:#06060F;border-top:1px solid #2B1F3D;">
+    <div id="footer-casas-grid">
         <div style="text-align:left;max-width:400px;">
             <h3 style="font-family:'Headland One',serif;color:#C8A84B;
                        margin-bottom:1rem;font-size:1.4rem;">
@@ -437,12 +438,9 @@
                 Desarrolladores del Proyecto
             </h3>
             <p style="color:#F0EAD8;line-height:2;margin:0;">
-                <strong>Citlalli Méndez</strong><br>
-                citlallialejandrams@gmail.com<br><br>
-                <strong>Miryam Muñoz</strong><br>
-                miryammunoz26@gmail.com<br><br>
-                <strong>Carlo Flores</strong><br>
-                carlofernandoflores2006@gmail.com
+                <strong>Citlalli Méndez</strong><br>citlallialejandrams@gmail.com<br><br>
+                <strong>Miryam Muñoz</strong><br>miryammunoz26@gmail.com<br><br>
+                <strong>Carlo Flores</strong><br>carlofernandoflores2006@gmail.com
             </p>
         </div>
     </div>
@@ -452,9 +450,6 @@
         © {{ date('Y') }} SIIA · Sistema Integral de Identidad Académica
     </div>
 </footer>
-
-</div>{{-- /page-wrap --}}
-
 @push('extra-js')
 <script>
     const btn  = document.getElementById('hamburgerBtn');
