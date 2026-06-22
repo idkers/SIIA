@@ -194,7 +194,7 @@
             bCol[i*3]=c[0]; bCol[i*3+1]=c[1]; bCol[i*3+2]=c[2];
         }
         const bGeo = new THREE.BufferGeometry();
-        bGeo.setAttribute('position', new THREE.BufferAttribute(bCol, 3));
+        bGeo.setAttribute('position', new THREE.BufferAttribute(bPos, 3));
         bGeo.setAttribute('color',    new THREE.BufferAttribute(bCol, 3));
         const bright = new THREE.Points(bGeo, new THREE.PointsMaterial({
             size: 0.10, vertexColors: true, transparent: true,
