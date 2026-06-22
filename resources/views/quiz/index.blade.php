@@ -334,7 +334,7 @@ min-height:550px;
     justify-content:center;
     ">
 
-        <img src="../imagenes/gastronomia2.png"
+        <img src="../imagenes/gastronomia2.webp"
              style="max-width:500px;">
 
     </div>
@@ -429,7 +429,7 @@ margin-top:2rem;
     left:-99999px;
 ">
 
-    <img src="{{ asset('imagenes/gastronomia2.png') }}"
+    <img src="{{ asset('imagenes/gastronomia2.webp') }}"
          style="
          width:700px;
          max-width:100%;
