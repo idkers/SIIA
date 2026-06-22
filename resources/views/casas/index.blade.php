@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('title', 'Casas — SIIA')
 
 @section('content')
@@ -6,26 +7,34 @@
 {{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
 <nav style="display:flex;align-items:center;justify-content:space-between;
             padding:.75rem 2rem;
-            background:#06060F;
-            border-bottom:1px solid #2B1F3D;
+            background:rgba(6,6,15,0.6);
+            backdrop-filter:blur(12px);
+            -webkit-backdrop-filter:blur(12px);
+            position:sticky;
+            top:0;
+            z-index:100;
+            isolation:isolate;
             margin-bottom:0;">
-    <span style="font-weight:700;font-size:1rem;color:#C8A84B;
+    <span style="font-weight:700;font-size:1.4rem;color:#C8A84B;
                  letter-spacing:.12em;font-family:'Headland One',serif;">
         UTL
     </span>
     <div style="display:flex;gap:2rem;">
         <a href="{{ route('welcome') }}"  style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
         <a href="{{ route('quiz') }}"     style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
-        <a href="{{ route('recorrido') }}"style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
+        <a href="{{ route('recorrido') }}" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
         <a href="{{ route('dominios') }}" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
         <a href="{{ route('casas') }}"    style="font-size:.82rem;color:#E8C96A;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
     </div>
     <div style="display:flex;align-items:center;gap:.75rem;">
-        <a href="#" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
-        <div style="width:32px;height:32px;border-radius:50%;background:#2B1F3D;border:1px solid #6B5020;"></div>
+        <a href="#" style="font-size:.82rem;color:#B0A898;text-decoration:none;
+                           letter-spacing:.08em;text-transform:uppercase;">
+            Ingresar
+        </a>
+        <div style="width:32px;height:32px;border-radius:50%;
+                    background:#4A3560;border:1px solid #6B5080;"></div>
     </div>
 </nav>
-
 {{-- ═══ ENCABEZADO ════════════════════════════════════════════════════════ --}}
 <section style="
     padding:5rem 2rem;
@@ -44,8 +53,9 @@
         Descubre cuál resuena con tu vocación y forma de ver el mundo.
     </p>
 </section>
-<br>
-<br>
+
+<br><br>
+
 @php
 $casas = [
 
@@ -233,7 +243,7 @@ $casas = [
 ];
 @endphp
 
-{{-- ═══ FILTROS ════════════════════════════════════════════════════════════ --}}
+{{-- ═══ ESTILOS ════════════════════════════════════════════════════════════ --}}
 <style>
     .filtro-btn {
         font-size:.78rem;
@@ -266,8 +276,12 @@ $casas = [
         border-color: rgba(200,168,75,.85);
         box-shadow: 0 0 0 1px rgba(200,168,75,.4), 0 0 18px rgba(200,168,75,.18);
     }
+    .casa-card.oculta {
+        display:none;
+    }
 </style>
 
+{{-- ═══ FILTROS ════════════════════════════════════════════════════════════ --}}
 <section style="max-width:1400px;margin:0 auto 2rem;padding:0 2rem;">
     <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;">
         <span style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:#707085;margin-right:.25rem;">Filtrar:</span>
@@ -297,7 +311,6 @@ $casas = [
 
             <div style="padding:1.5rem;display:flex;flex-direction:column;height:100%;">
 
-                {{-- NO MODIFICAR (AQUÍ VA EL ESCUDO) --}}
                 {{-- ESCUDO / IMAGEN --}}
                 <div style="
                     width:100%;
@@ -437,11 +450,16 @@ $casas = [
 @section('extra-js')
 <script>
 function filtrar(btn, dominio) {
-    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+    // Quitar clase activo de todos los botones
+    document.querySelectorAll('.filtro-btn').forEach(function(b) {
+        b.classList.remove('activo');
+    });
     btn.classList.add('activo');
 
-    document.querySelectorAll('.casa-card').forEach(card => {
-        const coincide = dominio === 'Todos' || card.dataset.dominio === dominio;
+    // Mostrar u ocultar cards según el dominio seleccionado
+    document.querySelectorAll('.casa-card').forEach(function(card) {
+        var dominioCard = card.getAttribute('data-dominio').trim();
+        var coincide = dominio === 'Todos' || dominioCard === dominio.trim();
         card.style.display = coincide ? 'flex' : 'none';
     });
 }
