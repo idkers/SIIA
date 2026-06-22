@@ -5,34 +5,6 @@
 
 {{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
 <style>
-    /* ── Layout general: footer siempre al fondo ── */
-    html, body { height: 100%; margin: 0; }
-    body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-    /* Anular cualquier min-height que el layout padre ponga en main u otros wrappers */
-    body > main,
-    body > .main-content,
-    body > #app,
-    body > #content,
-    body > .content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        min-height: unset !important;
-    }
-    /* El wrapper del contenido de @yield('content') debe crecer */
-    .page-content-wrapper {
-        flex: 1 0 auto;
-        display: flex;
-        flex-direction: column;
-    }
-    /* El footer nunca crece, se queda al fondo */
-    #footer-main { flex-shrink: 0; }
-
-    /* ── Navbar ── */
     .nav-links { display:flex; gap:2rem; }
     .nav-auth  { display:flex; align-items:center; gap:.75rem; }
     .hamburger { display:none; background:none; border:none; cursor:pointer;
@@ -52,144 +24,7 @@
         .nav-auth  { display:none !important; }
         .hamburger { display:flex !important; }
     }
-
-    /* ── Stage wrap ── */
-    .stage-wrap {
-        padding: 2rem;
-        /* Permite que cada etapa llene el espacio vertical disponible */
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-    .stage {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-    .stage-wrap > section {
-        flex: 1;
-    }
-
-    /* ── ETAPA 1 — base (desktop) ── */
-    #stage-1-inner {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        min-height: 550px;
-        padding: 4rem;
-        gap: 2rem;
-    }
-    #stage-1-title { font-size: 4rem; }
-    #stage-1-img   { max-width: 820px; width: 100%; display: block; }
-
-    /* mobile — clase aplicada por JS para garantizar que funcione */
-    #stage-1-inner.mobile-layout {
-        grid-template-columns: 1fr !important;
-        padding: 2rem 1.25rem !important;
-        min-height: auto !important;
-        text-align: center !important;
-    }
-    #stage-1-inner.mobile-layout #stage-1-title {
-        font-size: 2.2rem !important;
-    }
-    #stage-1-inner.mobile-layout #stage-1-img-wrap {
-        order: -1;
-        display: flex !important;
-        justify-content: center !important;
-        width: 100% !important;
-    }
-    #stage-1-inner.mobile-layout #stage-1-img {
-        width: 70vw !important;
-        max-width: 70vw !important;
-        margin: 0 auto !important;
-    }
-    #stage-1-inner.mobile-layout #stage-1-desc { max-width: 100% !important; }
-    #stage-1-inner.mobile-layout #stage-1-btn  { width: 100% !important; }
-
-    /* ── ETAPA 2 ── */
-    #stage-2-inner {
-        padding: 2.5rem 2rem;
-        min-height: 420px;
-    }
-    #stage-2-ref-img {
-        width: 200px;
-        height: 200px;
-        flex-shrink: 0;
-    }
-    #stage-2-btn { align-self: center; }
-
-    @media (max-width: 768px) {
-        #stage-2-inner { padding: 2rem 1.25rem; min-height: auto; }
-        /* Imagen de referencia usable en móvil */
-        #stage-2-ref-img {
-            width: min(75vw, 300px) !important;
-            height: min(75vw, 300px) !important;
-        }
-        #stage-2-btn { width: 100%; }
-    }
-
-    /* ── ETAPA 3 ── */
-    #stage-3-inner { padding: 2.5rem 2rem; }
-    #stage-3-video { width: 220px; }
-
-    @media (max-width: 768px) {
-        #stage-3-inner { padding: 2rem 1.25rem; }
-        /* Video lo suficientemente grande para apreciarse */
-        #stage-3-video {
-            width: min(72vw, 320px) !important;
-            height: auto !important;
-        }
-        #stage-3-btn   { width: 100%; }
-        #stage-3-title { font-size: 2.2rem !important; }
-        /* El contenedor del video también crece */
-        #stage-3-video-wrap {
-            width: min(80vw, 360px) !important;
-        }
-    }
-
-    /* ── ETAPA 4 ── */
-    #stage-4-inner {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        min-height: 550px;
-        padding: 4rem;
-        gap: 2rem;
-    }
-    #stage-4-result-title { font-size: 5rem; }
-    #stage-4-img          { max-width: 500px; width: 100%; }
-    #stage-4-btns         { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
-
-    @media (max-width: 768px) {
-        #stage-4-inner {
-            grid-template-columns: 1fr;
-            padding: 2rem 1.25rem;
-            min-height: auto;
-            text-align: center;
-        }
-        #stage-4-img-wrap { display: flex; justify-content: center; order: -1; }
-        /* Imagen del resultado grande en móvil */
-        #stage-4-img      { max-width: min(88vw, 420px); width: 100%; }
-        #stage-4-result-title { font-size: 2.6rem !important; }
-        #stage-4-desc     { max-width: 100% !important; }
-        #stage-4-btns     { flex-direction: column; }
-        #stage-4-btns a,
-        #stage-4-btns button { width: 100%; text-align: center; box-sizing: border-box; }
-    }
-
-    /* ── FOOTER ── */
-    #footer-grid { display:flex; justify-content:space-around; flex-wrap:wrap; gap:3rem; }
-
-    @media (max-width: 600px) {
-        #footer-main { padding: 2.5rem 1.25rem !important; }
-        #footer-grid { flex-direction: column; gap: 2rem; }
-        #footer-grid > div { max-width: 100% !important; }
-        #footer-grid h3 { font-size: 1.15rem !important; }
-    }
 </style>
-
-{{-- ── Wrapper que crece para empujar footer al fondo ── --}}
-<div class="page-content-wrapper">
 
 <nav style="display:flex;align-items:center;justify-content:space-between;
             padding:.75rem 1.25rem;
@@ -230,6 +65,110 @@
     <a href="{{ route('casas') }}">Casas</a>
     <a href="#">Ingresar</a>
 </div>
+
+{{-- ═══ ETAPAS — estilos responsivos ══════════════════════════════════════ --}}
+<style>
+    /* Contenedor general de etapas */
+    .stage-wrap {
+        padding: 2rem;
+    }
+
+    /* ── ETAPA 1 ── */
+    #stage-1-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        min-height: 550px;
+        padding: 4rem;
+        gap: 2rem;
+    }
+    #stage-1-title { font-size: 4rem; }
+    #stage-1-img   { max-width: 820px; width: 100%; }
+
+    @media (max-width: 768px) {
+        .stage-wrap { padding: 1rem; }
+
+        #stage-1-inner {
+            grid-template-columns: 1fr;
+            padding: 2rem 1.25rem;
+            min-height: auto;
+            text-align: center;
+        }
+        #stage-1-title { font-size: 2.4rem !important; }
+        #stage-1-img   { max-width: 260px; margin: 0 auto; }
+        #stage-1-img-wrap { order: -1; }
+        #stage-1-desc  { max-width: 100% !important; }
+        #stage-1-btn   { width: 100%; }
+    }
+
+    /* ── ETAPA 2 ── */
+    #stage-2-inner {
+        padding: 2.5rem 2rem;
+        min-height: 420px;
+    }
+    #stage-2-ref-img {
+        width: 200px;
+        height: 200px;
+        flex-shrink: 0;
+    }
+    #stage-2-btn { align-self: center; }
+
+    @media (max-width: 768px) {
+        #stage-2-inner { padding: 2rem 1.25rem; min-height: auto; }
+        #stage-2-ref-img { width: 140px !important; height: 140px !important; }
+        #stage-2-btn { width: 100%; }
+    }
+
+    /* ── ETAPA 3 ── */
+    #stage-3-inner { padding: 2.5rem 2rem; }
+    #stage-3-video { width: 220px; }
+
+    @media (max-width: 768px) {
+        #stage-3-inner { padding: 2rem 1.25rem; }
+        #stage-3-video { width: 160px !important; }
+        #stage-3-btn   { width: 100%; }
+        #stage-3-title { font-size: 2.2rem !important; }
+    }
+
+    /* ── ETAPA 4 ── */
+    #stage-4-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        min-height: 550px;
+        padding: 4rem;
+        gap: 2rem;
+    }
+    #stage-4-result-title { font-size: 5rem; }
+    #stage-4-img          { max-width: 500px; width: 100%; }
+    #stage-4-btns         { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+
+    @media (max-width: 768px) {
+        #stage-4-inner {
+            grid-template-columns: 1fr;
+            padding: 2rem 1.25rem;
+            min-height: auto;
+            text-align: center;
+        }
+        #stage-4-img-wrap { display: flex; justify-content: center; }
+        #stage-4-img      { max-width: 260px; }
+        #stage-4-result-title { font-size: 2.6rem !important; }
+        #stage-4-desc     { max-width: 100% !important; }
+        #stage-4-btns     { flex-direction: column; }
+        #stage-4-btns a,
+        #stage-4-btns button { width: 100%; text-align: center; box-sizing: border-box; }
+    }
+
+    /* ── FOOTER ── */
+    #footer-grid { display:flex; justify-content:space-around; flex-wrap:wrap; gap:3rem; }
+
+    @media (max-width: 600px) {
+        #footer-main { padding: 2.5rem 1.25rem !important; }
+        #footer-grid { flex-direction: column; gap: 2rem; }
+        #footer-grid > div { max-width: 100% !important; }
+        #footer-grid h3 { font-size: 1.15rem !important; }
+    }
+</style>
 
 {{-- ═══ ETAPA 1: Inicio del quiz ══════════════════════════════════════════ --}}
 <div id="stage-1" class="stage">
@@ -361,8 +300,7 @@
                 SIIA
             </h2>
 
-            <div id="stage-3-video-wrap"
-                 style="display:flex;justify-content:center;align-items:center;
+            <div style="display:flex;justify-content:center;align-items:center;
                         padding:1rem;margin:2rem auto;
                         border:1px solid rgba(200,168,75,.25);
                         border-radius:12px;
@@ -476,9 +414,7 @@
     </div>
 </div>
 
-</div>{{-- /page-content-wrapper --}}
-
-{{-- ═══ FOOTER (fuera del wrapper para que se quede al fondo) ════════════ --}}
+{{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
 <footer id="footer-main"
         style="padding:3rem 4rem;background:#06060F;
                border-top:1px solid #2B1F3D;">
@@ -536,22 +472,9 @@
 
     function goToStage(n) {
         document.querySelectorAll('.stage').forEach(s => s.style.display = 'none');
-        document.getElementById('stage-' + n).style.display = 'flex';
+        document.getElementById('stage-' + n).style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    // Aplica layout móvil via JS (más confiable que media queries en algunos navegadores móviles)
-    function applyMobileLayout() {
-        const inner = document.getElementById('stage-1-inner');
-        if (!inner) return;
-        if (window.innerWidth <= 768) {
-            inner.classList.add('mobile-layout');
-        } else {
-            inner.classList.remove('mobile-layout');
-        }
-    }
-    applyMobileLayout();
-    window.addEventListener('resize', applyMobileLayout);
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
