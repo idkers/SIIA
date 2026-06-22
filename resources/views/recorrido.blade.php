@@ -6,9 +6,14 @@
 {{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
 <nav style="display:flex;align-items:center;justify-content:space-between;
             padding:.75rem 2rem;
-            background:#06060F;
-            border-bottom:1px solid #2B1F3D;
+            background:rgba(6,6,15,0.6);
+            backdrop-filter:blur(12px);
+            -webkit-backdrop-filter:blur(12px);
+            z-index:10;
+            isolation:isolate;
             margin-bottom:0;">
+
+
     <span style="font-weight:700;font-size:1rem;color:#C8A84B;
                  letter-spacing:.12em;font-family:'Headland One',serif;">
         UTL
