@@ -4,169 +4,39 @@
 @section('content')
 
 {{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
-<style>
-    /* ── Navbar responsive ── */
-    .nav-links-casas { display:flex; gap:2rem; }
-    .nav-auth-casas  { display:flex; align-items:center; gap:.75rem; }
-    .hamburger-casas { display:none; background:none; border:none; cursor:pointer;
-                       padding:.25rem; flex-direction:column; gap:5px; }
-    .hamburger-casas span { display:block; width:22px; height:2px;
-                            background:#C8A84B; border-radius:2px; }
-    .mobile-menu-casas { display:none; flex-direction:column; gap:0;
-                         background:rgba(6,6,15,0.97); padding:.5rem 0; }
-    .mobile-menu-casas a { display:block; padding:.75rem 2rem; font-size:.85rem;
-                           color:#B0A898; text-decoration:none; letter-spacing:.08em;
-                           text-transform:uppercase;
-                           border-bottom:1px solid rgba(43,31,61,0.4); }
-    .mobile-menu-casas a:last-child { border-bottom:none; }
-    .mobile-menu-casas.open { display:flex; }
-
-    @media (max-width: 768px) {
-        .nav-links-casas { display:none !important; }
-        .nav-auth-casas  { display:none !important; }
-        .hamburger-casas { display:flex !important; }
-    }
-
-    /* ── Encabezado ── */
-    .casas-header { padding:5rem 2rem; }
-    .casas-header h1 { font-size:3rem; }
-    @media (max-width: 768px) {
-        .casas-header { padding:3rem 1.25rem; }
-        .casas-header h1 { font-size:2rem !important; }
-        .casas-header p  { font-size:.9rem !important; }
-    }
-
-    /* ── Filtros ── */
-    .filtros-wrap { max-width:1400px; margin:0 auto 2rem; padding:0 2rem; }
-    @media (max-width: 768px) {
-        .filtros-wrap { padding:0 1rem; }
-        .filtros-wrap .filtro-btn { font-size:.72rem; padding:.3rem .75rem; }
-    }
-
-    /* ── Grid de casas ── */
-.casas-section {
-    max-width: 1400px !important;
-    width: 100% !important;
-}
-
-#casasGrid {
-    width: 100% !important;
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-}
-
-@media (max-width: 600px) {
-    #casasGrid {
-        grid-template-columns: 1fr;
-    }
-}
-    .casa-card-body { padding:1.5rem; }
-    @media (max-width: 600px) {
-        .casa-card-body { padding:.85rem !important; }
-    }
-    /* Movil: 2 columnas compactas */
-    @media (max-width: 600px) {
-        .casas-section { padding:0 .6rem 3rem; }
-        #casasGrid { grid-template-columns: repeat(2, 1fr); gap:.6rem; }
-        .casa-img-wrap { aspect-ratio: 4/3 !important; }
-        .casa-card h3  { font-size:.82rem !important; }
-        .casa-card > div { padding:.85rem !important; }
-        .casa-card span  { font-size:.62rem !important; padding:.25rem .45rem !important; }
-    }
-    @media (min-width: 601px) and (max-width: 900px) {
-        #casasGrid { grid-template-columns:repeat(2,1fr); }
-    }
-
-    /* ── Card ── */
-    .filtro-btn {
-        font-size:.78rem; color:#B0A898;
-        border:1px solid rgba(200,168,75,.2);
-        padding:.35rem 1rem; border-radius:50px;
-        background:transparent; cursor:pointer;
-        letter-spacing:.06em;
-        transition: border-color .2s, color .2s, background .2s;
-        font-family:inherit;
-    }
-    .filtro-btn:hover, .filtro-btn.activo {
-        border-color:#C8A84B; color:#E8C96A;
-        background:rgba(200,168,75,.08);
-    }
-    .casa-card {
-        background:#14141F;
-        border:1px solid rgba(200,168,75,.15);
-        border-radius:18px; overflow:hidden;
-        transition: border-color .35s ease, box-shadow .35s ease;
-        display:flex; flex-direction:column;
-    }
-    .casa-card:hover {
-        border-color: rgba(200,168,75,.85);
-        box-shadow: 0 0 0 1px rgba(200,168,75,.4), 0 0 18px rgba(200,168,75,.18);
-    }
-
-    /* ── CTA ── */
-    .casas-cta { padding:5rem 2rem; }
-    @media (max-width: 768px) {
-        .casas-cta { padding:3rem 1.25rem; }
-        .casas-cta h2 { font-size:1.6rem !important; }
-        .casas-cta a  { width:100%; box-sizing:border-box; text-align:center; }
-    }
-
-    /* ── Footer ── */
-    #footer-casas { padding:3rem 4rem; }
-    #footer-casas-grid { display:flex; justify-content:space-around; flex-wrap:wrap; gap:3rem; }
-    @media (max-width: 600px) {
-        #footer-casas { padding:2.5rem 1.25rem !important; }
-        #footer-casas-grid { flex-direction:column; gap:2rem; }
-        #footer-casas-grid > div { max-width:100% !important; text-align:left; }
-    }
-</style>
-
 <nav style="display:flex;align-items:center;justify-content:space-between;
             padding:.75rem 2rem;
-            background:rgba(6,6,15,0.6);
-            backdrop-filter:blur(12px);
-            -webkit-backdrop-filter:blur(12px);
-            position:sticky; top:0; z-index:100;
-            isolation:isolate; margin-bottom:0;">
-    <span style="font-weight:700;font-size:1.4rem;color:#C8A84B;
-                 letter-spacing:.12em;font-family:'Headland One',serif;">UTL</span>
-    <div class="nav-links-casas">
-        <a href="{{ route('welcome') }}"   style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
-        <a href="{{ route('quiz') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
-        <a href="{{ route('recorrido') }}" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
-        <a href="{{ route('dominios') }}"  style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
-        <a href="{{ route('casas') }}"     style="font-size:.82rem;color:#E8C96A;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
+            background:#06060F;
+            border-bottom:1px solid #2B1F3D;
+            margin-bottom:0;">
+    <span style="font-weight:700;font-size:1rem;color:#C8A84B;
+                 letter-spacing:.12em;font-family:'Headland One',serif;">
+        UTL
+    </span>
+    <div style="display:flex;gap:2rem;">
+        <a href="{{ route('welcome') }}"  style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
+        <a href="{{ route('quiz') }}"     style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
+        <a href="{{ route('recorrido') }}"style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
+        <a href="{{ route('dominios') }}" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
+        <a href="{{ route('casas') }}"    style="font-size:.82rem;color:#E8C96A;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
     </div>
-    <div class="nav-auth-casas">
-        <a href="#" style="font-size:.82rem;color:#B0A898;text-decoration:none;
-                           letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
-        <div style="width:32px;height:32px;border-radius:50%;
-                    background:#4A3560;border:1px solid #6B5080;"></div>
+    <div style="display:flex;align-items:center;gap:.75rem;">
+        <a href="#" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
+        <div style="width:32px;height:32px;border-radius:50%;background:#2B1F3D;border:1px solid #6B5020;"></div>
     </div>
-    <button class="hamburger-casas" id="hamburgerCasas" aria-label="Abrir menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-    </button>
 </nav>
 
-<div class="mobile-menu-casas" id="mobileCasas">
-    <a href="{{ route('welcome') }}">Inicio</a>
-    <a href="{{ route('quiz') }}">Quiz</a>
-    <a href="{{ route('recorrido') }}">Recorrido</a>
-    <a href="{{ route('dominios') }}">Dominios</a>
-    <a href="{{ route('casas') }}" style="color:#E8C96A;">Casas</a>
-    <a href="#">Ingresar</a>
-</div>
-
 {{-- ═══ ENCABEZADO ════════════════════════════════════════════════════════ --}}
-<section class="casas-header"
-         style="text-align:center;
-                background:linear-gradient(180deg,#06060F,#0D0D1A);
-                border-bottom:1px solid rgba(200,168,75,.15);">
-    <p style="color:#E8C96A;text-transform:uppercase;letter-spacing:.2em;
-              font-size:.75rem;margin-bottom:.8rem;">
+<section style="
+    padding:5rem 2rem;
+    text-align:center;
+    background:linear-gradient(180deg,#06060F,#0D0D1A);
+    border-bottom:1px solid rgba(200,168,75,.15);
+">
+    <p style="color:#E8C96A;text-transform:uppercase;letter-spacing:.2em;font-size:.75rem;margin-bottom:.8rem;">
         Sistema Integral de Identidad Académica
     </p>
-    <h1 class="casas-header" style="color:#FFFFFF;font-family:'Headland One',serif;margin-bottom:1rem;">
+    <h1 style="color:#FFFFFF;font-size:3rem;font-family:'Headland One',serif;margin-bottom:1rem;">
         Casas Académicas
     </h1>
     <p style="max-width:750px;margin:auto;color:#F0EAD8;line-height:1.9;font-size:1rem;">
@@ -174,104 +44,346 @@
         Descubre cuál resuena con tu vocación y forma de ver el mundo.
     </p>
 </section>
-
 <br>
-
+<br>
 @php
 $casas = [
-    ['imagen'=>'imagenes/casas/logistica.jpg','nombre'=>'Ingeniería en Logística','dominio'=>'Ingenierías','color'=>'#0057B8','frase'=>'Organización y eficiencia','valores'=>['Responsabilidad','Organización','Eficiencia'],'desc'=>'Te gusta planear, coordinar recursos y optimizar procesos.'],
-    ['imagen'=>'imagenes/casas/mantenimiento.jpg','nombre'=>'Ingeniería en Mantenimiento Industrial','dominio'=>'Ingenierías','color'=>'#003A5D','frase'=>'Mantén el sistema en marcha','valores'=>['Compromiso','Precisión','Responsabilidad'],'desc'=>'Diagnóstico y mantenimiento de maquinaria industrial.'],
-    ['imagen'=>'imagenes/casas/ambiental.jpg','nombre'=>'Ingeniería Ambiental y Sustentabilidad','dominio'=>'Ingenierías','color'=>'#43B02A','frase'=>'Innovar para cuidar el planeta','valores'=>['Ética','Compromiso','Responsabilidad Social'],'desc'=>'Desarrollo de soluciones ambientales sostenibles.'],
-    ['imagen'=>'imagenes/casas/entornos.jpg','nombre'=>'Entornos Virtuales y Negocios Digitales','dominio'=>'Tecnologías de la Información','color'=>'#6B3FA0','frase'=>'Crear experiencias digitales','valores'=>['Creatividad','Innovación','Adaptación'],'desc'=>'Desarrollo de productos digitales interactivos.'],
-    ['imagen'=>'imagenes/casas/datos.png','nombre'=>'Ciencia de Datos','dominio'=>'Tecnologías de la Información','color'=>'#2E6F95','frase'=>'Los datos cuentan historias','valores'=>['Objetividad','Precisión','Pensamiento Crítico'],'desc'=>'Interpretación y análisis de datos.'],
-    ['imagen'=>'imagenes/casas/software.png','nombre'=>'Desarrollo de Software','dominio'=>'Tecnologías de la Información','color'=>'#2563EB','frase'=>'Construye el futuro','valores'=>['Innovación','Perseverancia','Aprendizaje Continuo'],'desc'=>'Creación de aplicaciones y sistemas.'],
-    ['imagen'=>'imagenes/casas/redes.jpg','nombre'=>'Infraestructura de Redes','dominio'=>'Tecnologías de la Información','color'=>'#0EA5A4','frase'=>'Todo conectado','valores'=>['Responsabilidad','Orden','Seguridad'],'desc'=>'Administración de redes y servidores.'],
-    ['imagen'=>'imagenes/casas/ia.jpg','nombre'=>'Inteligencia Artificial','dominio'=>'Tecnologías de la Información','color'=>'#8A2BE2','frase'=>'Piensa diferente','valores'=>['Creatividad','Innovación','Pensamiento Crítico'],'desc'=>'Desarrollo de soluciones inteligentes.'],
-    ['imagen'=>'imagenes/casas/automotriz.jpg','nombre'=>'Automotriz','dominio'=>'Ingeniería Industrial','color'=>'#DC2626','frase'=>'Optimizar la industria','valores'=>['Eficiencia','Liderazgo','Compromiso'],'desc'=>'Mejora de procesos automotrices.'],
-    ['imagen'=>'imagenes/casas/productivos.png','nombre'=>'Procesos Productivos','dominio'=>'Ingeniería Industrial','color'=>'#ED8B00','frase'=>'Mejora continua','valores'=>['Orden','Eficiencia','Mejora Continua'],'desc'=>'Gestión de operaciones industriales.'],
-    ['imagen'=>'imagenes/casas/plasticos.jpg','nombre'=>'Moldeo de Plásticos','dominio'=>'Ingeniería Industrial','color'=>'#9C3D0C','frase'=>'Innovar con materiales','valores'=>['Precisión','Responsabilidad','Innovación'],'desc'=>'Diseño y fabricación de productos plásticos.'],
-    ['imagen'=>'imagenes/casas/calzado.jpg','nombre'=>'Calzado','dominio'=>'Ingeniería Industrial','color'=>'#C46210','frase'=>'Diseño y producción','valores'=>['Creatividad','Calidad','Trabajo en Equipo'],'desc'=>'Industria del calzado y manufactura.'],
-    ['imagen'=>'imagenes/casas/manufactura.jpg','nombre'=>'Manufactura Flexible','dominio'=>'Mecatrónica','color'=>'#7C3AED','frase'=>'Automatiza el futuro','valores'=>['Innovación','Precisión','Creatividad'],'desc'=>'Sistemas automatizados de producción.'],
-    ['imagen'=>'imagenes/casas/optomecatronica.jpg','nombre'=>'Optomecatrónica','dominio'=>'Mecatrónica','color'=>'#A50034','frase'=>'Tecnología de precisión','valores'=>['Precisión','Responsabilidad','Innovación'],'desc'=>'Sistemas ópticos y electrónicos.'],
-    ['imagen'=>'imagenes/casas/automatizacion.jpg','nombre'=>'Automatización','dominio'=>'Mecatrónica','color'=>'#FF3B30','frase'=>'Control inteligente','valores'=>['Eficiencia','Compromiso','Innovación'],'desc'=>'Automatización de procesos industriales.'],
-    ['imagen'=>'imagenes/casas/gastronomia.jpg','nombre'=>'Gastronomía','dominio'=>'Licenciaturas','color'=>'#EBA42D','frase'=>'Crear experiencias','valores'=>['Servicio','Creatividad','Disciplina'],'desc'=>'Experiencias culinarias y hospitalidad.'],
-    ['imagen'=>'imagenes/casas/administracion.jpg','nombre'=>'Administración','dominio'=>'Licenciaturas','color'=>'#1F3D2B','frase'=>'Dirigir con estrategia','valores'=>['Liderazgo','Responsabilidad','Ética'],'desc'=>'Gestión de empresas y recursos.'],
-    ['imagen'=>'imagenes/casas/turismo.png','nombre'=>'Turismo','dominio'=>'Licenciaturas','color'=>'#00A3E0','frase'=>'Conectar culturas','valores'=>['Servicio','Empatía','Creatividad'],'desc'=>'Experiencias turísticas y culturales.'],
-    ['imagen'=>'imagenes/casas/mercadotecnia.jpg','nombre'=>'Innovación de Negocios y Mercadotecnia','dominio'=>'Licenciaturas','color'=>'#E4007C','frase'=>'Impulsar ideas','valores'=>['Innovación','Liderazgo','Comunicación'],'desc'=>'Marketing y desarrollo de negocios.'],
+
+    // ── INGENIERÍAS ──────────────────────────────────────────────────────
+    [
+        'imagen'  => 'imagenes/casas/logistica.jpeg',
+        'nombre'  => 'Ingeniería en Logística',
+        'dominio' => 'Ingenierías',
+        'color'   => '#0057B8',
+        'frase'   => 'Organización y eficiencia',
+        'valores' => ['Responsabilidad', 'Organización', 'Eficiencia'],
+        'desc'    => 'Te gusta planear, coordinar recursos y optimizar procesos.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/mantenimiento.jpg',
+        'nombre'  => 'Ingeniería en Mantenimiento Industrial',
+        'dominio' => 'Ingenierías',
+        'color'   => '#003A5D',
+        'frase'   => 'Mantén el sistema en marcha',
+        'valores' => ['Compromiso', 'Precisión', 'Responsabilidad'],
+        'desc'    => 'Diagnóstico y mantenimiento de maquinaria industrial.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/ambiental.jpg',
+        'nombre'  => 'Ingeniería Ambiental y Sustentabilidad',
+        'dominio' => 'Ingenierías',
+        'color'   => '#43B02A',
+        'frase'   => 'Innovar para cuidar el planeta',
+        'valores' => ['Ética', 'Compromiso', 'Responsabilidad Social'],
+        'desc'    => 'Desarrollo de soluciones ambientales sostenibles.',
+    ],
+
+    // ── TECNOLOGÍAS DE LA INFORMACIÓN ────────────────────────────────────
+    [
+        'imagen'  => 'imagenes/casas/entornos.jpg',
+        'nombre'  => 'Entornos Virtuales y Negocios Digitales',
+        'dominio' => 'Tecnologías de la Información',
+        'color'   => '#6B3FA0',
+        'frase'   => 'Crear experiencias digitales',
+        'valores' => ['Creatividad', 'Innovación', 'Adaptación'],
+        'desc'    => 'Desarrollo de productos digitales interactivos.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/datos.png',
+        'nombre'  => 'Ciencia de Datos',
+        'dominio' => 'Tecnologías de la Información',
+        'color'   => '#2E6F95',
+        'frase'   => 'Los datos cuentan historias',
+        'valores' => ['Objetividad', 'Precisión', 'Pensamiento Crítico'],
+        'desc'    => 'Interpretación y análisis de datos.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/software.png',
+        'nombre'  => 'Desarrollo de Software',
+        'dominio' => 'Tecnologías de la Información',
+        'color'   => '#2563EB',
+        'frase'   => 'Construye el futuro',
+        'valores' => ['Innovación', 'Perseverancia', 'Aprendizaje Continuo'],
+        'desc'    => 'Creación de aplicaciones y sistemas.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/redes.jpg',
+        'nombre'  => 'Infraestructura de Redes',
+        'dominio' => 'Tecnologías de la Información',
+        'color'   => '#0EA5A4',
+        'frase'   => 'Todo conectado',
+        'valores' => ['Responsabilidad', 'Orden', 'Seguridad'],
+        'desc'    => 'Administración de redes y servidores.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/ia.jpg',
+        'nombre'  => 'Inteligencia Artificial',
+        'dominio' => 'Tecnologías de la Información',
+        'color'   => '#8A2BE2',
+        'frase'   => 'Piensa diferente',
+        'valores' => ['Creatividad', 'Innovación', 'Pensamiento Crítico'],
+        'desc'    => 'Desarrollo de soluciones inteligentes.',
+    ],
+
+    // ── INGENIERÍA INDUSTRIAL ─────────────────────────────────────────────
+    [
+        'imagen'  => 'imagenes/casas/automotriz.jpg',
+        'nombre'  => 'Automotriz',
+        'dominio' => 'Ingeniería Industrial',
+        'color'   => '#DC2626',
+        'frase'   => 'Optimizar la industria',
+        'valores' => ['Eficiencia', 'Liderazgo', 'Compromiso'],
+        'desc'    => 'Mejora de procesos automotrices.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/productivos.png',
+        'nombre'  => 'Procesos Productivos',
+        'dominio' => 'Ingeniería Industrial',
+        'color'   => '#ED8B00',
+        'frase'   => 'Mejora continua',
+        'valores' => ['Orden', 'Eficiencia', 'Mejora Continua'],
+        'desc'    => 'Gestión de operaciones industriales.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/plasticos.jpg',
+        'nombre'  => 'Moldeo de Plásticos',
+        'dominio' => 'Ingeniería Industrial',
+        'color'   => '#9C3D0C',
+        'frase'   => 'Innovar con materiales',
+        'valores' => ['Precisión', 'Responsabilidad', 'Innovación'],
+        'desc'    => 'Diseño y fabricación de productos plásticos.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/calzado.jpg',
+        'nombre'  => 'Calzado',
+        'dominio' => 'Ingeniería Industrial',
+        'color'   => '#C46210',
+        'frase'   => 'Diseño y producción',
+        'valores' => ['Creatividad', 'Calidad', 'Trabajo en Equipo'],
+        'desc'    => 'Industria del calzado y manufactura.',
+    ],
+
+    // ── MECATRÓNICA ───────────────────────────────────────────────────────
+    [
+        'imagen'  => 'imagenes/casas/manufactura.jpg',
+        'nombre'  => 'Manufactura Flexible',
+        'dominio' => 'Mecatrónica',
+        'color'   => '#7C3AED',
+        'frase'   => 'Automatiza el futuro',
+        'valores' => ['Innovación', 'Precisión', 'Creatividad'],
+        'desc'    => 'Sistemas automatizados de producción.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/optomecatronica.jpg',
+        'nombre'  => 'Optomecatrónica',
+        'dominio' => 'Mecatrónica',
+        'color'   => '#A50034',
+        'frase'   => 'Tecnología de precisión',
+        'valores' => ['Precisión', 'Responsabilidad', 'Innovación'],
+        'desc'    => 'Sistemas ópticos y electrónicos.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/automatizacion.jpg',
+        'nombre'  => 'Automatización',
+        'dominio' => 'Mecatrónica',
+        'color'   => '#FF3B30',
+        'frase'   => 'Control inteligente',
+        'valores' => ['Eficiencia', 'Compromiso', 'Innovación'],
+        'desc'    => 'Automatización de procesos industriales.',
+    ],
+
+    // ── LICENCIATURAS ─────────────────────────────────────────────────────
+    [
+        'imagen'  => 'imagenes/casas/gastronomia.jpg',
+        'nombre'  => 'Gastronomía',
+        'dominio' => 'Licenciaturas',
+        'color'   => '#EBA42D',
+        'frase'   => 'Crear experiencias',
+        'valores' => ['Servicio', 'Creatividad', 'Disciplina'],
+        'desc'    => 'Experiencias culinarias y hospitalidad.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/administracion.jpg',
+        'nombre'  => 'Administración',
+        'dominio' => 'Licenciaturas',
+        'color'   => '#1F3D2B',
+        'frase'   => 'Dirigir con estrategia',
+        'valores' => ['Liderazgo', 'Responsabilidad', 'Ética'],
+        'desc'    => 'Gestión de empresas y recursos.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/turismo.png',
+        'nombre'  => 'Turismo',
+        'dominio' => 'Licenciaturas',
+        'color'   => '#00A3E0',
+        'frase'   => 'Conectar culturas',
+        'valores' => ['Servicio', 'Empatía', 'Creatividad'],
+        'desc'    => 'Experiencias turísticas y culturales.',
+    ],
+    [
+        'imagen'  => 'imagenes/casas/mercadotecnia.jpg',
+        'nombre'  => 'Innovación de Negocios y Mercadotecnia',
+        'dominio' => 'Licenciaturas',
+        'color'   => '#E4007C',
+        'frase'   => 'Impulsar ideas',
+        'valores' => ['Innovación', 'Liderazgo', 'Comunicación'],
+        'desc'    => 'Marketing y desarrollo de negocios.',
+    ],
+
 ];
 @endphp
 
 {{-- ═══ FILTROS ════════════════════════════════════════════════════════════ --}}
-<section class="filtros-wrap">
+<style>
+    .filtro-btn {
+        font-size:.78rem;
+        color:#B0A898;
+        border:1px solid rgba(200,168,75,.2);
+        padding:.35rem 1rem;
+        border-radius:50px;
+        background:transparent;
+        cursor:pointer;
+        letter-spacing:.06em;
+        transition: border-color .2s, color .2s, background .2s;
+        font-family:inherit;
+    }
+    .filtro-btn:hover,
+    .filtro-btn.activo {
+        border-color:#C8A84B;
+        color:#E8C96A;
+        background:rgba(200,168,75,.08);
+    }
+    .casa-card {
+        background:#14141F;
+        border:1px solid rgba(200,168,75,.15);
+        border-radius:18px;
+        overflow:hidden;
+        transition: border-color .35s ease, box-shadow .35s ease;
+        display:flex;
+        flex-direction:column;
+    }
+    .casa-card:hover {
+        border-color: rgba(200,168,75,.85);
+        box-shadow: 0 0 0 1px rgba(200,168,75,.4), 0 0 18px rgba(200,168,75,.18);
+    }
+</style>
+
+<section style="max-width:1400px;margin:0 auto 2rem;padding:0 2rem;">
     <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;">
-        <span style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;
-                     color:#707085;margin-right:.25rem;">Filtrar:</span>
+        <span style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:#707085;margin-right:.25rem;">Filtrar:</span>
         <button class="filtro-btn activo" onclick="filtrar(this,'Todos')">Todos</button>
         <button class="filtro-btn" onclick="filtrar(this,'Ingenierías')">Ingenierías</button>
-        <button class="filtro-btn" onclick="filtrar(this,'Tecnologías de la Información')">Tec. Información</button>
-        <button class="filtro-btn" onclick="filtrar(this,'Ingeniería Industrial')">Ing. Industrial</button>
+        <button class="filtro-btn" onclick="filtrar(this,'Tecnologías de la Información')">Tecnologías de la Información</button>
+        <button class="filtro-btn" onclick="filtrar(this,'Ingeniería Industrial')">Ingeniería Industrial</button>
         <button class="filtro-btn" onclick="filtrar(this,'Mecatrónica')">Mecatrónica</button>
         <button class="filtro-btn" onclick="filtrar(this,'Licenciaturas')">Licenciaturas</button>
     </div>
 </section>
 
 {{-- ═══ GRID DE CASAS ══════════════════════════════════════════════════════ --}}
-<section class="casas-section">
-    <div id="casasGrid">
+<section style="max-width:1400px;margin:auto;padding:0 2rem 4rem;">
+
+    <div id="casasGrid" style="
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+        gap:1.5rem;
+    ">
+
         @foreach($casas as $casa)
+
         <div class="casa-card" data-dominio="{{ $casa['dominio'] }}">
 
             <div style="height:8px;background:{{ $casa['color'] }};"></div>
 
-            <div class="casa-card-body" style="display:flex;flex-direction:column;height:100%;">
+            <div style="padding:1.5rem;display:flex;flex-direction:column;height:100%;">
 
-                {{-- IMAGEN --}}
-                <div class="casa-img-wrap"
-                     style="width:100%;aspect-ratio:1;border-radius:12px;
-                            overflow:hidden;margin-bottom:1.5rem;">
+                {{-- NO MODIFICAR (AQUÍ VA EL ESCUDO) --}}
+                {{-- ESCUDO / IMAGEN --}}
+                <div style="
+                    width:100%;
+                    aspect-ratio:1;
+                    border-radius:12px;
+                    overflow:hidden;
+                    margin-bottom:1.5rem;
+                ">
                     @if(!empty($casa['imagen']))
-                        <img src="{{ asset($casa['imagen']) }}"
-                             alt="{{ $casa['nombre'] }}"
-                             style="width:100%;height:100%;object-fit:cover;">
+                        <img
+                            src="{{ asset($casa['imagen']) }}"
+                            alt="{{ $casa['nombre'] }}"
+                            style="width:100%;height:100%;object-fit:cover;"
+                        >
                     @else
-                        <div style="width:100%;height:100%;background:#1D1D2B;
-                                    border:1px dashed rgba(255,255,255,.15);
-                                    border-radius:12px;"></div>
+                        <div style="
+                            width:100%;height:100%;
+                            background:#1D1D2B;
+                            border:1px dashed rgba(255,255,255,.15);
+                            border-radius:12px;
+                            display:flex;align-items:center;justify-content:center;
+                        "></div>
                     @endif
                 </div>
 
-                <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;
-                           color:#707085;margin-bottom:.4rem;">{{ $casa['dominio'] }}</p>
+                <p style="
+                    font-size:.7rem;
+                    text-transform:uppercase;
+                    letter-spacing:.12em;
+                    color:#707085;
+                    margin-bottom:.4rem;
+                ">{{ $casa['dominio'] }}</p>
 
-                <h3 style="color:#FFFFFF;font-size:1.05rem;margin-bottom:.4rem;
-                            font-family:'Headland One',serif;">{{ $casa['nombre'] }}</h3>
+                <h3 style="
+                    color:#FFFFFF;
+                    font-size:1.05rem;
+                    margin-bottom:.4rem;
+                    font-family:'Headland One',serif;
+                ">{{ $casa['nombre'] }}</h3>
 
-                <p style="color:#C8A84B;font-size:.82rem;font-style:italic;
-                           margin-bottom:.9rem;">{{ $casa['frase'] }}</p>
+                <p style="
+                    color:#C8A84B;
+                    font-size:.82rem;
+                    font-style:italic;
+                    margin-bottom:.9rem;
+                ">{{ $casa['frase'] }}</p>
 
-                <p style="color:#B0A898;line-height:1.7;font-size:.9rem;
-                           margin-bottom:1.5rem;flex-grow:1;">{{ $casa['desc'] }}</p>
+                <p style="
+                    color:#B0A898;
+                    line-height:1.7;
+                    font-size:.9rem;
+                    margin-bottom:1.5rem;
+                    flex-grow:1;
+                ">{{ $casa['desc'] }}</p>
 
                 <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
                     @foreach($casa['valores'] as $v)
-                    <span style="background:rgba(255,255,255,.04);
-                                 border:1px solid rgba(255,255,255,.08);
-                                 color:#F0EAD8;padding:.4rem .75rem;
-                                 border-radius:50px;font-size:.72rem;">{{ $v }}</span>
+                    <span style="
+                        background:rgba(255,255,255,.04);
+                        border:1px solid rgba(255,255,255,.08);
+                        color:#F0EAD8;
+                        padding:.4rem .75rem;
+                        border-radius:50px;
+                        font-size:.72rem;
+                    ">{{ $v }}</span>
                     @endforeach
                 </div>
 
             </div>
+
         </div>
+
         @endforeach
+
     </div>
+
 </section>
 
 {{-- ═══ CTA ═══════════════════════════════════════════════════════════════ --}}
-<section class="casas-cta"
-         style="text-align:center;background:#0D0D1A;
-                border-top:1px solid rgba(200,168,75,.12);
-                border-bottom:1px solid rgba(200,168,75,.12);">
+<section style="
+    padding:5rem 2rem;
+    text-align:center;
+    background:#0D0D1A;
+    border-top:1px solid rgba(200,168,75,.12);
+    border-bottom:1px solid rgba(200,168,75,.12);
+">
     <h2 style="color:#FFFFFF;font-family:'Headland One',serif;margin-bottom:1rem;">
         Descubre tu casa académica
     </h2>
@@ -279,21 +391,22 @@ $casas = [
         Realiza el cuestionario SIIA y descubre qué casa y qué dominio
         representan mejor tus intereses, habilidades y forma de aprender.
     </p>
-    <a href="{{ route('quiz') }}"
-       style="display:inline-block;background:#C6A050;color:#06060F;
-              text-decoration:none;padding:.9rem 2rem;
-              border-radius:8px;font-weight:700;">
-        Realizar Test
-    </a>
+    <a href="{{ route('quiz') }}" style="
+        display:inline-block;
+        background:#C6A050;
+        color:#06060F;
+        text-decoration:none;
+        padding:.9rem 2rem;
+        border-radius:8px;
+        font-weight:700;
+    ">Realizar Test</a>
 </section>
 
 {{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
-<footer id="footer-casas"
-        style="background:#06060F;border-top:1px solid #2B1F3D;">
-    <div id="footer-casas-grid">
+<footer style="padding:3rem 4rem;background:#06060F;border-top:1px solid #2B1F3D;">
+    <div style="display:flex;justify-content:space-around;flex-wrap:wrap;gap:3rem;">
         <div style="text-align:left;max-width:400px;">
-            <h3 style="font-family:'Headland One',serif;color:#C8A84B;
-                       margin-bottom:1rem;font-size:1.4rem;">
+            <h3 style="font-family:'Headland One',serif;color:#C8A84B;margin-bottom:1rem;font-size:1.4rem;">
                 Universidad Tecnológica de León
             </h3>
             <p style="color:#F0EAD8;line-height:1.8;margin:0;">
@@ -304,8 +417,7 @@ $casas = [
             </p>
         </div>
         <div style="text-align:left;max-width:450px;">
-            <h3 style="font-family:'Headland One',serif;color:#C8A84B;
-                       margin-bottom:1rem;font-size:1.4rem;">
+            <h3 style="font-family:'Headland One',serif;color:#C8A84B;margin-bottom:1rem;font-size:1.4rem;">
                 Desarrolladores del Proyecto
             </h3>
             <p style="color:#F0EAD8;line-height:2;margin:0;">
@@ -315,37 +427,23 @@ $casas = [
             </p>
         </div>
     </div>
-    <div style="margin-top:2.5rem;border-top:1px solid rgba(200,168,75,.15);
-                padding-top:1.5rem;text-align:center;color:#707085;
-                font-size:.8rem;letter-spacing:.08em;">
+    <div style="margin-top:2.5rem;border-top:1px solid rgba(200,168,75,.15);padding-top:1.5rem;text-align:center;color:#707085;font-size:.8rem;letter-spacing:.08em;">
         © {{ date('Y') }} SIIA · Sistema Integral de Identidad Académica
     </div>
 </footer>
 
 @endsection
 
-@push('extra-js')
+@section('extra-js')
 <script>
-    const hamburgerCasas = document.getElementById('hamburgerCasas');
-    const mobileCasas    = document.getElementById('mobileCasas');
+function filtrar(btn, dominio) {
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+    btn.classList.add('activo');
 
-    hamburgerCasas.addEventListener('click', () => {
-        mobileCasas.classList.toggle('open');
-        hamburgerCasas.setAttribute('aria-expanded', mobileCasas.classList.contains('open'));
+    document.querySelectorAll('.casa-card').forEach(card => {
+        const coincide = dominio === 'Todos' || card.dataset.dominio === dominio;
+        card.style.display = coincide ? 'flex' : 'none';
     });
-    document.addEventListener('click', e => {
-        if (!hamburgerCasas.contains(e.target) && !mobileCasas.contains(e.target)) {
-            mobileCasas.classList.remove('open');
-        }
-    });
-
-    function filtrar(btn, dominio) {
-        document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
-        btn.classList.add('activo');
-        document.querySelectorAll('.casa-card').forEach(card => {
-            const coincide = dominio === 'Todos' || card.dataset.dominio === dominio;
-            card.style.display = coincide ? 'flex' : 'none';
-        });
-    }
+}
 </script>
-@endpush
+@endsection
