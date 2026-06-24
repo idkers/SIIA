@@ -478,16 +478,15 @@ $casas = [
                 </div>
 
                 {{-- BOTÓN VER MÁS --}}
-                <button class="btn-ver-mas"
-                    onclick="abrirModal(
-                        '{{ addslashes($casa['nombre']) }}',
-                        '{{ addslashes($casa['dominio']) }}',
-                        '{{ addslashes($casa['oferta']) }}',
-                        '{{ addslashes($casa['link']) }}',
-                        '{{ $casa['color'] }}'
-                    )">
-                    Ver más
-                </button>
+                    <button class="btn-ver-mas"
+                        data-nombre="{{ $casa['nombre'] }}"
+                        data-dominio="{{ $casa['dominio'] }}"
+                        data-oferta="{{ $casa['oferta'] }}"
+                        data-link="{{ $casa['link'] }}"
+                        data-color="{{ $casa['color'] }}"
+                        onclick="abrirModalDesdeBtn(this)">
+                        Ver más
+                    </button>
 
             </div>
         </div>
@@ -568,12 +567,19 @@ $casas = [
 @section('extra-js')
 <script>
 // ── FILTROS ──────────────────────────────────────────────────────────────────
+function normalizar(str) {
+    return str.trim().toLowerCase()
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '');
+}
+
 function filtrar(btn, dominio) {
     document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
     btn.classList.add('activo');
 
     document.querySelectorAll('.casa-card').forEach(card => {
-        const coincide = dominio === 'Todos' || card.dataset.dominio === dominio;
+        const coincide = dominio === 'Todos' ||
+                         normalizar(card.dataset.dominio) === normalizar(dominio);
         if (coincide) {
             card.classList.remove('oculta');
         } else {
@@ -583,13 +589,19 @@ function filtrar(btn, dominio) {
 }
 
 // ── MODAL ────────────────────────────────────────────────────────────────────
-function abrirModal(nombre, dominio, oferta, link, color) {
-    document.getElementById('modalNombre').textContent    = nombre;
-    document.getElementById('modalDominio').textContent   = dominio;
-    document.getElementById('modalOferta').textContent    = oferta;
+function abrirModalDesdeBtn(btn) {
+    const nombre  = btn.dataset.nombre;
+    const dominio = btn.dataset.dominio;
+    const oferta  = btn.dataset.oferta;
+    const link    = btn.dataset.link;
+    const color   = btn.dataset.color;
+
+    document.getElementById('modalNombre').textContent         = nombre;
+    document.getElementById('modalDominio').textContent        = dominio;
+    document.getElementById('modalOferta').textContent         = oferta;
     document.getElementById('modalHeaderBar').style.background = color;
 
-    const linkEl = document.getElementById('modalLink');
+    const linkEl       = document.getElementById('modalLink');
     linkEl.href        = link;
     linkEl.textContent = link;
 
