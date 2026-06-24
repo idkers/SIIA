@@ -570,7 +570,7 @@
             <p style="color:#F0EAD8;line-height:2;margin:0;">
                 <strong>Citlalli Méndez</strong><br>Documentadora y Administradora de Base de Datos<br>citlallialejandrams@gmail.com<br><br>
                 <strong>Miryam Muñoz</strong><br>Diseñadora<br>miryammunoz26@gmail.com<br><br>
-                <strong>Carlo Flores</strong><br>Prog<br>carlofernandoflores2006@gmail.com
+                <strong>Carlo Flores</strong><br>Programador<br>carlofernandoflores2006@gmail.com
             </p>
         </div>
     </div>
