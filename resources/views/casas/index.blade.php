@@ -3,7 +3,6 @@
 
 @section('content')
 
-{{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
 <style>
     .nav-links-casas { display:flex; gap:2rem; }
     .nav-auth-casas  { display:flex; align-items:center; gap:.75rem; }
@@ -24,22 +23,15 @@
         .nav-links-casas { display:none !important; }
         .nav-auth-casas  { display:none !important; }
         .hamburger-casas { display:flex !important; }
-    }
-
-    /* ── Encabezado ── */
-    @media (max-width: 768px) {
         .casas-header-section { padding:3rem 1.25rem !important; }
         .casas-header-section h1 { font-size:2rem !important; }
-        .casas-header-section p  { font-size:.9rem !important; }
-    }
-
-    /* ── Filtros ── */
-    @media (max-width: 768px) {
         .filtros-section { padding:0 1rem !important; }
         .filtro-btn { font-size:.72rem !important; padding:.3rem .7rem !important; }
+        .casas-cta { padding:3rem 1.25rem !important; }
+        .casas-cta h2 { font-size:1.6rem !important; }
+        .casas-cta a  { width:100%; box-sizing:border-box; text-align:center; display:block !important; }
     }
 
-    /* ── Grid ── */
     #casasGrid {
         display:grid;
         grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
@@ -50,15 +42,17 @@
         #casasGrid { grid-template-columns:repeat(2,1fr) !important; gap:.75rem !important; }
         .casa-img-wrap { aspect-ratio:4/3 !important; }
         .casa-card-body { padding:.85rem !important; }
-        .casa-card h3   { font-size:.82rem !important; }
+        .casa-card h3  { font-size:.82rem !important; }
         .casa-card span { font-size:.62rem !important; padding:.25rem .45rem !important; }
-        .btn-ver-mas    { font-size:.75rem !important; padding:.5rem 0 !important; }
+        .btn-ver-mas   { font-size:.75rem !important; padding:.5rem 0 !important; }
+        #footer-casas  { padding:2.5rem 1.25rem !important; }
+        #footer-casas-grid { flex-direction:column !important; gap:2rem !important; }
+        #footer-casas-grid > div { max-width:100% !important; }
     }
     @media (min-width: 601px) and (max-width: 900px) {
         #casasGrid { grid-template-columns:repeat(2,1fr) !important; }
     }
 
-    /* ── Cards ── */
     .filtro-btn {
         font-size:.78rem; color:#B0A898;
         border:1px solid rgba(200,168,75,.2);
@@ -83,7 +77,7 @@
     .casa-card.oculta { display:none !important; }
     .casa-card-body { padding:1.5rem; display:flex; flex-direction:column; height:100%; }
 
-    /* ── Modal ── */
+    /* Modal */
     .modal-overlay {
         display:none; position:fixed; inset:0;
         background:rgba(0,0,0,.72); z-index:1000;
@@ -123,22 +117,10 @@
     }
     .btn-ver-mas:hover { background:rgba(200,168,75,.12); color:#fff; }
 
-    /* ── CTA ── */
-    @media (max-width: 768px) {
-        .casas-cta { padding:3rem 1.25rem !important; }
-        .casas-cta h2 { font-size:1.6rem !important; }
-        .casas-cta a  { width:100%; box-sizing:border-box; text-align:center; display:block !important; }
-    }
-
-    /* ── Footer ── */
     #footer-casas-grid { display:flex; justify-content:space-around; flex-wrap:wrap; gap:3rem; }
-    @media (max-width: 600px) {
-        #footer-casas { padding:2.5rem 1.25rem !important; }
-        #footer-casas-grid { flex-direction:column; gap:2rem; }
-        #footer-casas-grid > div { max-width:100% !important; }
-    }
 </style>
 
+{{-- NAVBAR --}}
 <nav style="display:flex;align-items:center;justify-content:space-between;
             padding:.75rem 2rem;background:rgba(6,6,15,0.6);
             backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
@@ -170,7 +152,7 @@
     <a href="#">Ingresar</a>
 </div>
 
-{{-- ═══ ENCABEZADO ════════════════════════════════════════════════════════ --}}
+{{-- ENCABEZADO --}}
 <section class="casas-header-section"
          style="padding:5rem 2rem;text-align:center;
                 background:linear-gradient(180deg,#06060F,#0D0D1A);
@@ -212,7 +194,7 @@ $casas = [
 ];
 @endphp
 
-{{-- ═══ FILTROS ════════════════════════════════════════════════════════════ --}}
+{{-- FILTROS --}}
 <section class="filtros-section" style="max-width:1400px;margin:0 auto 2rem;padding:0 2rem;">
     <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;">
         <span style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:#707085;margin-right:.25rem;">Filtrar:</span>
@@ -225,7 +207,7 @@ $casas = [
     </div>
 </section>
 
-{{-- ═══ GRID DE CASAS ══════════════════════════════════════════════════════ --}}
+{{-- GRID --}}
 <section class="casas-grid-section" style="max-width:1400px;margin:auto;padding:0 2rem 4rem;">
     <div id="casasGrid">
         @foreach($casas as $casa)
@@ -252,36 +234,23 @@ $casas = [
                                  color:#F0EAD8;padding:.4rem .75rem;border-radius:50px;font-size:.72rem;">{{ $v }}</span>
                     @endforeach
                 </div>
-<<<<<<< HEAD
+                {{-- data-attributes evitan problemas con comillas y caracteres especiales --}}
                 <button class="btn-ver-mas"
-                    onclick="abrirModal(
-                        '{{ addslashes($casa['nombre']) }}',
-                        '{{ addslashes($casa['dominio']) }}',
-                        '{{ addslashes($casa['oferta']) }}',
-                        '{{ addslashes($casa['link']) }}',
-                        '{{ $casa['color'] }}'
-                    )">Ver más</button>
-=======
-
-                {{-- BOTÓN VER MÁS --}}
-                    <button class="btn-ver-mas"
                         data-nombre="{{ $casa['nombre'] }}"
                         data-dominio="{{ $casa['dominio'] }}"
                         data-oferta="{{ $casa['oferta'] }}"
                         data-link="{{ $casa['link'] }}"
                         data-color="{{ $casa['color'] }}"
                         onclick="abrirModalDesdeBtn(this)">
-                        Ver más
-                    </button>
-
->>>>>>> 0fb2afb4eb078f31a11ee80e727b5e9e034b4aad
+                    Ver más
+                </button>
             </div>
         </div>
         @endforeach
     </div>
 </section>
 
-{{-- ═══ MODAL ══════════════════════════════════════════════════════════════ --}}
+{{-- MODAL --}}
 <div class="modal-overlay" id="modalOverlay" onclick="cerrarModalOverlay(event)">
     <div class="modal-box" id="modalBox">
         <div class="modal-header-bar" id="modalHeaderBar"></div>
@@ -301,7 +270,7 @@ $casas = [
     </div>
 </div>
 
-{{-- ═══ CTA ════════════════════════════════════════════════════════════════ --}}
+{{-- CTA --}}
 <section class="casas-cta"
          style="padding:5rem 2rem;text-align:center;background:#0D0D1A;
                 border-top:1px solid rgba(200,168,75,.12);border-bottom:1px solid rgba(200,168,75,.12);">
@@ -319,7 +288,7 @@ $casas = [
     </a>
 </section>
 
-{{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
+{{-- FOOTER --}}
 <footer id="footer-casas" style="padding:3rem 4rem;background:#06060F;border-top:1px solid #2B1F3D;">
     <div id="footer-casas-grid">
         <div style="text-align:left;max-width:400px;">
@@ -352,10 +321,9 @@ $casas = [
 
 @endsection
 
-{{-- ═══ FIX: @push en lugar de @section para que el JS llegue al layout ══ --}}
 @push('extra-js')
 <script>
-// ── NAVBAR ───────────────────────────────────────────────────────────────────
+// NAVBAR
 const hamburgerCasas = document.getElementById('hamburgerCasas');
 const mobileCasas    = document.getElementById('mobileCasas');
 hamburgerCasas.addEventListener('click', () => {
@@ -367,59 +335,31 @@ document.addEventListener('click', e => {
         mobileCasas.classList.remove('open');
 });
 
-// ── FILTROS ──────────────────────────────────────────────────────────────────
+// FILTROS — normalización de acentos para comparación robusta
 function normalizar(str) {
     return str.trim().toLowerCase()
               .normalize('NFD')
               .replace(/[\u0300-\u036f]/g, '');
 }
-
 function filtrar(btn, dominio) {
     document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
     btn.classList.add('activo');
     document.querySelectorAll('.casa-card').forEach(card => {
-<<<<<<< HEAD
-        const coincide = dominio === 'Todos' || card.dataset.dominio === dominio;
-        card.classList.toggle('oculta', !coincide);
-=======
         const coincide = dominio === 'Todos' ||
                          normalizar(card.dataset.dominio) === normalizar(dominio);
-        if (coincide) {
-            card.classList.remove('oculta');
-        } else {
-            card.classList.add('oculta');
-        }
->>>>>>> 0fb2afb4eb078f31a11ee80e727b5e9e034b4aad
+        card.classList.toggle('oculta', !coincide);
     });
 }
 
-// ── MODAL ────────────────────────────────────────────────────────────────────
-<<<<<<< HEAD
-function abrirModal(nombre, dominio, oferta, link, color) {
-    document.getElementById('modalNombre').textContent  = nombre;
-    document.getElementById('modalDominio').textContent = dominio;
-    document.getElementById('modalOferta').textContent  = oferta;
-    document.getElementById('modalHeaderBar').style.background = color;
-    const linkEl = document.getElementById('modalLink');
-    linkEl.href = link; linkEl.textContent = link;
-=======
+// MODAL — lee datos desde data-attributes (seguro con caracteres especiales)
 function abrirModalDesdeBtn(btn) {
-    const nombre  = btn.dataset.nombre;
-    const dominio = btn.dataset.dominio;
-    const oferta  = btn.dataset.oferta;
-    const link    = btn.dataset.link;
-    const color   = btn.dataset.color;
-
-    document.getElementById('modalNombre').textContent         = nombre;
-    document.getElementById('modalDominio').textContent        = dominio;
-    document.getElementById('modalOferta').textContent         = oferta;
-    document.getElementById('modalHeaderBar').style.background = color;
-
+    document.getElementById('modalNombre').textContent          = btn.dataset.nombre;
+    document.getElementById('modalDominio').textContent         = btn.dataset.dominio;
+    document.getElementById('modalOferta').textContent          = btn.dataset.oferta;
+    document.getElementById('modalHeaderBar').style.background  = btn.dataset.color;
     const linkEl       = document.getElementById('modalLink');
-    linkEl.href        = link;
-    linkEl.textContent = link;
-
->>>>>>> 0fb2afb4eb078f31a11ee80e727b5e9e034b4aad
+    linkEl.href        = btn.dataset.link;
+    linkEl.textContent = btn.dataset.link;
     document.getElementById('modalOverlay').classList.add('abierto');
     document.body.style.overflow = 'hidden';
 }
