@@ -252,6 +252,7 @@ $casas = [
                                  color:#F0EAD8;padding:.4rem .75rem;border-radius:50px;font-size:.72rem;">{{ $v }}</span>
                     @endforeach
                 </div>
+<<<<<<< HEAD
                 <button class="btn-ver-mas"
                     onclick="abrirModal(
                         '{{ addslashes($casa['nombre']) }}',
@@ -260,6 +261,20 @@ $casas = [
                         '{{ addslashes($casa['link']) }}',
                         '{{ $casa['color'] }}'
                     )">Ver más</button>
+=======
+
+                {{-- BOTÓN VER MÁS --}}
+                    <button class="btn-ver-mas"
+                        data-nombre="{{ $casa['nombre'] }}"
+                        data-dominio="{{ $casa['dominio'] }}"
+                        data-oferta="{{ $casa['oferta'] }}"
+                        data-link="{{ $casa['link'] }}"
+                        data-color="{{ $casa['color'] }}"
+                        onclick="abrirModalDesdeBtn(this)">
+                        Ver más
+                    </button>
+
+>>>>>>> 0fb2afb4eb078f31a11ee80e727b5e9e034b4aad
             </div>
         </div>
         @endforeach
@@ -353,16 +368,33 @@ document.addEventListener('click', e => {
 });
 
 // ── FILTROS ──────────────────────────────────────────────────────────────────
+function normalizar(str) {
+    return str.trim().toLowerCase()
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '');
+}
+
 function filtrar(btn, dominio) {
     document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
     btn.classList.add('activo');
     document.querySelectorAll('.casa-card').forEach(card => {
+<<<<<<< HEAD
         const coincide = dominio === 'Todos' || card.dataset.dominio === dominio;
         card.classList.toggle('oculta', !coincide);
+=======
+        const coincide = dominio === 'Todos' ||
+                         normalizar(card.dataset.dominio) === normalizar(dominio);
+        if (coincide) {
+            card.classList.remove('oculta');
+        } else {
+            card.classList.add('oculta');
+        }
+>>>>>>> 0fb2afb4eb078f31a11ee80e727b5e9e034b4aad
     });
 }
 
 // ── MODAL ────────────────────────────────────────────────────────────────────
+<<<<<<< HEAD
 function abrirModal(nombre, dominio, oferta, link, color) {
     document.getElementById('modalNombre').textContent  = nombre;
     document.getElementById('modalDominio').textContent = dominio;
@@ -370,6 +402,24 @@ function abrirModal(nombre, dominio, oferta, link, color) {
     document.getElementById('modalHeaderBar').style.background = color;
     const linkEl = document.getElementById('modalLink');
     linkEl.href = link; linkEl.textContent = link;
+=======
+function abrirModalDesdeBtn(btn) {
+    const nombre  = btn.dataset.nombre;
+    const dominio = btn.dataset.dominio;
+    const oferta  = btn.dataset.oferta;
+    const link    = btn.dataset.link;
+    const color   = btn.dataset.color;
+
+    document.getElementById('modalNombre').textContent         = nombre;
+    document.getElementById('modalDominio').textContent        = dominio;
+    document.getElementById('modalOferta').textContent         = oferta;
+    document.getElementById('modalHeaderBar').style.background = color;
+
+    const linkEl       = document.getElementById('modalLink');
+    linkEl.href        = link;
+    linkEl.textContent = link;
+
+>>>>>>> 0fb2afb4eb078f31a11ee80e727b5e9e034b4aad
     document.getElementById('modalOverlay').classList.add('abierto');
     document.body.style.overflow = 'hidden';
 }
