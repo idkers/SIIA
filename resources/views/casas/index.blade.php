@@ -34,23 +34,14 @@
 
     #casasGrid {
         display:grid;
-        grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+        grid-template-columns:repeat(3, 1fr);
         gap:1.5rem;
     }
-    @media (max-width: 600px) {
-        .casas-grid-section { padding:0 .75rem 3rem !important; }
-        #casasGrid { grid-template-columns:repeat(2,1fr) !important; gap:.75rem !important; }
-        .casa-img-wrap { aspect-ratio:4/3 !important; }
-        .casa-card-body { padding:.85rem !important; }
-        .casa-card h3  { font-size:.82rem !important; }
-        .casa-card span { font-size:.62rem !important; padding:.25rem .45rem !important; }
-        .btn-ver-mas   { font-size:.75rem !important; padding:.5rem 0 !important; }
-        #footer-casas  { padding:2.5rem 1.25rem !important; }
-        #footer-casas-grid { flex-direction:column !important; gap:2rem !important; }
-        #footer-casas-grid > div { max-width:100% !important; }
+    @media (max-width: 900px) {
+        #casasGrid { grid-template-columns:repeat(2,1fr); }
     }
-    @media (min-width: 601px) and (max-width: 900px) {
-        #casasGrid { grid-template-columns:repeat(2,1fr) !important; }
+    @media (max-width: 500px) {
+        #casasGrid { grid-template-columns:1fr; }
     }
 
     .filtro-btn {
