@@ -425,7 +425,6 @@ $casas = [
                                  color:#F0EAD8;padding:.4rem .75rem;border-radius:50px;font-size:.72rem;">{{ $v }}</span>
                     @endforeach
                 </div>
-<<<<<<< HEAD
 
                 {{-- BOTÓN VER MÁS --}}
                 <button class="btn-ver-mas"
@@ -439,18 +438,6 @@ $casas = [
                     Ver más
                 </button>
 
-=======
-                {{-- data-attributes evitan problemas con comillas y caracteres especiales --}}
-                <button class="btn-ver-mas"
-                        data-nombre="{{ $casa['nombre'] }}"
-                        data-dominio="{{ $casa['dominio'] }}"
-                        data-oferta="{{ $casa['oferta'] }}"
-                        data-link="{{ $casa['link'] }}"
-                        data-color="{{ $casa['color'] }}"
-                        onclick="abrirModalDesdeBtn(this)">
-                    Ver más
-                </button>
->>>>>>> 1e8447fbdf131f1c5dbbed30b232f1ca4dc46972
             </div>
         </div>
         @endforeach
@@ -557,33 +544,11 @@ $casas = [
 
 @push('extra-js')
 <script>
-<<<<<<< HEAD
 // ── FILTROS ──────────────────────────────────────────────────────────────────
-=======
-// NAVBAR
-const hamburgerCasas = document.getElementById('hamburgerCasas');
-const mobileCasas    = document.getElementById('mobileCasas');
-hamburgerCasas.addEventListener('click', () => {
-    mobileCasas.classList.toggle('open');
-    hamburgerCasas.setAttribute('aria-expanded', mobileCasas.classList.contains('open'));
-});
-document.addEventListener('click', e => {
-    if (!hamburgerCasas.contains(e.target) && !mobileCasas.contains(e.target))
-        mobileCasas.classList.remove('open');
-});
-
-// FILTROS — normalización de acentos para comparación robusta
-function normalizar(str) {
-    return str.trim().toLowerCase()
-              .normalize('NFD')
-              .replace(/[\u0300-\u036f]/g, '');
-}
->>>>>>> 1e8447fbdf131f1c5dbbed30b232f1ca4dc46972
 function filtrar(btn, dominio) {
     document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
     btn.classList.add('activo');
     document.querySelectorAll('.casa-card').forEach(card => {
-<<<<<<< HEAD
         const coincide = dominio === 'Todos' || card.dataset.dominio === dominio;
         if (coincide) {
             card.classList.remove('oculta');
@@ -604,23 +569,6 @@ function abrirModal(nombre, dominio, oferta, link, color) {
     linkEl.href        = link;
     linkEl.textContent = link;
 
-=======
-        const coincide = dominio === 'Todos' ||
-                         normalizar(card.dataset.dominio) === normalizar(dominio);
-        card.classList.toggle('oculta', !coincide);
-    });
-}
-
-// MODAL — lee datos desde data-attributes (seguro con caracteres especiales)
-function abrirModalDesdeBtn(btn) {
-    document.getElementById('modalNombre').textContent          = btn.dataset.nombre;
-    document.getElementById('modalDominio').textContent         = btn.dataset.dominio;
-    document.getElementById('modalOferta').textContent          = btn.dataset.oferta;
-    document.getElementById('modalHeaderBar').style.background  = btn.dataset.color;
-    const linkEl       = document.getElementById('modalLink');
-    linkEl.href        = btn.dataset.link;
-    linkEl.textContent = btn.dataset.link;
->>>>>>> 1e8447fbdf131f1c5dbbed30b232f1ca4dc46972
     document.getElementById('modalOverlay').classList.add('abierto');
     document.body.style.overflow = 'hidden';
 }
