@@ -58,8 +58,22 @@ $casas = [
         'frase'    => 'Organización y eficiencia',
         'valores'  => ['Responsabilidad', 'Organización', 'Eficiencia'],
         'desc'     => 'Te gusta planear, coordinar recursos y optimizar procesos.',
-        'oferta'   => 'Agrega aquí la oferta educativa de Ingeniería en Logística.',
-        'link'     => 'https://www.utleon.edu.mx/', // <-- reemplaza con el link correcto
+        'oferta'   => 'Materias de especialidad:
+                        Fundamentos de la Cadena de Suministro
+                        Gestión de Almacén
+                        Logística de Abastecimiento
+                        Costos y Presupuestos Logísticos
+                        Tráfico y Sistemas de Transporte
+                        Administración y Control de Inventarios
+                        Sistemas de Transporte Carretero, Ferroviario, Aéreo y Marítimo
+                        Diseño de Redes Logísticas
+                        Investigación de Operaciones Logísticas
+                        Logística de Producción
+                        Administración de Operaciones Logísticas
+                        Gestión de Comercio Internacional
+                        Operación de Flotas y Terminales
+                        Simulación de Procesos Logísticos',
+        'link'     => 'https://www.utleon.edu.mx/carrera/TM',
     ],
     [
         'imagen'   => 'imagenes/casas/mantenimiento.jpg',
@@ -478,15 +492,16 @@ $casas = [
                 </div>
 
                 {{-- BOTÓN VER MÁS --}}
-                    <button class="btn-ver-mas"
-                        data-nombre="{{ $casa['nombre'] }}"
-                        data-dominio="{{ $casa['dominio'] }}"
-                        data-oferta="{{ $casa['oferta'] }}"
-                        data-link="{{ $casa['link'] }}"
-                        data-color="{{ $casa['color'] }}"
-                        onclick="abrirModalDesdeBtn(this)">
-                        Ver más
-                    </button>
+                <button class="btn-ver-mas"
+                    onclick="abrirModal(
+                        '{{ addslashes($casa['nombre']) }}',
+                        '{{ addslashes($casa['dominio']) }}',
+                        '{{ addslashes($casa['oferta']) }}',
+                        '{{ addslashes($casa['link']) }}',
+                        '{{ $casa['color'] }}'
+                    )">
+                    Ver más
+                </button>
 
             </div>
         </div>
@@ -567,19 +582,12 @@ $casas = [
 @section('extra-js')
 <script>
 // ── FILTROS ──────────────────────────────────────────────────────────────────
-function normalizar(str) {
-    return str.trim().toLowerCase()
-              .normalize('NFD')
-              .replace(/[\u0300-\u036f]/g, '');
-}
-
 function filtrar(btn, dominio) {
     document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
     btn.classList.add('activo');
 
     document.querySelectorAll('.casa-card').forEach(card => {
-        const coincide = dominio === 'Todos' ||
-                         normalizar(card.dataset.dominio) === normalizar(dominio);
+        const coincide = dominio === 'Todos' || card.dataset.dominio === dominio;
         if (coincide) {
             card.classList.remove('oculta');
         } else {
@@ -589,19 +597,13 @@ function filtrar(btn, dominio) {
 }
 
 // ── MODAL ────────────────────────────────────────────────────────────────────
-function abrirModalDesdeBtn(btn) {
-    const nombre  = btn.dataset.nombre;
-    const dominio = btn.dataset.dominio;
-    const oferta  = btn.dataset.oferta;
-    const link    = btn.dataset.link;
-    const color   = btn.dataset.color;
-
-    document.getElementById('modalNombre').textContent         = nombre;
-    document.getElementById('modalDominio').textContent        = dominio;
-    document.getElementById('modalOferta').textContent         = oferta;
+function abrirModal(nombre, dominio, oferta, link, color) {
+    document.getElementById('modalNombre').textContent    = nombre;
+    document.getElementById('modalDominio').textContent   = dominio;
+    document.getElementById('modalOferta').textContent    = oferta;
     document.getElementById('modalHeaderBar').style.background = color;
 
-    const linkEl       = document.getElementById('modalLink');
+    const linkEl = document.getElementById('modalLink');
     linkEl.href        = link;
     linkEl.textContent = link;
 
