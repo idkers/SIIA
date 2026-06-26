@@ -77,7 +77,7 @@
     .modal-overlay.abierto { display:flex; }
     .modal-box {
         background:#14141F; border:1px solid rgba(200,168,75,.35);
-        border-radius:20px; max-width:540px; width:100%;
+        border-radius:20px; max-width:600px; width:100%;
         max-height:88vh; overflow-y:auto; position:relative;
         box-shadow:0 0 40px rgba(200,168,75,.12);
     }
@@ -96,7 +96,7 @@
         font-size:.72rem; text-transform:uppercase; letter-spacing:.12em; color:#C8A84B;
         border-bottom:1px solid rgba(200,168,75,.2); padding-bottom:.4rem; margin-bottom:.8rem;
     }
-    .modal-oferta-text { color:#F0EAD8; line-height:1.8; font-size:.92rem; margin-bottom:1.75rem; }
+    .modal-oferta-text { margin-bottom:1.75rem; }
     .modal-link { font-size:.85rem; color:#B0A898; line-height:1.7; }
     .modal-link a { color:#E8C96A; text-decoration:underline; word-break:break-all; }
     .modal-link a:hover { color:#fff; }
@@ -107,6 +107,37 @@
         cursor:pointer; transition:background .2s,color .2s; font-family:inherit;
     }
     .btn-ver-mas:hover { background:rgba(200,168,75,.12); color:#fff; }
+
+    /* Lista de oferta educativa en columnas */
+    .modal-oferta-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: .45rem .75rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .modal-oferta-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: .45rem;
+        color: #F0EAD8;
+        font-size: .88rem;
+        line-height: 1.5;
+    }
+    .modal-oferta-list li::before {
+        content: '';
+        display: block;
+        flex-shrink: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #C8A84B;
+        margin-top: .45em;
+    }
+    @media (max-width: 500px) {
+        .modal-oferta-list { grid-template-columns: 1fr; }
+    }
 
     #footer-casas-grid { display:flex; justify-content:space-around; flex-wrap:wrap; gap:3rem; }
 </style>
@@ -173,7 +204,7 @@ $casas = [
         'frase'    => 'Organización y eficiencia',
         'valores'  => ['Responsabilidad', 'Organización', 'Eficiencia'],
         'desc'     => 'Te gusta planear, coordinar recursos y optimizar procesos.',
-        'oferta'   => 'Materias de especialidad: Fundamentos de la Cadena de Suministro, Gestión de Almacén, Logística de Abastecimiento, Costos y Presupuestos Logísticos, Tráfico y Sistemas de Transporte, Administración y Control de Inventarios, Sistemas de Transporte Carretero, Ferroviario, Aéreo y Marítimo, Diseño de Redes Logísticas. Investigación de Operaciones Logísticas, Logística de Producción, Administración de Operaciones Logísticas, Gestión de Comercio Internacional, Operación de Flotas y Terminales, Simulación de Procesos Logísticos',
+        'oferta'   => 'Fundamentos de la Cadena de Suministro, Gestión de Almacén, Logística de Abastecimiento, Costos y Presupuestos Logísticos, Tráfico y Sistemas de Transporte, Administración y Control de Inventarios, Sistemas de Transporte Carretero, Sistemas de Transporte Ferroviario, Sistemas de Transporte Aéreo y Marítimo, Diseño de Redes Logísticas, Investigación de Operaciones Logísticas, Logística de Producción, Administración de Operaciones Logísticas, Gestión de Comercio Internacional, Operación de Flotas y Terminales, Simulación de Procesos Logísticos',
         'link'     => 'https://www.utleon.edu.mx/carrera/TM',
     ],
     [
@@ -454,7 +485,7 @@ $casas = [
             <h2 class="modal-title" id="modalNombre"></h2>
             <p class="modal-dominio" id="modalDominio"></p>
             <p class="modal-section-title">Oferta Educativa</p>
-            <p class="modal-oferta-text" id="modalOferta"></p>
+            <div class="modal-oferta-text" id="modalOferta"></div>
             <p class="modal-section-title">Más Información</p>
             <p class="modal-link">
                 Para más información visita la página oficial de la UTL:
@@ -560,10 +591,27 @@ function filtrar(btn, dominio) {
 
 // ── MODAL ────────────────────────────────────────────────────────────────────
 function abrirModal(nombre, dominio, oferta, link, color) {
-    document.getElementById('modalNombre').textContent    = nombre;
-    document.getElementById('modalDominio').textContent   = dominio;
-    document.getElementById('modalOferta').textContent    = oferta;
+    document.getElementById('modalNombre').textContent  = nombre;
+    document.getElementById('modalDominio').textContent = dominio;
     document.getElementById('modalHeaderBar').style.background = color;
+
+    // Convertir la cadena de oferta en lista visual en columnas
+    const materias = oferta
+        .split(',')
+        .map(m => m.trim())
+        .filter(m => m.length > 0);
+
+    const ul = document.createElement('ul');
+    ul.className = 'modal-oferta-list';
+    materias.forEach(materia => {
+        const li = document.createElement('li');
+        li.textContent = materia;
+        ul.appendChild(li);
+    });
+
+    const contenedor = document.getElementById('modalOferta');
+    contenedor.innerHTML = '';
+    contenedor.appendChild(ul);
 
     const linkEl = document.getElementById('modalLink');
     linkEl.href        = link;
@@ -572,13 +620,16 @@ function abrirModal(nombre, dominio, oferta, link, color) {
     document.getElementById('modalOverlay').classList.add('abierto');
     document.body.style.overflow = 'hidden';
 }
+
 function cerrarModal() {
     document.getElementById('modalOverlay').classList.remove('abierto');
     document.body.style.overflow = '';
 }
+
 function cerrarModalOverlay(e) {
     if (e.target === document.getElementById('modalOverlay')) cerrarModal();
 }
+
 document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal(); });
 </script>
 @endpush
