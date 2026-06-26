@@ -173,21 +173,7 @@ $casas = [
         'frase'    => 'Organización y eficiencia',
         'valores'  => ['Responsabilidad', 'Organización', 'Eficiencia'],
         'desc'     => 'Te gusta planear, coordinar recursos y optimizar procesos.',
-        'oferta'   => 'Materias de especialidad: 
-                        Fundamentos de la Cadena de Suministro
-                        Gestión de Almacén
-                        Logística de Abastecimiento
-                        Costos y Presupuestos Logísticos
-                        Tráfico y Sistemas de Transporte
-                        Administración y Control de Inventarios
-                        Sistemas de Transporte Carretero, Ferroviario, Aéreo y Marítimo
-                        Diseño de Redes Logísticas
-                        Investigación de Operaciones Logísticas
-                        Logística de Producción
-                        Administración de Operaciones Logísticas
-                        Gestión de Comercio Internacional
-                        Operación de Flotas y Terminales
-                        Simulación de Procesos Logísticos',
+        'oferta'   => 'Materias de especialidad: Fundamentos de la Cadena de Suministro, Gestión de Almacén, Logística de Abastecimiento, Costos y Presupuestos Logísticos, Tráfico y Sistemas de Transporte, Administración y Control de Inventarios, Sistemas de Transporte Carretero, Ferroviario, Aéreo y Marítimo, Diseño de Redes Logísticas. Investigación de Operaciones Logísticas, Logística de Producción, Administración de Operaciones Logísticas, Gestión de Comercio Internacional, Operación de Flotas y Terminales, Simulación de Procesos Logísticos',
         'link'     => 'https://www.utleon.edu.mx/carrera/TM',
     ],
     [
