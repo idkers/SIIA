@@ -215,8 +215,8 @@ $casas = [
         'frase'    => 'Mantén el sistema en marcha',
         'valores'  => ['Compromiso', 'Precisión', 'Responsabilidad'],
         'desc'     => 'Diagnóstico y mantenimiento de maquinaria industrial.',
-        'oferta'   => 'Agrega aquí la oferta educativa de Ingeniería en Mantenimiento Industrial.',
-        'link'     => 'https://www.utleon.edu.mx/',
+        'oferta'   => 'Seguridad Industrial, Gestión y Administración del Mantenimiento, Termodinámica y Sistemas Térmicos, Electrónica Analógica y Digital, Máquinas y Mecanismos, Sistemas Eléctricos e Instalaciones Eléctricas, Sistemas Neumáticos e Hidráulicos, Automatización, Robótica y Redes Industriales, Mantenimiento Predictivo Mecánico, Técnicas TPM (Mantenimiento Productivo Total) y RCM, Ensayos Destructivos y No Destructivos, Manufactura Asistida por Computadora, Visualización y Control de Procesos',
+        'link'     => 'https://www.utleon.edu.mx/carrera/MI',
     ],
     [
         'imagen'   => 'imagenes/casas/ambiental.jpg',
@@ -226,8 +226,8 @@ $casas = [
         'frase'    => 'Innovar para cuidar el planeta',
         'valores'  => ['Ética', 'Compromiso', 'Responsabilidad Social'],
         'desc'     => 'Desarrollo de soluciones ambientales sostenibles.',
-        'oferta'   => 'Agrega aquí la oferta educativa de Ingeniería Ambiental y Sustentabilidad.',
-        'link'     => 'https://www.utleon.edu.mx/',
+        'oferta'   => 'Legislación Ambiental, Química Inorgánica, Química Orgánica, Química Ambiental, Microbiología Ambiental, Gestión de Recursos Hídricos, Gestión Integral de Residuos, Seguridad Laboral y Salud Ocupacional, Sistemas de Gestión Ambiental y de Calidad, Evaluación de Impacto Ambiental, Gestión de la Calidad del Aire, Manejo y Conservación de Suelo, Gestión y Auditoría Ambiental y Laboral, Operaciones Unitarias, Producción Sustentable, Sistema de Información Geográfica y Ordenamiento Territorial, Procesos de Adaptación al Cambio Climático, Bioprocesos Ambientales, Energías Alternativas, Evaluación de Riesgo, Tecnología para el Tratamiento de Agua',
+        'link'     => 'https://www.utleon.edu.mx/carrera/GA',
     ],
 
     // ── TECNOLOGÍAS DE LA INFORMACIÓN ────────────────────────────────────
@@ -239,8 +239,8 @@ $casas = [
         'frase'    => 'Crear experiencias digitales',
         'valores'  => ['Creatividad', 'Innovación', 'Adaptación'],
         'desc'     => 'Desarrollo de productos digitales interactivos.',
-        'oferta'   => 'Agrega aquí la oferta educativa de Entornos Virtuales y Negocios Digitales.',
-        'link'     => 'https://www.utleon.edu.mx/',
+        'oferta'   => 'Fundamentos de Programación, Programación Estructurada, Programación Orientada a Objetos, Aplicaciones Web, Frameworks para Desarrollo Web, Aplicaciones WEB progresivas, Diseño Digital y Producción Audiovisual, Modelado y Animación Digital, Animación Avanzada y Efectos Visuales, Aplicaciones para Realidad Virtual, Aplicaciones para Realidad Aumentada, Programación de Video Juegos, Mercadotecnia Digital, Fundamentos de Inteligencia Artificial, Programación para Inteligencia Artificial, Ciencia de Datos, Internet de las Cosas, Tecnologías Disruptivas, Seguridad informática, Informática Forense',
+        'link'     => 'https://www.utleon.edu.mx/carrera/EVN',
     ],
     [
         'imagen'   => 'imagenes/casas/datos.png',
