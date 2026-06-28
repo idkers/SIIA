@@ -300,7 +300,7 @@
             <div class="accordion-body" style="display:none;padding:0 1.25rem 1.1rem 3.75rem;">
                 <p style="font-size:.88rem;color:#B0A898;line-height:1.8;margin:0;">
                     Haz clic en el botón <strong style="color:#E8C96A;">Descargar juego</strong>
-                    de arriba. Se abrirá Google Drive y comenzará la descarga del archivo
+                    de arriba. Se abrirá Google Drive donde deberás hacer clic en los tres puntos y en "Descargar" para comenzar la descarga del archivo
                     <code style="background:#1A1A2E;padding:2px 6px;border-radius:4px;
                                  color:#C8A84B;font-size:.82rem;">Conoce_tu_Universidad.zip</code>
                     a tu computadora.
