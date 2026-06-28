@@ -4,68 +4,35 @@
 @section('content')
 
 {{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
-<style>
-    .nav-links { display:flex; gap:2rem; }
-    .nav-auth  { display:flex; align-items:center; gap:.75rem; }
-    .hamburger { display:none; background:none; border:none; cursor:pointer;
-                 padding:.25rem; flex-direction:column; gap:5px; }
-    .hamburger span { display:block; width:22px; height:2px; background:#C8A84B; border-radius:2px; }
-    .mobile-menu { display:none; flex-direction:column; gap:0;
-                   background:rgba(6,6,15,0.97); padding:.5rem 0; }
-    .mobile-menu a { display:block; padding:.75rem 2rem;
-                     font-size:.85rem; color:#B0A898; text-decoration:none;
-                     letter-spacing:.08em; text-transform:uppercase;
-                     border-bottom:1px solid rgba(43,31,61,0.4); }
-    .mobile-menu a:last-child { border-bottom:none; }
-    .mobile-menu.open { display:flex; }
-
-    @media (max-width: 768px) {
-        .nav-links { display:none !important; }
-        .nav-auth  { display:none !important; }
-        .hamburger { display:flex !important; }
-    }
-</style>
-
 <nav style="display:flex;align-items:center;justify-content:space-between;
             padding:.75rem 1.25rem;
             background:rgba(6,6,15,0.6);
             backdrop-filter:blur(12px);
             -webkit-backdrop-filter:blur(12px);
-            position:sticky;
-            top:0;
-            z-index:100;
-            isolation:isolate;">
-    <span style="font-weight:700;font-size:1.4rem;color:#C8A84B;
-                 letter-spacing:.12em;font-family:'Headland One',serif;">
-        UTL
-    </span>
+            position:sticky;top:0;z-index:100;isolation:isolate;">
+
+    <img src="{{ asset('imagenes/isotipo_dorado.webp') }}"
+         alt="UTL"
+         style="height:2rem;width:auto;display:block;">
+
     <div class="nav-links">
-        <a href="{{ route('welcome') }}"   style="font-size:.82rem;color:#E8C96A;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
+        <a href="{{ route('welcome') }}"   style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
         <a href="{{ route('quiz') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
-        <a href="{{ route('recorrido') }}" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
+        <a href="{{ route('recorrido') }}" style="font-size:.82rem;color:#E8C96A;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
         <a href="{{ route('dominios') }}"  style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
         <a href="{{ route('casas') }}"     style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
     </div>
+
     <div class="nav-auth">
         <a href="#" style="font-size:.82rem;color:#B0A898;text-decoration:none;
                            letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
-        <div style="width:32px;height:32px;border-radius:50%;
-                    background:#4A3560;border:1px solid #6B5080;"></div>
     </div>
-    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú">
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
     </button>
-</nav>
 
-{{-- Menú móvil desplegable --}}
-<div class="mobile-menu" id="mobileMenu">
-    <a href="{{ route('welcome') }}"   style="color:#E8C96A;">Inicio</a>
-    <a href="{{ route('quiz') }}">Quiz</a>
-    <a href="{{ route('recorrido') }}">Recorrido</a>
-    <a href="{{ route('dominios') }}">Dominios</a>
-    <a href="{{ route('casas') }}">Casas</a>
-    <a href="#">Ingresar</a>
-</div>
+</nav>
 
 {{-- ═══ HERO ═════════════════════════════════════════════════════════════════ --}}
 <style>

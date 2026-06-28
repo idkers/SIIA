@@ -144,35 +144,34 @@
 
 {{-- NAVBAR --}}
 <nav style="display:flex;align-items:center;justify-content:space-between;
-            padding:.75rem 2rem;background:rgba(6,6,15,0.6);
-            backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+            padding:.75rem 1.25rem;
+            background:rgba(6,6,15,0.6);
+            backdrop-filter:blur(12px);
+            -webkit-backdrop-filter:blur(12px);
             position:sticky;top:0;z-index:100;isolation:isolate;">
-    <span style="font-weight:700;font-size:1.4rem;color:#C8A84B;
-                 letter-spacing:.12em;font-family:'Headland One',serif;">UTL</span>
-    <div class="nav-links-casas">
+
+    <img src="{{ asset('imagenes/isotipo_dorado.webp') }}"
+         alt="UTL"
+         style="height:2rem;width:auto;display:block;">
+
+    <div class="nav-links">
         <a href="{{ route('welcome') }}"   style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
         <a href="{{ route('quiz') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
-        <a href="{{ route('recorrido') }}" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
+        <a href="{{ route('recorrido') }}" style="font-size:.82rem;color:#E8C96A;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
         <a href="{{ route('dominios') }}"  style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
-        <a href="{{ route('casas') }}"     style="font-size:.82rem;color:#E8C96A;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
+        <a href="{{ route('casas') }}"     style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
     </div>
-    <div class="nav-auth-casas">
-        <a href="#" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
-        <div style="width:32px;height:32px;border-radius:50%;background:#4A3560;border:1px solid #6B5080;"></div>
+
+    <div class="nav-auth">
+        <a href="#" style="font-size:.82rem;color:#B0A898;text-decoration:none;
+                           letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
     </div>
-    <button class="hamburger-casas" id="hamburgerCasas" aria-label="Abrir menú" aria-expanded="false">
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
     </button>
-</nav>
 
-<div class="mobile-menu-casas" id="mobileCasas">
-    <a href="{{ route('welcome') }}">Inicio</a>
-    <a href="{{ route('quiz') }}">Quiz</a>
-    <a href="{{ route('recorrido') }}">Recorrido</a>
-    <a href="{{ route('dominios') }}">Dominios</a>
-    <a href="{{ route('casas') }}" style="color:#E8C96A;">Casas</a>
-    <a href="#">Ingresar</a>
-</div>
+</nav>
 
 {{-- ENCABEZADO --}}
 <section class="casas-header-section"
