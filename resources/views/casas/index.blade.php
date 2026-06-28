@@ -77,7 +77,7 @@
     .modal-overlay.abierto { display:flex; }
     .modal-box {
         background:#14141F; border:1px solid rgba(200,168,75,.35);
-        border-radius:20px; max-width:540px; width:100%;
+        border-radius:20px; max-width:600px; width:100%;
         max-height:88vh; overflow-y:auto; position:relative;
         box-shadow:0 0 40px rgba(200,168,75,.12);
     }
@@ -96,7 +96,7 @@
         font-size:.72rem; text-transform:uppercase; letter-spacing:.12em; color:#C8A84B;
         border-bottom:1px solid rgba(200,168,75,.2); padding-bottom:.4rem; margin-bottom:.8rem;
     }
-    .modal-oferta-text { color:#F0EAD8; line-height:1.8; font-size:.92rem; margin-bottom:1.75rem; }
+    .modal-oferta-text { margin-bottom:1.75rem; }
     .modal-link { font-size:.85rem; color:#B0A898; line-height:1.7; }
     .modal-link a { color:#E8C96A; text-decoration:underline; word-break:break-all; }
     .modal-link a:hover { color:#fff; }
@@ -108,6 +108,37 @@
     }
     .btn-ver-mas:hover { background:rgba(200,168,75,.12); color:#fff; }
 
+    /* Lista de oferta educativa en columnas */
+    .modal-oferta-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: .45rem .75rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .modal-oferta-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: .45rem;
+        color: #F0EAD8;
+        font-size: .88rem;
+        line-height: 1.5;
+    }
+    .modal-oferta-list li::before {
+        content: '';
+        display: block;
+        flex-shrink: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #C8A84B;
+        margin-top: .45em;
+    }
+    @media (max-width: 500px) {
+        .modal-oferta-list { grid-template-columns: 1fr; }
+    }
+
     #footer-casas-grid { display:flex; justify-content:space-around; flex-wrap:wrap; gap:3rem; }
 </style>
 
@@ -116,7 +147,7 @@
             padding:.75rem 2rem;background:rgba(6,6,15,0.6);
             backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
             position:sticky;top:0;z-index:100;isolation:isolate;">
-    <img src="{{ asset('imagenes/isotipo_dorado.webp') }}"
+    <img src="{{ asset('imagenes/isotipo dorado.webp') }}"
          alt="UTL"
          style="height:2rem;width:auto;display:block;">
     <div class="nav-links-casas">
@@ -128,7 +159,6 @@
     </div>
     <div class="nav-auth-casas">
         <a href="#" style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
-      
     </div>
     <button class="hamburger-casas" id="hamburgerCasas" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -164,25 +194,225 @@
 
 @php
 $casas = [
-    ['imagen'=>'imagenes/casas/logistica.jpeg','nombre'=>'Ingeniería en Logística','dominio'=>'Ingenierías','color'=>'#0057B8','frase'=>'Organización y eficiencia','valores'=>['Responsabilidad','Organización','Eficiencia'],'desc'=>'Te gusta planear, coordinar recursos y optimizar procesos.','oferta'=>'Agrega aquí la oferta educativa de Ingeniería en Logística.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/mantenimiento.jpg','nombre'=>'Ingeniería en Mantenimiento Industrial','dominio'=>'Ingenierías','color'=>'#003A5D','frase'=>'Mantén el sistema en marcha','valores'=>['Compromiso','Precisión','Responsabilidad'],'desc'=>'Diagnóstico y mantenimiento de maquinaria industrial.','oferta'=>'Agrega aquí la oferta educativa de Ingeniería en Mantenimiento Industrial.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/ambiental.jpg','nombre'=>'Ingeniería Ambiental y Sustentabilidad','dominio'=>'Ingenierías','color'=>'#43B02A','frase'=>'Innovar para cuidar el planeta','valores'=>['Ética','Compromiso','Responsabilidad Social'],'desc'=>'Desarrollo de soluciones ambientales sostenibles.','oferta'=>'Agrega aquí la oferta educativa de Ingeniería Ambiental y Sustentabilidad.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/entornos.jpg','nombre'=>'Entornos Virtuales y Negocios Digitales','dominio'=>'Tecnologías de la Información','color'=>'#6B3FA0','frase'=>'Crear experiencias digitales','valores'=>['Creatividad','Innovación','Adaptación'],'desc'=>'Desarrollo de productos digitales interactivos.','oferta'=>'Agrega aquí la oferta educativa de Entornos Virtuales y Negocios Digitales.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/datos.png','nombre'=>'Ciencia de Datos','dominio'=>'Tecnologías de la Información','color'=>'#2E6F95','frase'=>'Los datos cuentan historias','valores'=>['Objetividad','Precisión','Pensamiento Crítico'],'desc'=>'Interpretación y análisis de datos.','oferta'=>'Agrega aquí la oferta educativa de Ciencia de Datos.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/software.png','nombre'=>'Desarrollo de Software','dominio'=>'Tecnologías de la Información','color'=>'#2563EB','frase'=>'Construye el futuro','valores'=>['Innovación','Perseverancia','Aprendizaje Continuo'],'desc'=>'Creación de aplicaciones y sistemas.','oferta'=>'Agrega aquí la oferta educativa de Desarrollo de Software.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/redes.jpg','nombre'=>'Infraestructura de Redes','dominio'=>'Tecnologías de la Información','color'=>'#0EA5A4','frase'=>'Todo conectado','valores'=>['Responsabilidad','Orden','Seguridad'],'desc'=>'Administración de redes y servidores.','oferta'=>'Agrega aquí la oferta educativa de Infraestructura de Redes.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/ia.jpg','nombre'=>'Inteligencia Artificial','dominio'=>'Tecnologías de la Información','color'=>'#8A2BE2','frase'=>'Piensa diferente','valores'=>['Creatividad','Innovación','Pensamiento Crítico'],'desc'=>'Desarrollo de soluciones inteligentes.','oferta'=>'Agrega aquí la oferta educativa de Inteligencia Artificial.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/automotriz.jpg','nombre'=>'Automotriz','dominio'=>'Ingeniería Industrial','color'=>'#DC2626','frase'=>'Optimizar la industria','valores'=>['Eficiencia','Liderazgo','Compromiso'],'desc'=>'Mejora de procesos automotrices.','oferta'=>'Agrega aquí la oferta educativa de Automotriz.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/productivos.png','nombre'=>'Procesos Productivos','dominio'=>'Ingeniería Industrial','color'=>'#ED8B00','frase'=>'Mejora continua','valores'=>['Orden','Eficiencia','Mejora Continua'],'desc'=>'Gestión de operaciones industriales.','oferta'=>'Agrega aquí la oferta educativa de Procesos Productivos.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/plasticos.jpg','nombre'=>'Moldeo de Plásticos','dominio'=>'Ingeniería Industrial','color'=>'#9C3D0C','frase'=>'Innovar con materiales','valores'=>['Precisión','Responsabilidad','Innovación'],'desc'=>'Diseño y fabricación de productos plásticos.','oferta'=>'Agrega aquí la oferta educativa de Moldeo de Plásticos.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/calzado.jpg','nombre'=>'Calzado','dominio'=>'Ingeniería Industrial','color'=>'#C46210','frase'=>'Diseño y producción','valores'=>['Creatividad','Calidad','Trabajo en Equipo'],'desc'=>'Industria del calzado y manufactura.','oferta'=>'Agrega aquí la oferta educativa de Calzado.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/manufactura.jpg','nombre'=>'Manufactura Flexible','dominio'=>'Mecatrónica','color'=>'#7C3AED','frase'=>'Automatiza el futuro','valores'=>['Innovación','Precisión','Creatividad'],'desc'=>'Sistemas automatizados de producción.','oferta'=>'Agrega aquí la oferta educativa de Manufactura Flexible.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/optomecatronica.jpg','nombre'=>'Optomecatrónica','dominio'=>'Mecatrónica','color'=>'#A50034','frase'=>'Tecnología de precisión','valores'=>['Precisión','Responsabilidad','Innovación'],'desc'=>'Sistemas ópticos y electrónicos.','oferta'=>'Agrega aquí la oferta educativa de Optomecatrónica.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/automatizacion.jpg','nombre'=>'Automatización','dominio'=>'Mecatrónica','color'=>'#FF3B30','frase'=>'Control inteligente','valores'=>['Eficiencia','Compromiso','Innovación'],'desc'=>'Automatización de procesos industriales.','oferta'=>'Agrega aquí la oferta educativa de Automatización.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/gastronomia.jpg','nombre'=>'Gastronomía','dominio'=>'Licenciaturas','color'=>'#EBA42D','frase'=>'Crear experiencias','valores'=>['Servicio','Creatividad','Disciplina'],'desc'=>'Experiencias culinarias y hospitalidad.','oferta'=>'Agrega aquí la oferta educativa de Gastronomía.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/administracion.jpg','nombre'=>'Administración','dominio'=>'Licenciaturas','color'=>'#1F3D2B','frase'=>'Dirigir con estrategia','valores'=>['Liderazgo','Responsabilidad','Ética'],'desc'=>'Gestión de empresas y recursos.','oferta'=>'Agrega aquí la oferta educativa de Administración.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/turismo.png','nombre'=>'Turismo','dominio'=>'Licenciaturas','color'=>'#00A3E0','frase'=>'Conectar culturas','valores'=>['Servicio','Empatía','Creatividad'],'desc'=>'Experiencias turísticas y culturales.','oferta'=>'Agrega aquí la oferta educativa de Turismo.','link'=>'https://www.utleon.edu.mx/'],
-    ['imagen'=>'imagenes/casas/mercadotecnia.jpg','nombre'=>'Innovación de Negocios y Mercadotecnia','dominio'=>'Licenciaturas','color'=>'#E4007C','frase'=>'Impulsar ideas','valores'=>['Innovación','Liderazgo','Comunicación'],'desc'=>'Marketing y desarrollo de negocios.','oferta'=>'Agrega aquí la oferta educativa de Innovación de Negocios y Mercadotecnia.','link'=>'https://www.utleon.edu.mx/'],
+
+    // ── INGENIERÍAS ──────────────────────────────────────────────────────
+    [
+        'imagen'   => 'imagenes/casas/logistica.jpeg',
+        'nombre'   => 'Ingeniería en Logística',
+        'dominio'  => 'Ingenierías',
+        'color'    => '#0057B8',
+        'frase'    => 'Organización y eficiencia',
+        'valores'  => ['Responsabilidad', 'Organización', 'Eficiencia'],
+        'desc'     => 'Te gusta planear, coordinar recursos y optimizar procesos.',
+        'oferta'   => 'Fundamentos de la Cadena de Suministro, Gestión de Almacén, Logística de Abastecimiento, Costos y Presupuestos Logísticos, Tráfico y Sistemas de Transporte, Administración y Control de Inventarios, Sistemas de Transporte Carretero, Sistemas de Transporte Ferroviario, Sistemas de Transporte Aéreo y Marítimo, Diseño de Redes Logísticas, Investigación de Operaciones Logísticas, Logística de Producción, Administración de Operaciones Logísticas, Gestión de Comercio Internacional, Operación de Flotas y Terminales, Simulación de Procesos Logísticos',
+        'link'     => 'https://www.utleon.edu.mx/carrera/TM',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/mantenimiento.jpg',
+        'nombre'   => 'Ingeniería en Mantenimiento Industrial',
+        'dominio'  => 'Ingenierías',
+        'color'    => '#003A5D',
+        'frase'    => 'Mantén el sistema en marcha',
+        'valores'  => ['Compromiso', 'Precisión', 'Responsabilidad'],
+        'desc'     => 'Diagnóstico y mantenimiento de maquinaria industrial.',
+        'oferta'   => 'Seguridad Industrial, Gestión y Administración del Mantenimiento, Termodinámica y Sistemas Térmicos, Electrónica Analógica y Digital, Máquinas y Mecanismos, Sistemas Eléctricos e Instalaciones Eléctricas, Sistemas Neumáticos e Hidráulicos, Automatización, Robótica y Redes Industriales, Mantenimiento Predictivo Mecánico, Técnicas TPM (Mantenimiento Productivo Total) y RCM, Ensayos Destructivos y No Destructivos, Manufactura Asistida por Computadora, Visualización y Control de Procesos',
+        'link'     => 'https://www.utleon.edu.mx/carrera/MI',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/ambiental.jpg',
+        'nombre'   => 'Ingeniería Ambiental y Sustentabilidad',
+        'dominio'  => 'Ingenierías',
+        'color'    => '#43B02A',
+        'frase'    => 'Innovar para cuidar el planeta',
+        'valores'  => ['Ética', 'Compromiso', 'Responsabilidad Social'],
+        'desc'     => 'Desarrollo de soluciones ambientales sostenibles.',
+        'oferta'   => 'Legislación Ambiental, Química Inorgánica, Química Orgánica, Química Ambiental, Microbiología Ambiental, Gestión de Recursos Hídricos, Gestión Integral de Residuos, Seguridad Laboral y Salud Ocupacional, Sistemas de Gestión Ambiental y de Calidad, Evaluación de Impacto Ambiental, Gestión de la Calidad del Aire, Manejo y Conservación de Suelo, Gestión y Auditoría Ambiental y Laboral, Operaciones Unitarias, Producción Sustentable, Sistema de Información Geográfica y Ordenamiento Territorial, Procesos de Adaptación al Cambio Climático, Bioprocesos Ambientales, Energías Alternativas, Evaluación de Riesgo, Tecnología para el Tratamiento de Agua',
+        'link'     => 'https://www.utleon.edu.mx/carrera/GA',
+    ],
+
+    // ── TECNOLOGÍAS DE LA INFORMACIÓN ────────────────────────────────────
+    [
+        'imagen'   => 'imagenes/casas/entornos.jpg',
+        'nombre'   => 'Entornos Virtuales y Negocios Digitales',
+        'dominio'  => 'Tecnologías de la Información',
+        'color'    => '#6B3FA0',
+        'frase'    => 'Crear experiencias digitales',
+        'valores'  => ['Creatividad', 'Innovación', 'Adaptación'],
+        'desc'     => 'Desarrollo de productos digitales interactivos.',
+        'oferta'   => 'Fundamentos de Programación, Programación Estructurada, Programación Orientada a Objetos, Aplicaciones Web, Frameworks para Desarrollo Web, Aplicaciones WEB progresivas, Diseño Digital y Producción Audiovisual, Modelado y Animación Digital, Animación Avanzada y Efectos Visuales, Aplicaciones para Realidad Virtual, Aplicaciones para Realidad Aumentada, Programación de Video Juegos, Mercadotecnia Digital, Fundamentos de Inteligencia Artificial, Programación para Inteligencia Artificial, Ciencia de Datos, Internet de las Cosas, Tecnologías Disruptivas, Seguridad informática, Informática Forense',
+        'link'     => 'https://www.utleon.edu.mx/carrera/EVN',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/datos.png',
+        'nombre'   => 'Ciencia de Datos',
+        'dominio'  => 'Tecnologías de la Información',
+        'color'    => '#2E6F95',
+        'frase'    => 'Los datos cuentan historias',
+        'valores'  => ['Objetividad', 'Precisión', 'Pensamiento Crítico'],
+        'desc'     => 'Interpretación y análisis de datos.',
+        'oferta'   => 'Aprendizaje Computacional, Procesamiento de Información, Programación de Lenguajes Especializados, Programación Lógica y Funcional, Computo de Alto Rendimiento, Servicios en la Nube, Visualización de Datos, Ética y Legislación en Tecnologías de la Información, Métodos Estadísticos, Seguridad Informática, Administraciñon de Servidores, Base de Datos Avanzadas, Electrónica Digital, Ciencia de Datos, Contenedores de Software, Internet de las Cosas, Tecnologías Disruptivas',
+        'link'     => 'https://www.utleon.edu.mx/carrera/CD',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/software.png',
+        'nombre'   => 'Desarrollo de Software',
+        'dominio'  => 'Tecnologías de la Información',
+        'color'    => '#2563EB',
+        'frase'    => 'Construye el futuro',
+        'valores'  => ['Innovación', 'Perseverancia', 'Aprendizaje Continuo'],
+        'desc'     => 'Creación de aplicaciones y sistemas.',
+        'oferta'   => 'Análisis y Diseño de Software, Aplicaciones Web, Desarrollo de Aplicaciones Móviles, Estructura de Datos, Aplicaciones Web Orientada a Servicios, Base de Datos Avanzada, Estándares y Métricas para el Desarrollo de Software, Bases de Datos en la Nube, Habilidades Gerenciales, Seguridad Informática, Administración de Servidores, Electrónica Digital, Programación Móvil Avanzada, Frameworks para el Desarrollo Multiplataforma, Tecnologías Disruptivas',
+        'link'     => 'https://www.utleon.edu.mx/carrera/DSM',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/redes.jpg',
+        'nombre'   => 'Infraestructura de Redes Digitales',
+        'dominio'  => 'Tecnologías de la Información',
+        'color'    => '#0EA5A4',
+        'frase'    => 'Todo conectado',
+        'valores'  => ['Responsabilidad', 'Orden', 'Seguridad'],
+        'desc'     => 'Administración de redes y servidores.',
+        'oferta'   => 'Centro de Datos, Escabilidad de Redes, Programación de Redes, Cómputo en la Nube, Conexión de Redes WAN, Seguridad en Redes, Administración de Redes Empresariales, Administración de Servidores, Electrónica Digital, Administración Avanzada de Servidores, Ciencia de Datos',
+        'link'     => 'https://www.utleon.edu.mx/carrera/IRD',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/ia.jpg',
+        'nombre'   => 'Inteligencia Artificial',
+        'dominio'  => 'Tecnologías de la Información',
+        'color'    => '#8A2BE2',
+        'frase'    => 'Piensa diferente',
+        'valores'  => ['Creatividad', 'Innovación', 'Pensamiento Crítico'],
+        'desc'     => 'Desarrollo de soluciones inteligentes.',
+        'oferta'   => 'Aprendizaje Profundo Deep Learning, Motodología No Code, Sistemas de Optimización, Sistemas Embebidos, Aprendizaje de Maquina, Fundamentos de Visión por Computadora, Minería de Datos, Minería de Texto, Análisis de Regresión, Programación para Inteligencia Artificial, Sistemas Inteligentes',
+        'link'     => 'https://www.utleon.edu.mx/carrera/IA',
+    ],
+
+    // ── INGENIERÍA INDUSTRIAL ─────────────────────────────────────────────
+    [
+        'imagen'   => 'imagenes/casas/automotriz.jpg',
+        'nombre'   => 'Automotriz',
+        'dominio'  => 'Ingeniería Industrial',
+        'color'    => '#DC2626',
+        'frase'    => 'Optimizar la industria',
+        'valores'  => ['Eficiencia', 'Liderazgo', 'Compromiso'],
+        'desc'     => 'Mejora de procesos automotrices.',
+        'oferta'   => 'Diseño Asistido por Computadora, Herramientas Avanzadas de Calidad, Hidráulica y Neumática Industrial, Procesos de Manufactura de Autopartes Plásticas, Fundamentos de Manufactura Esbelta, Procesos de Manufacttura de Autopartes Metálicas, Sistema CAM, Automatización y Control de Procesos, Ingeniería de Planta, Investigación de Operaciones, Tópicos de Nuevas Tecnologías de Manufactura, 6 SIGMA, Diseño del Producto, Logístca, Sistemas de Gestión de la Calidad, Administración del Manteniimiento, Legislación Industrial',
+        'link'     => 'https://www.utleon.edu.mx/carrera/AT',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/productivos.png',
+        'nombre'   => 'Procesos Productivos',
+        'dominio'  => 'Ingeniería Industrial',
+        'color'    => '#ED8B00',
+        'frase'    => 'Mejora continua',
+        'valores'  => ['Orden', 'Eficiencia', 'Mejora Continua'],
+        'desc'     => 'Gestión de operaciones industriales.',
+        'oferta'   => 'Administración y Control de la Calidad, Ingeniería Económica, Tecnologías de Transformación de Materiales, Administración y Control de Operaciones, Gestión Ambiental en Procesos Industriales, Sistemas de Manufactura Aplicada, Sistemas de Gestión de la Calidad, Administración del Mantenimiento, Administración Industrial y de Servicios, Legislación  Industrial, Manufactura Integrada por Computadora, Simulación de Procesos',
+        'link'     => 'https://www.utleon.edu.mx/carrera/PP',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/plasticos.jpg',
+        'nombre'   => 'Moldeo de Plásticos',
+        'dominio'  => 'Ingeniería Industrial',
+        'color'    => '#9C3D0C',
+        'frase'    => 'Innovar con materiales',
+        'valores'  => ['Precisión', 'Responsabilidad', 'Innovación'],
+        'desc'     => 'Diseño y fabricación de productos plásticos.',
+        'oferta'   => 'Caracterización de Polímeros, Diseño de Productos Plásticos, Estructura y Propiedad de los Polímeros y los Acero, Transformación de Productos Plásticos, Moldes, Reciclado de Polimeros, Sistemas de Gestión de la Calidad, Administración del Mantenimiento, Manufactura Integrada por Computadora',
+        'link'     => 'https://www.utleon.edu.mx/carrera/MP',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/calzado.jpg',
+        'nombre'   => 'Calzado',
+        'dominio'  => 'Ingeniería Industrial',
+        'color'    => '#C46210',
+        'frase'    => 'Diseño y producción',
+        'valores'  => ['Creatividad', 'Calidad', 'Trabajo en Equipo'],
+        'desc'     => 'Industria del calzado y manufactura.',
+        'oferta'   => 'Agrega aquí la oferta educativa de Calzado.',
+        'link'     => 'https://www.utleon.edu.mx/',
+    ],
+
+    // ── MECATRÓNICA ───────────────────────────────────────────────────────
+    [
+        'imagen'   => 'imagenes/casas/manufactura.jpg',
+        'nombre'   => 'Manufactura Flexible',
+        'dominio'  => 'Mecatrónica',
+        'color'    => '#7C3AED',
+        'frase'    => 'Automatiza el futuro',
+        'valores'  => ['Innovación', 'Precisión', 'Creatividad'],
+        'desc'     => 'Sistemas automatizados de producción.',
+        'oferta'   => 'Agrega aquí la oferta educativa de Manufactura Flexible.',
+        'link'     => 'https://www.utleon.edu.mx/',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/optomecatronica.jpg',
+        'nombre'   => 'Optomecatrónica',
+        'dominio'  => 'Mecatrónica',
+        'color'    => '#A50034',
+        'frase'    => 'Tecnología de precisión',
+        'valores'  => ['Precisión', 'Responsabilidad', 'Innovación'],
+        'desc'     => 'Sistemas ópticos y electrónicos.',
+        'oferta'   => 'Agrega aquí la oferta educativa de Optomecatrónica.',
+        'link'     => 'https://www.utleon.edu.mx/',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/automatizacion.jpg',
+        'nombre'   => 'Automatización',
+        'dominio'  => 'Mecatrónica',
+        'color'    => '#FF3B30',
+        'frase'    => 'Control inteligente',
+        'valores'  => ['Eficiencia', 'Compromiso', 'Innovación'],
+        'desc'     => 'Automatización de procesos industriales.',
+        'oferta'   => 'Agrega aquí la oferta educativa de Automatización.',
+        'link'     => 'https://www.utleon.edu.mx/',
+    ],
+
+    // ── LICENCIATURAS ─────────────────────────────────────────────────────
+    [
+        'imagen'   => 'imagenes/casas/gastronomia.jpg',
+        'nombre'   => 'Gastronomía',
+        'dominio'  => 'Licenciaturas',
+        'color'    => '#EBA42D',
+        'frase'    => 'Crear experiencias',
+        'valores'  => ['Servicio', 'Creatividad', 'Disciplina'],
+        'desc'     => 'Experiencias culinarias y hospitalidad.',
+        'oferta'   => 'Agrega aquí la oferta educativa de Gastronomía.',
+        'link'     => 'https://www.utleon.edu.mx/',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/administracion.jpg',
+        'nombre'   => 'Administración',
+        'dominio'  => 'Licenciaturas',
+        'color'    => '#1F3D2B',
+        'frase'    => 'Dirigir con estrategia',
+        'valores'  => ['Liderazgo', 'Responsabilidad', 'Ética'],
+        'desc'     => 'Gestión de empresas y recursos.',
+        'oferta'   => 'Agrega aquí la oferta educativa de Administración.',
+        'link'     => 'https://www.utleon.edu.mx/',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/turismo.png',
+        'nombre'   => 'Turismo',
+        'dominio'  => 'Licenciaturas',
+        'color'    => '#00A3E0',
+        'frase'    => 'Conectar culturas',
+        'valores'  => ['Servicio', 'Empatía', 'Creatividad'],
+        'desc'     => 'Experiencias turísticas y culturales.',
+        'oferta'   => 'Agrega aquí la oferta educativa de Turismo.',
+        'link'     => 'https://www.utleon.edu.mx/',
+    ],
+    [
+        'imagen'   => 'imagenes/casas/mercadotecnia.jpg',
+        'nombre'   => 'Innovación de Negocios y Mercadotecnia',
+        'dominio'  => 'Licenciaturas',
+        'color'    => '#E4007C',
+        'frase'    => 'Impulsar ideas',
+        'valores'  => ['Innovación', 'Liderazgo', 'Comunicación'],
+        'desc'     => 'Marketing y desarrollo de negocios.',
+        'oferta'   => 'Agrega aquí la oferta educativa de Innovación de Negocios y Mercadotecnia.',
+        'link'     => 'https://www.utleon.edu.mx/',
+    ],
 ];
 @endphp
 
@@ -226,16 +456,19 @@ $casas = [
                                  color:#F0EAD8;padding:.4rem .75rem;border-radius:50px;font-size:.72rem;">{{ $v }}</span>
                     @endforeach
                 </div>
-                {{-- data-attributes evitan problemas con comillas y caracteres especiales --}}
+
+                {{-- BOTÓN VER MÁS --}}
                 <button class="btn-ver-mas"
-                        data-nombre="{{ $casa['nombre'] }}"
-                        data-dominio="{{ $casa['dominio'] }}"
-                        data-oferta="{{ $casa['oferta'] }}"
-                        data-link="{{ $casa['link'] }}"
-                        data-color="{{ $casa['color'] }}"
-                        onclick="abrirModalDesdeBtn(this)">
+                    onclick="abrirModal(
+                        '{{ addslashes($casa['nombre']) }}',
+                        '{{ addslashes($casa['dominio']) }}',
+                        '{{ addslashes($casa['oferta']) }}',
+                        '{{ addslashes($casa['link']) }}',
+                        '{{ $casa['color'] }}'
+                    )">
                     Ver más
                 </button>
+
             </div>
         </div>
         @endforeach
@@ -252,7 +485,7 @@ $casas = [
             <h2 class="modal-title" id="modalNombre"></h2>
             <p class="modal-dominio" id="modalDominio"></p>
             <p class="modal-section-title">Oferta Educativa</p>
-            <p class="modal-oferta-text" id="modalOferta"></p>
+            <div class="modal-oferta-text" id="modalOferta"></div>
             <p class="modal-section-title">Más Información</p>
             <p class="modal-link">
                 Para más información visita la página oficial de la UTL:
@@ -342,53 +575,61 @@ $casas = [
 
 @push('extra-js')
 <script>
-// NAVBAR
-const hamburgerCasas = document.getElementById('hamburgerCasas');
-const mobileCasas    = document.getElementById('mobileCasas');
-hamburgerCasas.addEventListener('click', () => {
-    mobileCasas.classList.toggle('open');
-    hamburgerCasas.setAttribute('aria-expanded', mobileCasas.classList.contains('open'));
-});
-document.addEventListener('click', e => {
-    if (!hamburgerCasas.contains(e.target) && !mobileCasas.contains(e.target))
-        mobileCasas.classList.remove('open');
-});
-
-// FILTROS — normalización de acentos para comparación robusta
-function normalizar(str) {
-    return str.trim().toLowerCase()
-              .normalize('NFD')
-              .replace(/[\u0300-\u036f]/g, '');
-}
+// ── FILTROS ──────────────────────────────────────────────────────────────────
 function filtrar(btn, dominio) {
     document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
     btn.classList.add('activo');
     document.querySelectorAll('.casa-card').forEach(card => {
-        const coincide = dominio === 'Todos' ||
-                         normalizar(card.dataset.dominio) === normalizar(dominio);
-        card.classList.toggle('oculta', !coincide);
+        const coincide = dominio === 'Todos' || card.dataset.dominio === dominio;
+        if (coincide) {
+            card.classList.remove('oculta');
+        } else {
+            card.classList.add('oculta');
+        }
     });
 }
 
-// MODAL — lee datos desde data-attributes (seguro con caracteres especiales)
-function abrirModalDesdeBtn(btn) {
-    document.getElementById('modalNombre').textContent          = btn.dataset.nombre;
-    document.getElementById('modalDominio').textContent         = btn.dataset.dominio;
-    document.getElementById('modalOferta').textContent          = btn.dataset.oferta;
-    document.getElementById('modalHeaderBar').style.background  = btn.dataset.color;
-    const linkEl       = document.getElementById('modalLink');
-    linkEl.href        = btn.dataset.link;
-    linkEl.textContent = btn.dataset.link;
+// ── MODAL ────────────────────────────────────────────────────────────────────
+function abrirModal(nombre, dominio, oferta, link, color) {
+    document.getElementById('modalNombre').textContent  = nombre;
+    document.getElementById('modalDominio').textContent = dominio;
+    document.getElementById('modalHeaderBar').style.background = color;
+
+    // Convertir la cadena de oferta en lista visual en columnas
+    const materias = oferta
+        .split(',')
+        .map(m => m.trim())
+        .filter(m => m.length > 0);
+
+    const ul = document.createElement('ul');
+    ul.className = 'modal-oferta-list';
+    materias.forEach(materia => {
+        const li = document.createElement('li');
+        li.textContent = materia;
+        ul.appendChild(li);
+    });
+
+    const contenedor = document.getElementById('modalOferta');
+    contenedor.innerHTML = '';
+    contenedor.appendChild(ul);
+
+    const linkEl = document.getElementById('modalLink');
+    linkEl.href        = link;
+    linkEl.textContent = link;
+
     document.getElementById('modalOverlay').classList.add('abierto');
     document.body.style.overflow = 'hidden';
 }
+
 function cerrarModal() {
     document.getElementById('modalOverlay').classList.remove('abierto');
     document.body.style.overflow = '';
 }
+
 function cerrarModalOverlay(e) {
     if (e.target === document.getElementById('modalOverlay')) cerrarModal();
 }
+
 document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal(); });
 </script>
 @endpush
