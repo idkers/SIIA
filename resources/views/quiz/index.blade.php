@@ -4,35 +4,232 @@
 @section('content')
 
 {{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
-<nav style="display:flex;align-items:center;justify-content:space-between;
-            padding:.75rem 1.25rem;
-            background:rgba(6,6,15,0.6);
-            backdrop-filter:blur(12px);
-            -webkit-backdrop-filter:blur(12px);
-            position:sticky;top:0;z-index:100;isolation:isolate;">
+<style>
+    /* ── Layout general: footer siempre al fondo ── */
+    html, body { height: 100%; margin: 0; }
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    /* Anular cualquier min-height que el layout padre ponga en main u otros wrappers */
+    body > main,
+    body > .main-content,
+    body > #app,
+    body > #content,
+    body > .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: unset !important;
+    }
+    /* El wrapper del contenido de @yield('content') debe crecer */
+    .page-content-wrapper {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+    }
+    /* El footer nunca crece, se queda al fondo */
+    #footer-main { flex-shrink: 0; }
 
-    <img src="{{ asset('imagenes/isotipo_dorado.webp') }}"
-         alt="UTL"
-         style="height:2rem;width:auto;display:block;">
+    /* ── Navbar ── */
+    .nav-links { display:flex; gap:2rem; }
+    .nav-auth  { display:flex; align-items:center; gap:.75rem; }
+    .hamburger { display:none; background:none; border:none; cursor:pointer;
+                 padding:.25rem; flex-direction:column; gap:5px; }
+    .hamburger span { display:block; width:22px; height:2px; background:#C8A84B; border-radius:2px; }
+    .mobile-menu { display:none; flex-direction:column; gap:0;
+                   background:rgba(6,6,15,0.97); padding:.5rem 0; }
+    .mobile-menu a { display:block; padding:.75rem 2rem;
+                     font-size:.85rem; color:#B0A898; text-decoration:none;
+                     letter-spacing:.08em; text-transform:uppercase;
+                     border-bottom:1px solid rgba(43,31,61,0.4); }
+    .mobile-menu a:last-child { border-bottom:none; }
+    .mobile-menu.open { display:flex; }
 
-    <div class="nav-links">
-        <a href="{{ route('welcome') }}"   style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
-        <a href="{{ route('quiz') }}"      style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
-        <a href="{{ route('recorrido') }}" style="font-size:.82rem;color:#E8C96A;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
-        <a href="{{ route('dominios') }}"  style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
-        <a href="{{ route('casas') }}"     style="font-size:.82rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
-    </div>
+    @media (max-width: 768px) {
+        .nav-links { display:none !important; }
+        .nav-auth  { display:none !important; }
+        .hamburger { display:flex !important; }
+    }
 
-    <div class="nav-auth">
-        <a href="#" style="font-size:.82rem;color:#B0A898;text-decoration:none;
-                           letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
-    </div>
+    /* ── Stage wrap ── */
+    .stage-wrap {
+        padding: 2rem;
+        /* Permite que cada etapa llene el espacio vertical disponible */
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        /* Evita desbordamiento horizontal */
+        overflow-x: hidden;
+        box-sizing: border-box;
+        width: 100%;
+    }
+    @media (max-width: 768px) {
+        .stage-wrap { padding: .6rem !important; }
+    }
+    .stage {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .stage-wrap > section {
+        flex: 1;
+    }
 
-    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-    </button>
+    /* ── ETAPA 1 — base (desktop) ── */
+    #stage-1-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        min-height: 550px;
+        padding: 4rem;
+        gap: 2rem;
+    }
+    #stage-1-title { font-size: 4rem; }
+    #stage-1-img   { max-width: 820px; width: 100%; display: block; }
 
-</nav>
+    /* mobile — clase aplicada por JS para garantizar que funcione */
+    #stage-1-inner.mobile-layout {
+        grid-template-columns: 1fr !important;
+        padding: 2rem 1rem !important;
+        min-height: auto !important;
+        text-align: center !important;
+        /* Evita que el contenido se desborde */
+        overflow: hidden !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    #stage-1-inner.mobile-layout #stage-1-title {
+        /* clamp: nunca mas grande de lo que cabe */
+        font-size: clamp(1.6rem, 8vw, 2.4rem) !important;
+        line-height: 1.15 !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+    #stage-1-inner.mobile-layout #stage-1-img-wrap {
+        order: -1;
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+    #stage-1-inner.mobile-layout #stage-1-img {
+        width: 65vw !important;
+        max-width: 65vw !important;
+        margin: 0 auto !important;
+    }
+    #stage-1-inner.mobile-layout #stage-1-desc {
+        max-width: 100% !important;
+        font-size: .9rem !important;
+        line-height: 1.7 !important;
+    }
+    #stage-1-inner.mobile-layout #stage-1-btn {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* ── ETAPA 2 ── */
+    #stage-2-inner {
+        padding: 2.5rem 2rem;
+        min-height: 420px;
+    }
+    #stage-2-ref-img {
+        width: 200px;
+        height: 200px;
+        flex-shrink: 0;
+    }
+    #stage-2-btn { align-self: center; }
+
+    @media (max-width: 768px) {
+        #stage-2-inner { padding: 2rem 1.25rem; min-height: auto; }
+        /* Imagen de referencia usable en móvil */
+        #stage-2-ref-img {
+            width: min(75vw, 300px) !important;
+            height: min(75vw, 300px) !important;
+        }
+        #stage-2-btn { width: 100%; }
+    }
+
+    /* ── ETAPA 3 ── */
+    #stage-3-inner { padding: 2.5rem 2rem; }
+    #stage-3-video { width: 220px; }
+
+    @media (max-width: 768px) {
+        #stage-3-inner {
+            padding: 2rem 1rem !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+            align-items: center !important;
+        }
+        #stage-3-title { font-size: 2rem !important; }
+        #stage-3-video-wrap {
+            width: 85vw !important;
+            max-width: 85vw !important;
+            margin: 1rem auto !important;
+            box-sizing: border-box !important;
+        }
+        #stage-3-video {
+            width: 100% !important;
+            height: auto !important;
+        }
+        #stage-3-btn { width: 100% !important; box-sizing: border-box !important; }
+    }
+
+    /* ── ETAPA 4 ── */
+    #stage-4-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        min-height: 550px;
+        padding: 4rem;
+        gap: 2rem;
+    }
+    #stage-4-result-title { font-size: 5rem; }
+    #stage-4-img          { max-width: 500px; width: 100%; }
+    #stage-4-btns         { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+
+    @media (max-width: 768px) {
+        #stage-4-inner {
+            grid-template-columns: 1fr !important;
+            padding: 2rem 1rem !important;
+            min-height: auto !important;
+            text-align: left !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+            width: 100% !important;
+        }
+        #stage-4-img-wrap { display: flex; justify-content: center; order: -1; }
+        #stage-4-img      { max-width: min(85vw, 380px) !important; width: 100% !important; }
+        #stage-4-result-title {
+            font-size: clamp(1.6rem, 7vw, 2.2rem) !important;
+            word-break: break-word !important;
+            line-height: 1.2 !important;
+        }
+        #stage-4-desc {
+            max-width: 100% !important;
+            font-size: .9rem !important;
+            line-height: 1.7 !important;
+        }
+        #stage-4-btns { flex-direction: column; }
+        #stage-4-btns a,
+        #stage-4-btns button {
+            width: 100% !important;
+            text-align: center !important;
+            box-sizing: border-box !important;
+        }
+    }
+
+    /* ── FOOTER ── */
+    #footer-grid { display:flex; justify-content:space-around; flex-wrap:wrap; gap:3rem; }
+
+    @media (max-width: 600px) {
+        #footer-main { padding: 2.5rem 1.25rem !important; }
+        #footer-grid { flex-direction: column; gap: 2rem; }
+        #footer-grid > div { max-width: 100% !important; }
+        #footer-grid h3 { font-size: 1.15rem !important; }
+    }
+</style>
 
 {{-- ── Wrapper que crece para empujar footer al fondo ── --}}
 <div class="page-content-wrapper">
