@@ -147,7 +147,7 @@
             padding:.75rem 2rem;background:rgba(6,6,15,0.6);
             backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
             position:sticky;top:0;z-index:100;isolation:isolate;">
-    <img src="{{ asset('imagenes/isotipo dorado.webp') }}"
+    <img src="{{ asset('imagenes/isotipo_dorado.webp') }}"
          alt="UTL"
          style="height:2rem;width:auto;display:block;">
     <div class="nav-links-casas">
