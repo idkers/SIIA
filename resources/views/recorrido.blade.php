@@ -192,13 +192,47 @@
 
                 <div class="hero-actions"
                      style="margin-top:2rem;display:flex;gap:1rem;">
-                    <a href="#mapa"
-                       style="background:#C6A050;color:#06060F;
-                              padding:.9rem 2rem;text-decoration:none;
-                              font-weight:700;border-radius:4px;
-                              display:inline-block;">
-                        Descargar
-                    </a>
+<a href="https://drive.google.com/drive/folders/1GX-zAEzDj9HeKKNb-q-BflfZPN529lNR?usp=drive_link"
+   target="_blank"
+   rel="noopener"
+   style="display:inline-flex;align-items:center;gap:14px;
+          background:#1a1a2e;border:1.5px solid #C6A050;
+          border-radius:12px;padding:1rem 2rem;
+          text-decoration:none;color:#F0EAD8;
+          max-width:340px;width:100%;
+          transition:background .2s,border-color .2s;"
+   onmouseover="this.style.background='#2a1f00';this.style.borderColor='#E8C96A'"
+   onmouseout="this.style.background='#1a1a2e';this.style.borderColor='#C6A050'">
+
+    <!-- Ícono Windows -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+         viewBox="0 0 24 24" fill="#00ADEF" aria-hidden="true">
+        <path d="M3 12V6.75l6-1.32v6.57H3zm17-9v8.75h-7V3.91L20 3zM3 13h6v6.57l-6-1.32V13zm17 .25V22l-7-1.23V13.25H20z"/>
+    </svg>
+
+    <div style="display:flex;flex-direction:column;gap:2px;">
+        <span style="font-size:.7rem;color:#C8A84B;letter-spacing:.1em;
+                     text-transform:uppercase;font-weight:500;">
+            Disponible para Windows
+        </span>
+        <span style="font-size:1.1rem;font-weight:700;color:#F0EAD8;">
+            Descargar juego
+        </span>
+        <span style="font-size:.72rem;color:#B0A898;">
+            Conoce tu Universidad &nbsp;·&nbsp; PC
+        </span>
+    </div>
+
+    <!-- Ícono descarga -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+         viewBox="0 0 24 24" fill="none" stroke="#C8A84B"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         aria-hidden="true" style="margin-left:auto;flex-shrink:0;">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+</a>
                 </div>
             </div>
 
@@ -217,6 +251,129 @@
 
         </div>
     </section>
+
+    {{-- ═══ INSTRUCTIVO ════════════════════════════════════════════════════════ --}}
+<section style="background:#14141F;border:1px solid #8B6914;
+                border-radius:10px;padding:3rem;margin-bottom:2rem;">
+
+    <div style="display:flex;align-items:center;gap:1.5rem;
+                justify-content:center;margin-bottom:.5rem;">
+        <div style="height:1px;flex:1;max-width:200px;
+                    background:linear-gradient(to left,#8D6627,transparent);"></div>
+        <h2 style="margin:0;font-size:1.5rem;font-weight:700;color:#FFFFFF;
+                   font-family:'Headland One',serif;letter-spacing:.10em;
+                   text-transform:uppercase;white-space:nowrap;">
+            ¿Cómo jugar?
+        </h2>
+        <div style="height:1px;flex:1;max-width:200px;
+                    background:linear-gradient(to right,#8D6627,transparent);"></div>
+    </div>
+
+    <p style="text-align:center;font-size:.8rem;color:#B0A898;
+              margin:0 auto 2rem;letter-spacing:.06em;">
+        Sigue estos pasos para instalar y ejecutar el recorrido virtual.
+    </p>
+
+    <div style="max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:.75rem;">
+
+        {{-- Paso 1 --}}
+        <div class="accordion-item" style="border:1px solid #2B1F3D;border-radius:8px;
+                                           overflow:hidden;background:#0D0D1A;">
+            <button onclick="toggleAccordion(this)"
+                    style="width:100%;display:flex;align-items:center;gap:1rem;
+                           padding:1rem 1.25rem;background:none;border:none;
+                           cursor:pointer;text-align:left;">
+                <span style="width:28px;height:28px;border-radius:50%;flex-shrink:0;
+                             background:linear-gradient(135deg,#C6A050,#8D6627);
+                             display:flex;align-items:center;justify-content:center;
+                             font-size:.8rem;font-weight:700;color:#1A1000;">1</span>
+                <span style="font-size:.95rem;font-weight:600;color:#F0EAD8;flex:1;">
+                    Descarga el archivo ZIP
+                </span>
+                <svg class="accordion-arrow" xmlns="http://www.w3.org/2000/svg"
+                     width="18" height="18" viewBox="0 0 24 24" fill="none"
+                     stroke="#C8A84B" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round" style="transition:transform .3s;flex-shrink:0;">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="accordion-body" style="display:none;padding:0 1.25rem 1.1rem 3.75rem;">
+                <p style="font-size:.88rem;color:#B0A898;line-height:1.8;margin:0;">
+                    Haz clic en el botón <strong style="color:#E8C96A;">Descargar juego</strong>
+                    de arriba. Se abrirá Google Drive y comenzará la descarga del archivo
+                    <code style="background:#1A1A2E;padding:2px 6px;border-radius:4px;
+                                 color:#C8A84B;font-size:.82rem;">Conoce_tu_Universidad.zip</code>
+                    a tu computadora.
+                </p>
+            </div>
+        </div>
+
+        {{-- Paso 2 --}}
+        <div class="accordion-item" style="border:1px solid #2B1F3D;border-radius:8px;
+                                           overflow:hidden;background:#0D0D1A;">
+            <button onclick="toggleAccordion(this)"
+                    style="width:100%;display:flex;align-items:center;gap:1rem;
+                           padding:1rem 1.25rem;background:none;border:none;
+                           cursor:pointer;text-align:left;">
+                <span style="width:28px;height:28px;border-radius:50%;flex-shrink:0;
+                             background:linear-gradient(135deg,#C6A050,#8D6627);
+                             display:flex;align-items:center;justify-content:center;
+                             font-size:.8rem;font-weight:700;color:#1A1000;">2</span>
+                <span style="font-size:.95rem;font-weight:600;color:#F0EAD8;flex:1;">
+                    Extrae el contenido
+                </span>
+                <svg class="accordion-arrow" xmlns="http://www.w3.org/2000/svg"
+                     width="18" height="18" viewBox="0 0 24 24" fill="none"
+                     stroke="#C8A84B" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round" style="transition:transform .3s;flex-shrink:0;">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="accordion-body" style="display:none;padding:0 1.25rem 1.1rem 3.75rem;">
+                <p style="font-size:.88rem;color:#B0A898;line-height:1.8;margin:0;">
+                    Localiza el ZIP descargado, haz clic derecho sobre él y selecciona
+                    <strong style="color:#E8C96A;">Extraer todo...</strong>
+                    Elige la carpeta donde quieres guardarlo y confirma. Windows extraerá
+                    todos los archivos automáticamente.
+                </p>
+            </div>
+        </div>
+
+        {{-- Paso 3 --}}
+        <div class="accordion-item" style="border:1px solid #2B1F3D;border-radius:8px;
+                                           overflow:hidden;background:#0D0D1A;">
+            <button onclick="toggleAccordion(this)"
+                    style="width:100%;display:flex;align-items:center;gap:1rem;
+                           padding:1rem 1.25rem;background:none;border:none;
+                           cursor:pointer;text-align:left;">
+                <span style="width:28px;height:28px;border-radius:50%;flex-shrink:0;
+                             background:linear-gradient(135deg,#C6A050,#8D6627);
+                             display:flex;align-items:center;justify-content:center;
+                             font-size:.8rem;font-weight:700;color:#1A1000;">3</span>
+                <span style="font-size:.95rem;font-weight:600;color:#F0EAD8;flex:1;">
+                    Ejecuta el juego
+                </span>
+                <svg class="accordion-arrow" xmlns="http://www.w3.org/2000/svg"
+                     width="18" height="18" viewBox="0 0 24 24" fill="none"
+                     stroke="#C8A84B" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round" style="transition:transform .3s;flex-shrink:0;">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="accordion-body" style="display:none;padding:0 1.25rem 1.1rem 3.75rem;">
+                <p style="font-size:.88rem;color:#B0A898;line-height:1.8;margin:0;">
+                    Abre la carpeta extraída y haz doble clic en
+                    <code style="background:#1A1A2E;padding:2px 6px;border-radius:4px;
+                                 color:#C8A84B;font-size:.82rem;">Conoce tu Universidad.exe</code>
+                    El juego abrirá directamente, sin necesidad de instalación.
+                    Si Windows muestra una advertencia de seguridad, haz clic en
+                    <strong style="color:#E8C96A;">Ejecutar de todas formas</strong>.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
 
     {{-- ── Mapa ── --}}
     <section id="mapa"
@@ -306,6 +463,21 @@
         if (!btn.contains(e.target) && !menu.contains(e.target))
             menu.classList.remove('open');
     });
+    function toggleAccordion(btn) {
+    const body  = btn.nextElementSibling;
+    const arrow = btn.querySelector('.accordion-arrow');
+    const open  = body.style.display === 'block';
+
+    // Cierra todos
+    document.querySelectorAll('.accordion-body').forEach(b => b.style.display = 'none');
+    document.querySelectorAll('.accordion-arrow').forEach(a => a.style.transform = '');
+
+    // Abre el clickeado si estaba cerrado
+    if (!open) {
+        body.style.display = 'block';
+        arrow.style.transform = 'rotate(180deg)';
+    }
+}
 </script>
 @endpush
 
