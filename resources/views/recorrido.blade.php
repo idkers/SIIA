@@ -24,7 +24,11 @@
     .mobile-menu.open { display:flex; }
 
     /* ── Page layout ── */
-    .page-wrap    { display:flex; flex-direction:column; min-height:calc(100vh - 72px); }
+.page-wrap { 
+    display:flex; 
+    flex-direction:column; 
+    min-height: calc(100vh - 90px); 
+}
     .page-content { flex:1; padding:1.5rem 2rem; }
 
     /* ── Panel compartido (hero, instructivo, mapa) ── */
@@ -119,15 +123,15 @@
 
 {{-- ═══ NAVBAR (más alto: padding 1.1rem) ════════════════════════════════ --}}
 <nav style="display:flex;align-items:center;justify-content:space-between;
-            padding:1.1rem 1.75rem;
+            padding:1.6rem 1.75rem;
             background:rgba(6,6,15,0.6);
             backdrop-filter:blur(12px);
             -webkit-backdrop-filter:blur(12px);
             position:sticky;top:0;z-index:100;isolation:isolate;">
 
-    <img src="{{ asset('imagenes/isotipo_dorado.webp') }}"
-         alt="UTL"
-         style="height:2.2rem;width:auto;display:block;">
+<img src="{{ asset('imagenes/isotipo_dorado.webp') }}"
+     alt="UTL"
+     style="height:2.6rem;width:auto;display:block;">
 
     <div class="nav-links">
         <a href="{{ route('welcome') }}"   style="font-size:.88rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
