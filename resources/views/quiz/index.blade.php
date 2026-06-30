@@ -499,7 +499,7 @@
                 justify-content:center;align-items:center;
                 padding:80px;box-sizing:border-box;
                 position:absolute;left:-99999px;">
-        <img src="{{ asset('imagenes/gastronomia2.webp') }}"
+        <img src="{{ asset('imagenes/casas/gastronomia2.webp') }}"
              style="width:700px;max-width:100%;margin-bottom:80px;">
         <p style="color:#E8C96A;letter-spacing:8px;font-size:32px;margin-bottom:20px;">
             TU DESTINO ES

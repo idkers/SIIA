@@ -268,18 +268,56 @@
         ¿A qué casa de la UTL perteneces?
     </h2>
 
-    <div id="identidad-cards" style="margin-bottom:2rem;">
-        @for ($i = 0; $i < 3; $i++)
-        <div style="background:#14141F;
-                    border:1px solid #2B1F3D;border-radius:6px;
-                    display:flex;flex-direction:column;align-items:center;
-                    justify-content:center;gap:.4rem;
-                    font-size:.75rem;color:#707085;text-align:center;padding:.75rem;">
-            <span class="identidad-shield" style="font-size:1.5rem;opacity:.5;">🛡</span>
-            [ Escudo o imagen<br>representativa de casa ]
+@php
+$casasInicio = [
+    [
+        'nombre' => 'Ambiental',
+        'imagen' => 'imagenes/casas/ambiental.webp'
+    ],
+    [
+        'nombre' => 'Gastronomía',
+        'imagen' => 'imagenes/casas/gastronomia2.webp'
+    ],
+    [
+        'nombre' => 'Mecatrónica',
+        'imagen' => 'imagenes/casas/mecatroniBaseSinTextura.webp'
+    ],
+];
+@endphp
+
+<div id="identidad-cards" style="margin-bottom:2rem;">
+    @foreach($casasInicio as $casa)
+        <div style="
+            background:#14141F;
+            border:1px solid #2B1F3D;
+            border-radius:10px;
+            overflow:hidden;
+            display:flex;
+            flex-direction:column;
+            transition:.3s;
+        ">
+
+            <img src="{{ asset($casa['imagen']) }}"
+                 alt="{{ $casa['nombre'] }}"
+                 style="
+                    width:100%;
+                    height:145px;
+                    object-fit:cover;
+                 ">
+
+            <div style="
+                padding:.8rem;
+                text-align:center;
+                color:#F0EAD8;
+                font-size:.82rem;
+                font-family:'Headland One',serif;
+            ">
+                {{ $casa['nombre'] }}
+            </div>
+
         </div>
-        @endfor
-    </div>
+    @endforeach
+</div>
 
     <div style="text-align:center;">
         <a href="{{ route('quiz') }}"
