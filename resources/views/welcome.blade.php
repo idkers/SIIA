@@ -394,230 +394,141 @@ $casasInicio = [
 </section>
 
 {{-- ═══ SECCIÓN: DOMINIOS ACADÉMICOS ══════════════════════════════════════ --}}
+{{-- ═══ SECCIÓN: DOMINIOS ACADÉMICOS ══════════════════════════════════════ --}}
 <style>
     #dominios { padding: 3rem 4rem; }
  
-    /* El carrusel de cada dominio muestra sus casas en grid */
-    .dominio-carousel {
-        display: grid;
+    /* ── Carrusel real con scroll horizontal ── */
+    .dom-track {
+        display: flex;
         gap: .85rem;
-        overflow: hidden;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;        /* Firefox */
+        padding-bottom: 4px;          /* evita que el outline se corte */
     }
-    .dominio-carousel.cols-4 { grid-template-columns: repeat(4,1fr); }
-    .dominio-carousel.cols-3 { grid-template-columns: repeat(3,1fr); }
+    .dom-track::-webkit-scrollbar { display: none; }
  
-    .carousel-btn-left  { left:  -18px !important; }
-    .carousel-btn-right { right: -18px !important; }
+    .dom-card {
+        flex: 0 0 calc(25% - .64rem);  /* 4 visibles en desktop */
+        scroll-snap-align: start;
+        border: 1px solid #2B1F3D;
+        border-radius: 6px;
+        background: #14141F;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        min-width: 200px;
+    }
+ 
+    /* 3 columnas cuando el dominio tiene solo 3 casas */
+    .dom-track.cols-3 .dom-card {
+        flex: 0 0 calc(33.333% - .57rem);
+    }
  
     @media (max-width: 900px) {
         #dominios { padding: 2.5rem 1.25rem !important; }
-        .dominio-carousel.cols-4,
-        .dominio-carousel.cols-3 { grid-template-columns: repeat(2,1fr) !important; }
+        .dom-card { flex: 0 0 calc(50% - .43rem) !important; }
     }
     @media (max-width: 480px) {
-        .dominio-carousel.cols-4,
-        .dominio-carousel.cols-3 { grid-template-columns: 1fr !important; }
-        .carousel-btn-left  { left: 0 !important; }
-        .carousel-btn-right { right: 0 !important; }
+        .dom-card { flex: 0 0 90% !important; }
+    }
+ 
+    /* ── Botones nav del carrusel ── */
+    .dom-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        margin-top: 1.25rem;
+    }
+    .dom-nav-btn {
+        width: 38px; height: 38px;
+        border-radius: 50%;
+        border: 1px solid #2B1F3D;
+        background: #14141F;
+        color: #C8A84B;
+        font-size: 1.3rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color .2s, background .2s;
+        line-height: 1;
+    }
+    .dom-nav-btn:hover { border-color: #C8A84B; background: #1e1a0e; }
+ 
+    /* Indicador de dominio activo */
+    .dom-nav-label {
+        font-family: 'Headland One', serif;
+        font-size: .88rem;
+        color: #F0EAD8;
+        letter-spacing: .06em;
+        min-width: 220px;
+        text-align: center;
     }
 </style>
  
 @php
-/* ── Datos de los dominios con sus casas ─────────────────────────────── */
 $dominiosHome = [
- 
     [
         'nombre'  => 'Ingenierías',
         'color'   => '#075E56',
         'icono'   => '⚙️',
         'carreras'=> 'Logística · Mantenimiento Industrial · Ambiental y Sustentabilidad',
         'casas'   => [
-            [
-                'imagen' => 'imagenes/casas/logistica.jpeg',
-                'nombre' => 'Logística',
-                'carrera'=> 'Ingeniería en Logística',
-                'frase'  => 'Toda ruta tiene un destino',
-                'valores'=> ['Responsabilidad','Organización','Eficiencia'],
-                'desc'   => 'Te gusta planear, coordinar recursos y optimizar procesos.',
-            ],
-            [
-                'imagen' => 'imagenes/casas/mantenimiento.jpg',
-                'nombre' => 'Mantenimiento Industrial',
-                'carrera'=> 'Ing. Mantenimiento Industrial',
-                'frase'  => 'La excelencia se construye cada día',
-                'valores'=> ['Compromiso','Precisión','Responsabilidad'],
-                'desc'   => 'Diagnóstico y mantenimiento de maquinaria industrial.',
-            ],
-            [
-                'imagen' => 'imagenes/casas/ambiental.webp',
-                'nombre' => 'Ambiental y Sustentabilidad',
-                'carrera'=> 'Ing. Ambiental y Sustentabilidad',
-                'frase'  => 'Proteger hoy para transformar mañana',
-                'valores'=> ['Ética','Compromiso','Responsabilidad Social'],
-                'desc'   => 'Desarrollo de soluciones ambientales sostenibles.',
-            ],
+            ['imagen'=>'imagenes/casas/logistica.jpeg',   'nombre'=>'Logística',                 'carrera'=>'Ingeniería en Logística',          'frase'=>'Toda ruta tiene un destino',            'valores'=>['Responsabilidad','Organización','Eficiencia'],       'desc'=>'Te gusta planear, coordinar recursos y optimizar procesos.'],
+            ['imagen'=>'imagenes/casas/mantenimiento.jpg','nombre'=>'Mantenimiento Industrial',   'carrera'=>'Ing. Mantenimiento Industrial',    'frase'=>'La excelencia se construye cada día',  'valores'=>['Compromiso','Precisión','Responsabilidad'],           'desc'=>'Diagnóstico y mantenimiento de maquinaria industrial.'],
+            ['imagen'=>'imagenes/casas/ambiental.webp',  'nombre'=>'Ambiental y Sustentabilidad','carrera'=>'Ing. Ambiental y Sustentabilidad', 'frase'=>'Proteger hoy para transformar mañana', 'valores'=>['Ética','Compromiso','Responsabilidad Social'],        'desc'=>'Desarrollo de soluciones ambientales sostenibles.'],
         ],
     ],
- 
     [
         'nombre'  => 'Tecnologías de la Información',
         'color'   => '#420FDB',
         'icono'   => '💻',
         'carreras'=> 'Entornos Virtuales · Ciencia de Datos · Desarrollo de Software · Redes Digitales',
         'casas'   => [
-            [
-                'imagen' => 'imagenes/casas/entornos.jpg',
-                'nombre' => 'Entornos Virtuales',
-                'carrera'=> 'Entornos Virtuales y Negocios Digitales',
-                'frase'  => 'Imaginar es crear',
-                'valores'=> ['Creatividad','Innovación','Adaptación'],
-                'desc'   => 'Desarrollo de productos digitales interactivos.',
-            ],
-            [
-                'imagen' => 'imagenes/casas/datos.png',
-                'nombre' => 'Ciencia de Datos',
-                'carrera'=> 'Ciencia de Datos',
-                'frase'  => 'Los datos cuentan historias',
-                'valores'=> ['Objetividad','Precisión','Pensamiento Crítico'],
-                'desc'   => 'Interpretación y análisis de datos.',
-            ],
-            [
-                'imagen' => 'imagenes/casas/software.png',
-                'nombre' => 'Desarrollo de Software',
-                'carrera'=> 'Desarrollo de Software',
-                'frase'  => 'Cada línea construye el futuro',
-                'valores'=> ['Innovación','Perseverancia','Aprendizaje Continuo'],
-                'desc'   => 'Creación de aplicaciones y sistemas.',
-            ],
-            [
-                'imagen' => 'imagenes/casas/redes.jpg',
-                'nombre' => 'Redes Digitales',
-                'carrera'=> 'Infraestructura de Redes Digitales',
-                'frase'  => 'Conectar es avanzar',
-                'valores'=> ['Responsabilidad','Orden','Seguridad'],
-                'desc'   => 'Administración de redes y servidores.',
-            ],
+            ['imagen'=>'imagenes/casas/entornos.jpg','nombre'=>'Entornos Virtuales',    'carrera'=>'Entornos Virtuales y Negocios Digitales','frase'=>'Imaginar es crear',              'valores'=>['Creatividad','Innovación','Adaptación'],              'desc'=>'Desarrollo de productos digitales interactivos.'],
+            ['imagen'=>'imagenes/casas/datos.png',   'nombre'=>'Ciencia de Datos',      'carrera'=>'Ciencia de Datos',                      'frase'=>'Los datos cuentan historias',    'valores'=>['Objetividad','Precisión','Pensamiento Crítico'],      'desc'=>'Interpretación y análisis de datos.'],
+            ['imagen'=>'imagenes/casas/software.png','nombre'=>'Desarrollo de Software','carrera'=>'Desarrollo de Software',                 'frase'=>'Cada línea construye el futuro', 'valores'=>['Innovación','Perseverancia','Aprendizaje Continuo'],  'desc'=>'Creación de aplicaciones y sistemas.'],
+            ['imagen'=>'imagenes/casas/redes.jpg',   'nombre'=>'Redes Digitales',       'carrera'=>'Infraestructura de Redes Digitales',     'frase'=>'Conectar es avanzar',            'valores'=>['Responsabilidad','Orden','Seguridad'],               'desc'=>'Administración de redes y servidores.'],
         ],
     ],
- 
     [
         'nombre'  => 'Ingeniería Industrial',
         'color'   => '#CC7135',
         'icono'   => '🏭',
         'carreras'=> 'Automotriz · Procesos Productivos · Moldeo de Plásticos · Calzado',
         'casas'   => [
-            [
-                'imagen' => 'imagenes/casas/automotriz.jpg',
-                'nombre' => 'Automotriz',
-                'carrera'=> 'Ingeniería Automotriz',
-                'frase'  => 'Movimiento con propósito',
-                'valores'=> ['Eficiencia','Liderazgo','Compromiso'],
-                'desc'   => 'Mejora de procesos automotrices.',
-            ],
-            [
-                'imagen' => 'imagenes/casas/productivos.png',
-                'nombre' => 'Procesos Productivos',
-                'carrera'=> 'Ing. Procesos Productivos',
-                'frase'  => 'La mejora nunca termina',
-                'valores'=> ['Orden','Eficiencia','Mejora Continua'],
-                'desc'   => 'Gestión de operaciones industriales.',
-            ],
-            [
-                'imagen' => 'imagenes/casas/plasticos.jpg',
-                'nombre' => 'Moldeo de Plásticos',
-                'carrera'=> 'Ing. Moldeo de Plásticos',
-                'frase'  => 'La forma sigue a la innovación',
-                'valores'=> ['Precisión','Responsabilidad','Innovación'],
-                'desc'   => 'Diseño y fabricación de productos plásticos.',
-            ],
-            [
-                'imagen' => 'imagenes/casas/calzado.jpg',
-                'nombre' => 'Calzado',
-                'carrera'=> 'Gestión y Productividad de Calzado',
-                'frase'  => 'Cada paso deja huella',
-                'valores'=> ['Creatividad','Calidad','Trabajo en Equipo'],
-                'desc'   => 'Industria del calzado y manufactura.',
-            ],
+            ['imagen'=>'imagenes/casas/automotriz.jpg', 'nombre'=>'Automotriz',          'carrera'=>'Ingeniería Automotriz',              'frase'=>'Movimiento con propósito',        'valores'=>['Eficiencia','Liderazgo','Compromiso'],      'desc'=>'Mejora de procesos automotrices.'],
+            ['imagen'=>'imagenes/casas/productivos.png','nombre'=>'Procesos Productivos','carrera'=>'Ing. Procesos Productivos',          'frase'=>'La mejora nunca termina',         'valores'=>['Orden','Eficiencia','Mejora Continua'],     'desc'=>'Gestión de operaciones industriales.'],
+            ['imagen'=>'imagenes/casas/plasticos.jpg',  'nombre'=>'Moldeo de Plásticos', 'carrera'=>'Ing. Moldeo de Plásticos',           'frase'=>'La forma sigue a la innovación',  'valores'=>['Precisión','Responsabilidad','Innovación'], 'desc'=>'Diseño y fabricación de productos plásticos.'],
+            ['imagen'=>'imagenes/casas/calzado.jpg',    'nombre'=>'Calzado',             'carrera'=>'Gestión y Productividad de Calzado', 'frase'=>'Cada paso deja huella',           'valores'=>['Creatividad','Calidad','Trabajo en Equipo'],'desc'=>'Industria del calzado y manufactura.'],
         ],
     ],
- 
     [
         'nombre'  => 'Mecatrónica',
         'color'   => '#A81E1E',
         'icono'   => '🤖',
         'carreras'=> 'Manufactura Flexible · Optomecatrónica · Automatización',
         'casas'   => [
-            [
-                'imagen' => 'imagenes/casas/manufactura.jpg',
-                'nombre' => 'Manufactura Flexible',
-                'carrera'=> 'Manufactura Flexible',
-                'frase'  => 'Adaptarse es evolucionar',
-                'valores'=> ['Innovación','Precisión','Creatividad'],
-                'desc'   => 'Sistemas automatizados de producción.',
-            ],
-            [
-                'imagen' => 'imagenes/casas/optomecatronica.jpg',
-                'nombre' => 'Optomecatrónica',
-                'carrera'=> 'Optomecatrónica',
-                'frase'  => 'La precisión guía el camino',
-                'valores'=> ['Precisión','Responsabilidad','Innovación'],
-                'desc'   => 'Sistemas ópticos y electrónicos.',
-            ],
-            [
-                'imagen' => 'imagenes/casas/automatizacion.jpg',
-                'nombre' => 'Automatización',
-                'carrera'=> 'Automatización',
-                'frase'  => 'La eficiencia es inteligencia aplicada',
-                'valores'=> ['Eficiencia','Compromiso','Innovación'],
-                'desc'   => 'Automatización de procesos industriales.',
-            ],
+            ['imagen'=>'imagenes/casas/manufactura.jpg',    'nombre'=>'Manufactura Flexible','carrera'=>'Manufactura Flexible','frase'=>'Adaptarse es evolucionar',              'valores'=>['Innovación','Precisión','Creatividad'],      'desc'=>'Sistemas automatizados de producción.'],
+            ['imagen'=>'imagenes/casas/optomecatronica.jpg','nombre'=>'Optomecatrónica',     'carrera'=>'Optomecatrónica',     'frase'=>'La precisión guía el camino',           'valores'=>['Precisión','Responsabilidad','Innovación'],  'desc'=>'Sistemas ópticos y electrónicos.'],
+            ['imagen'=>'imagenes/casas/automatizacion.jpg', 'nombre'=>'Automatización',      'carrera'=>'Automatización',      'frase'=>'La eficiencia es inteligencia aplicada','valores'=>['Eficiencia','Compromiso','Innovación'],      'desc'=>'Automatización de procesos industriales.'],
         ],
     ],
- 
     [
         'nombre'  => 'Licenciaturas',
         'color'   => '#9A7B10',
         'icono'   => '🎓',
         'carreras'=> 'Gastronomía · Administración · Turismo · Negocios y Mercadotecnia',
         'casas'   => [
-            [
-                'imagen' => 'imagenes/casas/gastronomia.jpg',
-                'nombre' => 'Gastronomía',
-                'carrera'=> 'Gastronomía',
-                'frase'  => 'Crear experiencias para recordar',
-                'valores'=> ['Servicio','Creatividad','Disciplina'],
-                'desc'   => 'Experiencias culinarias y hospitalidad.',
-            ],
-            [
-                'imagen' => 'imagenes/casas/administracion.jpg',
-                'nombre' => 'Administración',
-                'carrera'=> 'Administración',
-                'frase'  => 'Liderar para construir',
-                'valores'=> ['Liderazgo','Responsabilidad','Ética'],
-                'desc'   => 'Gestión de empresas y recursos.',
-            ],
-            [
-                'imagen' => 'imagenes/casas/turismo.png',
-                'nombre' => 'Turismo',
-                'carrera'=> 'Turismo',
-                'frase'  => 'Descubrir conecta culturas',
-                'valores'=> ['Servicio','Empatía','Creatividad'],
-                'desc'   => 'Experiencias turísticas y culturales.',
-            ],
-            [
-                'imagen' => 'imagenes/casas/mercadotecnia.jpg',
-                'nombre' => 'Negocios y Mercadotecnia',
-                'carrera'=> 'Innovación de Negocios y Mercadotecnia',
-                'frase'  => 'Las ideas iluminan el cambio',
-                'valores'=> ['Innovación','Liderazgo','Comunicación'],
-                'desc'   => 'Marketing y desarrollo de negocios.',
-            ],
+            ['imagen'=>'imagenes/casas/gastronomia.jpg',   'nombre'=>'Gastronomía',            'carrera'=>'Gastronomía',                          'frase'=>'Crear experiencias para recordar','valores'=>['Servicio','Creatividad','Disciplina'],    'desc'=>'Experiencias culinarias y hospitalidad.'],
+            ['imagen'=>'imagenes/casas/administracion.jpg','nombre'=>'Administración',          'carrera'=>'Administración',                       'frase'=>'Liderar para construir',          'valores'=>['Liderazgo','Responsabilidad','Ética'],    'desc'=>'Gestión de empresas y recursos.'],
+            ['imagen'=>'imagenes/casas/turismo.png',       'nombre'=>'Turismo',                 'carrera'=>'Turismo',                              'frase'=>'Descubrir conecta culturas',      'valores'=>['Servicio','Empatía','Creatividad'],       'desc'=>'Experiencias turísticas y culturales.'],
+            ['imagen'=>'imagenes/casas/mercadotecnia.jpg', 'nombre'=>'Negocios y Mercadotecnia','carrera'=>'Innovación de Negocios y Mercadotecnia','frase'=>'Las ideas iluminan el cambio',   'valores'=>['Innovación','Liderazgo','Comunicación'],  'desc'=>'Marketing y desarrollo de negocios.'],
         ],
     ],
- 
 ];
- 
-/* Dominio activo por defecto (índice 0) */
 $activoIdx = 0;
 @endphp
  
@@ -640,27 +551,12 @@ $activoIdx = 0;
         Explora los dominios académicos que conforman la Universidad Tecnológica de León.
     </p>
  
-    {{-- Tabs de dominio --}}
-    <div id="dominio-tabs"
-         style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:1.5rem;">
-        @foreach($dominiosHome as $di => $dom)
-        <button onclick="cambiarDominio({{ $di }})"
-                id="tab-{{ $di }}"
-                style="font-size:.75rem;padding:.4rem 1rem;border-radius:50px;
-                       border:1px solid {{ $dom['color'] }};
-                       background:{{ $di === $activoIdx ? $dom['color'] : 'transparent' }};
-                       color:{{ $di === $activoIdx ? '#fff' : '#B0A898' }};
-                       cursor:pointer;transition:.2s;letter-spacing:.06em;font-family:inherit;">
-            {{ $dom['nombre'] }}
-        </button>
-        @endforeach
-    </div>
- 
     {{-- Banner del dominio activo --}}
     <div id="dominio-banner"
          style="border:1px solid #2B1F3D;border-radius:6px;
                 padding:1.2rem 1.5rem;display:flex;align-items:flex-start;
-                gap:1.25rem;margin-bottom:1.5rem;background:#14141F;">
+                gap:1.25rem;margin-bottom:1.5rem;background:#14141F;
+                transition:border-color .3s;">
         <div id="banner-icono"
              style="width:56px;height:56px;flex-shrink:0;
                     background:#0D0D1A;border:1px solid #2B1F3D;border-radius:4px;
@@ -680,36 +576,21 @@ $activoIdx = 0;
         </div>
     </div>
  
-    {{-- Carruseles (uno por dominio, ocultos salvo el activo) --}}
+    {{-- Carruseles: uno por dominio --}}
     @foreach($dominiosHome as $di => $dom)
-    @php $cols = count($dom['casas']) >= 4 ? 'cols-4' : 'cols-3'; @endphp
+    @php $cols = count($dom['casas']) >= 4 ? '' : 'cols-3'; @endphp
     <div id="carousel-wrap-{{ $di }}"
-         style="{{ $di !== $activoIdx ? 'display:none;' : '' }}position:relative;">
+         style="{{ $di !== $activoIdx ? 'display:none;' : '' }}">
  
-        {{-- Botón izquierda --}}
-        <button class="carousel-btn-left"
-                onclick="scrollCarousel('carousel-{{ $di }}', -1)"
-                style="position:absolute;top:50%;transform:translateY(-50%);
-                       width:32px;height:32px;border-radius:50%;
-                       border:1px solid #2B1F3D;background:#14141F;
-                       color:#C8A84B;font-size:1.1rem;cursor:pointer;z-index:2;">
-            ‹
-        </button>
- 
-        <div id="carousel-{{ $di }}"
-             class="dominio-carousel {{ $cols }}">
+        <div id="carousel-{{ $di }}" class="dom-track {{ $cols }}">
             @foreach($dom['casas'] as $casa)
-            <div style="border:1px solid #2B1F3D;border-radius:6px;
-                        background:#14141F;display:flex;flex-direction:column;
-                        overflow:hidden;">
- 
+            <div class="dom-card">
                 {{-- Imagen --}}
-                <div style="width:100%;aspect-ratio:1;overflow:hidden;">
+                <div style="width:100%;aspect-ratio:1;overflow:hidden;flex-shrink:0;">
                     <img src="{{ asset($casa['imagen']) }}"
                          alt="{{ $casa['nombre'] }}"
                          style="width:100%;height:100%;object-fit:cover;display:block;">
                 </div>
- 
                 {{-- Info --}}
                 <div style="padding:.85rem;display:flex;flex-direction:column;gap:.4rem;flex:1;">
                     <p style="font-size:.82rem;font-weight:700;color:#F0EAD8;margin:0;
@@ -727,22 +608,21 @@ $activoIdx = 0;
                         {{ $casa['desc'] }}
                     </p>
                 </div>
- 
             </div>
             @endforeach
         </div>
  
-        {{-- Botón derecha --}}
-        <button class="carousel-btn-right"
-                onclick="scrollCarousel('carousel-{{ $di }}', 1)"
-                style="position:absolute;top:50%;transform:translateY(-50%);
-                       width:32px;height:32px;border-radius:50%;
-                       border:1px solid #2B1F3D;background:#14141F;
-                       color:#C8A84B;font-size:1.1rem;cursor:pointer;z-index:2;">
-            ›
-        </button>
     </div>
     @endforeach
+ 
+    {{-- Navegación: ‹ Nombre del dominio › --}}
+    <div class="dom-nav">
+        <button class="dom-nav-btn" onclick="navDominio(-1)" aria-label="Dominio anterior">‹</button>
+        <span class="dom-nav-label" id="dom-nav-label">
+            {{ $dominiosHome[$activoIdx]['nombre'] }}
+        </span>
+        <button class="dom-nav-btn" onclick="navDominio(1)" aria-label="Dominio siguiente">›</button>
+    </div>
  
 </section>
 
@@ -817,97 +697,45 @@ $activoIdx = 0;
             menu.classList.remove('open');
         }
     });
-    /* Datos de dominios para el banner */
-{{-- Primero prepara el array en PHP --}}
-@php
+(function () {
+    @php
     $dominiosDataJs = array_map(fn($d) => [
         'nombre'   => $d['nombre'],
         'icono'    => $d['icono'],
         'carreras' => $d['carreras'],
         'color'    => $d['color'],
     ], $dominiosHome);
-@endphp
-
-{{-- Luego úsalo en JS con @json sobre la variable ya preparada --}}
-<script>
-    const btn  = document.getElementById('hamburgerBtn');
-    const menu = document.getElementById('mobileMenu');
-    btn.addEventListener('click', () => {
-        menu.classList.toggle('open');
-        btn.setAttribute('aria-expanded', menu.classList.contains('open'));
-    });
-    document.addEventListener('click', e => {
-        if (!btn.contains(e.target) && !menu.contains(e.target)) {
-            menu.classList.remove('open');
-        }
-    });
-
+    @endphp
+ 
     const dominiosData = @json($dominiosDataJs);
-
-    let dominioActivo = {{ $activoIdx }};
-
+    const total = dominiosData.length;
+    let activo  = {{ $activoIdx }};
+ 
     function cambiarDominio(idx) {
-        document.getElementById('carousel-wrap-' + dominioActivo).style.display = 'none';
-        const tabAnterior = document.getElementById('tab-' + dominioActivo);
-        tabAnterior.style.background = 'transparent';
-        tabAnterior.style.color = '#B0A898';
-
-        dominioActivo = idx;
-        const dom = dominiosData[idx];
-
-        document.getElementById('carousel-wrap-' + idx).style.display = '';
-
-        const tabNuevo = document.getElementById('tab-' + idx);
-        tabNuevo.style.background = dom.color;
-        tabNuevo.style.color = '#fff';
-
+        // Oculta anterior
+        document.getElementById('carousel-wrap-' + activo).style.display = 'none';
+ 
+        activo = (idx + total) % total;   // circular
+        const dom = dominiosData[activo];
+ 
+        // Muestra nuevo
+        document.getElementById('carousel-wrap-' + activo).style.display = '';
+ 
+        // Actualiza banner
         document.getElementById('banner-icono').textContent    = dom.icono;
         document.getElementById('banner-nombre').textContent   = dom.nombre;
         document.getElementById('banner-carreras').textContent = dom.carreras;
+        document.getElementById('dom-nav-label').textContent   = dom.nombre;
+ 
+        // Resetea scroll del nuevo carrusel al inicio
+        const track = document.getElementById('carousel-' + activo);
+        if (track) track.scrollLeft = 0;
     }
-
-    function scrollCarousel(id, dir) {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const cardWidth = el.querySelector('div') ? el.querySelector('div').offsetWidth + 14 : 260;
-        el.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
-    }
-</script>
  
-let dominioActivo = {{ $activoIdx }};
- 
-function cambiarDominio(idx) {
-    /* Oculta carrusel anterior */
-    document.getElementById('carousel-wrap-' + dominioActivo).style.display = 'none';
- 
-    /* Resetea tab anterior */
-    const tabAnterior = document.getElementById('tab-' + dominioActivo);
-    tabAnterior.style.background = 'transparent';
-    tabAnterior.style.color = '#B0A898';
- 
-    dominioActivo = idx;
-    const dom = dominiosData[idx];
- 
-    /* Muestra nuevo carrusel */
-    document.getElementById('carousel-wrap-' + idx).style.display = '';
- 
-    /* Activa tab */
-    const tabNuevo = document.getElementById('tab-' + idx);
-    tabNuevo.style.background = dom.color;
-    tabNuevo.style.color = '#fff';
- 
-    /* Actualiza banner */
-    document.getElementById('banner-icono').textContent    = dom.icono;
-    document.getElementById('banner-nombre').textContent   = dom.nombre;
-    document.getElementById('banner-carreras').textContent = dom.carreras;
-}
- 
-function scrollCarousel(id, dir) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const cardWidth = el.querySelector('div') ? el.querySelector('div').offsetWidth + 14 : 260;
-    el.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
-}
+    window.navDominio = function(dir) {
+        cambiarDominio(activo + dir);
+    };
+})();
 </script>
 @endpush
 
