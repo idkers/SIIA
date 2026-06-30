@@ -818,12 +818,61 @@ $activoIdx = 0;
         }
     });
     /* Datos de dominios para el banner */
-const dominiosData = @json(array_map(fn($d) => [
-    'nombre'  => $d['nombre'],
-    'icono'   => $d['icono'],
-    'carreras'=> $d['carreras'],
-    'color'   => $d['color'],
-], $dominiosHome));
+{{-- Primero prepara el array en PHP --}}
+@php
+    $dominiosDataJs = array_map(fn($d) => [
+        'nombre'   => $d['nombre'],
+        'icono'    => $d['icono'],
+        'carreras' => $d['carreras'],
+        'color'    => $d['color'],
+    ], $dominiosHome);
+@endphp
+
+{{-- Luego úsalo en JS con @json sobre la variable ya preparada --}}
+<script>
+    const btn  = document.getElementById('hamburgerBtn');
+    const menu = document.getElementById('mobileMenu');
+    btn.addEventListener('click', () => {
+        menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', menu.classList.contains('open'));
+    });
+    document.addEventListener('click', e => {
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove('open');
+        }
+    });
+
+    const dominiosData = @json($dominiosDataJs);
+
+    let dominioActivo = {{ $activoIdx }};
+
+    function cambiarDominio(idx) {
+        document.getElementById('carousel-wrap-' + dominioActivo).style.display = 'none';
+        const tabAnterior = document.getElementById('tab-' + dominioActivo);
+        tabAnterior.style.background = 'transparent';
+        tabAnterior.style.color = '#B0A898';
+
+        dominioActivo = idx;
+        const dom = dominiosData[idx];
+
+        document.getElementById('carousel-wrap-' + idx).style.display = '';
+
+        const tabNuevo = document.getElementById('tab-' + idx);
+        tabNuevo.style.background = dom.color;
+        tabNuevo.style.color = '#fff';
+
+        document.getElementById('banner-icono').textContent    = dom.icono;
+        document.getElementById('banner-nombre').textContent   = dom.nombre;
+        document.getElementById('banner-carreras').textContent = dom.carreras;
+    }
+
+    function scrollCarousel(id, dir) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const cardWidth = el.querySelector('div') ? el.querySelector('div').offsetWidth + 14 : 260;
+        el.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
+    }
+</script>
  
 let dominioActivo = {{ $activoIdx }};
  
