@@ -701,12 +701,13 @@ $activoIdx = 0;
     });
 (function () {
     @php
-    $dominiosDataJs = array_map(fn($d) => [
-        'nombre'   => $d['nombre'],
-        'icono'    => $d['icono'],
-        'carreras' => $d['carreras'],
-        'color'    => $d['color'],
-    ], $dominiosHome);
+{{-- dentro del @php --}}
+$dominiosDataJs = array_map(fn($d) => [
+    'nombre'   => $d['nombre'],
+    'imagen'   => asset($d['imagen']),   
+    'carreras' => $d['carreras'],
+    'color'    => $d['color'],
+], $dominiosHome);
     @endphp
  
     const dominiosData = @json($dominiosDataJs);
