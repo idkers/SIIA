@@ -393,7 +393,7 @@ $activoIdx = 0;
                 <div style="width:100%;aspect-ratio:1;overflow:hidden;flex-shrink:0;">
                     <img src="{{ asset($casa['imagen']) }}"
                          alt="{{ $casa['nombre'] }}"
-                         style="width:100%;height:100%;object-fit:contain;display:block;">
+                         style="width:100%;height:100%;object-fit:contain;display:block;padding:8px;">
                 </div>
                 <div style="padding:.85rem;display:flex;flex-direction:column;gap:.4rem;flex:1;">
                     <p style="font-size:.82rem;font-weight:700;color:#F0EAD8;margin:0;
