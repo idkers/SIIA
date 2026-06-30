@@ -221,7 +221,7 @@ $casas = [
         'link'     => 'https://www.utleon.edu.mx/carrera/MI',
     ],
     [
-        'imagen'   => 'imagenes/casas/ambiental.jpg',
+        'imagen'   => 'imagenes/casas/ambiental.webp',
         'nombre'   => 'Ambiental y Sustentabilidad',
         'dominio'  => 'Ingenierías',
         'color'    => '#43B02A',

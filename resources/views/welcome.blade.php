@@ -396,105 +396,345 @@ $casasInicio = [
 {{-- ═══ SECCIÓN: DOMINIOS ACADÉMICOS ══════════════════════════════════════ --}}
 <style>
     #dominios { padding: 3rem 4rem; }
-    #carousel  { grid-template-columns: repeat(4,1fr); }
+ 
+    /* El carrusel de cada dominio muestra sus casas en grid */
+    .dominio-carousel {
+        display: grid;
+        gap: .85rem;
+        overflow: hidden;
+    }
+    .dominio-carousel.cols-4 { grid-template-columns: repeat(4,1fr); }
+    .dominio-carousel.cols-3 { grid-template-columns: repeat(3,1fr); }
+ 
     .carousel-btn-left  { left:  -18px !important; }
     .carousel-btn-right { right: -18px !important; }
-
+ 
     @media (max-width: 900px) {
         #dominios { padding: 2.5rem 1.25rem !important; }
-        #carousel  { grid-template-columns: repeat(2,1fr) !important; }
+        .dominio-carousel.cols-4,
+        .dominio-carousel.cols-3 { grid-template-columns: repeat(2,1fr) !important; }
     }
     @media (max-width: 480px) {
-        #carousel  { grid-template-columns: 1fr !important; }
+        .dominio-carousel.cols-4,
+        .dominio-carousel.cols-3 { grid-template-columns: 1fr !important; }
         .carousel-btn-left  { left: 0 !important; }
         .carousel-btn-right { right: 0 !important; }
     }
 </style>
-
+ 
+@php
+/* ── Datos de los dominios con sus casas ─────────────────────────────── */
+$dominiosHome = [
+ 
+    [
+        'nombre'  => 'Ingenierías',
+        'color'   => '#075E56',
+        'icono'   => '⚙️',
+        'carreras'=> 'Logística · Mantenimiento Industrial · Ambiental y Sustentabilidad',
+        'casas'   => [
+            [
+                'imagen' => 'imagenes/casas/logistica.jpeg',
+                'nombre' => 'Logística',
+                'carrera'=> 'Ingeniería en Logística',
+                'frase'  => 'Toda ruta tiene un destino',
+                'valores'=> ['Responsabilidad','Organización','Eficiencia'],
+                'desc'   => 'Te gusta planear, coordinar recursos y optimizar procesos.',
+            ],
+            [
+                'imagen' => 'imagenes/casas/mantenimiento.jpg',
+                'nombre' => 'Mantenimiento Industrial',
+                'carrera'=> 'Ing. Mantenimiento Industrial',
+                'frase'  => 'La excelencia se construye cada día',
+                'valores'=> ['Compromiso','Precisión','Responsabilidad'],
+                'desc'   => 'Diagnóstico y mantenimiento de maquinaria industrial.',
+            ],
+            [
+                'imagen' => 'imagenes/casas/ambiental.webp',
+                'nombre' => 'Ambiental y Sustentabilidad',
+                'carrera'=> 'Ing. Ambiental y Sustentabilidad',
+                'frase'  => 'Proteger hoy para transformar mañana',
+                'valores'=> ['Ética','Compromiso','Responsabilidad Social'],
+                'desc'   => 'Desarrollo de soluciones ambientales sostenibles.',
+            ],
+        ],
+    ],
+ 
+    [
+        'nombre'  => 'Tecnologías de la Información',
+        'color'   => '#420FDB',
+        'icono'   => '💻',
+        'carreras'=> 'Entornos Virtuales · Ciencia de Datos · Desarrollo de Software · Redes Digitales',
+        'casas'   => [
+            [
+                'imagen' => 'imagenes/casas/entornos.jpg',
+                'nombre' => 'Entornos Virtuales',
+                'carrera'=> 'Entornos Virtuales y Negocios Digitales',
+                'frase'  => 'Imaginar es crear',
+                'valores'=> ['Creatividad','Innovación','Adaptación'],
+                'desc'   => 'Desarrollo de productos digitales interactivos.',
+            ],
+            [
+                'imagen' => 'imagenes/casas/datos.png',
+                'nombre' => 'Ciencia de Datos',
+                'carrera'=> 'Ciencia de Datos',
+                'frase'  => 'Los datos cuentan historias',
+                'valores'=> ['Objetividad','Precisión','Pensamiento Crítico'],
+                'desc'   => 'Interpretación y análisis de datos.',
+            ],
+            [
+                'imagen' => 'imagenes/casas/software.png',
+                'nombre' => 'Desarrollo de Software',
+                'carrera'=> 'Desarrollo de Software',
+                'frase'  => 'Cada línea construye el futuro',
+                'valores'=> ['Innovación','Perseverancia','Aprendizaje Continuo'],
+                'desc'   => 'Creación de aplicaciones y sistemas.',
+            ],
+            [
+                'imagen' => 'imagenes/casas/redes.jpg',
+                'nombre' => 'Redes Digitales',
+                'carrera'=> 'Infraestructura de Redes Digitales',
+                'frase'  => 'Conectar es avanzar',
+                'valores'=> ['Responsabilidad','Orden','Seguridad'],
+                'desc'   => 'Administración de redes y servidores.',
+            ],
+        ],
+    ],
+ 
+    [
+        'nombre'  => 'Ingeniería Industrial',
+        'color'   => '#CC7135',
+        'icono'   => '🏭',
+        'carreras'=> 'Automotriz · Procesos Productivos · Moldeo de Plásticos · Calzado',
+        'casas'   => [
+            [
+                'imagen' => 'imagenes/casas/automotriz.jpg',
+                'nombre' => 'Automotriz',
+                'carrera'=> 'Ingeniería Automotriz',
+                'frase'  => 'Movimiento con propósito',
+                'valores'=> ['Eficiencia','Liderazgo','Compromiso'],
+                'desc'   => 'Mejora de procesos automotrices.',
+            ],
+            [
+                'imagen' => 'imagenes/casas/productivos.png',
+                'nombre' => 'Procesos Productivos',
+                'carrera'=> 'Ing. Procesos Productivos',
+                'frase'  => 'La mejora nunca termina',
+                'valores'=> ['Orden','Eficiencia','Mejora Continua'],
+                'desc'   => 'Gestión de operaciones industriales.',
+            ],
+            [
+                'imagen' => 'imagenes/casas/plasticos.jpg',
+                'nombre' => 'Moldeo de Plásticos',
+                'carrera'=> 'Ing. Moldeo de Plásticos',
+                'frase'  => 'La forma sigue a la innovación',
+                'valores'=> ['Precisión','Responsabilidad','Innovación'],
+                'desc'   => 'Diseño y fabricación de productos plásticos.',
+            ],
+            [
+                'imagen' => 'imagenes/casas/calzado.jpg',
+                'nombre' => 'Calzado',
+                'carrera'=> 'Gestión y Productividad de Calzado',
+                'frase'  => 'Cada paso deja huella',
+                'valores'=> ['Creatividad','Calidad','Trabajo en Equipo'],
+                'desc'   => 'Industria del calzado y manufactura.',
+            ],
+        ],
+    ],
+ 
+    [
+        'nombre'  => 'Mecatrónica',
+        'color'   => '#A81E1E',
+        'icono'   => '🤖',
+        'carreras'=> 'Manufactura Flexible · Optomecatrónica · Automatización',
+        'casas'   => [
+            [
+                'imagen' => 'imagenes/casas/manufactura.jpg',
+                'nombre' => 'Manufactura Flexible',
+                'carrera'=> 'Manufactura Flexible',
+                'frase'  => 'Adaptarse es evolucionar',
+                'valores'=> ['Innovación','Precisión','Creatividad'],
+                'desc'   => 'Sistemas automatizados de producción.',
+            ],
+            [
+                'imagen' => 'imagenes/casas/optomecatronica.jpg',
+                'nombre' => 'Optomecatrónica',
+                'carrera'=> 'Optomecatrónica',
+                'frase'  => 'La precisión guía el camino',
+                'valores'=> ['Precisión','Responsabilidad','Innovación'],
+                'desc'   => 'Sistemas ópticos y electrónicos.',
+            ],
+            [
+                'imagen' => 'imagenes/casas/automatizacion.jpg',
+                'nombre' => 'Automatización',
+                'carrera'=> 'Automatización',
+                'frase'  => 'La eficiencia es inteligencia aplicada',
+                'valores'=> ['Eficiencia','Compromiso','Innovación'],
+                'desc'   => 'Automatización de procesos industriales.',
+            ],
+        ],
+    ],
+ 
+    [
+        'nombre'  => 'Licenciaturas',
+        'color'   => '#9A7B10',
+        'icono'   => '🎓',
+        'carreras'=> 'Gastronomía · Administración · Turismo · Negocios y Mercadotecnia',
+        'casas'   => [
+            [
+                'imagen' => 'imagenes/casas/gastronomia.jpg',
+                'nombre' => 'Gastronomía',
+                'carrera'=> 'Gastronomía',
+                'frase'  => 'Crear experiencias para recordar',
+                'valores'=> ['Servicio','Creatividad','Disciplina'],
+                'desc'   => 'Experiencias culinarias y hospitalidad.',
+            ],
+            [
+                'imagen' => 'imagenes/casas/administracion.jpg',
+                'nombre' => 'Administración',
+                'carrera'=> 'Administración',
+                'frase'  => 'Liderar para construir',
+                'valores'=> ['Liderazgo','Responsabilidad','Ética'],
+                'desc'   => 'Gestión de empresas y recursos.',
+            ],
+            [
+                'imagen' => 'imagenes/casas/turismo.png',
+                'nombre' => 'Turismo',
+                'carrera'=> 'Turismo',
+                'frase'  => 'Descubrir conecta culturas',
+                'valores'=> ['Servicio','Empatía','Creatividad'],
+                'desc'   => 'Experiencias turísticas y culturales.',
+            ],
+            [
+                'imagen' => 'imagenes/casas/mercadotecnia.jpg',
+                'nombre' => 'Negocios y Mercadotecnia',
+                'carrera'=> 'Innovación de Negocios y Mercadotecnia',
+                'frase'  => 'Las ideas iluminan el cambio',
+                'valores'=> ['Innovación','Liderazgo','Comunicación'],
+                'desc'   => 'Marketing y desarrollo de negocios.',
+            ],
+        ],
+    ],
+ 
+];
+ 
+/* Dominio activo por defecto (índice 0) */
+$activoIdx = 0;
+@endphp
+ 
 <section id="dominios" style="background:rgba(6,6,15,0.15);">
-
+ 
+    {{-- Título --}}
     <div style="display:flex;align-items:center;gap:1.5rem;justify-content:center;margin-bottom:.5rem;">
-        <div class="section-rule" style="height:1px;width:200px;background:linear-gradient(to left, #8D6627, transparent);"></div>
-        <h2 style="margin:0;font-size:1.5rem;font-weight:700;
-                   color:#FFFFFF;font-family:'Headland One',serif;
-                   letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;">
+        <div class="section-rule" style="height:1px;width:200px;background:linear-gradient(to left,#8D6627,transparent);"></div>
+        <h2 style="margin:0;font-size:1.5rem;font-weight:700;color:#FFFFFF;
+                   font-family:'Headland One',serif;letter-spacing:.12em;
+                   text-transform:uppercase;white-space:nowrap;">
             Dominios Académicos
         </h2>
-        <div class="section-rule" style="height:1px;width:200px;background:linear-gradient(to right, #8D6627, transparent);"></div>
+        <div class="section-rule" style="height:1px;width:200px;background:linear-gradient(to right,#8D6627,transparent);"></div>
     </div>
-
+ 
     <p style="text-align:center;font-size:.75rem;color:#B0A898;
               max-width:420px;margin:0 auto 2rem;line-height:1.7;
               letter-spacing:.08em;text-transform:uppercase;">
         Explora los dominios académicos que conforman la Universidad Tecnológica de León.
     </p>
-
+ 
+    {{-- Tabs de dominio --}}
+    <div id="dominio-tabs"
+         style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:1.5rem;">
+        @foreach($dominiosHome as $di => $dom)
+        <button onclick="cambiarDominio({{ $di }})"
+                id="tab-{{ $di }}"
+                style="font-size:.75rem;padding:.4rem 1rem;border-radius:50px;
+                       border:1px solid {{ $dom['color'] }};
+                       background:{{ $di === $activoIdx ? $dom['color'] : 'transparent' }};
+                       color:{{ $di === $activoIdx ? '#fff' : '#B0A898' }};
+                       cursor:pointer;transition:.2s;letter-spacing:.06em;font-family:inherit;">
+            {{ $dom['nombre'] }}
+        </button>
+        @endforeach
+    </div>
+ 
     {{-- Banner del dominio activo --}}
-    <div style="border:1px solid #2B1F3D;border-radius:6px;
+    <div id="dominio-banner"
+         style="border:1px solid #2B1F3D;border-radius:6px;
                 padding:1.2rem 1.5rem;display:flex;align-items:flex-start;
-                gap:1.25rem;margin-bottom:1.5rem;
-                background:#14141F;">
-        <div style="width:56px;height:56px;flex-shrink:0;
-                    background:#0D0D1A;border:1px dashed #2B1F3D;border-radius:4px;
-                    display:flex;flex-direction:column;align-items:center;
-                    justify-content:center;font-size:.65rem;color:#707085;text-align:center;">
-            Ícono<br>dominio
+                gap:1.25rem;margin-bottom:1.5rem;background:#14141F;">
+        <div id="banner-icono"
+             style="width:56px;height:56px;flex-shrink:0;
+                    background:#0D0D1A;border:1px solid #2B1F3D;border-radius:4px;
+                    display:flex;align-items:center;justify-content:center;font-size:1.6rem;">
+            {{ $dominiosHome[$activoIdx]['icono'] }}
         </div>
         <div>
-            <p style="font-size:.95rem;font-weight:700;color:#F0EAD8;margin-bottom:.3rem;
+            <p id="banner-nombre"
+               style="font-size:.95rem;font-weight:700;color:#F0EAD8;margin-bottom:.3rem;
                       font-family:'Headland One',serif;letter-spacing:.04em;">
-                Nombre del dominio
+                {{ $dominiosHome[$activoIdx]['nombre'] }}
             </p>
-            <p style="font-size:.82rem;color:#B0A898;line-height:1.5;margin:0;">
-                Carreras que lo conforman
+            <p id="banner-carreras"
+               style="font-size:.82rem;color:#B0A898;line-height:1.5;margin:0;">
+                {{ $dominiosHome[$activoIdx]['carreras'] }}
             </p>
         </div>
     </div>
-
-    {{-- Carrusel --}}
-    <div style="position:relative;">
+ 
+    {{-- Carruseles (uno por dominio, ocultos salvo el activo) --}}
+    @foreach($dominiosHome as $di => $dom)
+    @php $cols = count($dom['casas']) >= 4 ? 'cols-4' : 'cols-3'; @endphp
+    <div id="carousel-wrap-{{ $di }}"
+         style="{{ $di !== $activoIdx ? 'display:none;' : '' }}position:relative;">
+ 
+        {{-- Botón izquierda --}}
         <button class="carousel-btn-left"
-                onclick="document.getElementById('carousel').scrollBy({left:-260,behavior:'smooth'})"
+                onclick="scrollCarousel('carousel-{{ $di }}', -1)"
                 style="position:absolute;top:50%;transform:translateY(-50%);
                        width:32px;height:32px;border-radius:50%;
                        border:1px solid #2B1F3D;background:#14141F;
                        color:#C8A84B;font-size:1.1rem;cursor:pointer;z-index:2;">
             ‹
         </button>
-
-        <div id="carousel"
-             style="display:grid;gap:.85rem;overflow:hidden;">
-            @for ($i = 0; $i < 4; $i++)
+ 
+        <div id="carousel-{{ $di }}"
+             class="dominio-carousel {{ $cols }}">
+            @foreach($dom['casas'] as $casa)
             <div style="border:1px solid #2B1F3D;border-radius:6px;
-                        padding:.85rem;background:#14141F;
-                        display:flex;flex-direction:column;gap:.5rem;">
-                <div style="width:100%;aspect-ratio:1;background:#0D0D1A;
-                            border:1px dashed #2B1F3D;border-radius:4px;
-                            display:flex;align-items:center;justify-content:center;
-                            font-size:.72rem;color:#707085;text-align:center;padding:.5rem;">
-                    [ Escudo /<br>imagen casa ]
+                        background:#14141F;display:flex;flex-direction:column;
+                        overflow:hidden;">
+ 
+                {{-- Imagen --}}
+                <div style="width:100%;aspect-ratio:1;overflow:hidden;">
+                    <img src="{{ asset($casa['imagen']) }}"
+                         alt="{{ $casa['nombre'] }}"
+                         style="width:100%;height:100%;object-fit:cover;display:block;">
                 </div>
-                <p style="font-size:.82rem;font-weight:700;color:#F0EAD8;margin:0;
-                           font-family:'Headland One',serif;">Nombre casa</p>
-                <p style="font-size:.75rem;color:#B0A898;margin:0;">Nombre carrera</p>
-                <p style="font-size:.72rem;color:#C8A84B;font-style:italic;margin:0;">Frase distintiva</p>
-                <div style="display:flex;flex-wrap:wrap;gap:3px;">
-                    <span style="font-size:.65rem;padding:2px 7px;border:1px solid #2B1F3D;
-                                 border-radius:20px;color:#707085;background:#0D0D1A;">valor</span>
-                    <span style="font-size:.65rem;padding:2px 7px;border:1px solid #2B1F3D;
-                                 border-radius:20px;color:#707085;background:#0D0D1A;">valor</span>
-                    <span style="font-size:.65rem;padding:2px 7px;border:1px solid #2B1F3D;
-                                 border-radius:20px;color:#707085;background:#0D0D1A;">valor</span>
+ 
+                {{-- Info --}}
+                <div style="padding:.85rem;display:flex;flex-direction:column;gap:.4rem;flex:1;">
+                    <p style="font-size:.82rem;font-weight:700;color:#F0EAD8;margin:0;
+                               font-family:'Headland One',serif;">{{ $casa['nombre'] }}</p>
+                    <p style="font-size:.75rem;color:#B0A898;margin:0;">{{ $casa['carrera'] }}</p>
+                    <p style="font-size:.72rem;color:#C8A84B;font-style:italic;margin:0;">{{ $casa['frase'] }}</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:.2rem;">
+                        @foreach($casa['valores'] as $v)
+                        <span style="font-size:.65rem;padding:2px 7px;
+                                     border:1px solid #2B1F3D;border-radius:20px;
+                                     color:#707085;background:#0D0D1A;">{{ $v }}</span>
+                        @endforeach
+                    </div>
+                    <p style="font-size:.68rem;color:#707085;line-height:1.5;margin:0;">
+                        {{ $casa['desc'] }}
+                    </p>
                 </div>
-                <p style="font-size:.68rem;color:#707085;line-height:1.5;margin:0;">
-                    Significado del escudo, relación con la carrera y sus valores.
-                </p>
+ 
             </div>
-            @endfor
+            @endforeach
         </div>
-
+ 
+        {{-- Botón derecha --}}
         <button class="carousel-btn-right"
-                onclick="document.getElementById('carousel').scrollBy({left:260,behavior:'smooth'})"
+                onclick="scrollCarousel('carousel-{{ $di }}', 1)"
                 style="position:absolute;top:50%;transform:translateY(-50%);
                        width:32px;height:32px;border-radius:50%;
                        border:1px solid #2B1F3D;background:#14141F;
@@ -502,6 +742,8 @@ $casasInicio = [
             ›
         </button>
     </div>
+    @endforeach
+ 
 </section>
 
 {{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
@@ -575,6 +817,48 @@ $casasInicio = [
             menu.classList.remove('open');
         }
     });
+    /* Datos de dominios para el banner */
+const dominiosData = @json(array_map(fn($d) => [
+    'nombre'  => $d['nombre'],
+    'icono'   => $d['icono'],
+    'carreras'=> $d['carreras'],
+    'color'   => $d['color'],
+], $dominiosHome));
+ 
+let dominioActivo = {{ $activoIdx }};
+ 
+function cambiarDominio(idx) {
+    /* Oculta carrusel anterior */
+    document.getElementById('carousel-wrap-' + dominioActivo).style.display = 'none';
+ 
+    /* Resetea tab anterior */
+    const tabAnterior = document.getElementById('tab-' + dominioActivo);
+    tabAnterior.style.background = 'transparent';
+    tabAnterior.style.color = '#B0A898';
+ 
+    dominioActivo = idx;
+    const dom = dominiosData[idx];
+ 
+    /* Muestra nuevo carrusel */
+    document.getElementById('carousel-wrap-' + idx).style.display = '';
+ 
+    /* Activa tab */
+    const tabNuevo = document.getElementById('tab-' + idx);
+    tabNuevo.style.background = dom.color;
+    tabNuevo.style.color = '#fff';
+ 
+    /* Actualiza banner */
+    document.getElementById('banner-icono').textContent    = dom.icono;
+    document.getElementById('banner-nombre').textContent   = dom.nombre;
+    document.getElementById('banner-carreras').textContent = dom.carreras;
+}
+ 
+function scrollCarousel(id, dir) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const cardWidth = el.querySelector('div') ? el.querySelector('div').offsetWidth + 14 : 260;
+    el.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
+}
 </script>
 @endpush
 
