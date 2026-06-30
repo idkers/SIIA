@@ -199,7 +199,7 @@
     $casasInicio = [
         ['nombre'=>'Ambiental',   'imagen'=>'imagenes/casas/ambiental.webp'],
         ['nombre'=>'Gastronomía', 'imagen'=>'imagenes/casas/gastronomia2.webp'],
-        ['nombre'=>'Mecatrónica', 'imagen'=>'imagenes/casas/mecatronicaBaseSinTextura.webp'],
+        ['nombre'=>'Mecatrónica', 'imagen'=>'imagenes/dominios/mecatronicaBaseSinTextura.webp'],
     ];
     @endphp
 
@@ -313,7 +313,7 @@ $dominiosHome = [
     [
         'nombre'  => 'Mecatrónica',
         'color'   => '#A81E1E',
-        'imagen'  => 'imagenes/dominios/Mecatronica.webp',
+        'imagen'  => 'imagenes/dominios/mecatronicaBaseSinTextura.webp',
         'carreras'=> 'Manufactura Flexible · Optomecatrónica · Automatización',
         'casas'   => [
             ['imagen'=>'imagenes/casas/manufactura.webp',    'nombre'=>'Manufactura Flexible','carrera'=>'Manufactura Flexible','frase'=>'Adaptarse es evolucionar',               'valores'=>['Innovación','Precisión','Creatividad'],     'desc'=>'Sistemas automatizados de producción.'],
