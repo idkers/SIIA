@@ -508,7 +508,7 @@ $dominiosHome = [
     [
         'nombre'  => 'Mecatrónica',
         'color'   => '#A81E1E',
-        'icono'   => 'imagenes/casas/mecatronicaBaseSinTextura.webp',
+        'imagen'  => 'imagenes/dominios/mecatronicaBaseSinTextura.webp',
         'carreras'=> 'Manufactura Flexible · Optomecatrónica · Automatización',
         'casas'   => [
             ['imagen'=>'imagenes/casas/manufactura.webp',    'nombre'=>'Manufactura Flexible','carrera'=>'Manufactura Flexible','frase'=>'Adaptarse es evolucionar',              'valores'=>['Innovación','Precisión','Creatividad'],      'desc'=>'Sistemas automatizados de producción.'],
@@ -551,30 +551,32 @@ $activoIdx = 0;
         Explora los dominios académicos que conforman la Universidad Tecnológica de León.
     </p>
  
-    {{-- Banner del dominio activo --}}
-    <div id="dominio-banner"
-         style="border:1px solid #2B1F3D;border-radius:6px;
-                padding:1.2rem 1.5rem;display:flex;align-items:flex-start;
-                gap:1.25rem;margin-bottom:1.5rem;background:#14141F;
-                transition:border-color .3s;">
-        <div id="banner-icono"
-             style="width:56px;height:56px;flex-shrink:0;
-                    background:#0D0D1A;border:1px solid #2B1F3D;border-radius:4px;
-                    display:flex;align-items:center;justify-content:center;font-size:1.6rem;">
-            {{ $dominiosHome[$activoIdx]['icono'] }}
-        </div>
-        <div>
-            <p id="banner-nombre"
-               style="font-size:.95rem;font-weight:700;color:#F0EAD8;margin-bottom:.3rem;
-                      font-family:'Headland One',serif;letter-spacing:.04em;">
-                {{ $dominiosHome[$activoIdx]['nombre'] }}
-            </p>
-            <p id="banner-carreras"
-               style="font-size:.82rem;color:#B0A898;line-height:1.5;margin:0;">
-                {{ $dominiosHome[$activoIdx]['carreras'] }}
-            </p>
-        </div>
+{{-- Banner del dominio activo --}}
+<div id="dominio-banner"
+     style="border:1px solid #2B1F3D;border-radius:6px;
+            padding:1.2rem 1.5rem;display:flex;align-items:flex-start;
+            gap:1.25rem;margin-bottom:1.5rem;background:#14141F;">
+    <div id="banner-icono"
+         style="width:64px;height:64px;flex-shrink:0;
+                border-radius:6px;overflow:hidden;
+                background:#0D0D1A;border:1px solid #2B1F3D;">
+        <img id="banner-img"
+             src="{{ asset($dominiosHome[$activoIdx]['imagen']) }}"
+             alt="{{ $dominiosHome[$activoIdx]['nombre'] }}"
+             style="width:100%;height:100%;object-fit:cover;display:block;">
     </div>
+    <div>
+        <p id="banner-nombre"
+           style="font-size:.95rem;font-weight:700;color:#F0EAD8;margin-bottom:.3rem;
+                  font-family:'Headland One',serif;letter-spacing:.04em;">
+            {{ $dominiosHome[$activoIdx]['nombre'] }}
+        </p>
+        <p id="banner-carreras"
+           style="font-size:.82rem;color:#B0A898;line-height:1.5;margin:0;">
+            {{ $dominiosHome[$activoIdx]['carreras'] }}
+        </p>
+    </div>
+</div>
  
     {{-- Carruseles: uno por dominio --}}
     @foreach($dominiosHome as $di => $dom)
