@@ -234,20 +234,99 @@
 
 {{-- ═══ SECCIÓN: DESCUBRE TU IDENTIDAD ════════════════════════════════════ --}}
 <style>
-    #identidad { padding: 3rem 4rem; }
-    #identidad-cards { display:flex; gap:1.25rem; justify-content:center; }
-    #identidad-cards > div { width:190px; height:190px; flex-shrink:0; }
+/* ===== Tarjetas de las casas ===== */
 
-    @media (max-width: 768px) {
-        #identidad { padding: 2.5rem 1.25rem !important; }
-        .section-rule { width: 80px !important; }
-        #identidad-cards { gap:.85rem !important; }
-        #identidad-cards > div { width:100px !important; height:100px !important; }
+#identidad-cards{
+    display:flex;
+    justify-content:center;
+    gap:2rem;
+    flex-wrap:wrap;
+    margin-bottom:2rem;
+}
+
+.identidad-card{
+    width:220px;
+    border:1px solid rgba(200,168,75,.18);
+    border-radius:14px;
+    overflow:hidden;
+    background:transparent;
+    transition:all .35s ease;
+}
+
+.identidad-card:hover{
+    transform:translateY(-8px);
+    border-color:#C8A84B;
+    box-shadow:0 0 20px rgba(200,168,75,.18);
+}
+
+.identidad-img{
+    height:220px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:18px;
+    background:radial-gradient(circle at center,
+        rgba(255,255,255,.03),
+        transparent 70%);
+}
+
+.identidad-img img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    transition:transform .35s ease;
+}
+
+.identidad-card:hover .identidad-img img{
+    transform:scale(1.05);
+}
+
+.identidad-titulo{
+    padding:1rem;
+    text-align:center;
+    color:#F0EAD8;
+    font-family:'Headland One', serif;
+    font-size:1.15rem;
+    border-top:1px solid rgba(255,255,255,.06);
+}
+
+/* Responsive */
+
+@media (max-width:768px){
+
+    #identidad-cards{
+        gap:1rem;
     }
-    @media (max-width: 480px) {
-        #identidad-cards > div { width:85px !important; height:85px !important; font-size:.65rem !important; }
-        .identidad-shield { font-size:1.1rem !important; }
+
+    .identidad-card{
+        width:170px;
     }
+
+    .identidad-img{
+        height:170px;
+    }
+
+    .identidad-titulo{
+        font-size:.95rem;
+    }
+
+}
+
+@media (max-width:480px){
+
+    .identidad-card{
+        width:140px;
+    }
+
+    .identidad-img{
+        height:140px;
+    }
+
+    .identidad-titulo{
+        font-size:.85rem;
+    }
+
+}
 </style>
 
 <section id="identidad" style="background:rgba(6,6,15,0.15);">
@@ -280,38 +359,21 @@ $casasInicio = [
     ],
     [
         'nombre' => 'Mecatrónica',
-        'imagen' => 'imagenes/casas/mecatroniBaseSinTextura.webp'
+        'imagen' => 'imagenes/casas/mecatronicaBaseSinTextura.webp'
     ],
 ];
 @endphp
 
 <div id="identidad-cards" style="margin-bottom:2rem;">
     @foreach($casasInicio as $casa)
-        <div style="
-            background:#14141F;
-            border:1px solid #2B1F3D;
-            border-radius:10px;
-            overflow:hidden;
-            display:flex;
-            flex-direction:column;
-            transition:.3s;
-        ">
+        <div class="identidad-card">
 
-            <img src="{{ asset($casa['imagen']) }}"
-                 alt="{{ $casa['nombre'] }}"
-                 style="
-                    width:100%;
-                    height:145px;
-                    object-fit:cover;
-                 ">
+            <div class="identidad-img">
+                <img src="{{ asset($casa['imagen']) }}"
+                     alt="{{ $casa['nombre'] }}">
+            </div>
 
-            <div style="
-                padding:.8rem;
-                text-align:center;
-                color:#F0EAD8;
-                font-size:.82rem;
-                font-family:'Headland One',serif;
-            ">
+            <div class="identidad-titulo">
                 {{ $casa['nombre'] }}
             </div>
 
