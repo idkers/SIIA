@@ -445,7 +445,7 @@
 
             <div id="stage-4-img-wrap">
                 <img id="stage-4-img"
-                     src="../imagenes/gastronomia2.webp"
+                     src="../imagenes/casas/gastronomia2.webp"
                      alt="Casa Ignisculin">
             </div>
 
