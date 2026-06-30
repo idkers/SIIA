@@ -390,12 +390,11 @@ $activoIdx = 0;
         <div id="carousel-{{ $di }}" class="dom-track {{ $cols }}">
             @foreach($dom['casas'] as $casa)
             <div class="dom-card">
-<div style="width:100%;aspect-ratio:1;overflow:hidden;flex-shrink:0;
-            background:#0D0D1A;display:flex;align-items:center;justify-content:center;">
-    <img src="{{ asset($casa['imagen']) }}"
-         alt="{{ $casa['nombre'] }}"
-         style="width:100%;height:100%;object-fit:contain;display:block;padding:8px;">
-</div>
+                <div style="width:100%;aspect-ratio:1;overflow:hidden;flex-shrink:0;">
+                    <img src="{{ asset($casa['imagen']) }}"
+                         alt="{{ $casa['nombre'] }}"
+                         style="width:100%;height:100%;object-fit:contain;display:block;">
+                </div>
                 <div style="padding:.85rem;display:flex;flex-direction:column;gap:.4rem;flex:1;">
                     <p style="font-size:.82rem;font-weight:700;color:#F0EAD8;margin:0;
                                font-family:'Headland One',serif;">{{ $casa['nombre'] }}</p>
