@@ -45,8 +45,10 @@
         <a href="{{ route('casas') }}"     style="font-size:.88rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
     </div>
 
+    </div>
+
     <div class="nav-auth">
-        <a href="#" style="font-size:.88rem;color:#B0A898;text-decoration:none;
+        <a href="{{ route('Ingresar') }}" style="font-size:.88rem;color:#B0A898;text-decoration:none;
                            letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
     </div>
 
@@ -61,7 +63,7 @@
     <a href="{{ route('recorrido') }}">Recorrido</a>
     <a href="{{ route('dominios') }}">Dominios</a>
     <a href="{{ route('casas') }}">Casas</a>
-    <a href="#">Ingresar</a>
+    <a href="{{ route('Ingresar') }}">Ingresar</a>
 </div>
 
 {{-- ═══ HERO ═════════════════════════════════════════════════════════════════ --}}
