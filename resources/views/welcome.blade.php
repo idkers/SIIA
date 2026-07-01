@@ -5,7 +5,25 @@
 
 {{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
 <style>
-    .nav-links { display:flex; gap:2rem; }
+  .nav-links{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    gap:3rem;
+}
+
+.nav-links a{
+    color:#B0A898;
+    text-decoration:none;
+    font-size:.88rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    transition:.25s;
+}
+
+.nav-links a:hover{
+    color:#E8C96A;
+}
     .nav-auth  { display:flex; align-items:center; gap:.75rem; }
     .hamburger { display:none; background:none; border:none; cursor:pointer;
                  padding:.25rem; flex-direction:column; gap:5px; }
@@ -25,30 +43,44 @@
         .hamburger { display:flex !important; }
     }
 </style>
-
-<nav style="display:flex;align-items:center;justify-content:space-between;
-            padding:1.6rem 1.75rem;
-            background:rgba(6,6,15,0.6);
-            backdrop-filter:blur(12px);
-            -webkit-backdrop-filter:blur(12px);
-            position:sticky;top:0;z-index:100;isolation:isolate;">
+<nav style="
+    display:flex;
+    align-items:center;
+    padding:1.6rem 2rem;
+    background:rgba(6,6,15,.6);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    position:sticky;
+    top:0;
+    z-index:100;
+">
 
     <img src="{{ asset('imagenes/isotipo_dorado.webp') }}"
          alt="UTL"
-         style="height:2.6rem;width:auto;display:block;">
+         style="height:2.6rem;">
 
-    <div class="nav-links">
-        <a href="{{ route('welcome') }}"   style="font-size:.88rem;color:#E8C96A;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Inicio</a>
-        <a href="{{ route('quiz') }}"      style="font-size:.88rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Quiz</a>
-        <a href="{{ route('recorrido') }}" style="font-size:.88rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
-        <a href="{{ route('dominios') }}"  style="font-size:.88rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
-        <a href="{{ route('casas') }}"     style="font-size:.88rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
-        <a href="{{ route('ingresar') }}"   style="font-size:.88rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
+    <div class="nav-links" style="
+        flex:1;
+        display:flex;
+        justify-content:center;
+        gap:3rem;
+    ">
+        <a href="{{ route('welcome') }}">Inicio</a>
+        <a href="{{ route('quiz') }}">Quiz</a>
+        <a href="{{ route('recorrido') }}">Recorrido</a>
+        <a href="{{ route('dominios') }}">Dominios</a>
+        <a href="{{ route('casas') }}">Casas</a>
+        <a href="{{ route('ingresar') }}">Ingresar</a>
     </div>
 
-    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
-        <span></span><span></span><span></span>
+    <button class="hamburger"
+            id="hamburgerBtn"
+            aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
     </button>
+
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
