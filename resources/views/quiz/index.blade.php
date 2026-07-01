@@ -484,7 +484,8 @@
  
         <p>
             Para ofrecerte la mejor experiencia en el Quiz de Selección de Casa,
-            necesitamos que leas y aceptes nuestro aviso de privacidad.
+            necesitamos que leas y aceptes el Aviso de Privacidad Integral de la
+            Universidad Tecnológica de León.
         </p>
  
         {{-- Aviso importante --}}
@@ -507,10 +508,9 @@
                 </svg>
             </span>
             <span class="privacy-check-label">
-                He leído y acepto las
-                <a onclick="abrirPolitica(event)">Políticas de Privacidad</a>
-                del Navegador de Orientación Vocacional y Aptitudes (NOVA) de la
-                Universidad Tecnológica de León.
+                He leído y acepto el
+                <a onclick="abrirPolitica(event)">Aviso de Privacidad Integral</a>
+                de la Universidad Tecnológica de León.
             </span>
         </label>
  
