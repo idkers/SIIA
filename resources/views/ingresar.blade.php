@@ -353,6 +353,10 @@
         </div>
         @endif
 
+        {{-- Formulario --}}
+        <form method="POST" action="{{ route('ingresar.post') }}" onsubmit="return validarLogin(event);">
+            @csrf
+
             {{-- Matrícula / Correo --}}
             <div class="form-group">
                 <label class="form-label" for="email">Matrícula o Correo Institucional</label>
@@ -437,13 +441,6 @@
             </button>
 
         </form>
-
-        <div class="divider"><span>¿Eres nuevo?</span></div>
-
-        <div class="register-prompt">
-            ¿No tienes cuenta?
-            <a href="{{ route('register') }}">Crear cuenta</a>
-        </div>
 
         <div class="new-student-note">
             <strong>Alumnos de nuevo ingreso:</strong> puedes usar el quiz
