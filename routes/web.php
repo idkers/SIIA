@@ -13,3 +13,7 @@ Route::get('/dominios', fn () => view('dominios'))->name('dominios');
 Route::get('/recorrido', fn () => view('recorrido'))->name('recorrido');
 
 Route::get('/ingresar', fn () => view('ingresar'))->name('ingresar');
+
+Route::post('/ingresar', function () {
+    return back()->with('success', 'Formulario enviado correctamente.');
+})->name('ingresar.post');
