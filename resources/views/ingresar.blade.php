@@ -305,7 +305,7 @@
     </div>
 
     <div class="nav-auth">
-        <a href="{{ route('login') }}"
+        <a href="{{ route('ingresar') }}"
            style="font-size:.88rem;color:#E8C96A;text-decoration:none;
                   letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
     </div>
