@@ -321,7 +321,7 @@
     <a href="{{ route('recorrido') }}">Recorrido</a>
     <a href="{{ route('dominios') }}">Dominios</a>
     <a href="{{ route('casas') }}">Casas</a>
-    <a href="{{ route('login') }}" style="color:#E8C96A;">Ingresar</a>
+    <a href="{{ route('ingresar') }}" style="color:#E8C96A;">Ingresar</a>
 </div>
 
 {{-- ═══ LOGIN ═══════════════════════════════════════════════════════════════ --}}
