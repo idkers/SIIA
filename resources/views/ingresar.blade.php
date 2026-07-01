@@ -357,9 +357,9 @@
         <form method="POST" action="{{ route('ingresar.post') }}" onsubmit="return validarLogin(event);">
             @csrf
 
-            {{-- Matrícula / Correo --}}
+            {{-- Correo --}}
             <div class="form-group">
-                <label class="form-label" for="email">Matrícula o Correo Institucional</label>
+                <label class="form-label" for="email">Correo Institucional</label>
                 <div class="input-wrap">
                     <span class="input-icon">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -373,7 +373,7 @@
                            id="email"
                            name="email"
                            class="form-input @error('email') error @enderror"
-                           placeholder="12345678 o 12345678@utleon.edu.mx"
+                           placeholder="12345@utleon.edu.mx"
                            value="{{ old('email') }}"
                            autocomplete="username"
                            inputmode="email">
@@ -419,14 +419,9 @@
                 </span>
             </div>
 
-            {{-- Recordarme --}}
             <div style="display:flex;align-items:center;justify-content:space-between;
                         margin-bottom:1.25rem;flex-wrap:wrap;gap:.5rem;">
-                <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;">
-                    <input type="checkbox" name="remember" id="remember"
-                           style="accent-color:#C8A84B;width:15px;height:15px;">
-                    <span style="font-size:.8rem;color:#707085;">Recordarme</span>
-                </label>
+
                 {{-- Enlace a recuperar contraseña (futura implementación) --}}
                 <a href="#"
                    style="font-size:.8rem;color:#8D6627;text-decoration:none;
