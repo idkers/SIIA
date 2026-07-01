@@ -521,89 +521,290 @@
     </div>
 </div>
  
-{{-- ── Modal de políticas de privacidad ── --}}
+{{-- ── Modal: Aviso de Privacidad Integral UTL (texto completo) ── --}}
 <div id="policy-modal" onclick="cerrarPoliticaOverlay(event)">
     <div id="policy-box">
  
         <div class="policy-header">
-            <h3>Políticas de Privacidad — NOVA</h3>
+            <h3>Aviso de Privacidad Integral — UTL</h3>
             <button class="policy-close" onclick="cerrarPolitica()">&#x2715;</button>
         </div>
  
         <div class="policy-body">
  
-            <h4>1. Responsable del tratamiento de datos</h4>
-            <p>
-                La <strong>Universidad Tecnológica de León (UTL)</strong>, con domicilio en
-                Blvd. Universidad Tecnológica #225, Col. San Carlos, C.P. 37670, León, Gto.,
-                México, es responsable del tratamiento de los datos personales que se recaben
-                a través del Sistema Integral de Identidad Académica (SIIA).
+            <p class="intro">
+                La <strong>Universidad Tecnológica de León (UTL)</strong>, conforme a lo establecido en los
+                artículos 3, fracción I, 34, 35, 36, 37, 38, 39, 40, 42, así como lo dispuesto en el
+                Título Tercero, Capítulo Primero de la Ley de Protección de Datos Personales en
+                Posesión de Sujetos Obligados para el Estado de Guanajuato, publicada en el
+                Periódico Oficial del Gobierno del Estado de Guanajuato el 14 de julio de 2017,
+                informa que la protección de los datos personales es un derecho humano
+                vinculado a la protección de la privacidad y da a conocer el presente Aviso de
+                Privacidad Integral.
             </p>
  
-            <h4>2. Datos personales que se recaban</h4>
+            <h4>I. Denominación del Responsable</h4>
             <p>
-                A través del Quiz de Selección de Casa, el SIIA puede recopilar
-                las siguientes categorías de datos:
-            </p>
-            <p>
-                • Respuestas al cuestionario de orientación académica.<br>
-                • Preferencias, intereses y aptitudes declaradas por el usuario.<br>
-                • Datos de uso e interacción con la plataforma (sin identificación personal directa).
-            </p>
-            <p>
-                <strong>No se solicitan</strong> datos sensibles como nombre completo,
-                número de matrícula, correo electrónico ni información de salud.
+                La <strong>Universidad Tecnológica de León</strong>: es un Organismo Público Descentralizado
+                de la Administración Pública Estatal, con personalidad jurídica y patrimonio
+                propios, de conformidad con el Decreto Gubernativo número 108 publicado en
+                el Periódico Oficial de Gobierno del Estado de Guanajuato de fecha 9 de
+                diciembre de 1994, reestructurado a través del Decreto Gubernativo número
+                240 publicado el 18 de octubre de 2005 en el Periódico Oficial de Gobierno del
+                Estado de Guanajuato, número 166, Cuarta Parte.
             </p>
  
-            <h4>3. Finalidad del tratamiento</h4>
+            <h4>II. Domicilio del Responsable</h4>
             <p>
-                Los datos recabados se utilizan exclusivamente para:
-            </p>
-            <p>
-                • Determinar la Casa Académica de la UTL que mejor se adapta
-                al perfil del usuario.<br>
-                • Mejorar la experiencia y los algoritmos del sistema SIIA.<br>
-                • Generar estadísticas anónimas sobre tendencias académicas.
+                La <strong>Universidad Tecnológica de León</strong> se encuentra ubicada en Boulevard
+                Universidad Tecnológica, número 225, Colonia San Carlos, C.P. 37670, en la
+                ciudad de León, Guanajuato.
             </p>
  
-            <h4>4. Transferencia de datos</h4>
+            <h4>III. Los Datos Personales que Serán Sometidos a Tratamiento, Identificando Aquéllos que Sean Sensibles</h4>
             <p>
-                La UTL <strong>no comparte, vende ni transfiere</strong> los datos
-                recabados a terceros con fines comerciales. La información podrá
-                ser compartida únicamente con autoridades educativas o gubernamentales
-                cuando la ley así lo requiera.
+                Los datos personales, se refieren a cualquier información concerniente a una
+                persona física identificada o identificable y los datos personales sensibles, son
+                aquellos que afecten a la esfera más íntima de su titular, o cuya utilización
+                indebida pueda dar origen a discriminación o conlleve un riesgo grave para éste.
+            </p>
+            <p>
+                Los datos personales y sensibles que recaba la Universidad Tecnológica de
+                León, y que son sometidos a tratamiento o transferencia, dependiendo del
+                proceso para el cuál se recaben, entre otros son:
+            </p>
+            <ul>
+                <li><strong>Datos de Identificación:</strong> Nombre completo, estado civil, registro federal de
+                    contribuyentes (RFC), clave única de registro de población (CURP), número de
+                    seguridad social, acta de nacimiento, lugar y fecha de nacimiento,
+                    nacionalidad, edad, fotografía, firma autógrafa, nombre del padre y la madre,
+                    tutor o tutora del alumno o alumna.</li>
+                <li><strong>Datos de Contacto:</strong> Domicilio, correo electrónico, teléfono fijo, teléfono
+                    celular, que nos permita mantener contacto con estudiantes, padres de familia,
+                    personal docente y administrativo, en caso de emergencia, así como de
+                    proveedores.</li>
+                <li><strong>Datos Laborales:</strong> Puesto actual y anterior, teléfono institucional y correo
+                    electrónico, fecha de ingreso al puesto que actualmente ocupa o en anteriores
+                    empleos y lo concerniente a trayectoria laboral, para procesos de
+                    reclutamiento, selección, contratación, nombramiento, evaluación y
+                    capacitación.</li>
+                <li><strong>Datos sobre características físicas y aspectos particulares:</strong> Fotografía, si
+                    pertenece a alguna etnia o maneja alguna lengua indígena, estado de salud,
+                    historial clínico, señas particulares, sexo, tipo de sangre, peso, talla, alergias,
+                    enfermedades físicas y psicológicas, tratamientos médicos o psicológicos,
+                    discapacidades.</li>
+                <li><strong>Datos académicos:</strong> Nombre, domicilio y clave centro de trabajo de la
+                    institución educativa de nivel medio superior de procedencia del alumnado,
+                    trayectoria educativa como calificaciones, promedio de egreso y certificados
+                    emitidos por otras Instituciones, idiomas, título profesional, número de cedula
+                    profesional, certificados y constancias de estudios, así como antecedentes
+                    escolares.</li>
+                <li><strong>Datos patrimoniales o financieros:</strong> Bienes muebles e inmuebles, ingresos y
+                    egresos personales, ingresos y egresos de madres, padres, o de quienes
+                    dependa económicamente, referencias personales, recibos de nómina y en
+                    general datos sobre la situación económica de la familia. Así como aquellos que
+                    permitan identificar si se trata de una persona moral o persona física y su
+                    cumplimiento en materia fiscal y administrativa.</li>
+                <li><strong>Datos biométricos:</strong> Huella dactilar para control de entradas y salidas de la
+                    jornada laboral de docentes y administrativos.</li>
+                <li><strong>Datos sobre afiliación sindical:</strong> Pertenencia a un sindicato.</li>
+            </ul>
+            <p>
+                Los datos sensibles que puede recabar la Universidad Tecnológica de León,
+                son los relativos a afiliación sindical, de salud, origen étnico o racial y
+                biométricos.
+            </p>
+            <p>
+                Todos los datos personales y sensibles recabados de estudiantes, personal
+                docente y administrativo, y público en general, serán utilizados para la
+                adecuada función y prestación de servicios educativos y administrativos que
+                brinda la Universidad Tecnológica de León.
+            </p>
+            <p>
+                Para las finalidades señaladas en el presente Aviso de Privacidad, la
+                Universidad Tecnológica de León, podrá recabar datos personales de distintas
+                formas; tales como, que sean proporcionados de manera directa por el titular;
+                cuando se visite la página de internet institucional o se utilicen los servicios en
+                línea, así como cuando se obtenga información a través de otras fuentes que
+                están permitidas por las disposiciones legales aplicables.
             </p>
  
-            <h4>5. Limitaciones del sistema</h4>
+            <h4>IV. Las Finalidades del Tratamiento para las Cuales se Obtienen los Datos Personales</h4>
             <p>
-                El SIIA está diseñado exclusivamente para orientar al usuario
-                dentro de la oferta educativa de la UTL. La Universidad
-                <strong>no cuenta con áreas de ciencias de la salud ni
-                ciencias exactas</strong>; por tanto, los resultados del quiz
-                no contemplan carreras de medicina, enfermería, odontología,
-                biología, química, física ni matemáticas.
+                Los datos personales otorgados ante las áreas administrativas y académicas
+                de la Universidad se integran a los respectivos expedientes internos relativos al
+                trámite y/o servicio que corresponda, siendo resguardado por la misma área
+                que los recibe para las finalidades en cada caso específico por las cuales se
+                solicitaron, siendo las siguientes:
             </p>
  
-            <h4>6. Derechos ARCO</h4>
+            <span class="subsection">a) En materia de servicios académicos.</span>
             <p>
-                En cualquier momento puedes ejercer tus derechos de
-                <strong>Acceso, Rectificación, Cancelación u Oposición (ARCO)</strong>
-                enviando una solicitud a:
-                <strong style="color:#E8C96A;">comunicacionutl@utleon.edu.mx</strong>
+                Para recabar información indispensable a efecto de brindar los servicios
+                escolares que ofrece la Universidad, de acuerdo con los programas
+                académicos vigentes, por lo cual se requiere recabar datos personales de
+                menores de edad y sus padres o tutores si es el caso, o de ciudadanos
+                interesados en ingresar como estudiantes de la Universidad; de igual forma, se
+                recabará información para actos consistentes en: 1. Admisión, 2. Inscripción, 3.
+                Reinscripción, 4. Reincorporación por baja, 5. Proceso de recuperación, 6.
+                Proceso de recuperación y extraordinario, 7. Estadías, 8. Tutorías; 9. Titulación; 10.
+                Equivalencias, 11. Revalidaciones, 12. Constancias de estudios, 13. Actividades
+                extracurriculares, 14. Préstamo de material bibliográfico, deportivo o de
+                cómputo; 15. Cédula profesional; 16. Becas y diversos apoyos a través de
+                programas; 17. La identificación de posibles beneficiarios para el otorgamiento
+                de una beca; 18. Cualquier otro servicio escolar que sea indispensable o tenga
+                relación con la estadía académica del alumnado, 19.- Falta de atención
+                psicopedagógica.
             </p>
  
-            <h4>7. Cambios al aviso de privacidad</h4>
+            <span class="subsection">b) En materia de recursos humanos.</span>
             <p>
-                La UTL se reserva el derecho de modificar este aviso en cualquier
-                momento. Los cambios serán notificados a través del portal oficial
-                <strong style="color:#E8C96A;">www.utleon.edu.mx</strong>.
+                Para cualquier trámite de índole laboral, se recabarán datos laborales y
+                profesionales concernientes a la trayectoria laboral y académica del personal
+                a contratar, así como para procesos de reclutamiento, selección, contratación,
+                nombramiento, evaluación, capacitación y cualquier otro que tenga relación
+                directa con los derechos y obligaciones laborales de las personas trabajadoras
+                de la Universidad Tecnológica de León.
             </p>
  
-            <h4>8. Consentimiento</h4>
+            <span class="subsection">c) En materia administrativa.</span>
             <p>
-                Al marcar la casilla de aceptación y continuar con el quiz,
-                el usuario manifiesta haber leído, entendido y aceptado en su
-                totalidad el presente aviso de privacidad.
+                Para trámites legales, relativos a actos y contratos que lleven a cabo y celebre
+                la Universidad Tecnológica de León, en materia de adquisiciones y de
+                prestación de servicios conforme a la Ley de Contrataciones Públicas para el
+                Estado de Guanajuato; el Reglamento de la Ley de Contrataciones Públicas
+                para el Estado de Guanajuato para la Administración Pública Estatal; los
+                lineamientos que al afecto emita la Secretaría de finanzas, Inversión y
+                Administración; y demás disposiciones legales y administrativas aplicables; así
+                como lo concerniente a la celebración de convenios de colaboración o
+                coordinación entre la Universidad Tecnológica de León, con otros sujetos
+                obligados y particulares. Tramitación de procedimientos administrativos,
+                penales, civiles, laborales y otros, así como atender recomendaciones emitidas
+                por Organismos Garantes de Derechos Humanos. Para integrar o modificar las
+                bases de datos de nuestros sistemas electrónicos: para efectos operativos y
+                estadísticos.
+            </p>
+ 
+            <h4>V. El Fundamento Legal que Faculta Expresamente al Responsable para Llevar a Cabo el Tratamiento de Datos Personales</h4>
+            <p>
+                El tratamiento y transferencia de los datos personales y datos personales
+                sensibles se efectúa con apego en los artículos 3o., 6o., apartado A, fracciones
+                II y III, y 16, párrafo segundo, de la Constitución Política de los Estados Unidos
+                Mexicanos; 3o., 14, inciso B), fracción III, de la Constitución Política para el Estado
+                de Guanajuato; 3o., 34 y 45, de la Ley Orgánica del Poder Ejecutivo para el
+                Estado de Guanajuato; la Ley General de Educación; la Ley General de
+                Educación Superior; la Ley de Educación para el Estado de Guanajuato; 116 de
+                la Ley General de Transparencia y Acceso a la Información Pública; 25, fracción
+                VI, 65, fracción III, 76 y 77, de la Ley de Transparencia y Acceso a la Información
+                Pública para el Estado de Guanajuato; 1 y 3, fracciones IX y X, de la Ley General
+                de Protección de Datos Personales en Posesión de Sujetos Obligados; 3,
+                fracciones I, VI, VII, VIII y IX, 13, 16, 20, 22, 34, 36, 37, 38, 39, 40, 42, 62, 63, 64, 65,
+                66, 67, 68, 78, 96, 97, 98, 99, 100, 101 de la Ley de Protección de Datos Personales
+                en Posesión de Sujetos Obligados para el Estado de Guanajuato; Capítulo VI de
+                los Lineamientos Generales en Materia de Clasificación y Desclasificación de la
+                Información, así como para la elaboración de versiones públicas; 125 y 126 de
+                los Lineamientos Generales para la Administración de los Recursos Humanos
+                adscritos a las Secretarías y Entidades de la Administración Pública Estatal; el
+                Decreto Gubernativo número 240 publicado el 18 de octubre de 2005 en el
+                Periódico Oficial de Gobierno del Estado de Guanajuato, número 166, Cuarta
+                Parte; así como lo establecido en los artículos 1, 15, 18, 19 y 93 del Reglamento
+                Académico de la Universidad Tecnológica de León y lo señalado en su artículo
+                1 y Capítulo Tercero por el Reglamento de Ingreso, Promoción y Permanencia
+                del Personal Académico de la Universidad Tecnológica de León.
+            </p>
+ 
+            <h4>VI. De las Transferencias</h4>
+            <p>
+                Se hace de conocimiento que los datos personales y sensibles proporcionados
+                podrán ser transmitidos a otras autoridades siempre y cuando los datos
+                transferidos tengan como finalidad ser utilizados para el ejercicio de facultades
+                propias de las mismas autoridades, compatible o análogas con la finalidad que
+                motivó el tratamiento de los datos personales; además de otras transmisiones
+                previstas en el artículo 97 de la Ley de Protección de Datos Personales en
+                Posesión de Sujetos Obligados para el Estado de Guanajuato. Así como cuando
+                la transferencia sea legalmente exigida para la investigación y persecución de
+                los delitos, así como la procuración o administración de justicia; cuando sea
+                precisa para el reconocimiento, ejercicio o defensa de un derecho ante
+                autoridad competente, siempre y cuando medie el requerimiento de esta
+                última; cuando sea necesaria para la prevención o el diagnóstico médico, la
+                prestación de asistencia sanitaria, el tratamiento médico o la gestión de
+                servicios sanitarios, siempre y cuando dichos fines sean acreditados; cuando se
+                precise para el mantenimiento o cumplimiento de una relación jurídica entre el
+                responsable y el titular, o cuando sea necesaria por virtud de un contrato
+                celebrado o por celebrar en interés del titular, por el responsable y un tercero.
+            </p>
+            <p>
+                Nos comprometemos a que los mismos serán tratados bajo las más estrictas
+                medidas de seguridad que garanticen su confidencialidad.
+            </p>
+            <p>
+                También se informa al titular que <strong>no se realizarán</strong> transferencias de datos
+                personales o sensibles que requieran de su consentimiento, sin la manifestación
+                expresa.
+            </p>
+ 
+            <h4>VII. Mecanismos y Medios Disponibles para que el Titular de los Datos Personales Pueda Manifestar su Negativa para el Tratamiento de sus Datos Personales</h4>
+            <p>
+                La Universidad Tecnológica de León, a través de las áreas administrativas y
+                académicas ante las cuales se proporcionen los datos personales, pondrá a
+                consideración del ciudadano, el formato para la autorización o no de la
+                transferencia de los datos personales a otras autoridades, cuyo tratamiento sea
+                susceptible de transferencia.
+            </p>
+            <p>
+                Ofrece los medios para controlar el uso ajeno y destino de la información
+                personal, con el propósito de impedir su tráfico ilícito y la potencial vulneración
+                de la dignidad del titular de los datos, de manera que de conformidad con
+                lo establecido en el artículo 78 de la Ley de Protección de Datos Personales
+                en Posesión de Sujetos Obligados para el Estado de Guanajuato, puede ejercer
+                sus derechos ARCO por el acrónimo de Acceso, Rectificación, Cancelación y
+                Oposición de Datos Personales, a través de los cuales tiene la facultad de:
+            </p>
+            <ul>
+                <li>Conocer en todo momento quién dispone de sus datos y para qué están siendo utilizados.</li>
+                <li>Solicitar rectificación de sus datos en caso de que resulten incompletos o inexactos.</li>
+                <li>Solicitar la cancelación de estos por no ajustarse a las disposiciones aplicables.</li>
+                <li>Oponerse al uso de sus datos si es que los mismos fueron obtenidos sin su consentimiento.</li>
+            </ul>
+            <p>
+                A efecto de garantizar la debida protección de sus datos personales, además
+                de establecer los derechos ARCO, la ley en la materia incluye una serie de
+                principios rectores en el tratamiento de este tipo de datos como son: el de
+                finalidad, calidad, consentimiento, deber de información, seguridad,
+                confidencialidad, disponibilidad y temporalidad.
+            </p>
+            <p>
+                El incumplimiento de estos principios por parte de quienes detentan y/o
+                administran sus datos constituye una vulneración a su protección y tiene como
+                consecuencia una sanción.
+            </p>
+ 
+            <h4>VIII. Mecanismos y Medios Disponibles para que el Titular de los Datos Personales Pueda Manifestar su Negativa para el Tratamiento de sus Datos Personales</h4>
+            <p>
+                La Universidad Tecnológica de León, informa que la <strong>«Unidad de Transparencia
+                del Poder Ejecutivo del Estado de Guanajuato»</strong>, es la unidad administrativa
+                responsable del sistema de datos personales; y el lugar en donde el interesado
+                podrá ejercer sus derechos de acceso, rectificación, cancelación y oposición
+                al tratamiento de datos personales (ARCO).
+            </p>
+ 
+            <h4>IX. El Domicilio de la Unidad de Transparencia</h4>
+            <p>
+                La Universidad Tecnológica de León, informa que las oficinas de la <strong>Unidad de
+                Transparencia del Poder Ejecutivo del Estado de Guanajuato</strong>, se encuentran
+                ubicadas en calle San Sebastián número 78, Zona Centro, Guanajuato,
+                Guanajuato. C.P. 36000. con los teléfonos 473 73 51500 ext. 2272, en un horario
+                de atención de lunes a viernes de 08:30 a 16:00 horas; o bien a través del correo
+                electrónico <a href="mailto:unidadtransparencia@guanajuato.gob.mx">unidadtransparencia@guanajuato.gob.mx</a>.
+            </p>
+ 
+            <h4>X. Los Medios a Través de los Cuales el Responsable Comunicará a los Titulares los Cambios al Aviso de Privacidad</h4>
+            <p>
+                La Universidad Tecnológica de León, informa que los cambios a su Aviso de
+                Privacidad <em>(Simplificado e Integral)</em> se comunicarán por correo electrónico
+                institucional o a través de la página institucional en Internet, en donde podrá
+                consultar la última versión del Aviso de Privacidad:
+                <a href="http://www.utleon.edu.mx" target="_blank" rel="noopener">http://www.utleon.edu.mx</a>.
             </p>
  
         </div>
