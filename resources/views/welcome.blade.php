@@ -48,7 +48,7 @@
     </div>
 
     <div class="nav-auth">
-        <a href="{{ route('Ingresar') }}" style="font-size:.88rem;color:#B0A898;text-decoration:none;
+        <a href="{{ route('ingresar') }}" style="font-size:.88rem;color:#B0A898;text-decoration:none;
                            letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
     </div>
 
@@ -63,7 +63,7 @@
     <a href="{{ route('recorrido') }}">Recorrido</a>
     <a href="{{ route('dominios') }}">Dominios</a>
     <a href="{{ route('casas') }}">Casas</a>
-    <a href="{{ route('Ingresar') }}">Ingresar</a>
+    <a href="{{ route('ingresar') }}">Ingresar</a>
 </div>
 
 {{-- ═══ HERO ═════════════════════════════════════════════════════════════════ --}}
