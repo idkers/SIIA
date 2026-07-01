@@ -12,4 +12,4 @@ Route::get('/dominios', fn () => view('dominios'))->name('dominios');
 
 Route::get('/recorrido', fn () => view('recorrido'))->name('recorrido');
 
-Route::get('/ingresar', fn () => view('login'))->name('ingresar');
+Route::get('/ingresar', fn () => view('ingresar'))->name('ingresar');
