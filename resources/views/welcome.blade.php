@@ -46,9 +46,6 @@
         <a href="{{ route('ingresar') }}"   style="font-size:.88rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
     </div>
 
-    </div>
-
-
     <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
     </button>
