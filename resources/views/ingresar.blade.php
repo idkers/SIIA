@@ -353,11 +353,6 @@
         </div>
         @endif
 
-        {{-- Formulario --}}
-        <form id="loginForm" method="POST" action="{{ route('ingresar.post') }}"
-              novalidate onsubmit="return validarLogin(event)">
-            @csrf
-
             {{-- Matrícula / Correo --}}
             <div class="form-group">
                 <label class="form-label" for="email">Matrícula o Correo Institucional</label>
