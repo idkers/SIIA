@@ -972,5 +972,32 @@
             link.click();
         });
     }
+    function toggleContinue(cb) {
+        const btn = document.getElementById('privacy-continue');
+        btn.classList.toggle('activo', cb.checked);
+    }
+ 
+    function aceptarPrivacidad() {
+        document.getElementById('privacy-overlay').style.display = 'none';
+    }
+ 
+    function abrirPolitica(e) {
+        e.preventDefault();
+        document.getElementById('policy-modal').classList.add('abierto');
+        document.body.style.overflow = 'hidden';
+    }
+ 
+    function cerrarPolitica() {
+        document.getElementById('policy-modal').classList.remove('abierto');
+        document.body.style.overflow = '';
+    }
+ 
+    function cerrarPoliticaOverlay(e) {
+        if (e.target === document.getElementById('policy-modal')) cerrarPolitica();
+    }
+ 
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') cerrarPolitica();
+    });
 </script>
 @endpush
