@@ -491,8 +491,8 @@
         <div class="privacy-notice">
             ⚠️ <strong style="color:#E8C96A;">Nota importante:</strong>
             La Universidad Tecnológica de León <strong>no cuenta con áreas de ciencias
-            de la salud ni ciencias exactas</strong> (medicina, enfermería, química,
-            biología, física, matemáticas, etc.). Los resultados del quiz están
+            de la salud</strong> (medicina, enfermería, química,
+            biología, etc.). Los resultados del quiz están
             orientados exclusivamente a las carreras y dominios que ofrece la UTL.
         </div>
  
@@ -509,7 +509,7 @@
             <span class="privacy-check-label">
                 He leído y acepto las
                 <a onclick="abrirPolitica(event)">Políticas de Privacidad</a>
-                del Sistema Integral de Identidad Académica (SIIA) de la
+                del Navegador de Orientación Vocacional y Aptitudes (NOVA) de la
                 Universidad Tecnológica de León.
             </span>
         </label>
@@ -526,7 +526,7 @@
     <div id="policy-box">
  
         <div class="policy-header">
-            <h3>Políticas de Privacidad — SIIA</h3>
+            <h3>Políticas de Privacidad — NOVA</h3>
             <button class="policy-close" onclick="cerrarPolitica()">&#x2715;</button>
         </div>
  
