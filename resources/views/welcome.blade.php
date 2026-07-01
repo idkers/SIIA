@@ -43,14 +43,11 @@
         <a href="{{ route('recorrido') }}" style="font-size:.88rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Recorrido</a>
         <a href="{{ route('dominios') }}"  style="font-size:.88rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Dominios</a>
         <a href="{{ route('casas') }}"     style="font-size:.88rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Casas</a>
+        <a href="{{ route('ingresar') }}"   style="font-size:.88rem;color:#B0A898;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
     </div>
 
     </div>
 
-    <div class="nav-auth">
-        <a href="{{ route('ingresar') }}" style="font-size:.88rem;color:#B0A898;text-decoration:none;
-                           letter-spacing:.08em;text-transform:uppercase;">Ingresar</a>
-    </div>
 
     <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
