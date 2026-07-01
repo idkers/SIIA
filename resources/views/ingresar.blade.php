@@ -29,7 +29,7 @@
         align-items: center;
         justify-content: center;
         padding: 2rem 1.25rem;
-        background: #06060F;
+        background: transparent;
         position: relative;
         overflow: hidden;
     }
