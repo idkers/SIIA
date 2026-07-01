@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Quiz — SIIA')
+@section('title', 'Quiz — NOVA')
 
 @section('content')
 
@@ -271,6 +271,343 @@
     <a href="{{ route('dominios') }}">Dominios</a>
     <a href="{{ route('casas') }}">Casas</a>
     <a href="#">Ingresar</a>
+</div>
+{{-- ══════════════════════════════════════════════════════════════════════════
+     AVISO DE PRIVACIDAD 
+     ══════════════════════════════════════════════════════════════════════════ --}}
+ 
+<style>
+    /* ── Overlay de privacidad ── */
+    #privacy-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.78);
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.25rem;
+    }
+ 
+    #privacy-box {
+        background: #14141F;
+        border: 1px solid rgba(200,168,75,.35);
+        border-radius: 16px;
+        padding: 2.5rem 2rem;
+        max-width: 480px;
+        width: 100%;
+        box-shadow: 0 0 40px rgba(200,168,75,.10);
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+ 
+    #privacy-box h2 {
+        font-family: 'Headland One', serif;
+        color: #C8A84B;
+        font-size: 1.4rem;
+        margin: 0;
+        letter-spacing: .06em;
+    }
+ 
+    #privacy-box p {
+        color: #B0A898;
+        font-size: .88rem;
+        line-height: 1.75;
+        margin: 0;
+    }
+ 
+    .privacy-notice {
+        background: rgba(200,168,75,.07);
+        border: 1px solid rgba(200,168,75,.2);
+        border-radius: 8px;
+        padding: .85rem 1rem;
+        color: #F0EAD8;
+        font-size: .82rem;
+        line-height: 1.7;
+    }
+ 
+    /* Checkbox personalizado */
+    .privacy-check-wrap {
+        display: flex;
+        align-items: flex-start;
+        gap: .85rem;
+        cursor: pointer;
+        user-select: none;
+    }
+    .privacy-check-wrap input[type="checkbox"] {
+        display: none;
+    }
+    .privacy-circle {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 2px solid #8D6627;
+        flex-shrink: 0;
+        margin-top: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background .2s, border-color .2s;
+        background: transparent;
+    }
+    .privacy-circle svg {
+        opacity: 0;
+        transition: opacity .2s;
+    }
+    .privacy-check-wrap input:checked ~ .privacy-circle {
+        background: #C6A050;
+        border-color: #C6A050;
+    }
+    .privacy-check-wrap input:checked ~ .privacy-circle svg {
+        opacity: 1;
+    }
+    .privacy-check-label {
+        font-size: .85rem;
+        color: #B0A898;
+        line-height: 1.6;
+    }
+    .privacy-check-label a {
+        color: #E8C96A;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .privacy-check-label a:hover { color: #fff; }
+ 
+    /* Botón continuar */
+    #privacy-continue {
+        width: 100%;
+        padding: .85rem;
+        background: linear-gradient(135deg, #C6A050, #8D6627);
+        border: none;
+        border-radius: 6px;
+        color: #1A1000;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        opacity: .4;
+        pointer-events: none;
+        transition: opacity .2s;
+        font-family: inherit;
+        letter-spacing: .04em;
+    }
+    #privacy-continue.activo {
+        opacity: 1;
+        pointer-events: auto;
+    }
+ 
+    /* ── Modal de políticas ── */
+    #policy-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.82);
+        z-index: 300;
+        align-items: center;
+        justify-content: center;
+        padding: 1.25rem;
+    }
+    #policy-modal.abierto { display: flex; }
+ 
+    #policy-box {
+        background: #14141F;
+        border: 1px solid rgba(200,168,75,.3);
+        border-radius: 16px;
+        max-width: 620px;
+        width: 100%;
+        max-height: 85vh;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 0 40px rgba(200,168,75,.10);
+    }
+    #policy-box::-webkit-scrollbar { width: 5px; }
+    #policy-box::-webkit-scrollbar-track { background: #0D0D1A; }
+    #policy-box::-webkit-scrollbar-thumb { background: #4A3010; border-radius: 10px; }
+ 
+    .policy-header {
+        padding: 1.75rem 2rem 1rem;
+        border-bottom: 1px solid rgba(200,168,75,.15);
+        position: sticky;
+        top: 0;
+        background: #14141F;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .policy-header h3 {
+        font-family: 'Headland One', serif;
+        color: #C8A84B;
+        font-size: 1.2rem;
+        margin: 0;
+    }
+    .policy-close {
+        background: none;
+        border: none;
+        color: #707085;
+        font-size: 1.4rem;
+        cursor: pointer;
+        line-height: 1;
+        transition: color .2s;
+    }
+    .policy-close:hover { color: #E8C96A; }
+ 
+    .policy-body {
+        padding: 1.5rem 2rem 2rem;
+        color: #B0A898;
+        font-size: .87rem;
+        line-height: 1.85;
+    }
+    .policy-body h4 {
+        color: #E8C96A;
+        font-size: .82rem;
+        text-transform: uppercase;
+        letter-spacing: .12em;
+        margin: 1.5rem 0 .5rem;
+    }
+    .policy-body h4:first-child { margin-top: 0; }
+    .policy-body p { margin: 0 0 .75rem; color: #B0A898; }
+    .policy-body strong { color: #F0EAD8; }
+ 
+    @media (max-width: 500px) {
+        #privacy-box { padding: 2rem 1.25rem; }
+        .policy-body { padding: 1.25rem; }
+        .policy-header { padding: 1.25rem 1.25rem .85rem; }
+    }
+</style>
+ 
+{{-- ── Overlay de privacidad ── --}}
+<div id="privacy-overlay">
+    <div id="privacy-box">
+ 
+        <h2>Antes de continuar</h2>
+ 
+        <p>
+            Para ofrecerte la mejor experiencia en el Quiz de Selección de Casa,
+            necesitamos que leas y aceptes nuestro aviso de privacidad.
+        </p>
+ 
+        {{-- Aviso importante --}}
+        <div class="privacy-notice">
+            ⚠️ <strong style="color:#E8C96A;">Nota importante:</strong>
+            La Universidad Tecnológica de León <strong>no cuenta con áreas de ciencias
+            de la salud ni ciencias exactas</strong> (medicina, enfermería, química,
+            biología, física, matemáticas, etc.). Los resultados del quiz están
+            orientados exclusivamente a las carreras y dominios que ofrece la UTL.
+        </div>
+ 
+        {{-- Checkbox de aceptación --}}
+        <label class="privacy-check-wrap" for="privacy-cb">
+            <input type="checkbox" id="privacy-cb" onchange="toggleContinue(this)">
+            <span class="privacy-circle">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6L5 9L10 3" stroke="#1A1000" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="privacy-check-label">
+                He leído y acepto las
+                <a onclick="abrirPolitica(event)">Políticas de Privacidad</a>
+                del Sistema Integral de Identidad Académica (SIIA) de la
+                Universidad Tecnológica de León.
+            </span>
+        </label>
+ 
+        <button id="privacy-continue" onclick="aceptarPrivacidad()">
+            Continuar al Quiz →
+        </button>
+ 
+    </div>
+</div>
+ 
+{{-- ── Modal de políticas de privacidad ── --}}
+<div id="policy-modal" onclick="cerrarPoliticaOverlay(event)">
+    <div id="policy-box">
+ 
+        <div class="policy-header">
+            <h3>Políticas de Privacidad — SIIA</h3>
+            <button class="policy-close" onclick="cerrarPolitica()">&#x2715;</button>
+        </div>
+ 
+        <div class="policy-body">
+ 
+            <h4>1. Responsable del tratamiento de datos</h4>
+            <p>
+                La <strong>Universidad Tecnológica de León (UTL)</strong>, con domicilio en
+                Blvd. Universidad Tecnológica #225, Col. San Carlos, C.P. 37670, León, Gto.,
+                México, es responsable del tratamiento de los datos personales que se recaben
+                a través del Sistema Integral de Identidad Académica (SIIA).
+            </p>
+ 
+            <h4>2. Datos personales que se recaban</h4>
+            <p>
+                A través del Quiz de Selección de Casa, el SIIA puede recopilar
+                las siguientes categorías de datos:
+            </p>
+            <p>
+                • Respuestas al cuestionario de orientación académica.<br>
+                • Preferencias, intereses y aptitudes declaradas por el usuario.<br>
+                • Datos de uso e interacción con la plataforma (sin identificación personal directa).
+            </p>
+            <p>
+                <strong>No se solicitan</strong> datos sensibles como nombre completo,
+                número de matrícula, correo electrónico ni información de salud.
+            </p>
+ 
+            <h4>3. Finalidad del tratamiento</h4>
+            <p>
+                Los datos recabados se utilizan exclusivamente para:
+            </p>
+            <p>
+                • Determinar la Casa Académica de la UTL que mejor se adapta
+                al perfil del usuario.<br>
+                • Mejorar la experiencia y los algoritmos del sistema SIIA.<br>
+                • Generar estadísticas anónimas sobre tendencias académicas.
+            </p>
+ 
+            <h4>4. Transferencia de datos</h4>
+            <p>
+                La UTL <strong>no comparte, vende ni transfiere</strong> los datos
+                recabados a terceros con fines comerciales. La información podrá
+                ser compartida únicamente con autoridades educativas o gubernamentales
+                cuando la ley así lo requiera.
+            </p>
+ 
+            <h4>5. Limitaciones del sistema</h4>
+            <p>
+                El SIIA está diseñado exclusivamente para orientar al usuario
+                dentro de la oferta educativa de la UTL. La Universidad
+                <strong>no cuenta con áreas de ciencias de la salud ni
+                ciencias exactas</strong>; por tanto, los resultados del quiz
+                no contemplan carreras de medicina, enfermería, odontología,
+                biología, química, física ni matemáticas.
+            </p>
+ 
+            <h4>6. Derechos ARCO</h4>
+            <p>
+                En cualquier momento puedes ejercer tus derechos de
+                <strong>Acceso, Rectificación, Cancelación u Oposición (ARCO)</strong>
+                enviando una solicitud a:
+                <strong style="color:#E8C96A;">comunicacionutl@utleon.edu.mx</strong>
+            </p>
+ 
+            <h4>7. Cambios al aviso de privacidad</h4>
+            <p>
+                La UTL se reserva el derecho de modificar este aviso en cualquier
+                momento. Los cambios serán notificados a través del portal oficial
+                <strong style="color:#E8C96A;">www.utleon.edu.mx</strong>.
+            </p>
+ 
+            <h4>8. Consentimiento</h4>
+            <p>
+                Al marcar la casilla de aceptación y continuar con el quiz,
+                el usuario manifiesta haber leído, entendido y aceptado en su
+                totalidad el presente aviso de privacidad.
+            </p>
+ 
+        </div>
+    </div>
 </div>
 
 {{-- ═══ ETAPA 1: Inicio del quiz ══════════════════════════════════════════ --}}
@@ -576,7 +913,7 @@
     <div style="margin-top:2.5rem;border-top:1px solid rgba(200,168,75,.15);
                 padding-top:1.5rem;text-align:center;color:#707085;
                 font-size:.8rem;letter-spacing:.08em;">
-        © {{ date('Y') }} SIIA · Sistema Integral de Identidad Académica
+        © {{ date('Y') }} NOVA · Sistema Integral de Identidad Académica
     </div>
 </footer>
 

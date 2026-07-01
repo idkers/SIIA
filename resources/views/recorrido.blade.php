@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Recorrido — SIIA')
+@section('title', 'Recorrido — NOVA')
 
 @section('content')
 
@@ -427,7 +427,7 @@
     <div style="margin-top:2.5rem;border-top:1px solid rgba(200,168,75,.15);
                 padding-top:1.5rem;text-align:center;color:#707085;
                 font-size:.8rem;letter-spacing:.08em;">
-        © {{ date('Y') }} SIIA · Sistema Integral de Identidad Académica
+        © {{ date('Y') }} NOVA · Sistema Integral de Identidad Académica
     </div>
 </footer>
 

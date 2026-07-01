@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Inicio — SIIA')
+@section('title', 'Inicio — NOVA')
 
 @section('content')
 
@@ -122,7 +122,7 @@
                        #8D6627 60%,#6B5020 80%,#8B6914 100%);
                    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
                    background-clip:text;">
-            SIIA
+            NOVA
         </h1>
 
         <p id="hero-desc"
@@ -474,7 +474,7 @@ $activoIdx = 0;
     <div style="margin-top:2.5rem;border-top:1px solid rgba(200,168,75,.15);
                 padding-top:1.5rem;text-align:center;color:#707085;
                 font-size:.8rem;letter-spacing:.08em;">
-        © {{ date('Y') }} SIIA · Sistema Integral de Identidad Académica
+        © {{ date('Y') }} NOVA · Sistema Integral de Identidad Académica
     </div>
 </footer>
 
