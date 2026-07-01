@@ -354,7 +354,7 @@
         @endif
 
         {{-- Formulario --}}
-        <form id="loginForm" method="POST" action="{{ route('login.post') }}"
+        <form id="loginForm" method="POST" action="{{ route('ingresar.post') }}"
               novalidate onsubmit="return validarLogin(event)">
             @csrf
 
