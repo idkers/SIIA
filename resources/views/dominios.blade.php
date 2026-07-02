@@ -289,9 +289,26 @@
     @endphp
 
     {{-- ── ¿Qué es un dominio? ── --}}
+
     <div class="explicacion-wrap">
-        <div style="background: rgba(6,6,15,.75);border:1px solid rgba(200,168,45,.15);
-                    border-radius:16px;padding:2rem;">
+    <div style="background:#06060F;
+                background-image:url('{{ asset('imagenes/hero-dominios.png') }}');
+                background-size:cover;
+                background-position:center;
+                border:1px solid rgba(200,168,45,.15);
+                border-radius:16px;
+                padding:3rem 2rem;
+                position:relative;
+                overflow:hidden;">
+
+        {{-- overlay para que el texto se vea--}}
+        <div style="position:absolute;inset:0;
+                    background:rgba(6,6,15,.65);
+                    border-radius:16px;">
+        </div>
+
+        {{-- Texto encima --}}
+        <div style="position:relative;z-index:1;">
             <h2 style="color:#C8A84B;font-family:'Headland One',serif;margin-bottom:1rem;">
                 ¿Qué es un dominio?
             </h2>
@@ -302,9 +319,12 @@
                 que estructuran la identidad universitaria de cada estudiante.
             </p>
         </div>
-    </div>
 
-    {{-- ── Grid de dominios ── --}}
+    </div>
+</div>
+
+
+    {{------------ ── Grid de dominios ── -------------}}
     <div class="dominios-wrap">
         <div class="dominios-grid">
             @foreach($dominios as $dom)
