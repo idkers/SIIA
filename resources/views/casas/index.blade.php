@@ -266,7 +266,7 @@ $casas = [
         'nombrecasa' => 'NAVENTOR',
     ],
     [
-        'imagen'   => 'imagenes/casas/mantenimiento.jpg',
+        'imagen'   => 'imagenes/casas/mantenimiento.webp',
         'nombre'   => 'Mantenimiento Industrial',
         'dominio'  => 'Ingenierías',
         'color'    => '#003A5D',
@@ -292,7 +292,7 @@ $casas = [
 
     // ── TECNOLOGÍAS DE LA INFORMACIÓN ────────────────────────────────────
     [
-        'imagen'   => 'imagenes/casas/entornos.jpg',
+        'imagen'   => 'imagenes/casas/entornos.webp',
         'nombre'   => 'Entornos Virtuales y Negocios Digitales',
         'dominio'  => 'Tecnologías de la Información',
         'color'    => '#6B3FA0',
@@ -304,7 +304,7 @@ $casas = [
         'nombrecasa' => 'NEXARIS',
     ],
     [
-        'imagen'   => 'imagenes/casas/datos.png',
+        'imagen'   => 'imagenes/casas/datos.webp',
         'nombre'   => 'Ciencia de Datos',
         'dominio'  => 'Tecnologías de la Información',
         'color'    => '#2E6F95',
@@ -316,7 +316,7 @@ $casas = [
         'nombrecasa' => 'DATHEON',
     ],
     [
-        'imagen'   => 'imagenes/casas/software.png',
+        'imagen'   => 'imagenes/casas/software.webp',
         'nombre'   => 'Desarrollo de Software Multiplataforma',
         'dominio'  => 'Tecnologías de la Información',
         'color'    => '#2563EB',
@@ -328,7 +328,7 @@ $casas = [
         'nombrecasa' => 'CODARIS',
     ],
     [
-        'imagen'   => 'imagenes/casas/redes.jpg',
+        'imagen'   => 'imagenes/casas/redes.webp',
         'nombre'   => 'Infraestructura de Redes Digitales',
         'dominio'  => 'Tecnologías de la Información',
         'color'    => '#0EA5A4',
@@ -340,7 +340,7 @@ $casas = [
         'nombrecasa' => 'HEXANET',
     ],
     [
-        'imagen'   => 'imagenes/casas/ia.jpg',
+        'imagen'   => 'imagenes/casas/ia.webp',
         'nombre'   => 'Inteligencia Artificial',
         'dominio'  => 'Tecnologías de la Información',
         'color'    => '#8A2BE2',
@@ -354,7 +354,7 @@ $casas = [
 
     // ── INGENIERÍA INDUSTRIAL ─────────────────────────────────────────────
     [
-        'imagen'   => 'imagenes/casas/automotriz.jpg',
+        'imagen'   => 'imagenes/casas/automotriz.webp'
         'nombre'   => 'Automotriz',
         'dominio'  => 'Ingeniería Industrial',
         'color'    => '#DC2626',
@@ -366,7 +366,7 @@ $casas = [
         'nombrecasa' => 'PISTORIA',
     ],
     [
-        'imagen'   => 'imagenes/casas/productivos.png',
+        'imagen'   => 'imagenes/casas/productivos.webp',
         'nombre'   => 'Procesos Productivos',
         'dominio'  => 'Ingeniería Industrial',
         'color'    => '#ED8B00',
@@ -378,7 +378,7 @@ $casas = [
         'nombrecasa' => 'OPERION',
     ],
     [
-        'imagen'   => 'imagenes/casas/plasticos.jpg',
+        'imagen'   => 'imagenes/casas/plasticos.webp',
         'nombre'   => 'Moldeo de Plásticos',
         'dominio'  => 'Ingeniería Industrial',
         'color'    => '#9C3D0C',
@@ -390,7 +390,7 @@ $casas = [
         'nombrecasa' => 'POLYMOR',
     ],
     [
-        'imagen'   => 'imagenes/casas/calzado.jpg',
+        'imagen'   => 'imagenes/casas/calzado.webp',
         'nombre'   => 'Gestión y Productividad de Calzado',
         'dominio'  => 'Ingeniería Industrial',
         'color'    => '#C46210',
@@ -404,7 +404,7 @@ $casas = [
 
     // ── MECATRÓNICA ───────────────────────────────────────────────────────
     [
-        'imagen'   => 'imagenes/casas/manufactura.jpg',
+        'imagen'   => 'imagenes/casas/manufactura.webp',
         'nombre'   => 'Manufactura Flexible',
         'dominio'  => 'Mecatrónica',
         'color'    => '#7C3AED',
@@ -416,7 +416,7 @@ $casas = [
         'nombrecasa' => 'FLEXION',
     ],
     [
-        'imagen'   => 'imagenes/casas/optomecatronica.jpg',
+        'imagen'   => 'imagenes/casas/optomecatronica.webp',
         'nombre'   => 'Optomecatrónica',
         'dominio'  => 'Mecatrónica',
         'color'    => '#A50034',
@@ -428,7 +428,7 @@ $casas = [
         'nombrecasa' => 'PRISMARA',
     ],
     [
-        'imagen'   => 'imagenes/casas/automatizacion.jpg',
+        'imagen'   => 'imagenes/casas/automatizacion.webp',
         'nombre'   => 'Automatización',
         'dominio'  => 'Mecatrónica',
         'color'    => '#FF3B30',
@@ -454,7 +454,7 @@ $casas = [
         'nombrecasa' => 'FLAMORIA',
     ],
     [
-        'imagen'   => 'imagenes/casas/administracion.jpg',
+        'imagen'   => 'imagenes/casas/administracion.webp',
         'nombre'   => 'Administración ',
         'dominio'  => 'Licenciaturas',
         'color'    => '#1F3D2B',
@@ -466,7 +466,7 @@ $casas = [
         'nombrecasa' => 'LAUREON',
     ],
     [
-        'imagen'   => 'imagenes/casas/turismo.png',
+        'imagen'   => 'imagenes/casas/turismo.webp',
         'nombre'   => 'Turismo',
         'dominio'  => 'Licenciaturas',
         'color'    => '#00A3E0',
@@ -478,7 +478,7 @@ $casas = [
         'nombrecasa' => 'GLOBARIS',
     ],
     [
-        'imagen'   => 'imagenes/casas/mercadotecnia.jpg',
+        'imagen'   => 'imagenes/casas/mercadotecnia.webp',
         'nombre'   => 'Negocios y Mercadotecnia',
         'dominio'  => 'Licenciaturas',
         'color'    => '#E4007C',
