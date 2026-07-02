@@ -406,7 +406,7 @@
 
             {{-- Correo --}}
             <div class="form-group">
-                <label class="form-label" for="email">Correo Institucional</label>
+                <label class="form-label" for="email">Correo</label>
                 <div class="input-wrap">
                     <span class="input-icon">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -426,10 +426,10 @@
                            inputmode="email">
                 </div>
                 <p class="domain-hint">
-                    Solo se permite correo <span>@utleon.edu.mx</span>
+                    Solo se permite correos <span>webmail o institucionales</span>
                 </p>
                 <span class="field-error @error('email') visible @enderror" id="emailError">
-                    @error('email') {{ $message }} @else Ingresa tu matrícula o correo institucional válido. @enderror
+                    @error('email') {{ $message }} @else Ingresa tu correo personal o correo institucional válido. @enderror
                 </span>
             </div>
 
@@ -484,11 +484,6 @@
 
         </form>
 
-        <div class="new-student-note">
-            <strong>Alumnos de nuevo ingreso:</strong> puedes usar el quiz
-            sin necesidad de crear una cuenta. Si ya eres alumno activo,
-            regístrate para guardar tu casa y verla en tu perfil.
-        </div>
 
     </div>
 </div>
