@@ -578,7 +578,7 @@
 
         if (!esMatricula && !esCorreo) {
             emailInput.classList.add('error');
-            emailError.textContent = '@gmail.com, @utleon.edu.mx @outlook.com, etc.';
+            emailError.textContent = '@gmail.com, @utleon.edu.mx, @outlook.com, etc.';
             emailError.classList.add('visible');
             valido = false;
         }
