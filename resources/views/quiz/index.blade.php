@@ -152,7 +152,7 @@
 
     /* ── ETAPA 3 ── */
   #stage-3-inner{
-    width: 560px;
+    width: 740px;
     max-width: 85%;
     padding: 2.5rem 2rem;
     margin: 0 auto;
@@ -937,7 +937,7 @@
 
             <div style="text-align:center;">
                 <div style="font-family:'Headland One',serif;font-size:1.3rem;
-                            color:#C8A84B;letter-spacing:.08em;">NOVA</div>
+                            color:#C8A84B;letter-spacing:.08em;"></div>
                 <p style="font-size:.65rem;text-transform:uppercase;
                           letter-spacing:.15em;color:#E8C96A;margin:.2rem 0 0;">
                     [Pregunta]
