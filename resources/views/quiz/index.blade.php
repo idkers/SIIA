@@ -963,9 +963,7 @@
 <div id="stage-3" class="stage" style="display:none;">
     <div class="stage-wrap">
         <section id="stage-3-inner"
-                 style="background:radial-gradient(circle at top right,
-                            rgba(232,201,106,.25) 0%,
-                            rgba(200,168,75,.12) 20%,
+                 style="background:radial-gradient(circle at 50% 50%,#06060F 0%,
                             transparent 45%),
                         linear-gradient(135deg,#06060F 0%,#120D08 30%,#1A1208 60%,#06060F 100%);
                         border:1px solid rgba(200,168,75,.35);
