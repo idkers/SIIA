@@ -232,7 +232,15 @@
 <div class="page-content">
 
     {{-- ── Encabezado ── --}}
-    <section class="hero-section">
+   <section class="hero-section"
+         style="background-image:url('{{ asset('imagenes/dominios/hero-dominios.png') }}');
+                background-size:cover;
+                background-position:center;
+                background:linear-gradient(180deg,rgba(6,6,15,.7),rgba(6,6,15,.85)),
+                url('{{ asset('imagenes/dominios/hero-dominios.png') }}');
+                border-bottom:1px solid rgba(200,168,75,.15);">
+
+                
         <p style="color:#E8C96A;text-transform:uppercase;
                   letter-spacing:.2em;font-size:.75rem;margin-bottom:.8rem;">
             Navegador de Orientación Vocacional y Aptitudes
@@ -289,23 +297,9 @@
     @endphp
 
     {{-- ── ¿Qué es un dominio? ── --}}
-
     <div class="explicacion-wrap">
-    <div style="background:#06060F;
-                background-image:url('{{ asset('imagenes/dominios/hero-dominios.png') }}');
-                background-size:cover;
-                background-position:center;
-                border:1px solid rgba(200,168,45,.15);
-                border-radius:16px;
-                padding:3rem 2rem;
-                position:relative;
-                overflow:hidden;">
-
-        {{-- overlay para que el texto se vea--}}
-       
-
-        {{-- Texto encima --}}
-        <div style="position:relative;z-index:1;">
+        <div style="background: rgba(6,6,15,.75);border:1px solid rgba(200,168,45,.15);
+                    border-radius:16px;padding:2rem;">
             <h2 style="color:#C8A84B;font-family:'Headland One',serif;margin-bottom:1rem;">
                 ¿Qué es un dominio?
             </h2>
@@ -316,12 +310,9 @@
                 que estructuran la identidad universitaria de cada estudiante.
             </p>
         </div>
-
     </div>
-</div>
 
-
-    {{------------ ── Grid de dominios ── -------------}}
+    {{-- ── Grid de dominios ── --}}
     <div class="dominios-wrap">
         <div class="dominios-grid">
             @foreach($dominios as $dom)
