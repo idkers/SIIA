@@ -442,7 +442,7 @@ $casas = [
 
     // ── LICENCIATURAS ─────────────────────────────────────────────────────
     [
-        'imagen'   => 'imagenes/casas/gastronomia.jpg',
+        'imagen'   => 'imagenes/casas/gastronomia2.webp',
         'nombre'   => 'Gastronomía',
         'dominio'  => 'Licenciaturas',
         'color'    => '#EBA42D',
