@@ -235,7 +235,6 @@
     {{-- ── Encabezado ── --}}
    <section class="hero-section"
          style="background:
-                linear-gradient(180deg,rgba(6,6,15,.7),rgba(6,6,15,.85)),
                 url('{{ asset('imagenes/dominios/hero-dominios.png') }}');
                 background-size:cover;
                 background-position:center;
