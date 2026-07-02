@@ -539,7 +539,7 @@
 </style>
  
 {{-- ── Overlay de privacidad ── --}}
-<div id="privacy-overlay">
+<div id="privacy-overlay" style="display:none;">
     <div id="privacy-box">
  
         <h2>Antes de continuar</h2>
@@ -895,14 +895,14 @@
                     Descubre qué casa académica representa mejor tus talentos,
                     intereses y fortalezas dentro de la Universidad Tecnológica de León.
                 </p>
-                <button id="stage-1-btn"
-                        onclick="goToStage(2)"
-                        class="gold-btn"
-                        style="background:#C6A050;color:#06060F;border:none;
-                               padding:.9rem 2rem;font-weight:700;
-                               border-radius:4px;cursor:pointer;margin-top:1rem;">
-                    Comenzar
-                </button>
+<button id="stage-1-btn"
+        onclick="abrirAviso()"
+        class="gold-btn"
+        style="background:#C6A050;color:#06060F;border:none;
+               padding:.9rem 2rem;font-weight:700;
+               border-radius:4px;cursor:pointer;margin-top:1rem;">
+    Comenzar
+</button>
             </div>
 
             <div id="stage-1-img-wrap"
@@ -1242,9 +1242,16 @@
         btn.classList.toggle('activo', cb.checked);
     }
  
-    function aceptarPrivacidad() {
-        document.getElementById('privacy-overlay').style.display = 'none';
-    }
+function abrirAviso() {
+    document.getElementById('privacy-overlay').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function aceptarPrivacidad() {
+    document.getElementById('privacy-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+    goToStage(2);
+}
  
     function abrirPolitica(e) {
         e.preventDefault();
