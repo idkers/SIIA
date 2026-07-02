@@ -578,7 +578,7 @@
 
         if (!esMatricula && !esCorreo) {
             emailInput.classList.add('error');
-            emailError.textContent = 'Usa tu matrícula (ej. 12345678) o correo @utleon.edu.mx';
+            emailError.textContent = '@gmail.com, @utleon.edu.mx @outlook.com, etc.';
             emailError.classList.add('visible');
             valido = false;
         }
