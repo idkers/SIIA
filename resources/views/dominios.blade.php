@@ -302,10 +302,7 @@
                 overflow:hidden;">
 
         {{-- overlay para que el texto se vea--}}
-        <div style="position:absolute;inset:0;
-                    background:rgba(6,6,15,.65);
-                    border-radius:16px;">
-        </div>
+       
 
         {{-- Texto encima --}}
         <div style="position:relative;z-index:1;">
