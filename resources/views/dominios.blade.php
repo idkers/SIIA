@@ -80,7 +80,7 @@
     .cta-section {
         padding: 5rem 2rem;
         text-align: center;
-        background: rgba(6,6,15,.75);
+        background: rgba(6,6,15,.45);
         border-top: 1px solid rgba(200,168,75,.12);
         border-bottom: 1px solid rgba(200,168,75,.12);
     }
@@ -285,7 +285,7 @@
 
     {{-- ── ¿Qué es un dominio? ── --}}
     <div class="explicacion-wrap">
-        <div style="background: rgba(6,6,15,.75);border:1px solid rgba(200,168,75,.15);
+        <div style="background: rgba(6,6,15,.75);border:1px solid rgba(200,168,45,.15);
                     border-radius:16px;padding:2rem;">
             <h2 style="color:#C8A84B;font-family:'Headland One',serif;margin-bottom:1rem;">
                 ¿Qué es un dominio?

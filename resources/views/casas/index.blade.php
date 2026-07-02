@@ -554,7 +554,7 @@ $casas = [
 
 {{-- CTA --}}
 <section class="casas-cta"
-         style="padding:5rem 2rem;text-align:center;background: rgba(6,6,15,.75);
+         style="padding:5rem 2rem;text-align:center;background: rgba(6,6,15,.45);
                 border-top:1px solid rgba(200,168,75,.12);border-bottom:1px solid rgba(200,168,75,.12);">
     <h2 style="color:#FFFFFF;font-family:'Headland One',serif;margin-bottom:1rem;">
         Descubre tu casa académica
