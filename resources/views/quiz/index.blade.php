@@ -989,15 +989,19 @@
                 SIIA
             </h2>
 
-            <div id="stage-3-video-wrap"
-                 style="display:flex;justify-content:center;align-items:center;
-                        padding:1rem;margin:2rem auto;
-                        border:1px solid rgba(200,168,75,.25);
-                        border-radius:12px;
-                        background:rgba(0,0,0,.20);
-                        width:fit-content;
-                        max-width:100%;
-                        box-sizing:border-box;">
+            <div id="stage-3-video-wrap" style="
+    background: rgba(0, 0, 0, 0.58);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(200,168,75,.18);
+    border-radius: 18px;
+    padding: 20px;
+
+    box-shadow:
+        0 0 40px rgba(0,0,0,.45),
+        inset 0 0 20px rgba(255,255,255,.02);
+">
                 <video id="stage-3-video"
                        autoplay muted loop playsinline
                        style="max-width:100%;border-radius:8px;display:block;">
