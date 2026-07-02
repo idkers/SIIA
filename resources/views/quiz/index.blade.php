@@ -1043,7 +1043,7 @@
 <div id="stage-4" class="stage" style="display:none;">
     <div class="stage-wrap">
         <section id="stage-4-inner"
-                 style="background:#06060F;border:1px solid #8B6914;border-radius:10px;">
+                 style="background:transparent;border:1px solid #8B6914;border-radius:10px;">
 
             <div id="stage-4-img-wrap">
                 <img id="stage-4-img"
