@@ -151,7 +151,21 @@
     }
 
     /* ── ETAPA 3 ── */
-    #stage-3-inner { padding: 2.5rem 2rem; }
+  #stage-3-inner{
+    width: 560px;
+    max-width: 85%;
+    padding: 2.5rem 2rem;
+    margin: 0 auto;
+
+    background: linear-gradient(
+        180deg,
+        rgba(6,6,15,.55) 0%,
+        rgba(0,0,0,.65) 100%
+    );
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
     #stage-3-video { width: 220px; }
 
     @media (max-width: 768px) {
@@ -991,7 +1005,7 @@
     background: rgba(0, 0, 0, 0.58);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-
+    
     border: 1px solid rgba(200,168,75,.18);
     border-radius: 18px;
     padding: 20px;
