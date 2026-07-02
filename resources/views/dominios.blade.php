@@ -255,30 +255,35 @@
             'color'   => '#075E56',
             'desc'    => 'Carreras enfocadas en la optimización de sistemas, procesos industriales y sostenibilidad.',
             'carreras'=> ['Ingeniería en Logística','Ingeniería en Mantenimiento Industrial','Ingeniería Ambiental y Sustentabilidad'],
+            'nombrecasa'=> 'AURELION',
         ],
         [
             'nombre'  => 'Tecnologías de la Información',
             'color'   => '#420FDB',
             'desc'    => 'Carreras enfocadas en el desarrollo tecnológico y la innovación digital.',
             'carreras'=> ['Entornos Virtuales','Ciencia de Datos','Desarrollo de Software','Infraestructura de Redes','Inteligencia Artificial'],
+            'nombrecasa'=> 'NEXORIA',
         ],
         [
             'nombre'  => 'Ingenierías Industriales',
             'color'   => '#CC7135',
             'desc'    => 'Carreras orientadas a la mejora de procesos productivos.',
             'carreras'=> ['Automotriz','Procesos Productivos','Moldeo de Plásticos','Calzado'],
+            'nombrecasa'=> 'VALTORIS',
         ],
         [
             'nombre'  => 'Mecatrónicas',
             'color'   => '#A81E1E',
             'desc'    => 'Integración de automatización, robótica y sistemas inteligentes.',
             'carreras'=> ['Manufactura Flexible','Optomecatrónica','Automatización'],
+            'nombrecasa'=> 'MECHARIS',
         ],
         [
             'nombre'  => 'Licenciaturas',
             'color'   => '#B89A10',
             'desc'    => 'Formación profesional enfocada en servicios, negocios y gestión.',
             'carreras'=> ['Gastronomía','Administración','Turismo','Innovación de Negocios y Mercadotecnia'],
+            'nombrecasa'=> 'ELYRIA',
         ],
     ];
     @endphp
@@ -319,6 +324,11 @@
                                 margin-bottom:1.5rem;">
                         {{ $dom['icono'] ?? '' }}
                     </div>
+
+                    <h4 style="color:#C8A84B;font-size:1.15rem;margin-bottom:.3rem;
+                                                font-family:'Headland One',serif;">
+                                            {{ $dom['nombrecasa'] }}
+                                        </h4>
 
                     <h3 style="color:#FFFFFF;font-size:1.15rem;margin-bottom:.8rem;
                                font-family:'Headland One',serif;">
