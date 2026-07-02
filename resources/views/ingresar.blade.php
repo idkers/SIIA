@@ -420,7 +420,7 @@
                            id="email"
                            name="email"
                            class="form-input @error('email') error @enderror"
-                           placeholder="12345@utleon.edu.mx"
+                           placeholder="12345@gmail.com"
                            value="{{ old('email') }}"
                            autocomplete="username"
                            inputmode="email">
