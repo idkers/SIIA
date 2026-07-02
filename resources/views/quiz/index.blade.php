@@ -937,7 +937,7 @@
 
             <div style="text-align:center;">
                 <div style="font-family:'Headland One',serif;font-size:1.3rem;
-                            color:#C8A84B;letter-spacing:.08em;">SIIA</div>
+                            color:#C8A84B;letter-spacing:.08em;">NOVA</div>
                 <p style="font-size:.65rem;text-transform:uppercase;
                           letter-spacing:.15em;color:#E8C96A;margin:.2rem 0 0;">
                     [Pregunta]
@@ -998,7 +998,7 @@
             <h2 id="stage-3-title"
                 class="siia-title"
                 style="color:#C8A84B;font-size:3rem;">
-                SIIA
+                NOVA
             </h2>
 
             <div id="stage-3-video-wrap" style="

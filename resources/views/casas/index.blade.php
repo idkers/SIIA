@@ -237,7 +237,7 @@
                 background:linear-gradient(180deg,#06060F,#0D0D1A);
                 border-bottom:1px solid rgba(200,168,75,.15);">
     <p style="color:#E8C96A;text-transform:uppercase;letter-spacing:.2em;font-size:.75rem;margin-bottom:.8rem;">
-        Sistema Integral de Identidad Académica
+        Navegador de Orientación Vocacional y Aptitudes
     </p>
     <h1 style="color:#FFFFFF;font-size:3rem;font-family:'Headland One',serif;margin-bottom:1rem;">
         Casas Académicas
@@ -580,7 +580,7 @@ $casas = [
         Descubre tu casa académica
     </h2>
     <p style="max-width:650px;margin:auto auto 2rem;color:#F0EAD8;line-height:1.8;">
-        Realiza el cuestionario SIIA y descubre qué casa y qué dominio
+        Realiza el cuestionario NOVA y descubre qué casa y qué dominio
         representan mejor tus intereses, habilidades y forma de aprender.
     </p>
     <a href="{{ route('quiz') }}"

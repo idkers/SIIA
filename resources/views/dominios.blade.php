@@ -235,7 +235,7 @@
     <section class="hero-section">
         <p style="color:#E8C96A;text-transform:uppercase;
                   letter-spacing:.2em;font-size:.75rem;margin-bottom:.8rem;">
-            Sistema Integral de Identidad Académica
+            Navegador de Orientación Vocacional y Aptitudes
         </p>
         <h1 class="hero-title"
             style="color:#FFFFFF;font-family:'Headland One',serif;margin-bottom:1rem;">
@@ -298,7 +298,7 @@
             <p style="color:#F0EAD8;line-height:1.9;margin:0;">
                 Los dominios agrupan carreras que comparten intereses,
                 competencias y áreas de conocimiento similares.
-                Dentro de SIIA representan los grandes caminos académicos
+                Dentro de NOVA representan los grandes caminos académicos
                 que estructuran la identidad universitaria de cada estudiante.
             </p>
         </div>
@@ -363,7 +363,7 @@
             Descubre tu camino académico
         </h2>
         <p class="cta-desc" style="color:#F0EAD8;">
-            Realiza el cuestionario SIIA y descubre qué dominio y qué casa
+            Realiza el cuestionario NOVA y descubre qué dominio y qué casa
             representan mejor tus intereses, habilidades y forma de aprender.
         </p>
         <a href="{{ route('quiz') }}"
