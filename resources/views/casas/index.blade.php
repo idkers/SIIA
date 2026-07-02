@@ -263,6 +263,7 @@ $casas = [
         'desc'     => 'Te gusta planear, coordinar recursos y optimizar procesos.',
         'oferta'   => 'Fundamentos de la Cadena de Suministro, Gestión de Almacén, Logística de Abastecimiento, Costos y Presupuestos Logísticos, Tráfico y Sistemas de Transporte, Administración y Control de Inventarios, Sistemas de Transporte Carretero, Sistemas de Transporte Ferroviario, Sistemas de Transporte Aéreo y Marítimo, Diseño de Redes Logísticas, Investigación de Operaciones Logísticas, Logística de Producción, Administración de Operaciones Logísticas, Gestión de Comercio Internacional, Operación de Flotas y Terminales, Simulación de Procesos Logísticos',
         'link'     => 'https://www.utleon.edu.mx/carrera/TM',
+        'nombrecasa' => 'Naventor',
     ],
     [
         'imagen'   => 'imagenes/casas/mantenimiento.jpg',
@@ -274,6 +275,7 @@ $casas = [
         'desc'     => 'Diagnóstico y mantenimiento de maquinaria industrial.',
         'oferta'   => 'Seguridad Industrial, Gestión y Administración del Mantenimiento, Termodinámica y Sistemas Térmicos, Electrónica Analógica y Digital, Máquinas y Mecanismos, Sistemas Eléctricos e Instalaciones Eléctricas, Sistemas Neumáticos e Hidráulicos, Automatización, Robótica y Redes Industriales, Mantenimiento Predictivo Mecánico, Técnicas TPM (Mantenimiento Productivo Total) y RCM, Ensayos Destructivos y No Destructivos, Manufactura Asistida por Computadora, Visualización y Control de Procesos',
         'link'     => 'https://www.utleon.edu.mx/carrera/MI',
+        'nombrecasa' => 'Engravia',
     ],
     [
         'imagen'   => 'imagenes/casas/ambiental.webp',
@@ -285,6 +287,7 @@ $casas = [
         'desc'     => 'Desarrollo de soluciones ambientales sostenibles.',
         'oferta'   => 'Legislación Ambiental, Química Inorgánica, Química Orgánica, Química Ambiental, Microbiología Ambiental, Gestión de Recursos Hídricos, Gestión Integral de Residuos, Seguridad Laboral y Salud Ocupacional, Sistemas de Gestión Ambiental y de Calidad, Evaluación de Impacto Ambiental, Gestión de la Calidad del Aire, Manejo y Conservación de Suelo, Gestión y Auditoría Ambiental y Laboral, Operaciones Unitarias, Producción Sustentable, Sistema de Información Geográfica y Ordenamiento Territorial, Procesos de Adaptación al Cambio Climático, Bioprocesos Ambientales, Energías Alternativas, Evaluación de Riesgo, Tecnología para el Tratamiento de Agua',
         'link'     => 'https://www.utleon.edu.mx/carrera/GA',
+        'nombrecasa' => 'Sylvara',
     ],
 
     // ── TECNOLOGÍAS DE LA INFORMACIÓN ────────────────────────────────────
@@ -298,6 +301,7 @@ $casas = [
         'desc'     => 'Desarrollo de productos digitales interactivos.',
         'oferta'   => 'Fundamentos de Programación, Programación Estructurada, Programación Orientada a Objetos, Aplicaciones Web, Frameworks para Desarrollo Web, Aplicaciones WEB progresivas, Diseño Digital y Producción Audiovisual, Modelado y Animación Digital, Animación Avanzada y Efectos Visuales, Aplicaciones para Realidad Virtual, Aplicaciones para Realidad Aumentada, Programación de Video Juegos, Mercadotecnia Digital, Fundamentos de Inteligencia Artificial, Programación para Inteligencia Artificial, Ciencia de Datos, Internet de las Cosas, Tecnologías Disruptivas, Seguridad informática, Informática Forense',
         'link'     => 'https://www.utleon.edu.mx/carrera/EVN',
+        'nombrecasa' => 'Nexaris',
     ],
     [
         'imagen'   => 'imagenes/casas/datos.png',
@@ -309,6 +313,7 @@ $casas = [
         'desc'     => 'Interpretación y análisis de datos.',
         'oferta'   => 'Aprendizaje Computacional, Procesamiento de Información, Programación de Lenguajes Especializados, Programación Lógica y Funcional, Computo de Alto Rendimiento, Servicios en la Nube, Visualización de Datos, Ética y Legislación en Tecnologías de la Información, Métodos Estadísticos, Seguridad Informática, Administraciñon de Servidores, Base de Datos Avanzadas, Electrónica Digital, Ciencia de Datos, Contenedores de Software, Internet de las Cosas, Tecnologías Disruptivas',
         'link'     => 'https://www.utleon.edu.mx/carrera/CD',
+        'nombrecasa' => 'Datheon',
     ],
     [
         'imagen'   => 'imagenes/casas/software.png',
@@ -320,6 +325,7 @@ $casas = [
         'desc'     => 'Creación de aplicaciones y sistemas.',
         'oferta'   => 'Análisis y Diseño de Software, Aplicaciones Web, Desarrollo de Aplicaciones Móviles, Estructura de Datos, Aplicaciones Web Orientada a Servicios, Base de Datos Avanzada, Estándares y Métricas para el Desarrollo de Software, Bases de Datos en la Nube, Habilidades Gerenciales, Seguridad Informática, Administración de Servidores, Electrónica Digital, Programación Móvil Avanzada, Frameworks para el Desarrollo Multiplataforma, Tecnologías Disruptivas',
         'link'     => 'https://www.utleon.edu.mx/carrera/DSM',
+        'nombrecasa' => 'Codaris',
     ],
     [
         'imagen'   => 'imagenes/casas/redes.jpg',
@@ -331,6 +337,7 @@ $casas = [
         'desc'     => 'Administración de redes y servidores.',
         'oferta'   => 'Centro de Datos, Escabilidad de Redes, Programación de Redes, Cómputo en la Nube, Conexión de Redes WAN, Seguridad en Redes, Administración de Redes Empresariales, Administración de Servidores, Electrónica Digital, Administración Avanzada de Servidores, Ciencia de Datos',
         'link'     => 'https://www.utleon.edu.mx/carrera/IRD',
+        'nombrecasa' => 'Hexanet',
     ],
     [
         'imagen'   => 'imagenes/casas/ia.jpg',
@@ -342,6 +349,7 @@ $casas = [
         'desc'     => 'Desarrollo de soluciones inteligentes.',
         'oferta'   => 'Aprendizaje Profundo Deep Learning, Motodología No Code, Sistemas de Optimización, Sistemas Embebidos, Aprendizaje de Maquina, Fundamentos de Visión por Computadora, Minería de Datos, Minería de Texto, Análisis de Regresión, Programación para Inteligencia Artificial, Sistemas Inteligentes',
         'link'     => 'https://www.utleon.edu.mx/carrera/IA',
+        'nombrecasa' => 'Synthera',
     ],
 
     // ── INGENIERÍA INDUSTRIAL ─────────────────────────────────────────────
@@ -355,6 +363,7 @@ $casas = [
         'desc'     => 'Mejora de procesos automotrices.',
         'oferta'   => 'Diseño Asistido por Computadora, Herramientas Avanzadas de Calidad, Hidráulica y Neumática Industrial, Procesos de Manufactura de Autopartes Plásticas, Fundamentos de Manufactura Esbelta, Procesos de Manufacttura de Autopartes Metálicas, Sistema CAM, Automatización y Control de Procesos, Ingeniería de Planta, Investigación de Operaciones, Tópicos de Nuevas Tecnologías de Manufactura, 6 SIGMA, Diseño del Producto, Logístca, Sistemas de Gestión de la Calidad, Administración del Manteniimiento, Legislación Industrial',
         'link'     => 'https://www.utleon.edu.mx/carrera/AT',
+        'nombrecasa' => 'Pistoria',
     ],
     [
         'imagen'   => 'imagenes/casas/productivos.png',
@@ -366,6 +375,7 @@ $casas = [
         'desc'     => 'Gestión de operaciones industriales.',
         'oferta'   => 'Administración y Control de la Calidad, Ingeniería Económica, Tecnologías de Transformación de Materiales, Administración y Control de Operaciones, Gestión Ambiental en Procesos Industriales, Sistemas de Manufactura Aplicada, Sistemas de Gestión de la Calidad, Administración del Mantenimiento, Administración Industrial y de Servicios, Legislación  Industrial, Manufactura Integrada por Computadora, Simulación de Procesos',
         'link'     => 'https://www.utleon.edu.mx/carrera/PP',
+        'nombrecasa' => 'Operion',
     ],
     [
         'imagen'   => 'imagenes/casas/plasticos.jpg',
@@ -377,6 +387,7 @@ $casas = [
         'desc'     => 'Diseño y fabricación de productos plásticos.',
         'oferta'   => 'Caracterización de Polímeros, Diseño de Productos Plásticos, Estructura y Propiedad de los Polímeros y los Acero, Transformación de Productos Plásticos, Moldes, Reciclado de Polimeros, Sistemas de Gestión de la Calidad, Administración del Mantenimiento, Manufactura Integrada por Computadora',
         'link'     => 'https://www.utleon.edu.mx/carrera/MP',
+        'nombrecasa' => 'Polymor',
     ],
     [
         'imagen'   => 'imagenes/casas/calzado.jpg',
@@ -388,6 +399,7 @@ $casas = [
         'desc'     => 'Industria del calzado y manufactura.',
         'oferta'   => 'Dirección de Operaciones, Diseño de Calzado, Manufactura de Calzado, Planeación y Control de la Producción, Control de Calidad para el Calzado, Automatización y Control de Procesos, Tópicos de Nuevas Tecnologías de Manufactuura Diseño del Producto, Evaluación y Administración de Proyectos, Sistemas de Gestión de la Calidad, Administración del Mantenimiento, Manufactura Integrada por Coomputadora',
         'link'     => 'https://www.utleon.edu.mx/carrera/GPC',
+        'nombrecasa' => 'Sendoria',
     ],
 
     // ── MECATRÓNICA ───────────────────────────────────────────────────────
@@ -401,6 +413,7 @@ $casas = [
         'desc'     => 'Sistemas automatizados de producción.',
         'oferta'   => 'Control de Motores Eléctricos, Estructura y Propiedades de los Materiales, Robótica, Control de Procesos de Manufactura, Controladores Lógicos Programables, Manufacrura Asistida por Computadora, Análisis de Mecanismos, Cinemática y Dinámica de Robots, Instrumentación Virtual, Modelado y Simulación de Sistemas, Sistemas Embebidos, Diseño de Sistemas Mecatrónicos, Diseño Mecánico, Ingeniería de Control, Programación de Robots Industriales, Sistemas CAM CNC, Control Avanzado, Manufactura Flexible, Sistemas Eléctricos Industriales',
         'link'     => 'https://www.utleon.edu.mx/carrera/LSMF',
+        'nombrecasa' => 'Flexion',
     ],
     [
         'imagen'   => 'imagenes/casas/optomecatronica.jpg',
@@ -412,6 +425,7 @@ $casas = [
         'desc'     => 'Sistemas ópticos y electrónicos.',
         'oferta'   => 'Control de Motores Eléctricos, Controladores Lógicos Programables, Principios de Óptica, Programación Estructurada, Láseres, Metrología Óptica, Procesos de Manufactura, Análisis de Mecanismos, Cinemática y Dinámica de Robots, Modelado y Simulación de Sistemas, Sistemas Embebidos, Diseño de Sistemas Mecatrónicos, Diseño Mecánico, Programación de Robots Industriales, Sistemas CAM CNC, Sistemas Eléctricos Industriales',
         'link'     => 'https://www.utleon.edu.mx/carreras/OP',
+        'nombrecasa' => 'Prismara',
     ],
     [
         'imagen'   => 'imagenes/casas/automatizacion.jpg',
@@ -423,6 +437,7 @@ $casas = [
         'desc'     => 'Automatización de procesos industriales.',
         'oferta'   => 'Control de Motores Eléctricos, Estructura y Propiedades de los Materiales, Instrumentración Industrial, Sistemas Neumáticos e Hidráulicos, Controladores Lógicos Programables, Implementación de Sistemas Automáticos, Procesos de Manufactura, Análisis de Mecanismos, Cinemática y Dinámica de Robots, Intrumentración Virtual, Modelado y Simulación de Sistemas, Sistemas Embebidos, Diseño Asistido por Computadora, Diseño de Sistemas Mecatrónicos, Diseño Mecánico, Ingeniería de Control, Programación de Robots Industriales, Sistemas CAM CNC, Administración de Mantenimiento, Control Avanzado',
         'link'     => 'https://www.utleon.edu.mx/carrera/AU',
+        'nombrecasa' => 'Autron',
     ],
 
     // ── LICENCIATURAS ─────────────────────────────────────────────────────
@@ -436,6 +451,7 @@ $casas = [
         'desc'     => 'Experiencias culinarias y hospitalidad.',
         'oferta'   => 'Bases Culinaria, Fundamentos de Nutrición, Panadería, Pastelería, Operación de Bar, Administración de Alimentos y Bebidas, Francés, Vitivinicultura, Mercadotecnia de Servicios Gatronómicos, Repostería, Conformación de Menús, Logística de Eventos, Cocina Asiática, Cocina Mexicana, Contabilidad, Patrimonio Gastrónomico de México, Cocina Europea, Bebidas Destiladas Mexicanas, Cocina Contemporánea, Cocina Regional, Mixología, Desarrollo de Negocios Gastronómicos',
         'link'     => 'https://www.utleon.edu.mx/carrera/GST',
+        'nombrecasa' => 'Flamoria',
     ],
     [
         'imagen'   => 'imagenes/casas/administracion.jpg',
@@ -447,6 +463,7 @@ $casas = [
         'desc'     => 'Gestión de empresas y recursos.',
         'oferta'   => 'Marco Legal de las Organizaciones, Contabilidad, Derecho Corporativo, Habilidades Socioemocionales y Manejo de Conflictos, Microeconomía, Análisis Financiero, Macroeconomía, Comportamiento Organizacional, Gestión del Capital Humano, Legislación Laboral, Sueldos y Salarios, Desarrollo Organizacional, Seguridad e Higiene Laboral, Administración de la Producción, Gestión del Talento Humano, Mercadotecnia Estratégica, Tecnologías aplicadas a los Negocios, Dirección Estratégica, Modelos de Negocios, Comercio y Logística Internacional, Finanzas Corporativas',
         'link'     => 'https://www.utleon.edu.mx/carrera/GCH',
+        'nombrecasa' => 'Laureon',
     ],
     [
         'imagen'   => 'imagenes/casas/turismo.png',
@@ -458,6 +475,7 @@ $casas = [
         'desc'     => 'Experiencias turísticas y culturales.',
         'oferta'   => 'Fundamentos de Economía, Geografía y Patrimonio, Administración, Servicios de Alimentos y Bebidas, Servicios de Viaje y Transportación, Sustentabilidad en el Turismo, Contabilidad, Gestión de la Calidad, Hospitalidad y Alojamiento, Diagnóstico Turístico, Mercadotecnia y Comercialización, Operación de Servicios de Hospedaje, Turismo Cultural y de Naturaleza, Animación Turística y Sociocultural, Diseño de Experiencias Turísticas, Plan de Negocios, Desarrollo Regional, Economía para el Turismo, Gestión y Planificación Turística, Consultoría Turística, Tendencias del Turismo, Destinos Turísticos Inteligentes',
         'link'     => 'https://www.utleon.edu.mx/carrera/TU',
+        'nombrecasa' => 'Globaris',
     ],
     [
         'imagen'   => 'imagenes/casas/mercadotecnia.jpg',
@@ -469,6 +487,7 @@ $casas = [
         'desc'     => 'Marketing y desarrollo de negocios.',
         'oferta'   => 'Fundamentos de Administración y Entorno Empresarial, Informática, Mercadotecnia, Comportamiento del Consumidor, Contabilidad para Negocios, Economía, Estadística, Estrategias de Producto y Precio, Legislación Comercial, Sistema de Investigación de Mercados, Logística y Distribución, Mercadotecnia de Servicios, Mercadotecnia Digital, Mercadotecnia Estratégica, Desarrollo de Nuevos Productos, Mercadotecnia Internacional, Tendencias del Mercado y Consumidor Global, Inteligencia de Mercados, Cadena de Suministro, Cultura Emprendedora, Comunicación Integral de la Mercadotecnia',
         'link'     => 'https://www.utleon.edu.mx/carrera/MT',
+        'nombrecasa' => 'Novaris',
     ],
 ];
 @endphp
@@ -505,6 +524,7 @@ $casas = [
                 </div>
                 <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#707085;margin-bottom:.4rem;">{{ $casa['dominio'] }}</p>
                 <h3 style="color:#FFFFFF;font-size:1.05rem;margin-bottom:.4rem;font-family:'Headland One',serif;">{{ $casa['nombre'] }}</h3>
+                <h4 style="color:#eedca7;font-size:1.05rem;margin-bottom:.4rem;font-family:'Headland One',serif;">{{ $casa['nombrecasa'] }}</h4>
                 <p style="color:#C8A84B;font-size:.82rem;font-style:italic;margin-bottom:.9rem;">{{ $casa['frase'] }}</p>
                 <p style="color:#B0A898;line-height:1.7;font-size:.9rem;margin-bottom:1.5rem;flex-grow:1;">{{ $casa['desc'] }}</p>
                 <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
