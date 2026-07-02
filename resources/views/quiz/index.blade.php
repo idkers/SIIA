@@ -877,7 +877,7 @@
 <div id="stage-1" class="stage">
     <div class="stage-wrap">
         <section id="stage-1-inner"
-                 style="background:linear-gradient(rgba(6,6,15,.85),rgba(6,6,15,.95));
+                 style="background:linear-gradient(rgba(6,6,15,.75),rgba(6,6,15,.95));
                         border:1px solid #8B6914;
                         border-radius:10px;">
 
@@ -1043,7 +1043,7 @@
 <div id="stage-4" class="stage" style="display:none;">
     <div class="stage-wrap">
         <section id="stage-4-inner"
-                 style="background: rgba(6,6,15,.85);border:1px solid #8B6914;border-radius:10px;">
+                 style="background: rgba(6,6,15,.75);border:1px solid #8B6914;border-radius:10px;">
 
             <div id="stage-4-img-wrap">
                 <img id="stage-4-img"
