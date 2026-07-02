@@ -1057,7 +1057,7 @@
                 <h1 id="stage-4-result-title"
                     class="siia-title"
                     style="color:#C8A84B;margin:0;">
-                    Casa Ignisculin (Gastronomía)
+                    Casa Flamoria (Gastronomía)
                 </h1>
 
                 <p style="color:#E8C96A;font-style:italic;font-size:1.2rem;">
@@ -1066,7 +1066,7 @@
 
                 <p id="stage-4-desc"
                    style="color:#F0EAD8;line-height:1.8;max-width:450px;">
-                    Tu perfil muestra una afinidad natural con la casa Ignisculina, los Alquimistas del Sabor.
+                    Tu perfil muestra una afinidad natural con la casa Flamoria, los Alquimistas del Sabor.
                     Eres una persona que transforma el caos en excelencia mediante una combinación única de
                     creatividad vibrante y disciplina técnica. Prosperas en ambientes dinámicos, utilizando
                     tu instinto práctico para resolver cualquier reto al instante. Tu mayor virtud es el
@@ -1108,7 +1108,7 @@
         </p>
         <h1 style="font-family:'Headland One',serif;color:#C8A84B;
                    font-size:90px;text-align:center;margin:0;">
-            Casa Ignisculin
+            Casa Flamoria
         </h1>
         <p style="color:#E8C96A;font-style:italic;font-size:40px;
                   text-align:center;margin:40px 0;">
