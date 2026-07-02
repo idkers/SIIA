@@ -354,7 +354,7 @@ $casas = [
 
     // ── INGENIERÍA INDUSTRIAL ─────────────────────────────────────────────
     [
-        'imagen'   => 'imagenes/casas/automotriz.webp'
+        'imagen'   => 'imagenes/casas/automotriz.webp',
         'nombre'   => 'Automotriz',
         'dominio'  => 'Ingeniería Industrial',
         'color'    => '#DC2626',
