@@ -292,7 +292,7 @@
 
     <div class="explicacion-wrap">
     <div style="background:#06060F;
-                background-image:url('{{ asset('imagenes/hero-dominios.png') }}');
+                background-image:url('{{ asset('imagenes/dominios/hero-dominios.png') }}');
                 background-size:cover;
                 background-position:center;
                 border:1px solid rgba(200,168,45,.15);
