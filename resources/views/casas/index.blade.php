@@ -473,7 +473,7 @@ $casas = [
         'frase'    => 'Descubrir conecta culturas',
         'valores'  => ['Servicio', 'Empatía', 'Creatividad'],
         'desc'     => 'Experiencias turísticas y culturales.',
-        'oferta'   => 'Diseño de Experiencias Turísticas: Crearás experiencias memorable para turistas, combinando cultura, naturaleza y entretenimiento.', 'Destinos Turísticos Inteligentes: Aprenderás a desarrollar destinos innovadores que utilizan tecnología para mejorar la experiencia.', 'Turismo Cultural y de Naturaleza: Te especializarás en promocionar el patrimonio cultural e histórico de regiones.', 'Dirección y Logística de Eventos: Planificarás y ejecutarás eventos turísticos de gran escala como congresos y festivales.', 'Mercadotecnia Internacional: Aprenderás a promover destinos turísticos a nivel mundial con estrategias globales',
+        'oferta'   => 'Diseño de Experiencias Turísticas: Crearás experiencias memorable para turistas combinando cultura naturaleza y entretenimiento, Destinos Turísticos Inteligentes: Aprenderás a desarrollar destinos innovadores que utilizan tecnología para mejorar la experiencia, Turismo Cultural y de Naturaleza: Te especializarás en promocionar el patrimonio cultural e histórico de regiones, Dirección y Logística de Eventos: Planificarás y ejecutarás eventos turísticos de gran escala como congresos y festivales, Mercadotecnia Internacional: Aprenderás a promover destinos turísticos a nivel mundial con estrategias globales',
         'link'     => 'https://www.utleon.edu.mx/carrera/TU',
         'nombrecasa' => 'GLOBARIS',
     ],
