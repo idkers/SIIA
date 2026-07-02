@@ -381,7 +381,7 @@
         </div>
 
         <h1 class="login-title">Bienvenido de vuelta</h1>
-        <p class="login-subtitle">Sistema Integral de Identidad Académica</p>
+        <p class="login-subtitle">Navegador de Orientación Vocacional y Aptitudes</p>
 
         {{-- Mensajes de error del servidor --}}
         @if(session('error'))
