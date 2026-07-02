@@ -231,13 +231,14 @@
 <div class="page-wrap">
 <div class="page-content">
 
+
     {{-- ── Encabezado ── --}}
    <section class="hero-section"
-         style="background-image:url('{{ asset('imagenes/dominios/hero-dominios.png') }}');
+         style="background:
+                linear-gradient(180deg,rgba(6,6,15,.7),rgba(6,6,15,.85)),
+                url('{{ asset('imagenes/dominios/hero-dominios.png') }}');
                 background-size:cover;
                 background-position:center;
-                background:linear-gradient(180deg,rgba(6,6,15,.7),rgba(6,6,15,.85)),
-                url('{{ asset('imagenes/dominios/hero-dominios.png') }}');
                 border-bottom:1px solid rgba(200,168,75,.15);">
 
 
