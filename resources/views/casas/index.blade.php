@@ -235,7 +235,7 @@
 <section class="casas-header-section"
          style="padding:5rem 2rem;text-align:center;
                 background:
-                linear-gradient(180deg,rgba(6,6,15,.7),rgba(6,6,15,.85)),
+              
                 url('{{ asset('imagenes/casas/hero-casas.png') }}');
                 background-size:cover;
                 background-position:center;
