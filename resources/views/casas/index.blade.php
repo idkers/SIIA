@@ -518,11 +518,13 @@ $casas = [
         <div class="casa-card" data-dominio="{{ $casa['dominio'] }}">
             <div style="height:8px;background:{{ $casa['color'] }};"></div>
             <div class="casa-card-body">
-                <div class="casa-img-wrap"
-                     style="width:100%;aspect-ratio:1;border-radius:12px;overflow:hidden;margin-bottom:1.5rem;">
-                    @if(!empty($casa['imagen']))
-                        <img src="{{ asset($casa['imagen']) }}" alt="{{ $casa['nombre'] }}"
-                             style="width:100%;height:100%;object-fit:cover;">
+<div class="casa-img-wrap"
+     style="width:100%;aspect-ratio:3/4;border-radius:12px;overflow:hidden;
+            margin-bottom:1.5rem;background:#0D0D1A;
+            display:flex;align-items:center;justify-content:center;">
+    @if(!empty($casa['imagen']))
+        <img src="{{ asset($casa['imagen']) }}" alt="{{ $casa['nombre'] }}"
+             style="width:100%;height:100%;object-fit:contain;padding:12px;">
                     @else
                         <div style="width:100%;height:100%;background:#1D1D2B;
                                     border:1px dashed rgba(255,255,255,.15);border-radius:12px;"></div>
