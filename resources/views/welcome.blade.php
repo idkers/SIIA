@@ -225,9 +225,9 @@
 
     @php
     $casasInicio = [
-        ['nombre'=>'Ambiental',   'imagen'=>'imagenes/casas/ambiental.webp'],
-        ['nombre'=>'Gastronomía', 'imagen'=>'imagenes/casas/gastronomia2.webp'],
-        ['nombre'=>'Mecatrónica', 'imagen'=>'imagenes/dominios/mecatronicaBaseSinTextura.webp'],
+        ['nombre'=>'Sylvara (Ambiental)',   'imagen'=>'imagenes/casas/ambiental.webp'],
+        ['nombre'=>'Flamoria (Gastronomía)', 'imagen'=>'imagenes/casas/gastronomia2.webp'],
+        ['nombre'=>'Sendoria (Calzado)', 'imagen'=>'imagenes/casas/calzado.webp'],
     ];
     @endphp
 
