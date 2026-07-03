@@ -554,8 +554,7 @@
         <div class="privacy-notice">
             ⚠️ <strong style="color:#E8C96A;">Nota importante:</strong>
             La Universidad Tecnológica de León <strong>no cuenta con áreas de ciencias
-            de la salud</strong> (medicina, enfermería, química,
-            biología, etc.). Los resultados del quiz están
+            de la salud</strong> (medicina, enfermería, biología, etc.). Los resultados del quiz están
             orientados exclusivamente a las carreras y dominios que ofrece la UTL.
         </div>
  
