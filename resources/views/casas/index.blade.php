@@ -235,9 +235,7 @@
 <section class="casas-header-section"
          style="padding:5rem 2rem;text-align:center;
                 background:linear-gradient(180deg,#06060F,#0D0D1A);
-                border-bottom:1px solid rgba(196, 165, 73, 0.15);">
-
-                
+                border-bottom:1px solid rgba(200,168,75,.15);">
     <p style="color:#E8C96A;text-transform:uppercase;letter-spacing:.2em;font-size:.75rem;margin-bottom:.8rem;">
         Navegador de Orientación Vocacional y Aptitudes
     </p>
