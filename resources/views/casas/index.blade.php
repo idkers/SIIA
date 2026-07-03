@@ -236,7 +236,7 @@
          style="padding:5rem 2rem;text-align:center;
                 background:
               
-                url('{{ asset('imagenes/casas/hero-casas.png') }}');
+                url('{{ asset('imagenes/casas/hero-casas.webp') }}');
                 background-size:cover;
                 background-position:center;
                 border-bottom:1px solid rgba(200,168,75,.15);">
