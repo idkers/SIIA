@@ -267,7 +267,7 @@ $casas = [
         'frase'    => 'Toda ruta tiene un destino',
         'valores'  => ['Responsabilidad', 'Organización', 'Eficiencia'],
         'desc'     => 'Te gusta planear, coordinar recursos y optimizar procesos.',
-        'oferta'   => 'Diseño de Redes Logísticas: Crearás sistemas complejos de distribución que conectan empresas con clientes eficientemente, Economía Circular: Aprenderás modelos sostenibles que minimizan residuos en la cadena de suministro, Operación de Flotas y Terminales: Gestionarás flota de vehículos y centros de distribución de manera óptima, Tendencias en la Cadena de Suministros: Te mantendrás actualizado en tecnologías emergentes como blockchain y IoT en logística, Investigación de Operaciones Logísticas: Optimizarás rutas, costos y tiempo de entrega usando análisis cuantitativos',
+        'oferta'   => 'Diseño de Redes Logísticas: Crearás sistemas complejos de distribución que conectan empresas con clientes eficientemente, Economía Circular: Aprenderás modelos sostenibles que minimizan residuos en la cadena de suministro, Operación de Flotas y Terminales: Gestionarás flota de vehículos y centros de distribución de manera óptima, Tendencias en la Cadena de Suministros: Te mantendrás actualizado en tecnologías emergentes como blockchain y IoT en logística, Investigación de Operaciones Logísticas: Optimizarás rutas costos y tiempo de entrega usando análisis cuantitativos',
         'link'     => 'https://www.utleon.edu.mx/carrera/TM',
         'nombrecasa' => 'NAVENTOR',
     ],
