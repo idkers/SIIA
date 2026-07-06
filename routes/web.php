@@ -17,3 +17,5 @@ Route::get('/ingresar', fn () => view('ingresar'))->name('ingresar');
 Route::post('/ingresar', function () {
     return back()->with('success', 'Formulario enviado correctamente.');
 })->name('ingresar.post');
+
+Route::get('/admin', fn () => view('admin'))->name('admin');

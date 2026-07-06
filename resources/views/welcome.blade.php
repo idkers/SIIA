@@ -71,6 +71,7 @@
         <a href="{{ route('dominios') }}">Dominios</a>
         <a href="{{ route('casas') }}">Casas</a>
         <a href="{{ route('ingresar') }}">Ingresar</a>
+        <a href="{{ route('admin') }}">Panel Admin</a>
     </div>
 
     <button class="hamburger"
@@ -90,6 +91,7 @@
     <a href="{{ route('dominios') }}">Dominios</a>
     <a href="{{ route('casas') }}">Casas</a>
     <a href="{{ route('ingresar') }}">Ingresar</a>
+    <a href="{{ route('admin') }}">Panel Admin</a>
 </div>
 
 {{-- ═══ HERO ═════════════════════════════════════════════════════════════════ --}}
