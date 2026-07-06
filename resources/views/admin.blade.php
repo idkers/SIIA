@@ -477,7 +477,7 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="stat-val">{{ $totalAlumnos }}</div>
+                            <div class="stat-val">128</div>
                             <div class="stat-label">Total alumnos</div>
                         </div>
                     </div>
@@ -489,7 +489,7 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="stat-val" style="color:#4BC864;">{{ $totalConCasa }}</div>
+                            <div class="stat-val" style="color:#4BC864;">94</div>
                             <div class="stat-label">Con casa asignada</div>
                         </div>
                     </div>
@@ -500,7 +500,7 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="stat-val" style="color:#E8C96A;">{{ $totalSinCasa }}</div>
+                            <div class="stat-val" style="color:#E8C96A;">34</div>
                             <div class="stat-label">Sin casa aún</div>
                         </div>
                     </div>
@@ -538,8 +538,6 @@
                 {{-- Tabla: top casas --}}
                 <div class="chart-card">
                     <div class="card-title">Gráficas generales — Top Casas</div>
-                    @if($casasMasAsignadas->count())
-                    @php $maxCasa = $casasMasAsignadas->first()->total; @endphp
                     <table class="data-table">
                         <thead>
                             <tr>
@@ -550,26 +548,47 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($casasMasAsignadas->take(10) as $i => $row)
                             <tr>
-                                <td style="color:#4A3560;font-size:.75rem;">{{ $i+1 }}</td>
-                                <td style="color:var(--text);font-weight:600;">{{ $row->casa }}</td>
-                                <td style="color:var(--gold-lt);">{{ $row->total }}</td>
+                                <td style="color:#4A3560;font-size:.75rem;">1</td>
+                                <td style="color:var(--text);font-weight:600;">Casa Dorada</td>
+                                <td style="color:var(--gold-lt);">32</td>
                                 <td>
                                     <div class="progress-bar-wrap">
                                         <div class="progress-track">
-                                            <div class="progress-fill" style="width:{{ round(($row->total / $maxCasa)*100) }}%"></div>
+                                            <div class="progress-fill" style="width:100%"></div>
                                         </div>
-                                        <span class="progress-val">{{ round(($row->total / $totalConCasa)*100) }}%</span>
+                                        <span class="progress-val">34%</span>
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
+                            <tr>
+                                <td style="color:#4A3560;font-size:.75rem;">2</td>
+                                <td style="color:var(--text);font-weight:600;">Casa Plateada</td>
+                                <td style="color:var(--gold-lt);">25</td>
+                                <td>
+                                    <div class="progress-bar-wrap">
+                                        <div class="progress-track">
+                                            <div class="progress-fill" style="width:78%"></div>
+                                        </div>
+                                        <span class="progress-val">27%</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="color:#4A3560;font-size:.75rem;">3</td>
+                                <td style="color:var(--text);font-weight:600;">Casa Bronce</td>
+                                <td style="color:var(--gold-lt);">19</td>
+                                <td>
+                                    <div class="progress-bar-wrap">
+                                        <div class="progress-track">
+                                            <div class="progress-fill" style="width:59%"></div>
+                                        </div>
+                                        <span class="progress-val">20%</span>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
-                    @else
-                    <div class="empty-state">No hay datos de casas asignadas todavía.</div>
-                    @endif
                 </div>
 
             </section>
@@ -587,7 +606,6 @@
                         </button>
                     </div>
 
-                    @if(isset($preguntas) && $preguntas->count())
                     <table class="data-table" id="tablaPreguntas">
                         <thead>
                             <tr>
@@ -598,24 +616,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($preguntas as $p)
                             <tr>
-                                <td style="color:#4A3560;">{{ $p->orden ?? '—' }}</td>
-                                <td style="color:var(--text);max-width:400px;">{{ $p->texto ?? $p->pregunta ?? '—' }}</td>
-                                <td><span class="badge-dom">{{ $p->casa ?? '—' }}</span></td>
+                                <td style="color:#4A3560;">1</td>
+                                <td style="color:var(--text);max-width:400px;">¿Qué prefieres hacer en tu tiempo libre?</td>
+                                <td><span class="badge-dom">Casa Dorada</span></td>
                                 <td style="display:flex;gap:.4rem;">
                                     <button class="btn-sm">Editar</button>
                                     <button class="btn-sm danger">Eliminar</button>
                                 </td>
                             </tr>
-                            @endforeach
+                            <tr>
+                                <td style="color:#4A3560;">2</td>
+                                <td style="color:var(--text);max-width:400px;">¿Cómo resuelves un problema en equipo?</td>
+                                <td><span class="badge-dom">Casa Plateada</span></td>
+                                <td style="display:flex;gap:.4rem;">
+                                    <button class="btn-sm">Editar</button>
+                                    <button class="btn-sm danger">Eliminar</button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
-                    @else
-                    <div class="empty-state">No hay preguntas registradas en la base de datos.<br>
-                        <small style="color:#4A3560;font-size:.78rem;">Verifica que la tabla <code>preguntas</code> existe y tiene datos.</small>
-                    </div>
-                    @endif
                 </div>
             </section>
 
@@ -632,7 +652,6 @@
                         </button>
                     </div>
 
-                    @if(isset($casas) && $casas->count())
                     <table class="data-table" id="tablaCasas">
                         <thead>
                             <tr>
@@ -645,31 +664,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($casas as $c)
-                            @php
-                                $count = $casasMasAsignadas->firstWhere('casa', $c->nombre)?->total ?? 0;
-                            @endphp
                             <tr>
-                                <td>
-                                    <span class="color-dot" style="background:{{ $c->color ?? '#C8A84B' }};"></span>
-                                </td>
-                                <td style="color:var(--text);font-weight:600;">{{ $c->nombre }}</td>
-                                <td><span class="badge-dom">{{ $c->dominio ?? '—' }}</span></td>
-                                <td style="color:var(--text-muted);">{{ $c->carrera ?? '—' }}</td>
-                                <td style="color:var(--gold-lt);">{{ $count }}</td>
+                                <td><span class="color-dot" style="background:#C8A84B;"></span></td>
+                                <td style="color:var(--text);font-weight:600;">Casa Dorada</td>
+                                <td><span class="badge-dom">Innovación</span></td>
+                                <td style="color:var(--text-muted);">Ingeniería en Sistemas</td>
+                                <td style="color:var(--gold-lt);">32</td>
                                 <td style="display:flex;gap:.4rem;">
                                     <button class="btn-sm">Editar</button>
                                     <button class="btn-sm danger">Eliminar</button>
                                 </td>
                             </tr>
-                            @endforeach
+                            <tr>
+                                <td><span class="color-dot" style="background:#B0B0B0;"></span></td>
+                                <td style="color:var(--text);font-weight:600;">Casa Plateada</td>
+                                <td><span class="badge-dom">Creatividad</span></td>
+                                <td style="color:var(--text-muted);">Diseño Gráfico</td>
+                                <td style="color:var(--gold-lt);">25</td>
+                                <td style="display:flex;gap:.4rem;">
+                                    <button class="btn-sm">Editar</button>
+                                    <button class="btn-sm danger">Eliminar</button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
-                    @else
-                    <div class="empty-state">No hay casas registradas en la base de datos.<br>
-                        <small style="color:#4A3560;font-size:.78rem;">Verifica que la tabla <code>casas</code> existe y tiene datos.</small>
-                    </div>
-                    @endif
                 </div>
             </section>
 
@@ -686,7 +704,6 @@
                         </button>
                     </div>
 
-                    @if(isset($dominios) && $dominios->count())
                     <table class="data-table" id="tablaDominios">
                         <thead>
                             <tr>
@@ -698,25 +715,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($dominios as $d)
                             <tr>
-                                <td><span class="color-dot" style="background:{{ $d->color ?? '#C8A84B' }};"></span></td>
-                                <td style="color:var(--text);font-weight:600;">{{ $d->nombre }}</td>
-                                <td style="color:var(--text-muted);font-size:.8rem;">{{ $d->carreras ?? '—' }}</td>
-                                <td style="color:var(--gold-lt);">{{ $afinidadDominio[$d->nombre] ?? 0 }}</td>
+                                <td><span class="color-dot" style="background:#C8A84B;"></span></td>
+                                <td style="color:var(--text);font-weight:600;">Innovación</td>
+                                <td style="color:var(--text-muted);font-size:.8rem;">Ing. Sistemas, Mecatrónica</td>
+                                <td style="color:var(--gold-lt);">78</td>
                                 <td style="display:flex;gap:.4rem;">
                                     <button class="btn-sm">Editar</button>
                                     <button class="btn-sm danger">Eliminar</button>
                                 </td>
                             </tr>
-                            @endforeach
+                            <tr>
+                                <td><span class="color-dot" style="background:#E8C96A;"></span></td>
+                                <td style="color:var(--text);font-weight:600;">Creatividad</td>
+                                <td style="color:var(--text-muted);font-size:.8rem;">Diseño Gráfico, Arquitectura</td>
+                                <td style="color:var(--gold-lt);">52</td>
+                                <td style="display:flex;gap:.4rem;">
+                                    <button class="btn-sm">Editar</button>
+                                    <button class="btn-sm danger">Eliminar</button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
-                    @else
-                    <div class="empty-state">No hay dominios registrados en la base de datos.<br>
-                        <small style="color:#4A3560;font-size:.78rem;">Verifica que la tabla <code>dominios</code> existe y tiene datos.</small>
-                    </div>
-                    @endif
                 </div>
             </section>
 
@@ -755,88 +775,7 @@ document.addEventListener('click', e => {
         sb.classList.remove('open');
 });
 
-// ── Filtrar tablas ───────────────────────────────────────────────────
-function filtrarTabla(input, tableId) {
-    const q = input.value.toLowerCase();
-    document.querySelectorAll('#' + tableId + ' tbody tr').forEach(row => {
-        row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
-    });
-}
 
-// ── Chart.js — configuración común ───────────────────────────────────
-const chartDefaults = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-        legend: { display: false },
-        tooltip: {
-            backgroundColor: '#14141F',
-            borderColor: 'rgba(200,168,75,.35)',
-            borderWidth: 1,
-            titleColor: '#E8C96A',
-            bodyColor: '#B0A898',
-        }
-    },
-    scales: {
-        x: {
-            ticks: { color: '#707085', font: { size: 11 } },
-            grid:  { color: 'rgba(43,31,61,.4)' },
-        },
-        y: {
-            ticks: { color: '#707085', font: { size: 11 }, stepSize: 1 },
-            grid:  { color: 'rgba(43,31,61,.4)' },
-            beginAtZero: true,
-        }
-    }
-};
-
-// ── Datos desde Laravel ───────────────────────────────────────────────
-const casasLabels  = @json($casasMasAsignadas->pluck('casa'));
-const casasTotales = @json($casasMasAsignadas->pluck('total'));
-
-const carrerasLabels  = @json($resultadosPorCarrera->pluck('carrera'));
-const carrerasTotales = @json($resultadosPorCarrera->pluck('total'));
-
-const dominiosLabels  = @json(array_keys($afinidadDominio));
-const dominiosTotales = @json(array_values($afinidadDominio));
-
-// Paleta de barras (cíclica)
-const barColors = [
-    '#C8A84B','#8D6627','#E8C96A','#6B5020',
-    '#A07030','#D4A855','#7A5015','#F0C060',
-];
-
-function makeBar(id, labels, data) {
-    const ctx = document.getElementById(id);
-    if (!ctx) return;
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels,
-            datasets: [{
-                data,
-                backgroundColor: labels.map((_, i) => barColors[i % barColors.length] + 'CC'),
-                borderColor:     labels.map((_, i) => barColors[i % barColors.length]),
-                borderWidth: 1,
-                borderRadius: 4,
-            }]
-        },
-        options: { ...chartDefaults }
-    });
-}
-
-makeBar('chartCasas',     casasLabels,     casasTotales);
-makeBar('chartCarreras',  carrerasLabels,  carrerasTotales);
-makeBar('chartDominios',  dominiosLabels,  dominiosTotales);
-
-// ── Animación de barras de progreso ──────────────────────────────────
-setTimeout(() => {
-    document.querySelectorAll('.progress-fill').forEach(el => {
-        const w = el.style.width;
-        el.style.width = '0';
-        setTimeout(() => el.style.width = w, 100);
-    });
-}, 200);
 </script>
 
 </body>
