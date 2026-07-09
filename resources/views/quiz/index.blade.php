@@ -166,7 +166,7 @@
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 }
-    #stage-3-video { width: 220px; }
+    #stage-3-video { width: 420px; }
 
     @media (max-width: 768px) {
         #stage-3-inner {
