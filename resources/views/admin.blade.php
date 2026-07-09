@@ -566,7 +566,7 @@
 
                     {{-- Casas: más y menos asignaciones --}}
                     <div class="chart-card full">
-                        <div class="card-title">Casas — más y menos asignaciones</div>
+                        <div class="card-title">Casas</div>
                         <div class="mm-grid">
                             <div class="mm-item mm-top">
                                 <span class="mm-label">Más asignada</span>
@@ -583,7 +583,7 @@
 
                     {{-- Dominios: más y menos asignaciones --}}
                     <div class="chart-card full">
-                        <div class="card-title">Dominios — más y menos asignaciones</div>
+                        <div class="card-title">Dominios</div>
                         <div class="mm-grid">
                             <div class="mm-item mm-top">
                                 <span class="mm-label">Más asignado</span>
