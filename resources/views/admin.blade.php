@@ -251,6 +251,51 @@
 
         .chart-wrap { position: relative; height: 280px; }
 
+        /* ─── MÁS / MENOS ASIGNACIONES ───────────────────────────────── */
+        .mm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .mm-item {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .mm-label {
+            display: block;
+            font-size: .68rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: var(--text-muted);
+            margin-bottom: .6rem;
+        }
+
+        .mm-name {
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: .3rem;
+        }
+
+        .mm-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .mm-item.mm-top .mm-value  { color: #4BC864; }
+        .mm-item.mm-low .mm-value  { color: var(--text-muted); }
+
+        @media (max-width: 600px) {
+            .mm-grid { grid-template-columns: 1fr; }
+        }
+
         /* ─── TABLAS ──────────────────────────────────────────────────── */
         .data-table {
             width: 100%;
@@ -519,27 +564,37 @@
                 {{-- Gráficas --}}
                 <div class="chart-grid">
 
-                    {{-- Casas más asignadas --}}
+                    {{-- Casas: más y menos asignaciones --}}
                     <div class="chart-card full">
-                        <div class="card-title">Casas más asignadas</div>
-                        <div class="chart-wrap">
-                            <canvas id="chartCasas"></canvas>
+                        <div class="card-title">Casas — más y menos asignaciones</div>
+                        <div class="mm-grid">
+                            <div class="mm-item mm-top">
+                                <span class="mm-label">Más asignada</span>
+                                <span class="mm-name">—</span>
+                                <span class="mm-value">0</span>
+                            </div>
+                            <div class="mm-item mm-low">
+                                <span class="mm-label">Menos asignada</span>
+                                <span class="mm-name">—</span>
+                                <span class="mm-value">0</span>
+                            </div>
                         </div>
                     </div>
 
-                    {{-- Resultados por carrera --}}
+                    {{-- Dominios: más y menos asignaciones --}}
                     <div class="chart-card full">
-                        <div class="card-title">Resultados por carrera</div>
-                        <div class="chart-wrap" style="height:320px;">
-                            <canvas id="chartCarreras"></canvas>
-                        </div>
-                    </div>
-
-                    {{-- Afinidad por dominio --}}
-                    <div class="chart-card full">
-                        <div class="card-title">Afinidad por dominio</div>
-                        <div class="chart-wrap" style="height:220px;">
-                            <canvas id="chartDominios"></canvas>
+                        <div class="card-title">Dominios — más y menos asignaciones</div>
+                        <div class="mm-grid">
+                            <div class="mm-item mm-top">
+                                <span class="mm-label">Más asignado</span>
+                                <span class="mm-name">—</span>
+                                <span class="mm-value">0</span>
+                            </div>
+                            <div class="mm-item mm-low">
+                                <span class="mm-label">Menos asignado</span>
+                                <span class="mm-name">—</span>
+                                <span class="mm-value">0</span>
+                            </div>
                         </div>
                     </div>
 
