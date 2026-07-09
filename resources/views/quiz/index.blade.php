@@ -166,7 +166,7 @@
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 }
-    #stage-3-video { width: 420px; }
+    #stage-3-video { width: 520px; }
 
     @media (max-width: 768px) {
         #stage-3-inner {
@@ -976,10 +976,10 @@
 <div id="stage-3" class="stage" style="display:none;">
     <div class="stage-wrap">
         <section id="stage-3-inner"
-                 style="background:radial-gradient(circle at 50% 50%,#06060F 0%,
-                            transparent 45%),
-                        linear-gradient(135deg,#06060F 0%,#120D08 30%,#1A1208 60%,#06060F 100%);
-                        border:1px solid rgba(200,168,75,.35);
+                 style="background:radial-gradient(circle at 50% 30%,rgba(38,66,118,.45) 0%,
+                            transparent 55%),
+                        linear-gradient(160deg,#06060F 0%,#0A1428 35%,#0D1A33 60%,#06060F 100%);
+                        border:1px solid rgba(120,160,220,.28);
                         border-radius:10px;
                         display:flex;
                         flex-direction:column;
@@ -1001,17 +1001,17 @@
             </h2>
 
             <div id="stage-3-video-wrap" style="
-    background: rgba(0, 0, 0, 0.58);
+    background: rgba(8, 14, 28, 0.55);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     
-    border: 1px solid rgba(200,168,75,.18);
+    border: 1px solid rgba(140,175,225,.22);
     border-radius: 18px;
     padding: 20px;
 
     box-shadow:
-        0 0 40px rgba(0,0,0,.45),
-        inset 0 0 20px rgba(255,255,255,.02);
+        0 0 40px rgba(0,10,30,.5),
+        inset 0 0 20px rgba(150,190,255,.03);
 ">
                 <video id="stage-3-video"
                        autoplay muted loop playsinline
