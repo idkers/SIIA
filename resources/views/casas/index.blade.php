@@ -68,30 +68,6 @@
     .casa-card.oculta { display:none !important; }
     .casa-card-body { padding:1.5rem; display:flex; flex-direction:column; height:100%; }
 
-    /* Imagen con crossfade al pasar el cursor */
-    .casa-img-wrap {
-        position:relative;
-        width:100%;
-        aspect-ratio:3/4;
-        border-radius:12px;
-        overflow:hidden;
-        margin-bottom:1.5rem;
-        background:#0D0D1A;
-    }
-    .casa-img-wrap img {
-        position:absolute;
-        inset:0;
-        width:100%;
-        height:100%;
-        object-fit:contain;
-        padding:12px;
-        transition:opacity .45s ease;
-    }
-    .casa-img-primary  { opacity:1; }
-    .casa-img-secondary { opacity:0; }
-    .casa-card:hover .casa-img-primary   { opacity:0; }
-    .casa-card:hover .casa-img-secondary { opacity:1; }
-
     /* Modal */
     .modal-overlay {
         display:none; position:fixed; inset:0;
@@ -260,7 +236,7 @@
          style="padding:5rem 2rem;text-align:center;
                 background:
               
-                url('{{ asset('imagenes/casas/hero-casas.webp') }}');
+                url('{{ asset('imagenes/casas/hero-casas.png') }}');
                 background-size:cover;
                 background-position:center;
                 border-bottom:1px solid rgba(200,168,75,.15);">
@@ -284,8 +260,7 @@ $casas = [
 
     // ── INGENIERÍAS ──────────────────────────────────────────────────────
     [
-        'imagen'   => 'imagenes/casas/logistica.webp',
-        'imagen2'  => 'imagenes/casas/logistica-hover.webp',
+        'imagen'   => 'imagenes/casas/logistica.jpeg',
         'nombre'   => 'Logística',
         'dominio'  => 'Ingenierías',
         'color'    => '#0057B8',
@@ -298,7 +273,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/mantenimiento.webp',
-        'imagen2'  => 'imagenes/casas/mantenimiento-hover.webp',
         'nombre'   => 'Mantenimiento Industrial',
         'dominio'  => 'Ingenierías',
         'color'    => '#003A5D',
@@ -311,7 +285,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/ambiental.webp',
-        'imagen2'  => 'imagenes/casas/ambiental-hover.webp',
         'nombre'   => 'Ambiental y Sustentabilidad',
         'dominio'  => 'Ingenierías',
         'color'    => '#43B02A',
@@ -338,7 +311,6 @@ $casas = [
     // ── TECNOLOGÍAS DE LA INFORMACIÓN ────────────────────────────────────
     [
         'imagen'   => 'imagenes/casas/entornos.webp',
-        'imagen2'  => 'imagenes/casas/entornos-hover.webp',
         'nombre'   => 'Entornos Virtuales y Negocios Digitales',
         'dominio'  => 'Tecnologías de la Información',
         'color'    => '#6B3FA0',
@@ -351,7 +323,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/datos.webp',
-        'imagen2'  => 'imagenes/casas/datos-hover.webp',
         'nombre'   => 'Ciencia de Datos',
         'dominio'  => 'Tecnologías de la Información',
         'color'    => '#2E6F95',
@@ -364,7 +335,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/software.webp',
-        'imagen2'  => 'imagenes/casas/software-hover.webp',
         'nombre'   => 'Desarrollo de Software Multiplataforma',
         'dominio'  => 'Tecnologías de la Información',
         'color'    => '#2563EB',
@@ -377,7 +347,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/redes.webp',
-        'imagen2'  => 'imagenes/casas/redes-hover.webp',
         'nombre'   => 'Infraestructura de Redes Digitales',
         'dominio'  => 'Tecnologías de la Información',
         'color'    => '#0EA5A4',
@@ -390,7 +359,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/ia.webp',
-        'imagen2'  => 'imagenes/casas/ia-hover.webp',
         'nombre'   => 'Inteligencia Artificial',
         'dominio'  => 'Tecnologías de la Información',
         'color'    => '#8A2BE2',
@@ -405,7 +373,6 @@ $casas = [
     // ── INGENIERÍA INDUSTRIAL ─────────────────────────────────────────────
     [
         'imagen'   => 'imagenes/casas/automotriz.webp',
-        'imagen2'  => 'imagenes/casas/automotriz-hover.webp',
         'nombre'   => 'Automotriz',
         'dominio'  => 'Ingeniería Industrial',
         'color'    => '#DC2626',
@@ -418,7 +385,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/productivos.webp',
-        'imagen2'  => 'imagenes/casas/productivos-hover.webp',
         'nombre'   => 'Procesos Productivos',
         'dominio'  => 'Ingeniería Industrial',
         'color'    => '#ED8B00',
@@ -431,7 +397,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/plasticos.webp',
-        'imagen2'  => 'imagenes/casas/plasticos-hover.webp',
         'nombre'   => 'Moldeo de Plásticos',
         'dominio'  => 'Ingeniería Industrial',
         'color'    => '#9C3D0C',
@@ -444,7 +409,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/calzado.webp',
-        'imagen2'  => 'imagenes/casas/calzado-hover.webp',
         'nombre'   => 'Gestión y Productividad de Calzado',
         'dominio'  => 'Ingeniería Industrial',
         'color'    => '#C46210',
@@ -459,7 +423,6 @@ $casas = [
     // ── MECATRÓNICA ───────────────────────────────────────────────────────
     [
         'imagen'   => 'imagenes/casas/manufactura.webp',
-        'imagen2'  => 'imagenes/casas/manufactura-hover.webp',
         'nombre'   => 'Manufactura Flexible',
         'dominio'  => 'Mecatrónica',
         'color'    => '#7C3AED',
@@ -472,7 +435,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/optomecatronica.webp',
-        'imagen2'  => 'imagenes/casas/optomecatronica-hover.webp',
         'nombre'   => 'Optomecatrónica',
         'dominio'  => 'Mecatrónica',
         'color'    => '#A50034',
@@ -485,7 +447,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/automatizacion.webp',
-        'imagen2'  => 'imagenes/casas/automatizacion-hover.webp',
         'nombre'   => 'Automatización',
         'dominio'  => 'Mecatrónica',
         'color'    => '#FF3B30',
@@ -500,7 +461,6 @@ $casas = [
     // ── LICENCIATURAS ─────────────────────────────────────────────────────
     [
         'imagen'   => 'imagenes/casas/gastronomia2.webp',
-        'imagen2'  => 'imagenes/casas/gastronomia2-hover.webp',
         'nombre'   => 'Gastronomía',
         'dominio'  => 'Licenciaturas',
         'color'    => '#EBA42D',
@@ -513,7 +473,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/administracion.webp',
-        'imagen2'  => 'imagenes/casas/administracion-hover.webp',
         'nombre'   => 'Administración ',
         'dominio'  => 'Licenciaturas',
         'color'    => '#1F3D2B',
@@ -526,7 +485,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/turismo.webp',
-        'imagen2'  => 'imagenes/casas/turismo-hover.webp',
         'nombre'   => 'Turismo',
         'dominio'  => 'Licenciaturas',
         'color'    => '#00A3E0',
@@ -539,7 +497,6 @@ $casas = [
     ],
     [
         'imagen'   => 'imagenes/casas/mercadotecnia.webp',
-        'imagen2'  => 'imagenes/casas/mercadotecnia-hover.webp',
         'nombre'   => 'Negocios y Mercadotecnia',
         'dominio'  => 'Licenciaturas',
         'color'    => '#E4007C',
@@ -573,15 +530,14 @@ $casas = [
         <div class="casa-card" data-dominio="{{ $casa['dominio'] }}">
             <div style="height:8px;background:{{ $casa['color'] }};"></div>
             <div class="casa-card-body">
-                <div class="casa-img-wrap">
+                <div class="casa-img-wrap"
+                     style="width:100%;aspect-ratio:1;border-radius:12px;overflow:hidden;margin-bottom:1.5rem;">
                     @if(!empty($casa['imagen']))
-                        <img class="casa-img-primary" src="{{ asset($casa['imagen']) }}" alt="{{ $casa['nombre'] }}">
+                        <img src="{{ asset($casa['imagen']) }}" alt="{{ $casa['nombre'] }}"
+                             style="width:100%;height:100%;object-fit:cover;">
                     @else
                         <div style="width:100%;height:100%;background:#1D1D2B;
                                     border:1px dashed rgba(255,255,255,.15);border-radius:12px;"></div>
-                    @endif
-                    @if(!empty($casa['imagen2']))
-                        <img class="casa-img-secondary" src="{{ asset($casa['imagen2']) }}" alt="{{ $casa['nombre'] }}">
                     @endif
                 </div>
                 <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#707085;margin-bottom:.4rem;">{{ $casa['dominio'] }}</p>
