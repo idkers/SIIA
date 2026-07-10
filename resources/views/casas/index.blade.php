@@ -303,7 +303,7 @@ $casas = [
         'frase'    => 'La innovación mueve el futuro',
         'valores'  => ['Innovación', 'Responsabilidad', 'Compromiso con la Sustentabilidad'],
         'desc'     => 'Desarrollo de soluciones tecnológicas para una movilidad sustentable.',
-        'oferta'   => 'Vehículos Eléctricos: Aprenderás tecnología de batería, motores eléctricos y sistemas de propulsión limpia, Fuentes de Energía: Estudiarás sistemas de carga almacenamiento de energía y tecnologías alternativas, Diagnóstico en Sistemas de Electromoción: Dominarás herramientas para diagnosticar y reparar vehículos eléctricos, Seguridad Eléctrica en Sistemas de Electromovilidad: Garantizarás prácticas seguras en alta tensión y sistemas de batería, Mantenimiento a Sistemas de Electromovilidad: Te especializarás en mantener infraestructuras de carga y vehículos eléctricos',
+        'oferta'   => 'Vehículos Eléctricos: Aprenderás tecnología de batería motores eléctricos y sistemas de propulsión limpia, Fuentes de Energía: Estudiarás sistemas de carga almacenamiento de energía y tecnologías alternativas, Diagnóstico en Sistemas de Electromoción: Dominarás herramientas para diagnosticar y reparar vehículos eléctricos, Seguridad Eléctrica en Sistemas de Electromovilidad: Garantizarás prácticas seguras en alta tensión y sistemas de batería, Mantenimiento a Sistemas de Electromovilidad: Te especializarás en mantener infraestructuras de carga y vehículos eléctricos',
         'link'     => 'https://www.utleon.edu.mx/carrera/IDI',
         'nombrecasa' => 'ENERION',
     ],
