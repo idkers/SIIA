@@ -235,7 +235,7 @@
     {{-- ── Encabezado ── --}}
    <section class="hero-section"
          style="background:
-                url('{{ asset('imagenes/dominios/hero-dominios.png') }}');
+                url('{{ asset('imagenes/dominios/hero-dominios.webp') }}');
                 background-size:cover;
                 background-position:center;
                 border-bottom:1px solid rgba(200,168,75,.15);">

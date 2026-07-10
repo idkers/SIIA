@@ -71,6 +71,7 @@
         <a href="{{ route('dominios') }}">Dominios</a>
         <a href="{{ route('casas') }}">Casas</a>
         <a href="{{ route('ingresar') }}">Ingresar</a>
+        <a href="{{ route('admin') }}">Panel Admin</a>
     </div>
 
     <button class="hamburger"
@@ -90,6 +91,7 @@
     <a href="{{ route('dominios') }}">Dominios</a>
     <a href="{{ route('casas') }}">Casas</a>
     <a href="{{ route('ingresar') }}">Ingresar</a>
+    <a href="{{ route('admin') }}">Panel Admin</a>
 </div>
 
 {{-- ═══ HERO ═════════════════════════════════════════════════════════════════ --}}
@@ -204,6 +206,99 @@
         .identidad-img   { height:140px; }
         .identidad-titulo{ font-size:.85rem; }
     }
+    @media (max-width:768px){
+
+#dominios h2{
+    white-space:normal !important;
+}
+
+}
+    /* ===========================
+   RESPONSIVE CELULAR
+=========================== */
+@media (max-width:768px){
+
+    /* HERO */
+    #hero{
+        min-height:100vh !important;
+        height:auto !important;
+        justify-content:center;
+    }
+
+    /* Contenedor del texto */
+    #hero > div:last-child{
+        width:100% !important;
+        padding:6rem 2rem 3rem !important;
+
+        align-items:center !important;
+        text-align:center !important;
+
+        left:auto !important;
+        right:auto !important;
+    }
+
+    /* NOVA */
+    #hero h1{
+        font-size:clamp(4.2rem,20vw,7rem) !important;
+        line-height:.9 !important;
+        text-align:center !important;
+
+        width:100%;
+        overflow-wrap:anywhere;
+        word-break:break-word;
+    }
+
+    /* Texto debajo */
+    #hero p{
+        width:100%;
+        max-width:340px;
+        margin:auto;
+        text-align:center !important;
+
+        font-size:.95rem !important;
+        line-height:1.8;
+    }
+
+    /* Botones */
+    #hero .hero-buttons,
+    #hero > div:last-child > div{
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:1rem;
+    }
+
+    #hero a{
+        width:100%;
+        max-width:380px;
+        text-align:center;
+    }
+
+    /* Título DOMINIOS */
+    #dominios h1,
+    #dominios h2{
+
+        font-size:clamp(2rem,9vw,3.2rem) !important;
+
+        line-height:1.15 !important;
+
+        white-space:normal !important;
+
+        word-break:break-word;
+
+        overflow-wrap:anywhere;
+
+        text-align:center;
+    }
+
+    /* Subtítulo */
+    #dominios p{
+        max-width:95%;
+        margin:auto;
+    }
+
+}
 </style>
 
 <section id="identidad" style="background:rgba(6,6,15,0.15);padding:3rem 4rem;">
