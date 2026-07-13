@@ -75,6 +75,18 @@
         border-radius:20px; padding:.2rem .75rem; width:fit-content;
     }
 
+    .quiz-fase-img-wrap {
+        width:100%; max-width:280px; margin:0 auto;
+        border-radius:12px; overflow:hidden;
+        border:1px solid rgba(200,168,75,.25);
+        background:#0D0D1A;
+    }
+    .quiz-fase-img-wrap img { display:block; width:100%; height:160px; object-fit:cover; }
+    @media (max-width:600px) {
+        .quiz-fase-img-wrap { max-width:220px; }
+        .quiz-fase-img-wrap img { height:120px; }
+    }
+
     .quiz-pregunta {
         font-family:'Headland One',serif; font-size:1.4rem; color:#F0EAD8;
         line-height:1.5; max-width:680px;
@@ -227,7 +239,6 @@
     <a href="{{ route('casas') }}">Casas</a>
     <a href="{{ route('ingresar') }}">Ingresar</a>
 </div>
-
 {{-- ══════════════════════════════════════════════════════════════════════════
      AVISO DE PRIVACIDAD 
      ══════════════════════════════════════════════════════════════════════════ --}}
@@ -765,6 +776,8 @@
         </div>
     </div>
 </div>
+
+
 {{-- ═══ ETAPA 1: Bienvenida ═══════════════════════════════════════════════ --}}
 <div id="stage-1" class="stage">
     <div class="stage-wrap">
@@ -779,7 +792,7 @@
                     LA GARRA<br>SELECCIONADORA
                 </h1>
                 <p id="stage-1-desc" style="color:#F0EAD8;line-height:1.8;max-width:500px;margin-top:1.5rem;">
- Descubre qué casa académica representa mejor tus talentos, intereses y fortalezas dentro de la Universidad Tecnológica de León.
+     Descubre qué casa académica representa mejor tus talentos, intereses y fortalezas dentro de la Universidad Tecnológica de León.
                 </p>
                 <button id="stage-1-btn" onclick="abrirAviso()"
                         style="background:#C6A050;color:#06060F;border:none;padding:.9rem 2rem;
@@ -815,6 +828,11 @@
             {{-- Badge de fase --}}
             <div>
                 <span class="quiz-fase-badge" id="quiz-badge">Intereses Generales</span>
+            </div>
+
+            {{-- Imagen ilustrativa de la fase actual --}}
+            <div class="quiz-fase-img-wrap" id="quiz-fase-img-wrap">
+                <img id="quiz-fase-img" src="" alt="">
             </div>
 
             {{-- Pregunta --}}
@@ -1148,27 +1166,58 @@ const NIVEL3 = [
 ];
 
 // ── Catálogo de carreras con datos para resultado ────────────────────────
+// ── Imágenes ilustrativas por fase del quiz ──────────────────────────────
+// fase 1: única para las 25 preguntas generales.
+// fase 2: depende del área elegida (TEII = 30 preguntas, EA = 10 preguntas).
+// fase 3: única para las 80 preguntas de confirmación.
+const FASE_IMAGENES = {
+    1:        'imagenes/quiz/nivel1-general.webp',
+    '2-TEII': 'imagenes/quiz/nivel2-tecnologico.webp',
+    '2-EA':   'imagenes/quiz/nivel2-economico.webp',
+    3:        'imagenes/quiz/nivel3-confirmacion.webp',
+};
+
 const CARRERAS = {
-    DSM:      { nombre:'CODARIS', carrera:'Desarrollo de Software Multiplataforma', dominio:'Tecnologías de la Información', frase:'Cada línea construye el futuro',              imagen:'imagenes/casas/software.webp',       desc:'Crearás aplicaciones y sistemas que resuelven problemas reales, desde apps móviles hasta plataformas web de alta escala.' },
-    REDES:    { nombre:'HEXANET', carrera:'Infraestructura de Redes Digitales',     dominio:'Tecnologías de la Información', frase:'Conectar es avanzar',                         imagen:'imagenes/casas/redes.webp',          desc:'Diseñarás y administrarás las redes que mantienen conectadas a las empresas, garantizando seguridad y disponibilidad.' },
-    IA:       { nombre:'SYNTHERA',carrera:'Inteligencia Artificial',                dominio:'Tecnologías de la Información', frase:'Pensar más allá de los límites',               imagen:'imagenes/casas/ia.webp',             desc:'Desarrollarás sistemas inteligentes capaces de aprender, predecir y tomar decisiones para resolver problemas complejos.' },
-    DATOS:    { nombre:'DATHEON', carrera:'Ciencia de Datos',                       dominio:'Tecnologías de la Información', frase:'Los datos cuentan historias',                 imagen:'imagenes/casas/datos.webp',          desc:'Analizarás grandes volúmenes de información para extraer insights que guíen decisiones estratégicas en cualquier industria.' },
-    MULT:     { nombre:'NEXARIS', carrera:'Entornos Virtuales y Negocios Digitales',dominio:'Tecnologías de la Información', frase:'Imaginar es crear',                           imagen:'imagenes/casas/entornos.webp',       desc:'Crearás experiencias digitales interactivas, desde videojuegos hasta realidad virtual y contenido multimedia profesional.' },
-    MECAAUTO: { nombre:'AUTRON',  carrera:'Automatización',                         dominio:'Mecatrónica',                   frase:'La eficiencia es inteligencia aplicada',       imagen:'imagenes/casas/automatizacion.webp', desc:'Automatizarás procesos industriales combinando programación, electrónica y sistemas de control para crear fábricas inteligentes.' },
-    MECAOPTO: { nombre:'PRISMARA',carrera:'Optomecatrónica',                        dominio:'Mecatrónica',                   frase:'La precisión guía el camino',                 imagen:'imagenes/casas/optomecatronica.webp',desc:'Trabajarás con tecnología óptica y sistemas electrónicos de alta precisión para aplicaciones industriales y de medición.' },
-    MECASMF:  { nombre:'FLEXION', carrera:'Manufactura Flexible',                   dominio:'Mecatrónica',                   frase:'Adaptarse es evolucionar',                    imagen:'imagenes/casas/manufactura.webp',    desc:'Diseñarás sistemas de producción automatizados que se adaptan a diferentes productos con máxima eficiencia.' },
-    PRO:      { nombre:'OPERION', carrera:'Procesos Productivos',                   dominio:'Ingeniería Industrial',         frase:'La mejora nunca termina',                     imagen:'imagenes/casas/productivos.webp',    desc:'Optimizarás operaciones industriales aplicando metodologías de mejora continua para maximizar productividad y calidad.' },
-    AUTO:     { nombre:'PISTORIA',carrera:'Automotriz',                             dominio:'Ingeniería Industrial',         frase:'Movimiento con propósito',                    imagen:'imagenes/casas/automotriz.webp',     desc:'Participarás en procesos de fabricación automotriz, mejorando calidad, eficiencia y adoptando nuevas tecnologías del sector.' },
-    PLAS:     { nombre:'POLYMOR', carrera:'Moldeo de Plásticos',                    dominio:'Ingeniería Industrial',         frase:'La forma sigue a la innovación',               imagen:'imagenes/casas/plasticos.webp',      desc:'Diseñarás y fabricarás productos plásticos innovadores utilizando tecnologías avanzadas de transformación de materiales.' },
-    CALZ:     { nombre:'SENDORIA',carrera:'Gestión y Productividad de Calzado',     dominio:'Ingeniería Industrial',         frase:'Cada paso deja huella',                       imagen:'imagenes/casas/calzado.webp',        desc:'Mejorarás los procesos de producción de calzado combinando creatividad, calidad y eficiencia operacional.' },
-    MANT:     { nombre:'ENGRAVIA',carrera:'Mantenimiento Industrial',               dominio:'Ingenierías',                   frase:'La excelencia se construye cada día',          imagen:'imagenes/casas/mantenimiento.webp',  desc:'Mantendrás maquinaria industrial en óptimas condiciones utilizando técnicas predictivas y metodologías avanzadas.' },
-    AMBI:     { nombre:'SYLVARA', carrera:'Ambiental y Sustentabilidad',            dominio:'Ingenierías',                   frase:'Proteger hoy para transformar mañana',         imagen:'imagenes/casas/ambiental.webp',      desc:'Desarrollarás soluciones ambientales sostenibles, evaluando impactos y creando tecnologías que cuidan el planeta.' },
-    ELECTRO:  { nombre:'VOLTARA', carrera:'Electromovilidad',                       dominio:'Ingenierías',                   frase:'El futuro se mueve en silencio',               imagen:'imagenes/casas/automotriz.webp',     desc:'Trabajarás con vehículos eléctricos y sistemas de transporte sustentable, liderando la transición energética del sector.' },
-    LOG:      { nombre:'NAVENTOR',carrera:'Logística',                              dominio:'Ingenierías',                   frase:'Toda ruta tiene un destino',                  imagen:'imagenes/casas/logistica.webp',      desc:'Coordinarás cadenas de suministro complejas, optimizando rutas, tiempos y costos para conectar empresas con clientes.' },
-    ADM:      { nombre:'LAUREON', carrera:'Administración',                         dominio:'Licenciaturas',                 frase:'Liderar para construir',                       imagen:'imagenes/casas/administracion.webp', desc:'Dirigirás organizaciones gestionando recursos humanos, financieros y operativos para alcanzar objetivos estratégicos.' },
-    MKT:      { nombre:'NOVARIS', carrera:'Negocios y Mercadotecnia',               dominio:'Licenciaturas',                 frase:'Las ideas iluminan el cambio',                imagen:'imagenes/casas/mercadotecnia.webp',  desc:'Analizarás mercados, diseñarás estrategias comerciales y desarrollarás productos que conectan marcas con consumidores.' },
-    GAST:     { nombre:'FLAMORIA',carrera:'Gastronomía',                            dominio:'Licenciaturas',                 frase:'Crear experiencias para recordar',             imagen:'imagenes/casas/gastronomia2.webp',   desc:'Crearás experiencias culinarias extraordinarias combinando técnica, creatividad y pasión por el arte gastronómico.' },
-    TUR:      { nombre:'GLOBARIS',carrera:'Turismo',                                dominio:'Licenciaturas',                 frase:'Descubrir conecta culturas',                  imagen:'imagenes/casas/turismo.webp',        desc:'Diseñarás y gestionarás experiencias turísticas que conectan a personas con culturas, destinos y experiencias únicas.' },
+    DSM:      { nombre:'CODARIS', carrera:'Desarrollo de Software Multiplataforma', dominio:'Tecnologías de la Información', frase:'Cada línea construye el futuro',              imagen:'imagenes/casas/software.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Codaris, los Arquitectos del Código. Eres una persona que convierte ideas abstractas en herramientas reales mediante una combinación única de lógica afilada y curiosidad constante. Prosperas en ambientes que cambian rápido, utilizando tu capacidad de aprender nuevas tecnologías para resolver cualquier reto sin perder el rumbo. Tu mayor virtud es la persistencia: entiendes la programación como un lenguaje vivo donde cada error es una pista y cada solución abre la puerta a algo más grande.' },
+    REDES:    { nombre:'HEXANET', carrera:'Infraestructura de Redes Digitales',     dominio:'Tecnologías de la Información', frase:'Conectar es avanzar',                         imagen:'imagenes/casas/redes.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Hexanet, los Guardianes de la Conexión. Eres una persona que mantiene el mundo unido mediante una combinación única de orden metódico y visión estructural. Prosperas en ambientes donde la estabilidad importa, utilizando tu mirada atenta para anticipar fallas antes de que ocurran. Tu mayor virtud es la responsabilidad: entiendes la conectividad como el sistema nervioso de toda organización, donde la seguridad y la disponibilidad se unen para que nada se detenga.' },
+    IA:       { nombre:'SYNTHERA',carrera:'Inteligencia Artificial',                dominio:'Tecnologías de la Información', frase:'Pensar más allá de los límites',               imagen:'imagenes/casas/ia.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Synthera, los Forjadores de Mentes Digitales. Eres una persona que desafía lo establecido mediante una combinación única de pensamiento analítico y creatividad audaz. Prosperas en ambientes de investigación constante, utilizando tu curiosidad para enseñar a las máquinas a razonar como nunca antes. Tu mayor virtud es la visión de futuro: entiendes la inteligencia artificial como una herramienta para expandir lo posible, donde los datos y la imaginación se unen para dar forma a lo que viene.' },
+    DATOS:    { nombre:'DATHEON', carrera:'Ciencia de Datos',                       dominio:'Tecnologías de la Información', frase:'Los datos cuentan historias',                 imagen:'imagenes/casas/datos.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Datheon, los Oráculos de la Información. Eres una persona que encuentra sentido donde otros solo ven números mediante una combinación única de pensamiento crítico y paciencia analítica. Prosperas en ambientes llenos de información compleja, utilizando tu instinto para detectar patrones que guían decisiones importantes. Tu mayor virtud es la objetividad: entiendes los datos como historias esperando ser contadas, donde la evidencia y la intuición se unen para revelar lo que realmente importa.' },
+    MULT:     { nombre:'NEXARIS', carrera:'Entornos Virtuales y Negocios Digitales',dominio:'Tecnologías de la Información', frase:'Imaginar es crear',                           imagen:'imagenes/casas/entornos.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Nexaris, los Tejedores de Mundos. Eres una persona que da vida a realidades nuevas mediante una combinación única de imaginación desbordante y dominio técnico. Prosperas en ambientes donde la creatividad no tiene límites, utilizando tu sensibilidad estética para construir experiencias que la gente recuerda. Tu mayor virtud es la innovación: entiendes lo digital como un lienzo infinito, donde el arte y la tecnología se unen para crear mundos que antes solo existían en la mente.' },
+    MECAAUTO: { nombre:'AUTRON',  carrera:'Automatización',                         dominio:'Mecatrónica',                   frase:'La eficiencia es inteligencia aplicada',       imagen:'imagenes/casas/automatizacion.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Autron, los Maestros del Movimiento Autónomo. Eres una persona que convierte procesos complicados en sistemas fluidos mediante una combinación única de precisión técnica y pensamiento lógico. Prosperas en ambientes industriales dinámicos, utilizando tu ingenio para que máquinas y procesos trabajen en perfecta armonía. Tu mayor virtud es la eficiencia: entiendes la automatización como la orquesta silenciosa detrás de cada fábrica, donde el control y la innovación se unen para que todo funcione sin fricción.' },
+    MECAOPTO: { nombre:'PRISMARA',carrera:'Optomecatrónica',                        dominio:'Mecatrónica',                   frase:'La precisión guía el camino',                 imagen:'imagenes/casas/optomecatronica.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Prismara, los Artesanos de la Luz. Eres una persona que trabaja en los detalles más finos mediante una combinación única de rigor técnico y sensibilidad casi artística. Prosperas en ambientes que exigen exactitud milimétrica, utilizando tu paciencia para dominar tecnologías que combinan óptica y electrónica. Tu mayor virtud es la precisión: entiendes la luz y los sensores como herramientas de verdad, donde la ciencia y el detalle se unen para medir lo que a simple vista es invisible.' },
+    MECASMF:  { nombre:'FLEXION', carrera:'Manufactura Flexible',                   dominio:'Mecatrónica',                   frase:'Adaptarse es evolucionar',                    imagen:'imagenes/casas/manufactura.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Flexion, los Arquitectos de la Adaptación. Eres una persona que encuentra soluciones donde los procesos parecen rígidos mediante una combinación única de pensamiento sistémico y creatividad práctica. Prosperas en ambientes de producción cambiante, utilizando tu capacidad de integrar mecánica, electrónica y software en un mismo diseño. Tu mayor virtud es la versatilidad: entiendes la manufactura como un organismo que debe evolucionar, donde la tecnología y la adaptabilidad se unen para responder a lo que el mercado necesita.' },
+    PRO:      { nombre:'OPERION', carrera:'Procesos Productivos',                   dominio:'Ingeniería Industrial',         frase:'La mejora nunca termina',                     imagen:'imagenes/casas/productivos.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Operion, los Guardianes de la Eficiencia. Eres una persona que ve oportunidades de mejora donde otros ven rutina mediante una combinación única de observación aguda y disciplina metódica. Prosperas en ambientes de producción constante, utilizando tu mirada analítica para eliminar lo que sobra y potenciar lo que funciona. Tu mayor virtud es la mejora continua: entiendes cada proceso como algo perfectible, donde el orden y la productividad se unen para elevar la calidad de todo lo que se fabrica.' },
+    AUTO:     { nombre:'PISTORIA',carrera:'Automotriz',                             dominio:'Ingeniería Industrial',         frase:'Movimiento con propósito',                    imagen:'imagenes/casas/automotriz.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Pistoria, los Forjadores del Movimiento. Eres una persona que se apasiona por lo que avanza mediante una combinación única de precisión técnica y espíritu competitivo. Prosperas en ambientes de manufactura exigente, utilizando tu liderazgo para elevar la calidad en cada etapa de producción. Tu mayor virtud es el compromiso: entiendes la industria automotriz como un motor en constante evolución, donde la innovación y la eficiencia se unen para llevar el transporte al siguiente nivel.' },
+    PLAS:     { nombre:'POLYMOR', carrera:'Moldeo de Plásticos',                    dominio:'Ingeniería Industrial',         frase:'La forma sigue a la innovación',               imagen:'imagenes/casas/plasticos.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Polymor, los Escultores de la Materia. Eres una persona que transforma lo maleable en algo útil mediante una combinación única de precisión técnica y sentido práctico. Prosperas en ambientes de manufactura creativa, utilizando tu atención al detalle para dar forma a productos que la gente usa todos los días. Tu mayor virtud es la innovación aplicada: entiendes el diseño de materiales como un arte funcional, donde la tecnología y la creatividad se unen para moldear literalmente el futuro.' },
+    CALZ:     { nombre:'SENDORIA',carrera:'Gestión y Productividad de Calzado',     dominio:'Ingeniería Industrial',         frase:'Cada paso deja huella',                       imagen:'imagenes/casas/calzado.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Sendoria, los Artesanos del Paso. Eres una persona que cuida cada detalle de un proceso mediante una combinación única de sensibilidad creativa y enfoque en la calidad. Prosperas en ambientes donde tradición e industria se encuentran, utilizando tu ojo crítico para mejorar cada etapa de producción. Tu mayor virtud es el trabajo en equipo: entiendes el calzado como una industria que combina arte y eficiencia, donde el diseño y la productividad se unen para dejar huella en cada paso.' },
+    MANT:     { nombre:'ENGRAVIA',carrera:'Mantenimiento Industrial',               dominio:'Ingenierías',                   frase:'La excelencia se construye cada día',          imagen:'imagenes/casas/mantenimiento.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Engravia, los Guardianes del Engranaje. Eres una persona que previene el caos antes de que suceda mediante una combinación única de precisión técnica y responsabilidad constante. Prosperas en ambientes industriales exigentes, utilizando tu capacidad de diagnóstico para mantener todo funcionando sin fallas. Tu mayor virtud es el compromiso: entiendes el mantenimiento como el pulso silencioso de toda industria, donde la disciplina y la anticipación se unen para que la excelencia nunca se detenga.' },
+    AMBI:     { nombre:'SYLVARA', carrera:'Ambiental y Sustentabilidad',            dominio:'Ingenierías',                   frase:'Proteger hoy para transformar mañana',         imagen:'imagenes/casas/ambiental.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Sylvara, los Custodios de la Tierra. Eres una persona que piensa en las próximas generaciones mediante una combinación única de conciencia ética y rigor científico. Prosperas en ambientes donde la sustentabilidad es prioridad, utilizando tu sentido de responsabilidad para diseñar soluciones que cuidan el entorno. Tu mayor virtud es el compromiso social: entiendes el planeta como un sistema delicado, donde la ciencia y la ética se unen para transformar el presente sin comprometer el mañana.' },
+    ELECTRO:  { nombre:'VOLTARA', carrera:'Electromovilidad',                       dominio:'Ingenierías',                   frase:'El futuro se mueve en silencio',               imagen:'imagenes/casas/automotriz.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Voltara, los Pioneros del Silencio Eléctrico. Eres una persona que ve hacia adelante mediante una combinación única de mentalidad innovadora y rigor técnico. Prosperas en ambientes de transformación tecnológica, utilizando tu visión de futuro para liderar la transición hacia una movilidad más limpia. Tu mayor virtud es la audacia: entiendes la electromovilidad como el próximo gran cambio de la industria, donde la sustentabilidad y la tecnología se unen para mover al mundo sin hacer ruido.' },
+    LOG:      { nombre:'NAVENTOR',carrera:'Logística',                              dominio:'Ingenierías',                   frase:'Toda ruta tiene un destino',                  imagen:'imagenes/casas/logistica.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Naventor, los Navegantes de la Ruta. Eres una persona que encuentra el camino más eficiente mediante una combinación única de organización estratégica y capacidad de reacción. Prosperas en ambientes donde el tiempo y los recursos son clave, utilizando tu visión global para coordinar cadenas de suministro complejas. Tu mayor virtud es la responsabilidad: entiendes la logística como el pulso invisible que mueve al mundo, donde la planeación y la agilidad se unen para que todo llegue a su destino.' },
+    ADM:      { nombre:'LAUREON', carrera:'Administración',                         dominio:'Licenciaturas',                 frase:'Liderar para construir',                       imagen:'imagenes/casas/administracion.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Laureon, los Estrategas del Liderazgo. Eres una persona que organiza el caos y lo convierte en resultados mediante una combinación única de visión estratégica y sentido de responsabilidad. Prosperas en ambientes donde se necesita dirección clara, utilizando tu capacidad de coordinar personas y recursos hacia un mismo objetivo. Tu mayor virtud es el liderazgo: entiendes la administración como el arte de construir estructuras sólidas, donde la ética y la estrategia se unen para hacer que las organizaciones crezcan.' },
+    MKT:      { nombre:'NOVARIS', carrera:'Negocios y Mercadotecnia',               dominio:'Licenciaturas',                 frase:'Las ideas iluminan el cambio',                imagen:'imagenes/casas/mercadotecnia.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Novaris, los Visionarios del Mercado. Eres una persona que conecta ideas con personas mediante una combinación única de creatividad estratégica y sensibilidad social. Prosperas en ambientes cambiantes y competitivos, utilizando tu intuición para anticipar lo que el mercado va a querer antes que nadie. Tu mayor virtud es la innovación: entiendes los negocios como un espacio de constante reinvención, donde la comunicación y la estrategia se unen para transformar ideas en marcas que la gente recuerda.' },
+    GAST:     { nombre:'FLAMORIA',carrera:'Gastronomía',                            dominio:'Licenciaturas',                 frase:'Crear experiencias para recordar',             imagen:'imagenes/casas/gastronomia2.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Flamoria, los Alquimistas del Sabor. Eres una persona que transforma el caos en excelencia mediante una combinación única de creatividad vibrante y disciplina técnica. Prosperas en ambientes dinámicos, utilizando tu instinto práctico para resolver cualquier reto al instante. Tu mayor virtud es el espíritu de servicio: entiendes la cocina como un arte noble donde la precisión y el cuidado se unen para crear experiencias que nutren el alma.' },
+    TUR:      { nombre:'GLOBARIS',carrera:'Turismo',                                dominio:'Licenciaturas',                 frase:'Descubrir conecta culturas',                  imagen:'imagenes/casas/turismo.webp',
+        desc:'Tu perfil muestra una afinidad natural con la casa Globaris, los Guardianes del Descubrimiento. Eres una persona que conecta a las personas con el mundo mediante una combinación única de calidez humana y espíritu aventurero. Prosperas en ambientes diversos y en constante movimiento, utilizando tu sensibilidad cultural para crear experiencias memorables. Tu mayor virtud es la empatía: entiendes el turismo como un puente entre culturas, donde la hospitalidad y el descubrimiento se unen para transformar cada viaje en un recuerdo que perdura.' },
 };
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -1235,6 +1284,11 @@ function renderPregunta() {
     const faseMap = { 1:'Intereses Generales', 2:'Actividades Específicas', 3:'Confirmación' };
     document.getElementById('quiz-fase-label').textContent = `Fase ${estado.fase} de 3`;
     document.getElementById('quiz-badge').textContent = faseMap[estado.fase] || '';
+
+    // Imagen ilustrativa según la fase (y el área elegida si es fase 2)
+    const imgKey = estado.fase === 2 ? ('2-' + estado.areaElegida) : estado.fase;
+    const imgSrc = FASE_IMAGENES[imgKey];
+    document.getElementById('quiz-fase-img').src = imgSrc ? '/' + imgSrc : '';
 
     // Texto pregunta
     document.getElementById('quiz-texto').textContent = p.texto;
