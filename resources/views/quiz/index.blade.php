@@ -38,8 +38,12 @@
 
     /* ── Etapa 1 ── */
     #stage-1-inner { display:grid; grid-template-columns:1fr 1fr;
-                     align-items:center; min-height:550px; padding:4rem; gap:2rem; }
+                     align-items:center; min-height:550px; padding:4rem; gap:2rem;
+                     overflow:hidden; }
     #stage-1-title { font-size:4rem; }
+    #stage-1-img-wrap { max-width:100%; overflow:hidden; }
+    #stage-1-img { display:block; width:100%; max-width:380px; height:auto;
+                   object-fit:contain; margin:0 auto; }
     #stage-1-inner.mobile-layout { grid-template-columns:1fr !important; padding:2rem 1rem !important;
         min-height:auto !important; text-align:center !important; overflow:hidden !important; }
     #stage-1-inner.mobile-layout #stage-1-title { font-size:clamp(1.6rem,8vw,2.4rem) !important; }
@@ -293,12 +297,7 @@
                     LA GARRA<br>SELECCIONADORA
                 </h1>
                 <p id="stage-1-desc" style="color:#F0EAD8;line-height:1.8;max-width:500px;margin-top:1.5rem;">
-                    Responde honestamente 25 preguntas generales. Según tus respuestas, el sistema
-                    identificará tu área de afinidad y te hará preguntas más específicas para
-                    descubrir qué casa académica representa mejor tu vocación.
-                </p>
-                <p style="color:#B0A898;font-size:.82rem;margin-top:.75rem;">
-                    ⏱ Tiempo estimado: 10–15 minutos &nbsp;·&nbsp; 📋 Sin respuestas incorrectas
+ Descubre qué casa académica representa mejor tus talentos, intereses y fortalezas dentro de la Universidad Tecnológica de León.
                 </p>
                 <button id="stage-1-btn" onclick="abrirAviso()"
                         style="background:#C6A050;color:#06060F;border:none;padding:.9rem 2rem;
