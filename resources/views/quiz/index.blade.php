@@ -440,11 +440,6 @@
                                    padding:.9rem 2rem;cursor:pointer;border-radius:4px;font-family:inherit;">
                         Compartir resultado
                     </button>
-                    <button onclick="reiniciarQuiz()"
-                            style="background:transparent;border:1px solid rgba(200,168,75,.3);color:#C8A84B;
-                                   padding:.9rem 2rem;cursor:pointer;border-radius:4px;font-family:inherit;">
-                        Repetir quiz
-                    </button>
                 </div>
             </div>
 
@@ -503,10 +498,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 // ════════════════════════════════════════════════════════════════════════════
-//  DATOS DEL QUIZ — extraídos del Excel
+//  DATOS DEL QUIZ — extraídos del Excel (OV_UTL_Final.xlsx)
 // ════════════════════════════════════════════════════════════════════════════
 
-// ── NIVEL 1: 25 preguntas generales (discrimina TI vs EA) ────────────────
+// ── NIVEL 1: 25 preguntas generales (discrimina TEII vs EA) — hoja "Encuesta área" ──
 const NIVEL1 = [
     { id:1,  texto:'Me interesa entender cómo funcionan las cosas',           dim:'TEC', grupo:'TEII' },
     { id:2,  texto:'Me gusta analizar información o datos',                    dim:'ANA', grupo:'TEII' },
@@ -535,12 +530,11 @@ const NIVEL1 = [
     { id:25, texto:'Me interesa crear contenido o experiencias',               dim:'CRE', grupo:'EA'   },
 ];
 
-// Máximos nivel 1: TEII→60pts (15 preguntas×4), EA→40pts (13 preguntas×4)
-// (ajustados según el Excel: TEII 15 preguntas, EA 10 preguntas del nivel 1)
-const MAX_TEII_N1 = 60;  // 15 preguntas × 4
-const MAX_EA_N1   = 40;  // 10 preguntas × 4
+// Máximos nivel 1 (hoja "Nivel 1 y 2"): TEII 15 preguntas × 4 = 60, EA 10 preguntas × 4 = 40
+const MAX_TEII_N1 = 60;
+const MAX_EA_N1   = 40;
 
-// ── NIVEL 2-TI: 30 preguntas para Tecnologías (si gana TEII) ─────────────
+// ── NIVEL 2-TI: 30 preguntas — hoja "Encuesta2 Carreras" (si gana TEII) ─────────────
 const NIVEL2_TI = [
     { id:26,  texto:'Configurar redes o sistemas de comunicación',                             carrera:'REDES'    },
     { id:27,  texto:'Administrar redes y garantizar la conexión entre equipos',                carrera:'REDES'    },
@@ -574,7 +568,7 @@ const NIVEL2_TI = [
     { id:55,  texto:'Diseñar o mantener sistemas de electromovilidad',                         carrera:'ELECTRO'  },
 ];
 
-// ── NIVEL 2-EA: 10 preguntas para Económico-Administrativo ───────────────
+// ── NIVEL 2-EA: 10 preguntas — hoja "Encuesta2 Carreras" (si gana EA) ───────────
 const NIVEL2_EA = [
     { id:56, texto:'Optimizar rutas o tiempos de distribución de productos', carrera:'LOG'  },
     { id:57, texto:'Organizar procesos de transporte y logística',            carrera:'LOG'  },
@@ -586,6 +580,90 @@ const NIVEL2_EA = [
     { id:63, texto:'Diseñar menús o servicios gastronómicos',                 carrera:'GAST' },
     { id:64, texto:'Organizar eventos o experiencias turísticas',             carrera:'TUR'  },
     { id:65, texto:'Planear actividades para visitantes o turistas',          carrera:'TUR'  },
+];
+
+// ── NIVEL 3: 80 preguntas de confirmación — hoja "Encuesta3 Confirmación" (todas las carreras) ──
+const NIVEL3 = [
+    { id:66, texto:'Me visualizo administrando redes y sistemas de comunicación digital.', carrera:'REDES' },
+    { id:67, texto:'Me interesa garantizar que los equipos y sistemas permanezcan conectados correctamente.', carrera:'REDES' },
+    { id:68, texto:'Disfrutaría resolver problemas relacionados con la conectividad y transmisión de información.', carrera:'REDES' },
+    { id:69, texto:'Me gustaría especializarme en tecnologías de redes y comunicación.', carrera:'REDES' },
+    { id:70, texto:'Me interesa desarrollar sistemas capaces de aprender y tomar decisiones.', carrera:'IA' },
+    { id:71, texto:'Me visualizo trabajando en proyectos de inteligencia artificial.', carrera:'IA' },
+    { id:72, texto:'Disfrutaría utilizar algoritmos para resolver problemas complejos.', carrera:'IA' },
+    { id:73, texto:'Me gustaría participar en el desarrollo de tecnologías innovadoras basadas en IA.', carrera:'IA' },
+    { id:74, texto:'Me visualizo creando aplicaciones o sistemas informáticos.', carrera:'DSM' },
+    { id:75, texto:'Disfrutaría resolver problemas mediante programación.', carrera:'DSM' },
+    { id:76, texto:'Me interesa aprender nuevos lenguajes y tecnologías de desarrollo.', carrera:'DSM' },
+    { id:77, texto:'Me gustaría participar en proyectos de desarrollo de software.', carrera:'DSM' },
+    { id:78, texto:'Me interesa analizar información para apoyar la toma de decisiones.', carrera:'DATOS' },
+    { id:79, texto:'Disfruto encontrar patrones y tendencias en grandes volúmenes de datos.', carrera:'DATOS' },
+    { id:80, texto:'Me visualizo trabajando con herramientas de análisis de datos.', carrera:'DATOS' },
+    { id:81, texto:'Me gustaría generar información útil a partir de bases de datos.', carrera:'DATOS' },
+    { id:82, texto:'Me interesa crear experiencias digitales innovadoras.', carrera:'MULT' },
+    { id:83, texto:'Me visualizo desarrollando contenido multimedia e interactivo.', carrera:'MULT' },
+    { id:84, texto:'Disfrutaría diseñar entornos digitales para usuarios.', carrera:'MULT' },
+    { id:85, texto:'Me gustaría participar en proyectos de innovación digital.', carrera:'MULT' },
+    { id:86, texto:'Me interesa automatizar procesos mediante tecnología.', carrera:'MECAAUTO' },
+    { id:87, texto:'Me visualizo programando sistemas automáticos y robots.', carrera:'MECAAUTO' },
+    { id:88, texto:'Disfrutaría optimizar procesos industriales mediante automatización.', carrera:'MECAAUTO' },
+    { id:89, texto:'Me gustaría trabajar en proyectos de control y automatización.', carrera:'MECAAUTO' },
+    { id:90, texto:'Me interesa trabajar con sistemas que integren óptica y electrónica.', carrera:'MECAOPTO' },
+    { id:91, texto:'Me visualizo realizando mantenimiento a sistemas optoelectrónicos.', carrera:'MECAOPTO' },
+    { id:92, texto:'Disfrutaría utilizar sensores y tecnologías avanzadas de medición.', carrera:'MECAOPTO' },
+    { id:93, texto:'Me gustaría especializarme en tecnologías optoelectrónicas.', carrera:'MECAOPTO' },
+    { id:94, texto:'Me interesa integrar componentes mecánicos, electrónicos y computacionales.', carrera:'MECASMF' },
+    { id:95, texto:'Me visualizo trabajando en procesos de manufactura automatizada.', carrera:'MECASMF' },
+    { id:96, texto:'Disfrutaría diseñar soluciones para mejorar la producción industrial.', carrera:'MECASMF' },
+    { id:97, texto:'Me gustaría participar en la implementación de sistemas inteligentes de manufactura.', carrera:'MECASMF' },
+    { id:98, texto:'Me interesa mejorar la eficiencia de procesos productivos.', carrera:'PRO' },
+    { id:99, texto:'Me visualizo coordinando operaciones industriales.', carrera:'PRO' },
+    { id:100, texto:'Disfrutaría identificar oportunidades de mejora continua.', carrera:'PRO' },
+    { id:101, texto:'Me gustaría contribuir a incrementar la productividad de una organización.', carrera:'PRO' },
+    { id:102, texto:'Me interesa participar en la fabricación de componentes automotrices.', carrera:'AUTO' },
+    { id:103, texto:'Me visualizo trabajando en procesos relacionados con la industria automotriz.', carrera:'AUTO' },
+    { id:104, texto:'Disfrutaría mejorar la calidad y productividad en este sector.', carrera:'AUTO' },
+    { id:105, texto:'Me gustaría formar parte de proyectos de innovación automotriz.', carrera:'AUTO' },
+    { id:106, texto:'Me interesa el desarrollo de productos plásticos.', carrera:'PLAS' },
+    { id:107, texto:'Me visualizo trabajando en procesos de transformación de materiales.', carrera:'PLAS' },
+    { id:108, texto:'Disfrutaría participar en la fabricación de nuevos productos.', carrera:'PLAS' },
+    { id:109, texto:'Me gustaría especializarme en tecnologías de manufactura de plásticos.', carrera:'PLAS' },
+    { id:110, texto:'Me interesa mejorar procesos de fabricación de calzado.', carrera:'CALZ' },
+    { id:111, texto:'Me visualizo participando en proyectos de diseño y producción.', carrera:'CALZ' },
+    { id:112, texto:'Disfrutaría contribuir a elevar la calidad de productos del sector.', carrera:'CALZ' },
+    { id:113, texto:'Me gustaría trabajar en la industria del calzado.', carrera:'CALZ' },
+    { id:114, texto:'Me interesa mantener equipos y maquinaria en óptimas condiciones.', carrera:'MANT' },
+    { id:115, texto:'Me visualizo resolviendo fallas técnicas en sistemas industriales.', carrera:'MANT' },
+    { id:116, texto:'Disfrutaría diagnosticar problemas en maquinaria.', carrera:'MANT' },
+    { id:117, texto:'Me gustaría asegurar el funcionamiento eficiente de los procesos productivos.', carrera:'MANT' },
+    { id:118, texto:'Me interesa contribuir al cuidado y conservación del medio ambiente.', carrera:'AMBI' },
+    { id:119, texto:'Me visualizo desarrollando proyectos de sustentabilidad.', carrera:'AMBI' },
+    { id:120, texto:'Disfrutaría evaluar impactos ambientales y proponer soluciones.', carrera:'AMBI' },
+    { id:121, texto:'Me gustaría participar en iniciativas que favorezcan el uso responsable de los recursos.', carrera:'AMBI' },
+    { id:122, texto:'Me interesa trabajar con vehículos eléctricos y tecnologías sustentables de transporte.', carrera:'ELECTRO' },
+    { id:123, texto:'Me visualizo participando en proyectos de electromovilidad.', carrera:'ELECTRO' },
+    { id:124, texto:'Disfrutaría diseñar o mejorar sistemas de transporte eléctrico.', carrera:'ELECTRO' },
+    { id:125, texto:'Me gustaría contribuir al desarrollo de soluciones de movilidad sustentable.', carrera:'ELECTRO' },
+    { id:126, texto:'Me interesa optimizar la distribución y transporte de productos.', carrera:'LOG' },
+    { id:127, texto:'Me visualizo coordinando operaciones logísticas.', carrera:'LOG' },
+    { id:128, texto:'Disfrutaría organizar rutas, tiempos y recursos.', carrera:'LOG' },
+    { id:129, texto:'Me gustaría contribuir a mejorar la eficiencia de las cadenas de suministro.', carrera:'LOG' },
+    { id:130, texto:'Me interesa dirigir y coordinar recursos dentro de una organización.', carrera:'ADM' },
+    { id:131, texto:'Me visualizo tomando decisiones administrativas.', carrera:'ADM' },
+    { id:132, texto:'Disfrutaría liderar equipos de trabajo.', carrera:'ADM' },
+    { id:133, texto:'Me gustaría contribuir al cumplimiento de los objetivos de una empresa.', carrera:'ADM' },
+    { id:134, texto:'Me interesa analizar el comportamiento de consumidores y mercados.', carrera:'MKT' },
+    { id:135, texto:'Me visualizo diseñando estrategias comerciales y de marketing.', carrera:'MKT' },
+    { id:136, texto:'Disfrutaría desarrollar nuevos productos o servicios.', carrera:'MKT' },
+    { id:137, texto:'Me gustaría participar en proyectos de innovación y crecimiento empresarial.', carrera:'MKT' },
+    { id:138, texto:'Me interesa desarrollar habilidades culinarias de nivel profesional.', carrera:'GAST' },
+    { id:139, texto:'Me visualizo creando experiencias gastronómicas para las personas.', carrera:'GAST' },
+    { id:140, texto:'Disfrutaría trabajar en ambientes relacionados con alimentos y bebidas.', carrera:'GAST' },
+    { id:141, texto:'Me gustaría emprender o dirigir proyectos gastronómicos.', carrera:'GAST' },
+    { id:142, texto:'Me interesa diseñar experiencias turísticas para diferentes públicos.', carrera:'TUR' },
+    { id:143, texto:'Me visualizo trabajando en el sector turístico.', carrera:'TUR' },
+    { id:144, texto:'Disfrutaría promover destinos, cultura y patrimonio.', carrera:'TUR' },
+    { id:145, texto:'Me gustaría contribuir al desarrollo turístico de una región.', carrera:'TUR' },
 ];
 
 // ── Catálogo de carreras con datos para resultado ────────────────────────
@@ -616,10 +694,10 @@ const CARRERAS = {
 //  ESTADO DEL QUIZ
 // ════════════════════════════════════════════════════════════════════════════
 let estado = {
-    fase:        1,       // 1=Nivel1, 2=Nivel2, 3=Nivel3(no implementado aún)
+    fase:        1,       // 1=Nivel1 (25), 2=Nivel2 (30 o 10), 3=Nivel3 confirmación (80)
     preguntas:   [],      // lista activa
     indice:      0,       // pregunta actual
-    respuestas:  {},      // { id: valor }
+    respuestas:  {},      // { id: valor }  — todo en memoria, nada se guarda en base de datos aquí
     areaElegida: null,    // 'TEII' o 'EA'
     carreraFinal:null,    // key de CARRERAS
 };
@@ -690,7 +768,7 @@ function renderPregunta() {
     // Botones nav
     document.getElementById('btn-anterior').style.display = estado.indice > 0 ? '' : 'none';
     const btnSig = document.getElementById('btn-siguiente');
-    btnSig.textContent = (estado.indice === total - 1) ? 'Ver resultado →' : 'Siguiente →';
+    btnSig.textContent = (estado.indice === total - 1) ? 'Continuar →' : 'Siguiente →';
     btnSig.disabled = prevVal === undefined;
 }
 
@@ -713,6 +791,8 @@ function preguntaSiguiente() {
             procesarNivel1();
         } else if (estado.fase === 2) {
             procesarNivel2();
+        } else if (estado.fase === 3) {
+            procesarNivel3();
         }
     }
 }
@@ -746,7 +826,7 @@ function procesarNivel1() {
     renderPregunta();
 }
 
-// ── Nivel 2 → calcula carrera ganadora ───────────────────────────────────
+// ── Nivel 2 → puntúa carreras del área elegida (aún NO es el resultado final) ──
 function procesarNivel2() {
     const scores = {};
 
@@ -755,14 +835,31 @@ function procesarNivel2() {
         scores[p.carrera] = (scores[p.carrera] ?? 0) + val;
     });
 
-    // Carrera con mayor puntaje
+    estado.nivel2Scores = scores; // referencia, no determina el resultado final
+
+    // Pasa a Nivel 3: confirmación con las 80 preguntas (todas las carreras)
+    estado.fase      = 3;
+    estado.preguntas = NIVEL3;
+    estado.indice    = 0;
+    renderPregunta();
+}
+
+// ── Nivel 3 (confirmación) → calcula la carrera ganadora final ──────────
+function procesarNivel3() {
+    const scores = {};
+
+    NIVEL3.forEach(p => {
+        const val = estado.respuestas[p.id] ?? 0;
+        scores[p.carrera] = (scores[p.carrera] ?? 0) + val;
+    });
+
     let mejor = null, maxPts = -1;
     Object.entries(scores).forEach(([car, pts]) => {
         if (pts > maxPts) { maxPts = pts; mejor = car; }
     });
 
     estado.carreraFinal = mejor;
-    estado.scoreFinal   = scores;
+    estado.scoreFinal    = scores;
 
     // Va a la pantalla de procesando
     goToStage(3);
@@ -796,10 +893,6 @@ function mostrarResultado() {
     `;
 
     goToStage(4);
-}
-
-function reiniciarQuiz() {
-    goToStage(1);
 }
 
 // ── Compartir resultado ───────────────────────────────────────────────────
