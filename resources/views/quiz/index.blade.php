@@ -17,7 +17,10 @@
     .hamburger { display:none; background:none; border:none; cursor:pointer;
                  padding:.25rem; flex-direction:column; gap:5px; }
     .hamburger span { display:block; width:22px; height:2px; background:#C8A84B; border-radius:2px; }
-    .mobile-menu { display:none; flex-direction:column; background:rgba(6,6,15,.97); padding:.5rem 0; }
+    .mobile-menu { display:none; flex-direction:column;
+                   position:fixed; left:0; right:0; top:0; z-index:99;
+                   max-height:calc(100vh - 70px); overflow-y:auto;
+                   background:rgba(6,6,15,.97); padding:.5rem 0; }
     .mobile-menu a { display:block; padding:.75rem 2rem; font-size:.85rem; color:#B0A898;
                      text-decoration:none; letter-spacing:.08em; text-transform:uppercase;
                      border-bottom:1px solid rgba(43,31,61,.4); }
@@ -75,8 +78,8 @@
     #quiz-progress-floating {
         display:none;
         position:fixed;
-        top:0; left:0; right:0;
-        z-index:150;
+        top:74px; left:0; right:0;
+        z-index:99;
         background:rgba(6,6,15,.92);
         backdrop-filter:blur(14px);
         -webkit-backdrop-filter:blur(14px);
@@ -1339,6 +1342,12 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarPoliti
 // ════════════════════════════════════════════════════════════════════════════
 const quizProgressWrapEl  = document.getElementById('quiz-progress-wrap');
 const quizProgressFloatEl = document.getElementById('quiz-progress-floating');
+const quizNavEl           = document.querySelector('nav');
+
+function posicionarBarraFlotante() {
+    if (quizNavEl) quizProgressFloatEl.style.top = quizNavEl.getBoundingClientRect().bottom + 'px';
+}
+window.addEventListener('resize', posicionarBarraFlotante);
 
 const progressObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1352,6 +1361,7 @@ const progressObserver = new IntersectionObserver((entries) => {
             quizProgressFloatEl.classList.remove('visible');
         } else if (entry.boundingClientRect.top < 0) {
             // Solo mostrar cuando la barra original quedó ARRIBA del viewport
+            posicionarBarraFlotante();
             quizProgressFloatEl.classList.add('visible');
         }
     });
@@ -1579,13 +1589,21 @@ function descargarResultado() {
 // ════════════════════════════════════════════════════════════════════════════
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mobileMenu   = document.getElementById('mobileMenu');
+function posicionarMenuMovil() {
+    if (quizNavEl) mobileMenu.style.top = quizNavEl.getBoundingClientRect().bottom + 'px';
+}
 hamburgerBtn.addEventListener('click', () => {
+    posicionarMenuMovil();
     mobileMenu.classList.toggle('open');
     hamburgerBtn.setAttribute('aria-expanded', mobileMenu.classList.contains('open'));
 });
 document.addEventListener('click', e => {
     if (!hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target))
         mobileMenu.classList.remove('open');
+});
+window.addEventListener('resize', posicionarMenuMovil);
+window.addEventListener('scroll', () => {
+    if (mobileMenu.classList.contains('open')) posicionarMenuMovil();
 });
 
 function applyMobileLayout() {
