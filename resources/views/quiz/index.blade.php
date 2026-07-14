@@ -69,6 +69,29 @@
     .quiz-progress-fill  { height:100%; background:linear-gradient(to right,#8D6627,#C8A84B);
                            border-radius:3px; transition:width .4s ease; }
 
+    /* ── Barra de progreso flotante (solo móvil) ──
+       Aparece pegada arriba de la pantalla cuando la barra original
+       de .quiz-progress-wrap sale del viewport, como si "te siguiera". */
+    #quiz-progress-floating {
+        display:none;
+        position:fixed;
+        top:0; left:0; right:0;
+        z-index:150;
+        background:rgba(6,6,15,.92);
+        backdrop-filter:blur(14px);
+        -webkit-backdrop-filter:blur(14px);
+        border-bottom:1px solid rgba(200,168,75,.25);
+        padding:.65rem 1rem;
+        flex-direction:column;
+        gap:.4rem;
+        transform:translateY(-100%);
+        transition:transform .25s ease;
+    }
+    #quiz-progress-floating.visible { transform:translateY(0); }
+    @media (max-width:768px) {
+        #quiz-progress-floating.activo { display:flex; }
+    }
+
     .quiz-fase-badge {
         display:inline-block; font-size:.65rem; text-transform:uppercase;
         letter-spacing:.14em; color:#C8A84B; border:1px solid rgba(200,168,75,.3);
@@ -92,6 +115,7 @@
         line-height:1.5; max-width:680px;
     }
 
+    /* ── Opciones: vertical por default (ideal en móvil) ── */
     .quiz-opciones { display:flex; flex-direction:column; gap:.65rem; }
 
     .quiz-opcion {
@@ -117,6 +141,24 @@
     .opcion-val  { font-size:.7rem; color:#4A3560; min-width:1.2rem; }
     .opcion-text { font-size:.9rem; color:#F0EAD8; }
     .quiz-opcion.seleccionada .opcion-val { color:#C8A84B; }
+
+    /* ── En PC (>768px), aprovechar el ancho horizontal:
+         las 5 opciones se acomodan en fila, cada una como una tarjeta
+         vertical (bullet arriba, texto abajo), repartiendo el espacio. ── */
+    @media (min-width:769px) {
+        .quiz-opciones { flex-direction:row; gap:1rem; }
+        .quiz-opcion {
+            flex:1 1 0;
+            flex-direction:column;
+            justify-content:center;
+            text-align:center;
+            gap:.6rem;
+            padding:1.35rem 1rem;
+        }
+        .opcion-bullet { order:1; }
+        .opcion-val    { order:2; min-width:0; }
+        .opcion-text   { order:3; font-size:.82rem; line-height:1.3; }
+    }
 
     .quiz-nav { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
 
@@ -152,14 +194,16 @@
         display:flex; align-items:center; gap:.6rem;
         background:rgba(20,20,31,.6); border:1px solid rgba(200,168,75,.2);
         border-radius:8px; padding:.4rem .8rem .4rem .4rem;
+        max-width:100%;
     }
     .mini-result img {
         width:34px; height:34px; object-fit:contain; border-radius:6px;
         background:#0D0D1A; flex-shrink:0;
     }
-    .mini-result-info { display:flex; flex-direction:column; line-height:1.2; }
+    .mini-result-info { display:flex; flex-direction:column; line-height:1.25; min-width:0; }
     .mini-result-rank { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:#707085; }
     .mini-result-name { font-size:.8rem; color:#F0EAD8; font-family:'Headland One',serif; }
+    .mini-result-carrera { font-size:.68rem; color:#B0A898; }
     @media (max-width:768px) {
         #stage-4-inner { grid-template-columns:1fr !important; padding:2rem 1rem !important;
                          min-height:auto !important; }
@@ -252,6 +296,19 @@
     <a href="{{ route('casas') }}">Casas</a>
     <a href="{{ route('ingresar') }}">Ingresar</a>
 </div>
+
+{{-- Barra de progreso flotante (solo móvil): sigue al usuario cuando la
+     barra original sale del viewport --}}
+<div id="quiz-progress-floating">
+    <div class="quiz-progress-label">
+        <span id="quiz-fase-label-float">Fase 1 de 3</span>
+        <span id="quiz-progress-txt-float">Pregunta 1 de 25</span>
+    </div>
+    <div class="quiz-progress-track">
+        <div class="quiz-progress-fill" id="quiz-progress-fill-float" style="width:4%;"></div>
+    </div>
+</div>
+
 {{-- ══════════════════════════════════════════════════════════════════════════
      AVISO DE PRIVACIDAD 
      ══════════════════════════════════════════════════════════════════════════ --}}
@@ -827,7 +884,7 @@
         <section class="quiz-card">
 
             {{-- Progreso --}}
-            <div class="quiz-progress-wrap">
+            <div class="quiz-progress-wrap" id="quiz-progress-wrap">
                 <div class="quiz-progress-label">
                     <span id="quiz-fase-label">Fase 1 de 3</span>
                     <span id="quiz-progress-txt">Pregunta 1 de 25</span>
@@ -1277,11 +1334,48 @@ function cerrarPoliticaOverlay(e) { if (e.target === document.getElementById('po
 document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarPolitica(); });
 
 // ════════════════════════════════════════════════════════════════════════════
+//  BARRA DE PROGRESO FLOTANTE (móvil) — sigue al usuario cuando la barra
+//  original sale del viewport, mostrando el mismo avance en la parte superior.
+// ════════════════════════════════════════════════════════════════════════════
+const quizProgressWrapEl  = document.getElementById('quiz-progress-wrap');
+const quizProgressFloatEl = document.getElementById('quiz-progress-floating');
+
+const progressObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        // Solo actuar si la etapa 2 (preguntas) está visible
+        const stage2Visible = document.getElementById('stage-2').style.display !== 'none';
+        if (!stage2Visible) {
+            quizProgressFloatEl.classList.remove('visible');
+            return;
+        }
+        if (entry.isIntersecting) {
+            quizProgressFloatEl.classList.remove('visible');
+        } else if (entry.boundingClientRect.top < 0) {
+            // Solo mostrar cuando la barra original quedó ARRIBA del viewport
+            quizProgressFloatEl.classList.add('visible');
+        }
+    });
+}, { threshold: 0 });
+
+if (quizProgressWrapEl) progressObserver.observe(quizProgressWrapEl);
+
+function updateProgressUI(pct, faseTxt, progressTxt) {
+    document.getElementById('quiz-progress-fill').style.width = pct + '%';
+    document.getElementById('quiz-progress-txt').textContent  = progressTxt;
+    document.getElementById('quiz-fase-label').textContent    = faseTxt;
+
+    document.getElementById('quiz-progress-fill-float').style.width = pct + '%';
+    document.getElementById('quiz-progress-txt-float').textContent  = progressTxt;
+    document.getElementById('quiz-fase-label-float').textContent    = faseTxt;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
 //  LÓGICA DEL QUIZ
 // ════════════════════════════════════════════════════════════════════════════
 function iniciarQuiz() {
     estado = { fase:1, preguntas:NIVEL1, indice:0, respuestas:{}, areaElegida:null, carreraFinal:null };
     goToStage(2);
+    quizProgressFloatEl.classList.add('activo');
     renderPregunta();
 }
 
@@ -1292,12 +1386,10 @@ function renderPregunta() {
 
     // Progreso
     const pct = Math.round((current / total) * 100);
-    document.getElementById('quiz-progress-fill').style.width = pct + '%';
-    document.getElementById('quiz-progress-txt').textContent = `Pregunta ${current} de ${total}`;
+    updateProgressUI(pct, `Fase ${estado.fase} de 3`, `Pregunta ${current} de ${total}`);
 
     // Fase badge
     const faseMap = { 1:'Intereses Generales', 2:'Actividades Específicas', 3:'Confirmación' };
-    document.getElementById('quiz-fase-label').textContent = `Fase ${estado.fase} de 3`;
     document.getElementById('quiz-badge').textContent = faseMap[estado.fase] || '';
 
     // Imagen ilustrativa según la fase (y el área elegida si es fase 2)
@@ -1415,6 +1507,8 @@ function procesarNivel3() {
     estado.rankingFinal = ranking.map(([carrera]) => carrera); // orden final: 1°, 2°, 3°
 
     // Va a la pantalla de procesando
+    quizProgressFloatEl.classList.remove('activo');
+    quizProgressFloatEl.classList.remove('visible');
     goToStage(3);
 }
 
@@ -1445,7 +1539,7 @@ function mostrarResultado() {
                      font-size:.82rem;">${c.dominio}</span>
     `;
 
-    // Top 2 y Top 3 (versión pequeña)
+    // Top 2 y Top 3 (versión pequeña, con nombre de casa y carrera)
     const top23El = document.getElementById('stage-4-top23');
     const rankingRestante = (estado.rankingFinal || []).slice(1, 3); // 2º y 3er lugar
     top23El.innerHTML = rankingRestante.map((carreraKey, i) => {
@@ -1457,7 +1551,7 @@ function mostrarResultado() {
                 <img src="/${cc.imagen}" alt="${cc.nombre}">
                 <div class="mini-result-info">
                     <span class="mini-result-rank">${lugar}</span>
-                    <span class="mini-result-name">${cc.nombre}</span>
+                    <span class="mini-result-name">${cc.nombre} <span class="mini-result-carrera">(${cc.carrera})</span></span>
                 </div>
             </div>
         `;
