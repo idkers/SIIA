@@ -165,6 +165,8 @@
                  padding:.25rem; flex-direction:column; gap:5px; }
     .hamburger span { display:block; width:22px; height:2px; background:#C8A84B; border-radius:2px; }
     .mobile-menu { display:none; flex-direction:column; gap:0;
+                   position:fixed; left:0; right:0; top:0; z-index:99;
+                   max-height:calc(100vh - 70px); overflow-y:auto;
                    background:rgba(6,6,15,0.97); padding:.5rem 0; }
     .mobile-menu a { display:block; padding:.75rem 2rem;
                      font-size:.85rem; color:#B0A898; text-decoration:none;
@@ -444,3 +446,29 @@
 </footer>
 
 @endsection
+
+@push('extra-js')
+<script>
+// ── Menú hamburguesa ──
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu    = document.getElementById('mobileMenu');
+const navEl         = hamburgerBtn.closest('nav');
+
+function posicionarMenuMovil() {
+    if (navEl) mobileMenu.style.top = navEl.getBoundingClientRect().bottom + 'px';
+}
+hamburgerBtn.addEventListener('click', () => {
+    posicionarMenuMovil();
+    mobileMenu.classList.toggle('open');
+    hamburgerBtn.setAttribute('aria-expanded', mobileMenu.classList.contains('open'));
+});
+document.addEventListener('click', e => {
+    if (!hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target))
+        mobileMenu.classList.remove('open');
+});
+window.addEventListener('resize', posicionarMenuMovil);
+window.addEventListener('scroll', () => {
+    if (mobileMenu.classList.contains('open')) posicionarMenuMovil();
+});
+</script>
+@endpush
