@@ -147,6 +147,8 @@
                  padding:.25rem; flex-direction:column; gap:5px; }
     .hamburger span { display:block; width:22px; height:2px; background:#C8A84B; border-radius:2px; }
     .mobile-menu { display:none; flex-direction:column; gap:0;
+                   position:fixed; left:0; right:0; top:0; z-index:99;
+                   max-height:calc(100vh - 70px); overflow-y:auto;
                    background:rgba(6,6,15,0.97); padding:.5rem 0; }
     .mobile-menu a { display:block; padding:.75rem 2rem;
                      font-size:.85rem; color:#B0A898; text-decoration:none;
@@ -238,7 +240,7 @@
 
                 <div class="hero-actions"
                      style="margin-top:2rem;display:flex;gap:1rem;">
-                    <a href="https://drive.google.com/file/d/1phgZnZ-psX86cTQpZF3BC-VnwqMkG2at/view?usp=sharing"
+                    <a href="https://drive.google.com/drive/folders/1GX-zAEzDj9HeKKNb-q-BflfZPN529lNR?usp=drive_link"
                        target="_blank" rel="noopener"
                        style="display:inline-flex;align-items:center;gap:14px;
                               background:#1a1a2e;border:1.5px solid #C6A050;
@@ -486,13 +488,22 @@
 <script>
     const btn  = document.getElementById('hamburgerBtn');
     const menu = document.getElementById('mobileMenu');
+    const navEl = btn.closest('nav');
+    function posicionarMenuMovil() {
+        if (navEl) menu.style.top = navEl.getBoundingClientRect().bottom + 'px';
+    }
     btn.addEventListener('click', () => {
+        posicionarMenuMovil();
         menu.classList.toggle('open');
         btn.setAttribute('aria-expanded', menu.classList.contains('open'));
     });
     document.addEventListener('click', e => {
         if (!btn.contains(e.target) && !menu.contains(e.target))
             menu.classList.remove('open');
+    });
+    window.addEventListener('resize', posicionarMenuMovil);
+    window.addEventListener('scroll', () => {
+        if (menu.classList.contains('open')) posicionarMenuMovil();
     });
 
     function toggleAccordion(btn) {
