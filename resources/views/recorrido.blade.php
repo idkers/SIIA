@@ -238,7 +238,7 @@
 
                 <div class="hero-actions"
                      style="margin-top:2rem;display:flex;gap:1rem;">
-                    <a href="https://drive.google.com/drive/folders/1GX-zAEzDj9HeKKNb-q-BflfZPN529lNR?usp=drive_link"
+                    <a href="https://drive.google.com/file/d/1phgZnZ-psX86cTQpZF3BC-VnwqMkG2at/view?usp=sharing"
                        target="_blank" rel="noopener"
                        style="display:inline-flex;align-items:center;gap:14px;
                               background:#1a1a2e;border:1.5px solid #C6A050;
