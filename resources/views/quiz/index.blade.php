@@ -147,6 +147,19 @@
                      align-items:center; min-height:550px; padding:4rem; gap:2rem; }
     #stage-4-result-title { font-size:3.5rem; }
     #stage-4-btns  { display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+
+    .mini-result {
+        display:flex; align-items:center; gap:.6rem;
+        background:rgba(20,20,31,.6); border:1px solid rgba(200,168,75,.2);
+        border-radius:8px; padding:.4rem .8rem .4rem .4rem;
+    }
+    .mini-result img {
+        width:34px; height:34px; object-fit:contain; border-radius:6px;
+        background:#0D0D1A; flex-shrink:0;
+    }
+    .mini-result-info { display:flex; flex-direction:column; line-height:1.2; }
+    .mini-result-rank { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:#707085; }
+    .mini-result-name { font-size:.8rem; color:#F0EAD8; font-family:'Headland One',serif; }
     @media (max-width:768px) {
         #stage-4-inner { grid-template-columns:1fr !important; padding:2rem 1rem !important;
                          min-height:auto !important; }
@@ -239,544 +252,61 @@
     <a href="{{ route('casas') }}">Casas</a>
     <a href="{{ route('ingresar') }}">Ingresar</a>
 </div>
-{{-- ══════════════════════════════════════════════════════════════════════════
-     AVISO DE PRIVACIDAD 
-     ══════════════════════════════════════════════════════════════════════════ --}}
- 
-<style>
-    /* ── Overlay de privacidad ── */
-    #privacy-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,.78);
-        z-index: 200;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1.25rem;
-    }
- 
-    #privacy-box {
-        background: #14141F;
-        border: 1px solid rgba(200,168,75,.35);
-        border-radius: 16px;
-        padding: 2.5rem 2rem;
-        max-width: 480px;
-        width: 100%;
-        box-shadow: 0 0 40px rgba(200,168,75,.10);
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-    }
- 
-    #privacy-box h2 {
-        font-family: 'Headland One', serif;
-        color: #C8A84B;
-        font-size: 1.4rem;
-        margin: 0;
-        letter-spacing: .06em;
-    }
- 
-    #privacy-box p {
-        color: #B0A898;
-        font-size: .88rem;
-        line-height: 1.75;
-        margin: 0;
-    }
- 
-    .privacy-notice {
-        background: rgba(200,168,75,.07);
-        border: 1px solid rgba(200,168,75,.2);
-        border-radius: 8px;
-        padding: .85rem 1rem;
-        color: #F0EAD8;
-        font-size: .82rem;
-        line-height: 1.7;
-    }
- 
-    /* Checkbox personalizado */
-    .privacy-check-wrap {
-        display: flex;
-        align-items: flex-start;
-        gap: .85rem;
-        cursor: pointer;
-        user-select: none;
-    }
-    .privacy-check-wrap input[type="checkbox"] {
-        display: none;
-    }
-    .privacy-circle {
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        border: 2px solid #8D6627;
-        flex-shrink: 0;
-        margin-top: 1px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background .2s, border-color .2s;
-        background: transparent;
-    }
-    .privacy-circle svg {
-        opacity: 0;
-        transition: opacity .2s;
-    }
-    .privacy-check-wrap input:checked ~ .privacy-circle {
-        background: #C6A050;
-        border-color: #C6A050;
-    }
-    .privacy-check-wrap input:checked ~ .privacy-circle svg {
-        opacity: 1;
-    }
-    .privacy-check-label {
-        font-size: .85rem;
-        color: #B0A898;
-        line-height: 1.6;
-    }
-    .privacy-check-label a {
-        color: #E8C96A;
-        text-decoration: underline;
-        cursor: pointer;
-    }
-    .privacy-check-label a:hover { color: #fff; }
- 
-    /* Botón continuar */
-    #privacy-continue {
-        width: 100%;
-        padding: .85rem;
-        background: linear-gradient(135deg, #C6A050, #8D6627);
-        border: none;
-        border-radius: 6px;
-        color: #1A1000;
-        font-size: 1rem;
-        font-weight: 700;
-        cursor: pointer;
-        opacity: .4;
-        pointer-events: none;
-        transition: opacity .2s;
-        font-family: inherit;
-        letter-spacing: .04em;
-    }
-    #privacy-continue.activo {
-        opacity: 1;
-        pointer-events: auto;
-    }
- 
-    /* ── Modal de políticas ── */
-    #policy-modal {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,.82);
-        z-index: 300;
-        align-items: center;
-        justify-content: center;
-        padding: 1.25rem;
-    }
-    #policy-modal.abierto { display: flex; }
- 
-    #policy-box {
-        background: #14141F;
-        border: 1px solid rgba(200,168,75,.3);
-        border-radius: 16px;
-        max-width: 620px;
-        width: 100%;
-        max-height: 85vh;
-        overflow-y: auto;
-        position: relative;
-        box-shadow: 0 0 40px rgba(200,168,75,.10);
-    }
-    #policy-box::-webkit-scrollbar { width: 5px; }
-    #policy-box::-webkit-scrollbar-track { background: #0D0D1A; }
-    #policy-box::-webkit-scrollbar-thumb { background: #4A3010; border-radius: 10px; }
- 
-    .policy-header {
-        padding: 1.75rem 2rem 1rem;
-        border-bottom: 1px solid rgba(200,168,75,.15);
-        position: sticky;
-        top: 0;
-        background: #14141F;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .policy-header h3 {
-        font-family: 'Headland One', serif;
-        color: #C8A84B;
-        font-size: 1.2rem;
-        margin: 0;
-    }
-    .policy-close {
-        background: none;
-        border: none;
-        color: #707085;
-        font-size: 1.4rem;
-        cursor: pointer;
-        line-height: 1;
-        transition: color .2s;
-    }
-    .policy-close:hover { color: #E8C96A; }
- 
-    .policy-body {
-        padding: 1.5rem 2rem 2rem;
-        color: #B0A898;
-        font-size: .87rem;
-        line-height: 1.85;
-    }
-    .policy-body h4 {
-        color: #E8C96A;
-        font-size: .82rem;
-        text-transform: uppercase;
-        letter-spacing: .12em;
-        margin: 1.5rem 0 .5rem;
-    }
-    .policy-body h4:first-child { margin-top: 0; }
-    .policy-body p { margin: 0 0 .75rem; color: #B0A898; }
-    .policy-body strong { color: #F0EAD8; }
- 
-    @media (max-width: 500px) {
-        #privacy-box { padding: 2rem 1.25rem; }
-        .policy-body { padding: 1.25rem; }
-        .policy-header { padding: 1.25rem 1.25rem .85rem; }
-    }
-</style>
- 
-{{-- ── Overlay de privacidad ── --}}
+
+{{-- AVISO DE PRIVACIDAD --}}
 <div id="privacy-overlay" style="display:none;">
     <div id="privacy-box">
- 
         <h2>Antes de continuar</h2>
- 
-        <p>
-            Para ofrecerte la mejor experiencia en el Quiz de Selección de Casa,
-            necesitamos que leas y aceptes el Aviso de Privacidad Integral de la
-            Universidad Tecnológica de León.
-        </p>
- 
-        {{-- Aviso importante --}}
+        <p>Para ofrecerte la mejor orientación vocacional, necesitamos que leas y aceptes el Aviso de Privacidad Integral de la UTL.</p>
         <div class="privacy-notice">
             ⚠️ <strong style="color:#E8C96A;">Nota importante:</strong>
-            La Universidad Tecnológica de León <strong>no cuenta con áreas de ciencias
-            de la salud</strong> (medicina, enfermería, biología, etc.). Los resultados del quiz están
-            orientados exclusivamente a las carreras y dominios que ofrece la UTL.
+            La UTL <strong>no cuenta con áreas de ciencias de la salud</strong> (medicina, enfermería, biología, etc.).
+            Los resultados están orientados exclusivamente a las carreras que ofrece la UTL.
         </div>
- 
-        {{-- Checkbox de aceptación --}}
         <label class="privacy-check-wrap" for="privacy-cb">
             <input type="checkbox" id="privacy-cb" onchange="toggleContinue(this)">
             <span class="privacy-circle">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 6L5 9L10 3" stroke="#1A1000" stroke-width="2"
-                          stroke-linecap="round" stroke-linejoin="round"/>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 6L5 9L10 3" stroke="#1A1000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </span>
             <span class="privacy-check-label">
-                He leído y acepto el
-                <a onclick="abrirPolitica(event)">Aviso de Privacidad Integral</a>
-                de la Universidad Tecnológica de León.
+                He leído y acepto el <a onclick="abrirPolitica(event)">Aviso de Privacidad Integral</a> de la UTL.
             </span>
         </label>
- 
-        <button id="privacy-continue" onclick="aceptarPrivacidad()">
-            Continuar al Quiz →
-        </button>
- 
+        <button id="privacy-continue" onclick="aceptarPrivacidad()">Continuar al Quiz →</button>
     </div>
 </div>
- 
-{{-- ── Modal: Aviso de Privacidad Integral UTL (texto completo) ── --}}
+
 <div id="policy-modal" onclick="cerrarPoliticaOverlay(event)">
     <div id="policy-box">
- 
         <div class="policy-header">
             <h3>Aviso de Privacidad Integral — UTL</h3>
             <button class="policy-close" onclick="cerrarPolitica()">&#x2715;</button>
         </div>
- 
         <div class="policy-body">
- 
-            <p class="intro">
-                La <strong>Universidad Tecnológica de León (UTL)</strong>, conforme a lo establecido en los
-                artículos 3, fracción I, 34, 35, 36, 37, 38, 39, 40, 42, así como lo dispuesto en el
-                Título Tercero, Capítulo Primero de la Ley de Protección de Datos Personales en
-                Posesión de Sujetos Obligados para el Estado de Guanajuato, publicada en el
-                Periódico Oficial del Gobierno del Estado de Guanajuato el 14 de julio de 2017,
-                informa que la protección de los datos personales es un derecho humano
-                vinculado a la protección de la privacidad y da a conocer el presente Aviso de
-                Privacidad Integral.
-            </p>
- 
+            <p>La <strong>Universidad Tecnológica de León (UTL)</strong>, conforme a lo establecido en los artículos 3, fracción I, 34, 35, 36, 37, 38, 39, 40, 42, así como lo dispuesto en el Título Tercero, Capítulo Primero de la Ley de Protección de Datos Personales en Posesión de Sujetos Obligados para el Estado de Guanajuato, publicada el 14 de julio de 2017, informa que la protección de los datos personales es un derecho humano vinculado a la protección de la privacidad y da a conocer el presente Aviso de Privacidad Integral.</p>
             <h4>I. Denominación del Responsable</h4>
-            <p>
-                La <strong>Universidad Tecnológica de León</strong>: es un Organismo Público Descentralizado
-                de la Administración Pública Estatal, con personalidad jurídica y patrimonio
-                propios, de conformidad con el Decreto Gubernativo número 108 publicado en
-                el Periódico Oficial de Gobierno del Estado de Guanajuato de fecha 9 de
-                diciembre de 1994, reestructurado a través del Decreto Gubernativo número
-                240 publicado el 18 de octubre de 2005 en el Periódico Oficial de Gobierno del
-                Estado de Guanajuato, número 166, Cuarta Parte.
-            </p>
- 
-            <h4>II. Domicilio del Responsable</h4>
-            <p>
-                La <strong>Universidad Tecnológica de León</strong> se encuentra ubicada en Boulevard
-                Universidad Tecnológica, número 225, Colonia San Carlos, C.P. 37670, en la
-                ciudad de León, Guanajuato.
-            </p>
- 
-            <h4>III. Los Datos Personales que Serán Sometidos a Tratamiento, Identificando Aquéllos que Sean Sensibles</h4>
-            <p>
-                Los datos personales, se refieren a cualquier información concerniente a una
-                persona física identificada o identificable y los datos personales sensibles, son
-                aquellos que afecten a la esfera más íntima de su titular, o cuya utilización
-                indebida pueda dar origen a discriminación o conlleve un riesgo grave para éste.
-            </p>
-            <p>
-                Los datos personales y sensibles que recaba la Universidad Tecnológica de
-                León, y que son sometidos a tratamiento o transferencia, dependiendo del
-                proceso para el cuál se recaben, entre otros son:
-            </p>
-            <ul>
-                <li><strong>Datos de Identificación:</strong> Nombre completo, estado civil, registro federal de
-                    contribuyentes (RFC), clave única de registro de población (CURP), número de
-                    seguridad social, acta de nacimiento, lugar y fecha de nacimiento,
-                    nacionalidad, edad, fotografía, firma autógrafa, nombre del padre y la madre,
-                    tutor o tutora del alumno o alumna.</li>
-                <li><strong>Datos de Contacto:</strong> Domicilio, correo electrónico, teléfono fijo, teléfono
-                    celular, que nos permita mantener contacto con estudiantes, padres de familia,
-                    personal docente y administrativo, en caso de emergencia, así como de
-                    proveedores.</li>
-                <li><strong>Datos Laborales:</strong> Puesto actual y anterior, teléfono institucional y correo
-                    electrónico, fecha de ingreso al puesto que actualmente ocupa o en anteriores
-                    empleos y lo concerniente a trayectoria laboral, para procesos de
-                    reclutamiento, selección, contratación, nombramiento, evaluación y
-                    capacitación.</li>
-                <li><strong>Datos sobre características físicas y aspectos particulares:</strong> Fotografía, si
-                    pertenece a alguna etnia o maneja alguna lengua indígena, estado de salud,
-                    historial clínico, señas particulares, sexo, tipo de sangre, peso, talla, alergias,
-                    enfermedades físicas y psicológicas, tratamientos médicos o psicológicos,
-                    discapacidades.</li>
-                <li><strong>Datos académicos:</strong> Nombre, domicilio y clave centro de trabajo de la
-                    institución educativa de nivel medio superior de procedencia del alumnado,
-                    trayectoria educativa como calificaciones, promedio de egreso y certificados
-                    emitidos por otras Instituciones, idiomas, título profesional, número de cedula
-                    profesional, certificados y constancias de estudios, así como antecedentes
-                    escolares.</li>
-                <li><strong>Datos patrimoniales o financieros:</strong> Bienes muebles e inmuebles, ingresos y
-                    egresos personales, ingresos y egresos de madres, padres, o de quienes
-                    dependa económicamente, referencias personales, recibos de nómina y en
-                    general datos sobre la situación económica de la familia. Así como aquellos que
-                    permitan identificar si se trata de una persona moral o persona física y su
-                    cumplimiento en materia fiscal y administrativa.</li>
-                <li><strong>Datos biométricos:</strong> Huella dactilar para control de entradas y salidas de la
-                    jornada laboral de docentes y administrativos.</li>
-                <li><strong>Datos sobre afiliación sindical:</strong> Pertenencia a un sindicato.</li>
-            </ul>
-            <p>
-                Los datos sensibles que puede recabar la Universidad Tecnológica de León,
-                son los relativos a afiliación sindical, de salud, origen étnico o racial y
-                biométricos.
-            </p>
-            <p>
-                Todos los datos personales y sensibles recabados de estudiantes, personal
-                docente y administrativo, y público en general, serán utilizados para la
-                adecuada función y prestación de servicios educativos y administrativos que
-                brinda la Universidad Tecnológica de León.
-            </p>
-            <p>
-                Para las finalidades señaladas en el presente Aviso de Privacidad, la
-                Universidad Tecnológica de León, podrá recabar datos personales de distintas
-                formas; tales como, que sean proporcionados de manera directa por el titular;
-                cuando se visite la página de internet institucional o se utilicen los servicios en
-                línea, así como cuando se obtenga información a través de otras fuentes que
-                están permitidas por las disposiciones legales aplicables.
-            </p>
- 
-            <h4>IV. Las Finalidades del Tratamiento para las Cuales se Obtienen los Datos Personales</h4>
-            <p>
-                Los datos personales otorgados ante las áreas administrativas y académicas
-                de la Universidad se integran a los respectivos expedientes internos relativos al
-                trámite y/o servicio que corresponda, siendo resguardado por la misma área
-                que los recibe para las finalidades en cada caso específico por las cuales se
-                solicitaron, siendo las siguientes:
-            </p>
- 
-            <span class="subsection">a) En materia de servicios académicos.</span>
-            <p>
-                Para recabar información indispensable a efecto de brindar los servicios
-                escolares que ofrece la Universidad, de acuerdo con los programas
-                académicos vigentes, por lo cual se requiere recabar datos personales de
-                menores de edad y sus padres o tutores si es el caso, o de ciudadanos
-                interesados en ingresar como estudiantes de la Universidad; de igual forma, se
-                recabará información para actos consistentes en: 1. Admisión, 2. Inscripción, 3.
-                Reinscripción, 4. Reincorporación por baja, 5. Proceso de recuperación, 6.
-                Proceso de recuperación y extraordinario, 7. Estadías, 8. Tutorías; 9. Titulación; 10.
-                Equivalencias, 11. Revalidaciones, 12. Constancias de estudios, 13. Actividades
-                extracurriculares, 14. Préstamo de material bibliográfico, deportivo o de
-                cómputo; 15. Cédula profesional; 16. Becas y diversos apoyos a través de
-                programas; 17. La identificación de posibles beneficiarios para el otorgamiento
-                de una beca; 18. Cualquier otro servicio escolar que sea indispensable o tenga
-                relación con la estadía académica del alumnado, 19.- Falta de atención
-                psicopedagógica.
-            </p>
- 
-            <span class="subsection">b) En materia de recursos humanos.</span>
-            <p>
-                Para cualquier trámite de índole laboral, se recabarán datos laborales y
-                profesionales concernientes a la trayectoria laboral y académica del personal
-                a contratar, así como para procesos de reclutamiento, selección, contratación,
-                nombramiento, evaluación, capacitación y cualquier otro que tenga relación
-                directa con los derechos y obligaciones laborales de las personas trabajadoras
-                de la Universidad Tecnológica de León.
-            </p>
- 
-            <span class="subsection">c) En materia administrativa.</span>
-            <p>
-                Para trámites legales, relativos a actos y contratos que lleven a cabo y celebre
-                la Universidad Tecnológica de León, en materia de adquisiciones y de
-                prestación de servicios conforme a la Ley de Contrataciones Públicas para el
-                Estado de Guanajuato; el Reglamento de la Ley de Contrataciones Públicas
-                para el Estado de Guanajuato para la Administración Pública Estatal; los
-                lineamientos que al afecto emita la Secretaría de finanzas, Inversión y
-                Administración; y demás disposiciones legales y administrativas aplicables; así
-                como lo concerniente a la celebración de convenios de colaboración o
-                coordinación entre la Universidad Tecnológica de León, con otros sujetos
-                obligados y particulares. Tramitación de procedimientos administrativos,
-                penales, civiles, laborales y otros, así como atender recomendaciones emitidas
-                por Organismos Garantes de Derechos Humanos. Para integrar o modificar las
-                bases de datos de nuestros sistemas electrónicos: para efectos operativos y
-                estadísticos.
-            </p>
- 
-            <h4>V. El Fundamento Legal que Faculta Expresamente al Responsable para Llevar a Cabo el Tratamiento de Datos Personales</h4>
-            <p>
-                El tratamiento y transferencia de los datos personales y datos personales
-                sensibles se efectúa con apego en los artículos 3o., 6o., apartado A, fracciones
-                II y III, y 16, párrafo segundo, de la Constitución Política de los Estados Unidos
-                Mexicanos; 3o., 14, inciso B), fracción III, de la Constitución Política para el Estado
-                de Guanajuato; 3o., 34 y 45, de la Ley Orgánica del Poder Ejecutivo para el
-                Estado de Guanajuato; la Ley General de Educación; la Ley General de
-                Educación Superior; la Ley de Educación para el Estado de Guanajuato; 116 de
-                la Ley General de Transparencia y Acceso a la Información Pública; 25, fracción
-                VI, 65, fracción III, 76 y 77, de la Ley de Transparencia y Acceso a la Información
-                Pública para el Estado de Guanajuato; 1 y 3, fracciones IX y X, de la Ley General
-                de Protección de Datos Personales en Posesión de Sujetos Obligados; 3,
-                fracciones I, VI, VII, VIII y IX, 13, 16, 20, 22, 34, 36, 37, 38, 39, 40, 42, 62, 63, 64, 65,
-                66, 67, 68, 78, 96, 97, 98, 99, 100, 101 de la Ley de Protección de Datos Personales
-                en Posesión de Sujetos Obligados para el Estado de Guanajuato; Capítulo VI de
-                los Lineamientos Generales en Materia de Clasificación y Desclasificación de la
-                Información, así como para la elaboración de versiones públicas; 125 y 126 de
-                los Lineamientos Generales para la Administración de los Recursos Humanos
-                adscritos a las Secretarías y Entidades de la Administración Pública Estatal; el
-                Decreto Gubernativo número 240 publicado el 18 de octubre de 2005 en el
-                Periódico Oficial de Gobierno del Estado de Guanajuato, número 166, Cuarta
-                Parte; así como lo establecido en los artículos 1, 15, 18, 19 y 93 del Reglamento
-                Académico de la Universidad Tecnológica de León y lo señalado en su artículo
-                1 y Capítulo Tercero por el Reglamento de Ingreso, Promoción y Permanencia
-                del Personal Académico de la Universidad Tecnológica de León.
-            </p>
- 
-            <h4>VI. De las Transferencias</h4>
-            <p>
-                Se hace de conocimiento que los datos personales y sensibles proporcionados
-                podrán ser transmitidos a otras autoridades siempre y cuando los datos
-                transferidos tengan como finalidad ser utilizados para el ejercicio de facultades
-                propias de las mismas autoridades, compatible o análogas con la finalidad que
-                motivó el tratamiento de los datos personales; además de otras transmisiones
-                previstas en el artículo 97 de la Ley de Protección de Datos Personales en
-                Posesión de Sujetos Obligados para el Estado de Guanajuato. Así como cuando
-                la transferencia sea legalmente exigida para la investigación y persecución de
-                los delitos, así como la procuración o administración de justicia; cuando sea
-                precisa para el reconocimiento, ejercicio o defensa de un derecho ante
-                autoridad competente, siempre y cuando medie el requerimiento de esta
-                última; cuando sea necesaria para la prevención o el diagnóstico médico, la
-                prestación de asistencia sanitaria, el tratamiento médico o la gestión de
-                servicios sanitarios, siempre y cuando dichos fines sean acreditados; cuando se
-                precise para el mantenimiento o cumplimiento de una relación jurídica entre el
-                responsable y el titular, o cuando sea necesaria por virtud de un contrato
-                celebrado o por celebrar en interés del titular, por el responsable y un tercero.
-            </p>
-            <p>
-                Nos comprometemos a que los mismos serán tratados bajo las más estrictas
-                medidas de seguridad que garanticen su confidencialidad.
-            </p>
-            <p>
-                También se informa al titular que <strong>no se realizarán</strong> transferencias de datos
-                personales o sensibles que requieran de su consentimiento, sin la manifestación
-                expresa.
-            </p>
- 
-            <h4>VII. Mecanismos y Medios Disponibles para que el Titular de los Datos Personales Pueda Manifestar su Negativa para el Tratamiento de sus Datos Personales</h4>
-            <p>
-                La Universidad Tecnológica de León, a través de las áreas administrativas y
-                académicas ante las cuales se proporcionen los datos personales, pondrá a
-                consideración del ciudadano, el formato para la autorización o no de la
-                transferencia de los datos personales a otras autoridades, cuyo tratamiento sea
-                susceptible de transferencia.
-            </p>
-            <p>
-                Ofrece los medios para controlar el uso ajeno y destino de la información
-                personal, con el propósito de impedir su tráfico ilícito y la potencial vulneración
-                de la dignidad del titular de los datos, de manera que de conformidad con
-                lo establecido en el artículo 78 de la Ley de Protección de Datos Personales
-                en Posesión de Sujetos Obligados para el Estado de Guanajuato, puede ejercer
-                sus derechos ARCO por el acrónimo de Acceso, Rectificación, Cancelación y
-                Oposición de Datos Personales, a través de los cuales tiene la facultad de:
-            </p>
-            <ul>
-                <li>Conocer en todo momento quién dispone de sus datos y para qué están siendo utilizados.</li>
-                <li>Solicitar rectificación de sus datos en caso de que resulten incompletos o inexactos.</li>
-                <li>Solicitar la cancelación de estos por no ajustarse a las disposiciones aplicables.</li>
-                <li>Oponerse al uso de sus datos si es que los mismos fueron obtenidos sin su consentimiento.</li>
-            </ul>
-            <p>
-                A efecto de garantizar la debida protección de sus datos personales, además
-                de establecer los derechos ARCO, la ley en la materia incluye una serie de
-                principios rectores en el tratamiento de este tipo de datos como son: el de
-                finalidad, calidad, consentimiento, deber de información, seguridad,
-                confidencialidad, disponibilidad y temporalidad.
-            </p>
-            <p>
-                El incumplimiento de estos principios por parte de quienes detentan y/o
-                administran sus datos constituye una vulneración a su protección y tiene como
-                consecuencia una sanción.
-            </p>
- 
-            <h4>VIII. Mecanismos y Medios Disponibles para que el Titular de los Datos Personales Pueda Manifestar su Negativa para el Tratamiento de sus Datos Personales</h4>
-            <p>
-                La Universidad Tecnológica de León, informa que la <strong>«Unidad de Transparencia
-                del Poder Ejecutivo del Estado de Guanajuato»</strong>, es la unidad administrativa
-                responsable del sistema de datos personales; y el lugar en donde el interesado
-                podrá ejercer sus derechos de acceso, rectificación, cancelación y oposición
-                al tratamiento de datos personales (ARCO).
-            </p>
- 
-            <h4>IX. El Domicilio de la Unidad de Transparencia</h4>
-            <p>
-                La Universidad Tecnológica de León, informa que las oficinas de la <strong>Unidad de
-                Transparencia del Poder Ejecutivo del Estado de Guanajuato</strong>, se encuentran
-                ubicadas en calle San Sebastián número 78, Zona Centro, Guanajuato,
-                Guanajuato. C.P. 36000. con los teléfonos 473 73 51500 ext. 2272, en un horario
-                de atención de lunes a viernes de 08:30 a 16:00 horas; o bien a través del correo
-                electrónico <a href="mailto:unidadtransparencia@guanajuato.gob.mx">unidadtransparencia@guanajuato.gob.mx</a>.
-            </p>
- 
-            <h4>X. Los Medios a Través de los Cuales el Responsable Comunicará a los Titulares los Cambios al Aviso de Privacidad</h4>
-            <p>
-                La Universidad Tecnológica de León, informa que los cambios a su Aviso de
-                Privacidad <em>(Simplificado e Integral)</em> se comunicarán por correo electrónico
-                institucional o a través de la página institucional en Internet, en donde podrá
-                consultar la última versión del Aviso de Privacidad:
-                <a href="http://www.utleon.edu.mx" target="_blank" rel="noopener">http://www.utleon.edu.mx</a>.
-            </p>
- 
+            <p>La <strong>Universidad Tecnológica de León</strong> es un Organismo Público Descentralizado de la Administración Pública Estatal, con personalidad jurídica y patrimonio propios, de conformidad con el Decreto Gubernativo número 108 publicado el 9 de diciembre de 1994, reestructurado mediante el Decreto Gubernativo número 240 publicado el 18 de octubre de 2005.</p>
+            <h4>II. Domicilio</h4>
+            <p>Boulevard Universidad Tecnológica #225, Colonia San Carlos, C.P. 37670, León, Guanajuato.</p>
+            <h4>III. Datos Personales Tratados</h4>
+            <p>Identificación, contacto, laborales, características físicas, académicos, patrimoniales, biométricos y afiliación sindical. Los datos sensibles son los relativos a afiliación sindical, salud, origen étnico o racial y biométricos.</p>
+            <h4>IV. Finalidades</h4>
+            <p>Servicios académicos (admisión, inscripción, reinscripción, titulación, becas, entre otros), recursos humanos y materia administrativa.</p>
+            <h4>V. Fundamento Legal</h4>
+            <p>Artículos 3o., 6o. apartado A fracciones II y III, 16 párrafo segundo de la CPEUM; Ley General de Educación; Ley de Protección de Datos Personales en Posesión de Sujetos Obligados para el Estado de Guanajuato, entre otros ordenamientos.</p>
+            <h4>VI. Transferencias</h4>
+            <p>Los datos podrán ser transmitidos a otras autoridades con fines compatibles con los de su recabación. <strong>No se realizarán</strong> transferencias que requieran consentimiento sin manifestación expresa.</p>
+            <h4>VII. Derechos ARCO</h4>
+            <p>Puede ejercer derechos de Acceso, Rectificación, Cancelación y Oposición ante la <strong>Unidad de Transparencia del Poder Ejecutivo del Estado de Guanajuato</strong>, calle San Sebastián #78, Zona Centro, Guanajuato. Tel: 473 73 51500 ext. 2272. Correo: <a href="mailto:unidadtransparencia@guanajuato.gob.mx">unidadtransparencia@guanajuato.gob.mx</a></p>
+            <h4>X. Cambios al Aviso</h4>
+            <p>Los cambios se comunicarán por correo institucional o vía <a href="http://www.utleon.edu.mx" target="_blank">www.utleon.edu.mx</a>.</p>
         </div>
     </div>
 </div>
 
+<div class="page-content-wrapper">
 
 {{-- ═══ ETAPA 1: Bienvenida ═══════════════════════════════════════════════ --}}
 <div id="stage-1" class="stage">
@@ -792,7 +322,9 @@
                     LA GARRA<br>SELECCIONADORA
                 </h1>
                 <p id="stage-1-desc" style="color:#F0EAD8;line-height:1.8;max-width:500px;margin-top:1.5rem;">
-     Descubre qué casa académica representa mejor tus talentos, intereses y fortalezas dentro de la Universidad Tecnológica de León.
+                    Responde honestamente 25 preguntas generales. Según tus respuestas, el sistema
+                    identificará tu área de afinidad y te hará preguntas más específicas para
+                    descubrir qué casa académica representa mejor tu vocación.
                 </p>
                 <button id="stage-1-btn" onclick="abrirAviso()"
                         style="background:#C6A050;color:#06060F;border:none;padding:.9rem 2rem;
@@ -927,6 +459,9 @@
 
                 {{-- Puntuaciones --}}
                 <div id="stage-4-scores" style="margin-top:1.5rem;"></div>
+
+                {{-- Top 2 y Top 3 (versión pequeña: solo logo y nombre) --}}
+                <div id="stage-4-top23" style="display:flex;gap:.75rem;margin-top:1.25rem;flex-wrap:wrap;"></div>
 
                 <div id="stage-4-btns">
                     <a href="{{ route('welcome') }}"
@@ -1361,7 +896,7 @@ function procesarNivel1() {
     renderPregunta();
 }
 
-// ── Nivel 2 → puntúa carreras del área elegida (aún NO es el resultado final) ──
+// ── Nivel 2 → puntúa carreras del área elegida y saca el TOP 3 ──────────
 function procesarNivel2() {
     const scores = {};
 
@@ -1370,31 +905,34 @@ function procesarNivel2() {
         scores[p.carrera] = (scores[p.carrera] ?? 0) + val;
     });
 
-    estado.nivel2Scores = scores; // referencia, no determina el resultado final
+    estado.nivel2Scores = scores;
 
-    // Pasa a Nivel 3: confirmación con las 80 preguntas (todas las carreras)
+    // K-ésimo mayor: ordena las carreras del área elegida y toma las 3 con más puntos
+    const ranking = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+    estado.top3 = ranking.slice(0, 3).map(([carrera]) => carrera);
+
+    // Pasa a Nivel 3: confirmación, pero solo con las preguntas de esas 3 carreras (4 c/u = 12 preguntas)
     estado.fase      = 3;
-    estado.preguntas = NIVEL3;
+    estado.preguntas = NIVEL3.filter(p => estado.top3.includes(p.carrera));
     estado.indice    = 0;
     renderPregunta();
 }
 
-// ── Nivel 3 (confirmación) → calcula la carrera ganadora final ──────────
+// ── Nivel 3 (confirmación) → calcula la carrera ganadora entre el TOP 3 ──
 function procesarNivel3() {
     const scores = {};
 
-    NIVEL3.forEach(p => {
+    // Solo se evalúan las carreras del top-3 (estado.preguntas ya viene filtrado)
+    estado.preguntas.forEach(p => {
         const val = estado.respuestas[p.id] ?? 0;
         scores[p.carrera] = (scores[p.carrera] ?? 0) + val;
     });
 
-    let mejor = null, maxPts = -1;
-    Object.entries(scores).forEach(([car, pts]) => {
-        if (pts > maxPts) { maxPts = pts; mejor = car; }
-    });
+    const ranking = Object.entries(scores).sort((a, b) => b[1] - a[1]);
 
-    estado.carreraFinal = mejor;
-    estado.scoreFinal    = scores;
+    estado.carreraFinal = ranking[0]?.[0] ?? estado.top3[0];
+    estado.scoreFinal   = scores;
+    estado.rankingFinal = ranking.map(([carrera]) => carrera); // orden final: 1°, 2°, 3°
 
     // Va a la pantalla de procesando
     goToStage(3);
@@ -1426,6 +964,24 @@ function mostrarResultado() {
                      border-radius:20px;padding:.35rem .9rem;color:#E8C96A;
                      font-size:.82rem;">${c.dominio}</span>
     `;
+
+    // Top 2 y Top 3 (versión pequeña)
+    const top23El = document.getElementById('stage-4-top23');
+    const rankingRestante = (estado.rankingFinal || []).slice(1, 3); // 2º y 3er lugar
+    top23El.innerHTML = rankingRestante.map((carreraKey, i) => {
+        const cc = CARRERAS[carreraKey];
+        if (!cc) return '';
+        const lugar = i === 0 ? '2do lugar' : '3er lugar';
+        return `
+            <div class="mini-result">
+                <img src="/${cc.imagen}" alt="${cc.nombre}">
+                <div class="mini-result-info">
+                    <span class="mini-result-rank">${lugar}</span>
+                    <span class="mini-result-name">${cc.nombre}</span>
+                </div>
+            </div>
+        `;
+    }).join('');
 
     goToStage(4);
 }
