@@ -790,7 +790,6 @@
     </div>
 </div>
 
-
 {{-- ═══ ETAPA 1: Bienvenida ═══════════════════════════════════════════════ --}}
 <div id="stage-1" class="stage">
     <div class="stage-wrap">
@@ -805,7 +804,7 @@
                     LA GARRA<br>SELECCIONADORA
                 </h1>
                 <p id="stage-1-desc" style="color:#F0EAD8;line-height:1.8;max-width:500px;margin-top:1.5rem;">
-Descubre qué casa académica representa mejor tus talentos, intereses y fortalezas dentro de la Universidad Tecnológica de León.
+                   Descubre qué casa académica representa mejor tus talentos, intereses y fortalezas dentro de la Universidad Tecnológica de León.
                 </p>
                 <button id="stage-1-btn" onclick="abrirAviso()"
                         style="background:#C6A050;color:#06060F;border:none;padding:.9rem 2rem;
