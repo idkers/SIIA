@@ -105,7 +105,7 @@
         width:100%; max-width:280px; margin:0 auto;
         border-radius:12px; overflow:hidden;
         border:1px solid rgba(200,168,75,.25);
-        background:#0D0D1A;
+        background:#000000;
     }
     .quiz-fase-img-wrap img { display:block; width:100%; height:160px; object-fit:cover; }
     @media (max-width:600px) {
