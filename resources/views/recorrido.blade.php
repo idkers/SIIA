@@ -501,7 +501,7 @@
             </style>
 
             <div class="nova-map-stage" id="novaMapaStage">
-                <img src="{{ asset('imagenes/mapaArrugade.jpg') }}" alt="Mapa del campus 1 UTL">
+                <img src="{{ asset('public/imagenes/mapaArrugade.jpg') }}" alt="Mapa del campus 1 UTL">
                 <div class="nova-map-tooltip" id="novaMapaTooltip"><h4></h4><p></p></div>
             </div>
 
