@@ -658,5 +658,14 @@ $activoIdx = 0;
 
         window.navDominio = function(dir) { cambiarDominio(activo + dir); };
     })();
+
+    {{-- Parallax hero --}}
+    const heroImg = document.getElementById('hero-bg');
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const scale = 1 + scrolled * 0.0003;
+        heroImg.style.transform = `scale(${scale})`;
+    }, { passive: true });
+
 </script>
 @endpush
