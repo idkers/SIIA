@@ -432,17 +432,79 @@
         </div>
     </section>
 
-    {{-- ── Mapa ── --}}
+    {{-- ── Mapa I N T E R A C T I V O v1 hotspot w3 ── --}}
     <section id="mapa" class="panel">
         <div class="inner-pad">
+
             <h2 class="section-title"
                 style="text-align:center;color:#FFFFFF;
                        font-family:'Headland One',serif;margin-bottom:2rem;">
                 ───── MAPA DEL CAMPUS ─────
             </h2>
-            <div class="map-frame">
-                [Mapa interactivo]
+
+            
+            <style>
+                .nova-map-stage {
+                    position: relative;
+                    width: 100%;
+                    line-height: 0;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    border: 2px solid #C6A050;
+                }
+                .nova-map-stage img {
+                    width: 100%;
+                    display: block;
+                }
+                .nova-map-hotspot {
+                    position: absolute;
+                    border: 1.5px solid transparent;
+                    border-radius: 3px;
+                    cursor: pointer;
+                    transition: background .15s ease, border-color .15s ease;
+                }
+                .nova-map-hotspot:hover {
+                    background: rgba(200,168,75,0.18);
+                    border-color: rgba(200,168,75,0.9);
+                    box-shadow: 0 0 14px rgba(200,168,75,0.35) inset;
+                }
+                .nova-map-tooltip {
+                    position: absolute;
+                    z-index: 20;
+                    max-width: 240px;
+                    background: linear-gradient(180deg,#1a1a2e,#0d0d1a);
+                    border: 1px solid #C6A050;
+                    border-radius: 6px;
+                    padding: 12px 14px;
+                    pointer-events: none;
+                    opacity: 0;
+                    transform: translateY(4px);
+                    transition: opacity .12s ease, transform .12s ease;
+                    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+                }
+                .nova-map-tooltip.show { opacity: 1; transform: translateY(0); }
+                .nova-map-tooltip h4 {
+                    margin: 0 0 4px;
+                    font-family: 'Headland One', serif;
+                    font-size: .95rem;
+                    color: #E8C96A;
+                }
+                .nova-map-tooltip p {
+                    margin: 0;
+                    font-size: .85rem;
+                    line-height: 1.5;
+                    color: #B0A898;
+                }
+                @media (max-width: 600px) {
+                    .nova-map-stage { border-radius: 6px; }
+                }
+            </style>
+
+            <div class="nova-map-stage" id="novaMapaStage">
+                <img src="{{ asset('imagenes/mapaArrugade.jpg') }}" alt="Mapa del campus 1 UTL">
+                <div class="nova-map-tooltip" id="novaMapaTooltip"><h4></h4><p></p></div>
             </div>
+
         </div>
     </section>
 
@@ -517,6 +579,64 @@
             arrow.style.transform = 'rotate(180deg)';
         }
     }
+</script>
+@endpush
+
+
+@push('extra-js')
+<script>
+(function () {
+    
+    var zonasMapa = [
+        { top: 4,  left: 24.5, width: 8.5, height: 32, title: "Edificio A", desc: "Info edificio" },
+        { top: 8,  left: 34.5, width: 8,   height: 26, title: "Edificio B", desc: "Info edificio" },
+        { top: 12, left: 43.5, width: 8,   height: 22, title: "Edificio C", desc: "Info edificio" },
+        { top: 12, left: 52.5, width: 8,   height: 22, title: "Edificio D", desc: "Info edificio" },
+        { top: 15, left: 61.5, width: 8,   height: 25, title: "Edificio D", desc: "Info edificio" },
+        { top: 16, left: 78.5, width: 8,   height: 28, title: "Edificio F", desc: "Info edificio" },
+        { top: 35, left: 87,   width: 10,  height: 42, title: "Edificio de Rectoria", desc: "Info edificio" },
+        { top: 62, left: 38,   width: 7,   height: 32, title: "Edificio A P", desc: "Info edificio" },
+        { top: 66, left: 45,   width: 7,   height: 30, title: "Edificio B P", desc: "Info edificio" },
+        { top: 58, left: 55.5, width: 6,   height: 32, title: "Biblioteca", desc: "Info edificio" },
+        { top: 64, left: 61.5, width: 5,   height: 26, title: "Cafeteria", desc: "Info edificio" },
+        { top: 58, left: 67.5, width: 6,   height: 30, title: "Edificio CVD", desc: "Info edificio" },
+        { top: 63, left: 81,   width: 13,  height: 32, title: "Estacionamiento", desc: "Estacionamiento" }
+    ];
+
+    var stage = document.getElementById('novaMapaStage');
+    if (!stage) return;
+    var tooltip = document.getElementById('novaMapaTooltip');
+
+    zonasMapa.forEach(function (z) {
+        var el = document.createElement('div');
+        el.className = 'nova-map-hotspot';
+        el.style.top = z.top + '%';
+        el.style.left = z.left + '%';
+        el.style.width = z.width + '%';
+        el.style.height = z.height + '%';
+
+        el.addEventListener('mouseenter', function () {
+            tooltip.querySelector('h4').textContent = z.title;
+            tooltip.querySelector('p').textContent = z.desc;
+            tooltip.classList.add('show');
+        });
+        el.addEventListener('mousemove', function (e) {
+            var rect = stage.getBoundingClientRect();
+            var x = e.clientX - rect.left + 16;
+            var y = e.clientY - rect.top + 16;
+            var tw = 240, th = 90;
+            if (x + tw > rect.width)  x = e.clientX - rect.left - tw - 16;
+            if (y + th > rect.height) y = e.clientY - rect.top - th - 16;
+            tooltip.style.left = x + 'px';
+            tooltip.style.top  = y + 'px';
+        });
+        el.addEventListener('mouseleave', function () {
+            tooltip.classList.remove('show');
+        });
+
+        stage.appendChild(el);
+    });
+})();
 </script>
 @endpush
 
