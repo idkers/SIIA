@@ -99,7 +99,7 @@
 {{-- ═══ HERO ═════════════════════════════════════════════════════════════════ --}}
 <style>
     #hero-content { width:50%; padding:0 2rem; }
-    #hero-title   { font-size:clamp(9rem,15vw,14rem); }
+   
     #hero-desc    { font-size:1.03rem; max-width:480px; }
     #hero-btns a  { padding:.85rem 3rem; font-size:1rem; }
 
@@ -146,16 +146,12 @@
                 display:flex;flex-direction:column;justify-content:center;
                 align-items:center;gap:1.5rem;">
 
-        <h1 id="hero-title"
-            style="margin:0;padding:0;font-family:'Headland One',serif;
-                   font-weight:700;line-height:0.85;letter-spacing:.02em;
-                   background:linear-gradient(to bottom,
-                       #E8C96A 0%,#C8A84B 20%,#C6A050 40%,
-                       #8D6627 60%,#6B5020 80%,#8B6914 100%);
-                   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-                   background-clip:text;">
-            NOVA
-        </h1>
+                {{-- wordmark N O V A --}}
+
+        <img src="{{ asset('imagenes/nova.webp') }}"
+     alt="NOVA"
+     id="hero-title"
+     style="max-width:clamp(300px,40vw,600px);width:100%;display:block;">
 
         <p id="hero-desc"
            style="margin:0;letter-spacing:.10em;text-transform:uppercase;
