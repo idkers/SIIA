@@ -73,8 +73,7 @@
                            border-radius:3px; transition:width .4s ease; }
 
     /* ── Barra de progreso flotante (solo móvil) ──
-       Aparece pegada arriba de la pantalla cuando la barra original
-       de .quiz-progress-wrap sale del viewport, como si "te siguiera". */
+       Aparece pegada arriba*/
     #quiz-progress-floating {
         display:none;
         position:fixed;
@@ -118,7 +117,7 @@
         line-height:1.5; max-width:680px;
     }
 
-    /* ── Opciones: vertical por default (ideal en móvil) ── */
+    /* ── Opciones: vertical por default ── */
     .quiz-opciones { display:flex; flex-direction:column; gap:.65rem; }
 
     .quiz-opcion {
@@ -145,9 +144,7 @@
     .opcion-text { font-size:.9rem; color:#F0EAD8; }
     .quiz-opcion.seleccionada .opcion-val { color:#C8A84B; }
 
-    /* ── En PC (>768px), aprovechar el ancho horizontal:
-         las 5 opciones se acomodan en fila, cada una como una tarjeta
-         vertical (bullet arriba, texto abajo), repartiendo el espacio. ── */
+    /* ── En PC (>768px), aprovechar el ancho horizontal── */
     @media (min-width:769px) {
         .quiz-opciones { flex-direction:row; gap:1rem; }
         .quiz-opcion {
@@ -1072,7 +1069,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 // ════════════════════════════════════════════════════════════════════════════
-//  DATOS DEL QUIZ — extraídos del Excel (OV_UTL_Final.xlsx)
+//  DATOS DEL QUIZ
 // ════════════════════════════════════════════════════════════════════════════
 
 // ── NIVEL 1: 25 preguntas generales (discrimina TEII vs EA) — hoja "Encuesta área" ──
@@ -1108,7 +1105,7 @@ const NIVEL1 = [
 const MAX_TEII_N1 = 60;
 const MAX_EA_N1   = 40;
 
-// ── NIVEL 2-TI: 30 preguntas — hoja "Encuesta2 Carreras" (si gana TEII) ─────────────
+// ── NIVEL 2-TI: 30 preguntas — (si gana TEII) ─────────────
 const NIVEL2_TI = [
     { id:26,  texto:'Configurar redes o sistemas de comunicación',                             carrera:'REDES'    },
     { id:27,  texto:'Administrar redes y garantizar la conexión entre equipos',                carrera:'REDES'    },
@@ -1142,9 +1139,9 @@ const NIVEL2_TI = [
     { id:55,  texto:'Diseñar o mantener sistemas de electromovilidad',                         carrera:'ELECTRO'  },
 ];
 
-// ── NIVEL 2-EA: 10 preguntas — hoja "Encuesta2 Carreras" (si gana EA) ───────────
+// ── NIVEL 2-EA: 10 preguntas —  (si gana EA) ───────────
 const NIVEL2_EA = [
-    { id:56, texto:'Optimizar rutas o tiempos de distribución de productos', carrera:'LOG'  },
+    { id:56, texto:'Optimizar rutas o tiempos de distribución de productos',  carrera:'LOG'  },
     { id:57, texto:'Organizar procesos de transporte y logística',            carrera:'LOG'  },
     { id:58, texto:'Administrar recursos en una empresa',                     carrera:'ADM'  },
     { id:59, texto:'Coordinar personal y operaciones administrativas',        carrera:'ADM'  },
@@ -1156,7 +1153,7 @@ const NIVEL2_EA = [
     { id:65, texto:'Planear actividades para visitantes o turistas',          carrera:'TUR'  },
 ];
 
-// ── NIVEL 3: 80 preguntas de confirmación — hoja "Encuesta3 Confirmación" (todas las carreras) ──
+// ── NIVEL 3: 80 preguntas de confirmación — (todas las carreras) ──
 const NIVEL3 = [
     { id:66, texto:'Me visualizo administrando redes y sistemas de comunicación digital.', carrera:'REDES' },
     { id:67, texto:'Me interesa garantizar que los equipos y sistemas permanezcan conectados correctamente.', carrera:'REDES' },
@@ -1302,9 +1299,9 @@ let estado = {
     fase:        1,       // 1=Nivel1 (25), 2=Nivel2 (30 o 10), 3=Nivel3 confirmación (80)
     preguntas:   [],      // lista activa
     indice:      0,       // pregunta actual
-    respuestas:  {},      // { id: valor }  — todo en memoria, nada se guarda en base de datos aquí
+    respuestas:  {},      // { id: valor }  — todo en memoria, nada se guarda en base de datos todavia
     areaElegida: null,    // 'TEII' o 'EA'
-    carreraFinal:null,    // key de CARRERAS
+    carreraFinal:null,    // key de CARRERAS, carrera ganadora al final del quiz
 };
 
 // ════════════════════════════════════════════════════════════════════════════
