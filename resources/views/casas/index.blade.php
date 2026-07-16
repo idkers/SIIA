@@ -297,18 +297,6 @@ $casas = [
         'link'     => 'https://www.utleon.edu.mx/carrera/GA',
         'nombrecasa' => 'SYLVARA',
     ],
-    [
-        'imagen'   => 'imagenes/casas/electro.webp',
-        'nombre'   => 'Electromovilidad',
-        'dominio'  => 'Ingenierías',
-        'color'    => '#FFEE00',
-        'frase'    => 'La innovación mueve el futuro',
-        'valores'  => ['Innovación', 'Responsabilidad', 'Compromiso con la Sustentabilidad'],
-        'desc'     => 'Desarrollo de soluciones tecnológicas para una movilidad sustentable.',
-        'oferta'   => 'Vehículos Eléctricos: Aprenderás tecnología de batería motores eléctricos y sistemas de propulsión limpia, Fuentes de Energía: Estudiarás sistemas de carga almacenamiento de energía y tecnologías alternativas, Diagnóstico en Sistemas de Electromoción: Dominarás herramientas para diagnosticar y reparar vehículos eléctricos, Seguridad Eléctrica en Sistemas de Electromovilidad: Garantizarás prácticas seguras en alta tensión y sistemas de batería, Mantenimiento a Sistemas de Electromovilidad: Te especializarás en mantener infraestructuras de carga y vehículos eléctricos',
-        'link'     => 'https://www.utleon.edu.mx/carrera/IDI',
-        'nombrecasa' => 'ENERION',
-    ],
     
     // ── TECNOLOGÍAS DE LA INFORMACIÓN ────────────────────────────────────
     [
@@ -421,6 +409,18 @@ $casas = [
         'link'     => 'https://www.utleon.edu.mx/carrera/GPC',
         'nombrecasa' => 'SENDORIA',
     ],
+    [
+        'imagen'   => 'imagenes/casas/electro.webp',
+        'nombre'   => 'Electromovilidad',
+        'dominio'  => 'Ingeniería Industrial',
+        'color'    => '#FFEE00',
+        'frase'    => 'La innovación mueve el futuro',
+        'valores'  => ['Innovación', 'Responsabilidad', 'Compromiso con la Sustentabilidad'],
+        'desc'     => 'Desarrollo de soluciones tecnológicas para una movilidad sustentable.',
+        'oferta'   => 'Vehículos Eléctricos: Aprenderás tecnología de batería motores eléctricos y sistemas de propulsión limpia, Fuentes de Energía: Estudiarás sistemas de carga almacenamiento de energía y tecnologías alternativas, Diagnóstico en Sistemas de Electromoción: Dominarás herramientas para diagnosticar y reparar vehículos eléctricos, Seguridad Eléctrica en Sistemas de Electromovilidad: Garantizarás prácticas seguras en alta tensión y sistemas de batería, Mantenimiento a Sistemas de Electromovilidad: Te especializarás en mantener infraestructuras de carga y vehículos eléctricos',
+        'link'     => 'https://www.utleon.edu.mx/carrera/IDI',
+        'nombrecasa' => 'ENERION',
+    ],
 
     // ── MECATRÓNICA ───────────────────────────────────────────────────────
     [
@@ -526,6 +526,53 @@ $casas = [
 </section>
 
 {{-- GRID --}}
+<style>
+    #casasGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+        align-items: stretch;
+    }
+
+    .casa-card {
+        display: flex;
+        flex-direction: column;
+        background: #14141F;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .casa-card-body {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        padding: 1.5rem;
+    }
+
+    .btn-ver-mas {
+        margin-top: auto;
+    }
+
+    /* Tablet */
+    @media (max-width: 900px) {
+        #casasGrid {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.25rem;
+        }
+    }
+
+    /* Celular: 1 columna */
+    @media (max-width: 600px) {
+        #casasGrid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .casa-card-body {
+            padding: 1rem;
+        }
+    }
+</style>
+
 <section class="casas-grid-section" style="max-width:1400px;margin:auto;padding:0 2rem 4rem;">
     <div id="casasGrid">
         @foreach($casas as $casa)
@@ -553,8 +600,6 @@ $casas = [
                                  color:#F0EAD8;padding:.4rem .75rem;border-radius:50px;font-size:.72rem;">{{ $v }}</span>
                     @endforeach
                 </div>
-
-                {{-- BOTÓN VER MÁS --}}
                 <button class="btn-ver-mas"
                     onclick="abrirModal(
                         '{{ addslashes($casa['nombre']) }}',
@@ -565,7 +610,6 @@ $casas = [
                     )">
                     Ver más
                 </button>
-
             </div>
         </div>
         @endforeach
