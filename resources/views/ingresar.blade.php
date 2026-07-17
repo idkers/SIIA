@@ -567,7 +567,7 @@
         }
     }
 
-    // Validación del correo: acepta matrícula (8 dígitos) o correo @utleon.edu.mx
+    // Validación del correo: acepta matrícula (6-10 dígitos) o cualquier correo válido
     function validarLogin(e) {
         let valido = true;
         const emailInput = document.getElementById('email');
@@ -583,9 +583,10 @@
 
         const val = emailInput.value.trim();
 
-        // Acepta: solo números (matrícula) O formato correo @utleon.edu.mx
+        // Acepta: solo números (matrícula) O cualquier correo válido
+        // (gmail, outlook, hotmail, institucional @utleon.edu.mx, etc.)
         const esMatricula = /^\d{6,10}$/.test(val);
-        const esCorreo    = /^[^@\s]+@utleon\.edu\.mx$/i.test(val);
+        const esCorreo    = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(val);
 
         if (!esMatricula && !esCorreo) {
             emailInput.classList.add('error');
