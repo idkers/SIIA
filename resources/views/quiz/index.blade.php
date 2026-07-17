@@ -174,7 +174,7 @@
     .btn-quiz-ghost:hover { border-color:#C8A84B; color:#E8C96A; }
 
     /* ── Procesando (Etapa 3) ── */
-    #stage-3-inner { width:740px; max-width:90%; padding:2.5rem 2rem; margin:0 auto;
+    #stage-3-inner { width:741px; max-width:90%; padding:2.5rem 2rem; margin:0 auto;
         background:linear-gradient(180deg,rgba(6,6,15,.55),rgba(0,0,0,.65));
         backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
     @media (max-width:768px) {
