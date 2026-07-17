@@ -352,6 +352,7 @@
         <a href="{{ route('dominios') }}">Dominios</a>
         <a href="{{ route('casas') }}">Casas</a>
         <a href="{{ route('ingresar') }}">Ingresar</a>
+        <a href="{{ route('registrar') }}">Registrarse</a>
     </div>
 
     <button class="hamburger"

@@ -18,4 +18,10 @@ Route::post('/ingresar', function () {
     return back()->with('success', 'Formulario enviado correctamente.');
 })->name('ingresar.post');
 
+Route::get('/registrar', fn () => view('registrar'))->name('registrar');
+
+Route::post('/registrar', function () {
+    return back()->with('success', 'Cuenta creada correctamente.');
+})->name('registrar.post');
+
 Route::get('/admin', fn () => view('admin'))->name('admin');
