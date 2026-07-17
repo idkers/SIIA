@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Ingresar — NOVA')
+@section('title', 'Crear cuenta — NOVA')
 
 @section('content')
 
@@ -382,7 +382,7 @@
             <img src="{{ asset('imagenes/isotipo_dorado.webp') }}" alt="UTL SIIA">
         </div>
 
-        <h1 class="login-title">Bienvenido de vuelta</h1>
+        <h1 class="login-title">Crea tu cuenta</h1>
         <p class="login-subtitle">Navegador de Orientación Vocacional y Aptitudes</p>
 
         {{-- Mensajes de error del servidor --}}
@@ -403,8 +403,33 @@
         @endif
 
         {{-- Formulario --}}
-        <form method="POST" action="{{ route('ingresar.post') }}" onsubmit="return validarLogin(event);">
+        <form method="POST" action="{{ route('registrar.post') }}" onsubmit="return validarRegistro(event);">
             @csrf
+
+            {{-- Nombre completo --}}
+            <div class="form-group">
+                <label class="form-label" for="nombre">Nombre completo</label>
+                <div class="input-wrap">
+                    <span class="input-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </span>
+                    <input type="text"
+                           id="nombre"
+                           name="nombre"
+                           class="form-input @error('nombre') error @enderror"
+                           placeholder="Ej. Ana Sofía Ramírez López"
+                           value="{{ old('nombre') }}"
+                           autocomplete="name">
+                </div>
+                <span class="field-error @error('nombre') visible @enderror" id="nombreError">
+                    @error('nombre') {{ $message }} @else Ingresa tu nombre completo. @enderror
+                </span>
+            </div>
 
             {{-- Correo --}}
             <div class="form-group">
@@ -414,8 +439,8 @@
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2"
                              stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
                         </svg>
                     </span>
                     <input type="text"
@@ -451,8 +476,8 @@
                            id="password"
                            name="password"
                            class="form-input @error('password') error @enderror"
-                           placeholder="••••••••"
-                           autocomplete="current-password">
+                           placeholder="Mínimo 8 caracteres"
+                           autocomplete="new-password">
                     <button type="button" class="toggle-pass"
                             onclick="togglePassword()" aria-label="Mostrar contraseña">
                         <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24"
@@ -464,24 +489,12 @@
                     </button>
                 </div>
                 <span class="field-error @error('password') visible @enderror" id="passError">
-                    @error('password') {{ $message }} @else Ingresa tu contraseña. @enderror
+                    @error('password') {{ $message }} @else Ingresa una contraseña de al menos 8 caracteres. @enderror
                 </span>
             </div>
 
-            <div style="display:flex;align-items:center;justify-content:space-between;
-                        margin-bottom:1.25rem;flex-wrap:wrap;gap:.5rem;">
-
-                {{-- Enlace a recuperar contraseña (futura implementación) --}}
-                <a href="#"
-                   style="font-size:.8rem;color:#8D6627;text-decoration:none;
-                          letter-spacing:.04em;"
-                   onclick="alert('Contacta a soporte: comunicacionutl@utleon.edu.mx'); return false;">
-                    ¿Olvidaste tu contraseña?
-                </a>
-            </div>
-
             <button type="submit" class="btn-login">
-                Ingresar
+                Crear cuenta
             </button>
 
         </form>
@@ -489,8 +502,8 @@
         <div class="divider"><span>o</span></div>
 
         <p class="register-prompt">
-            ¿Aún no tienes cuenta?
-            <a href="{{ route('registrar') }}">Regístrate aquí</a>
+            ¿Ya tienes cuenta?
+            <a href="{{ route('ingresar') }}">Inicia sesión aquí</a>
         </p>
 
     </div>
@@ -499,6 +512,7 @@
 {{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
 <footer id="footer-casas">
     <div id="footer-casas-grid">
+
         <div style="text-align:left;max-width:400px;">
             <h3 style="font-family:'Headland One',serif;color:#C8A84B;
                        margin-bottom:1rem;font-size:1.4rem;">
@@ -573,19 +587,32 @@
         }
     }
 
-    // Validación del correo: acepta matrícula (6-10 dígitos) o cualquier correo válido
-    function validarLogin(e) {
+    // Validación del formulario de registro: nombre completo, correo y contraseña
+    function validarRegistro(e) {
         let valido = true;
-        const emailInput = document.getElementById('email');
-        const passInput  = document.getElementById('password');
-        const emailError = document.getElementById('emailError');
-        const passError  = document.getElementById('passError');
+        const nombreInput = document.getElementById('nombre');
+        const emailInput  = document.getElementById('email');
+        const passInput   = document.getElementById('password');
+        const nombreError = document.getElementById('nombreError');
+        const emailError  = document.getElementById('emailError');
+        const passError   = document.getElementById('passError');
 
         // Reset
+        nombreInput.classList.remove('error');
         emailInput.classList.remove('error');
         passInput.classList.remove('error');
+        nombreError.classList.remove('visible');
         emailError.classList.remove('visible');
         passError.classList.remove('visible');
+
+        // Nombre completo: al menos dos palabras (nombre y apellido)
+        const nombreVal = nombreInput.value.trim();
+        if (!/^\S+(\s+\S+)+$/.test(nombreVal)) {
+            nombreInput.classList.add('error');
+            nombreError.textContent = 'Ingresa tu nombre completo (nombre y apellidos).';
+            nombreError.classList.add('visible');
+            valido = false;
+        }
 
         const val = emailInput.value.trim();
 
@@ -601,9 +628,10 @@
             valido = false;
         }
 
-        if (!passInput.value) {
+        // Contraseña: mínimo 8 caracteres
+        if (passInput.value.length < 8) {
             passInput.classList.add('error');
-            passError.textContent = 'Ingresa tu contraseña.';
+            passError.textContent = 'Ingresa una contraseña de al menos 8 caracteres.';
             passError.classList.add('visible');
             valido = false;
         }
