@@ -73,7 +73,8 @@
                            border-radius:3px; transition:width .4s ease; }
 
     /* ── Barra de progreso flotante (solo móvil) ──
-       Aparece pegada arriba*/
+       Aparece pegada arriba de la pantalla cuando la barra original
+       de .quiz-progress-wrap sale del viewport, como si "te siguiera". */
     #quiz-progress-floating {
         display:none;
         position:fixed;
@@ -117,7 +118,7 @@
         line-height:1.5; max-width:680px;
     }
 
-    /* ── Opciones: vertical por default ── */
+    /* ── Opciones: vertical por default (ideal en móvil) ── */
     .quiz-opciones { display:flex; flex-direction:column; gap:.65rem; }
 
     .quiz-opcion {
@@ -144,7 +145,9 @@
     .opcion-text { font-size:.9rem; color:#F0EAD8; }
     .quiz-opcion.seleccionada .opcion-val { color:#C8A84B; }
 
-    /* ── En PC (>768px), aprovechar el ancho horizontal:── *
+    /* ── En PC (>768px), aprovechar el ancho horizontal:
+         las 5 opciones se acomodan en fila, cada una como una tarjeta
+         vertical (bullet arriba, texto abajo), repartiendo el espacio. ── */
     @media (min-width:769px) {
         .quiz-opciones { flex-direction:row; gap:1rem; }
         .quiz-opcion {
@@ -174,7 +177,7 @@
     .btn-quiz-ghost:hover { border-color:#C8A84B; color:#E8C96A; }
 
     /* ── Procesando (Etapa 3) ── */
-    #stage-3-inner { width:741px; max-width:90%; padding:2.5rem 2rem; margin:0 auto;
+    #stage-3-inner { width:740px; max-width:90%; padding:2.5rem 2rem; margin:0 auto;
         background:linear-gradient(180deg,rgba(6,6,15,.55),rgba(0,0,0,.65));
         backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
     @media (max-width:768px) {
@@ -312,7 +315,7 @@
 {{-- ══════════════════════════════════════════════════════════════════════════
      AVISO DE PRIVACIDAD 
      ══════════════════════════════════════════════════════════════════════════ --}}
- 
+
 <style>
     /* ── Overlay de privacidad ── */
     #privacy-overlay {
@@ -512,19 +515,19 @@
         .policy-header { padding: 1.25rem 1.25rem .85rem; }
     }
 </style>
- 
+
 {{-- ── Overlay de privacidad ── --}}
 <div id="privacy-overlay" style="display:none;">
     <div id="privacy-box">
- 
+
         <h2>Antes de continuar</h2>
- 
+
         <p>
             Para ofrecerte la mejor experiencia en el Quiz de Selección de Casa,
             necesitamos que leas y aceptes el Aviso de Privacidad Integral de la
             Universidad Tecnológica de León.
         </p>
- 
+
         {{-- Aviso importante --}}
         <div class="privacy-notice">
             ⚠️ <strong style="color:#E8C96A;">Nota importante:</strong>
@@ -532,7 +535,7 @@
             de la salud</strong> (medicina, enfermería, biología, etc.). Los resultados del quiz están
             orientados exclusivamente a las carreras y dominios que ofrece la UTL.
         </div>
- 
+
         {{-- Checkbox de aceptación --}}
         <label class="privacy-check-wrap" for="privacy-cb">
             <input type="checkbox" id="privacy-cb" onchange="toggleContinue(this)">
@@ -549,25 +552,25 @@
                 de la Universidad Tecnológica de León.
             </span>
         </label>
- 
+
         <button id="privacy-continue" onclick="aceptarPrivacidad()">
             Continuar al Quiz →
         </button>
- 
+
     </div>
 </div>
- 
+
 {{-- ── Modal: Aviso de Privacidad Integral UTL (texto completo) ── --}}
 <div id="policy-modal" onclick="cerrarPoliticaOverlay(event)">
     <div id="policy-box">
- 
+
         <div class="policy-header">
             <h3>Aviso de Privacidad Integral — UTL</h3>
             <button class="policy-close" onclick="cerrarPolitica()">&#x2715;</button>
         </div>
- 
+
         <div class="policy-body">
- 
+
             <p class="intro">
                 La <strong>Universidad Tecnológica de León (UTL)</strong>, conforme a lo establecido en los
                 artículos 3, fracción I, 34, 35, 36, 37, 38, 39, 40, 42, así como lo dispuesto en el
@@ -578,7 +581,7 @@
                 vinculado a la protección de la privacidad y da a conocer el presente Aviso de
                 Privacidad Integral.
             </p>
- 
+
             <h4>I. Denominación del Responsable</h4>
             <p>
                 La <strong>Universidad Tecnológica de León</strong>: es un Organismo Público Descentralizado
@@ -589,14 +592,14 @@
                 240 publicado el 18 de octubre de 2005 en el Periódico Oficial de Gobierno del
                 Estado de Guanajuato, número 166, Cuarta Parte.
             </p>
- 
+
             <h4>II. Domicilio del Responsable</h4>
             <p>
                 La <strong>Universidad Tecnológica de León</strong> se encuentra ubicada en Boulevard
                 Universidad Tecnológica, número 225, Colonia San Carlos, C.P. 37670, en la
                 ciudad de León, Guanajuato.
             </p>
- 
+
             <h4>III. Los Datos Personales que Serán Sometidos a Tratamiento, Identificando Aquéllos que Sean Sensibles</h4>
             <p>
                 Los datos personales, se refieren a cualquier información concerniente a una
@@ -664,7 +667,7 @@
                 línea, así como cuando se obtenga información a través de otras fuentes que
                 están permitidas por las disposiciones legales aplicables.
             </p>
- 
+
             <h4>IV. Las Finalidades del Tratamiento para las Cuales se Obtienen los Datos Personales</h4>
             <p>
                 Los datos personales otorgados ante las áreas administrativas y académicas
@@ -673,7 +676,7 @@
                 que los recibe para las finalidades en cada caso específico por las cuales se
                 solicitaron, siendo las siguientes:
             </p>
- 
+
             <span class="subsection">a) En materia de servicios académicos.</span>
             <p>
                 Para recabar información indispensable a efecto de brindar los servicios
@@ -692,7 +695,7 @@
                 relación con la estadía académica del alumnado, 19.- Falta de atención
                 psicopedagógica.
             </p>
- 
+
             <span class="subsection">b) En materia de recursos humanos.</span>
             <p>
                 Para cualquier trámite de índole laboral, se recabarán datos laborales y
@@ -702,7 +705,7 @@
                 directa con los derechos y obligaciones laborales de las personas trabajadoras
                 de la Universidad Tecnológica de León.
             </p>
- 
+
             <span class="subsection">c) En materia administrativa.</span>
             <p>
                 Para trámites legales, relativos a actos y contratos que lleven a cabo y celebre
@@ -720,7 +723,7 @@
                 bases de datos de nuestros sistemas electrónicos: para efectos operativos y
                 estadísticos.
             </p>
- 
+
             <h4>V. El Fundamento Legal que Faculta Expresamente al Responsable para Llevar a Cabo el Tratamiento de Datos Personales</h4>
             <p>
                 El tratamiento y transferencia de los datos personales y datos personales
@@ -748,7 +751,7 @@
                 1 y Capítulo Tercero por el Reglamento de Ingreso, Promoción y Permanencia
                 del Personal Académico de la Universidad Tecnológica de León.
             </p>
- 
+
             <h4>VI. De las Transferencias</h4>
             <p>
                 Se hace de conocimiento que los datos personales y sensibles proporcionados
@@ -778,7 +781,7 @@
                 personales o sensibles que requieran de su consentimiento, sin la manifestación
                 expresa.
             </p>
- 
+
             <h4>VII. Mecanismos y Medios Disponibles para que el Titular de los Datos Personales Pueda Manifestar su Negativa para el Tratamiento de sus Datos Personales</h4>
             <p>
                 La Universidad Tecnológica de León, a través de las áreas administrativas y
@@ -814,7 +817,7 @@
                 administran sus datos constituye una vulneración a su protección y tiene como
                 consecuencia una sanción.
             </p>
- 
+
             <h4>VIII. Mecanismos y Medios Disponibles para que el Titular de los Datos Personales Pueda Manifestar su Negativa para el Tratamiento de sus Datos Personales</h4>
             <p>
                 La Universidad Tecnológica de León, informa que la <strong>«Unidad de Transparencia
@@ -823,7 +826,7 @@
                 podrá ejercer sus derechos de acceso, rectificación, cancelación y oposición
                 al tratamiento de datos personales (ARCO).
             </p>
- 
+
             <h4>IX. El Domicilio de la Unidad de Transparencia</h4>
             <p>
                 La Universidad Tecnológica de León, informa que las oficinas de la <strong>Unidad de
@@ -833,7 +836,7 @@
                 de atención de lunes a viernes de 08:30 a 16:00 horas; o bien a través del correo
                 electrónico <a href="mailto:unidadtransparencia@guanajuato.gob.mx">unidadtransparencia@guanajuato.gob.mx</a>.
             </p>
- 
+
             <h4>X. Los Medios a Través de los Cuales el Responsable Comunicará a los Titulares los Cambios al Aviso de Privacidad</h4>
             <p>
                 La Universidad Tecnológica de León, informa que los cambios a su Aviso de
@@ -842,7 +845,7 @@
                 consultar la última versión del Aviso de Privacidad:
                 <a href="http://www.utleon.edu.mx" target="_blank" rel="noopener">http://www.utleon.edu.mx</a>.
             </p>
- 
+
         </div>
     </div>
 </div>
@@ -1069,10 +1072,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 // ════════════════════════════════════════════════════════════════════════════
-//  DATOS DEL QUIZ
+//  DATOS DEL QUIZ — extraídos del Excel (OV_UTL_Final.xlsx)
 // ════════════════════════════════════════════════════════════════════════════
 
-// ── NIVEL 1: 25 preguntas generales (discrimina TEII vs EA)  ──
+// ── NIVEL 1: 25 preguntas generales (discrimina TEII vs EA) — hoja "Encuesta área" ──
 const NIVEL1 = [
     { id:1,  texto:'Me interesa entender cómo funcionan las cosas',           dim:'TEC', grupo:'TEII' },
     { id:2,  texto:'Me gusta analizar información o datos',                    dim:'ANA', grupo:'TEII' },
@@ -1101,11 +1104,11 @@ const NIVEL1 = [
     { id:25, texto:'Me interesa crear contenido o experiencias',               dim:'CRE', grupo:'EA'   },
 ];
 
-// Máximos nivel 1 TEII 15 preguntas × 4 = 60, EA 10 preguntas × 4 = 40
+// Máximos nivel 1 (hoja "Nivel 1 y 2"): TEII 15 preguntas × 4 = 60, EA 10 preguntas × 4 = 40
 const MAX_TEII_N1 = 60;
 const MAX_EA_N1   = 40;
 
-// ── NIVEL 2-TI: 30 preguntas — (si gana TEII) ─────────────
+// ── NIVEL 2-TI: 30 preguntas — hoja "Encuesta2 Carreras" (si gana TEII) ─────────────
 const NIVEL2_TI = [
     { id:26,  texto:'Configurar redes o sistemas de comunicación',                             carrera:'REDES'    },
     { id:27,  texto:'Administrar redes y garantizar la conexión entre equipos',                carrera:'REDES'    },
@@ -1139,9 +1142,9 @@ const NIVEL2_TI = [
     { id:55,  texto:'Diseñar o mantener sistemas de electromovilidad',                         carrera:'ELECTRO'  },
 ];
 
-// ── NIVEL 2-EA: 10 preguntas —  (si gana EA) ───────────
+// ── NIVEL 2-EA: 10 preguntas — hoja "Encuesta2 Carreras" (si gana EA) ───────────
 const NIVEL2_EA = [
-    { id:56, texto:'Optimizar rutas o tiempos de distribución de productos',  carrera:'LOG'  },
+    { id:56, texto:'Optimizar rutas o tiempos de distribución de productos', carrera:'LOG'  },
     { id:57, texto:'Organizar procesos de transporte y logística',            carrera:'LOG'  },
     { id:58, texto:'Administrar recursos en una empresa',                     carrera:'ADM'  },
     { id:59, texto:'Coordinar personal y operaciones administrativas',        carrera:'ADM'  },
@@ -1153,7 +1156,7 @@ const NIVEL2_EA = [
     { id:65, texto:'Planear actividades para visitantes o turistas',          carrera:'TUR'  },
 ];
 
-// ── NIVEL 3: 80 preguntas de confirmación — (todas las carreras) ──
+// ── NIVEL 3: 80 preguntas de confirmación — hoja "Encuesta3 Confirmación" (todas las carreras) ──
 const NIVEL3 = [
     { id:66, texto:'Me visualizo administrando redes y sistemas de comunicación digital.', carrera:'REDES' },
     { id:67, texto:'Me interesa garantizar que los equipos y sistemas permanezcan conectados correctamente.', carrera:'REDES' },
@@ -1299,9 +1302,9 @@ let estado = {
     fase:        1,       // 1=Nivel1 (25), 2=Nivel2 (30 o 10), 3=Nivel3 confirmación (80)
     preguntas:   [],      // lista activa
     indice:      0,       // pregunta actual
-    respuestas:  {},      // { id: valor }  — todo en memoria, nada se guarda en base de datos todavia
+    respuestas:  {},      // { id: valor }  — todo en memoria, nada se guarda en base de datos aquí
     areaElegida: null,    // 'TEII' o 'EA'
-    carreraFinal:null,    // key de CARRERAS, carrera ganadora al final del quiz
+    carreraFinal:null,    // key de CARRERAS
 };
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -1611,4 +1614,3 @@ function applyMobileLayout() {
 applyMobileLayout();
 window.addEventListener('resize', applyMobileLayout);
 </script>
-@endpush
