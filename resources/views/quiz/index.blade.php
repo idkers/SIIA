@@ -144,7 +144,7 @@
     .opcion-text { font-size:.9rem; color:#F0EAD8; }
     .quiz-opcion.seleccionada .opcion-val { color:#C8A84B; }
 
-    /* ── En PC (>768px), aprovechar el ancho horizontal── */
+    /* ── En PC (>768px), aprovechar el ancho horizontal:── *
     @media (min-width:769px) {
         .quiz-opciones { flex-direction:row; gap:1rem; }
         .quiz-opcion {
@@ -1072,7 +1072,7 @@
 //  DATOS DEL QUIZ
 // ════════════════════════════════════════════════════════════════════════════
 
-// ── NIVEL 1: 25 preguntas generales (discrimina TEII vs EA) — hoja "Encuesta área" ──
+// ── NIVEL 1: 25 preguntas generales (discrimina TEII vs EA)  ──
 const NIVEL1 = [
     { id:1,  texto:'Me interesa entender cómo funcionan las cosas',           dim:'TEC', grupo:'TEII' },
     { id:2,  texto:'Me gusta analizar información o datos',                    dim:'ANA', grupo:'TEII' },
@@ -1101,7 +1101,7 @@ const NIVEL1 = [
     { id:25, texto:'Me interesa crear contenido o experiencias',               dim:'CRE', grupo:'EA'   },
 ];
 
-// Máximos nivel 1 (hoja "Nivel 1 y 2"): TEII 15 preguntas × 4 = 60, EA 10 preguntas × 4 = 40
+// Máximos nivel 1 TEII 15 preguntas × 4 = 60, EA 10 preguntas × 4 = 40
 const MAX_TEII_N1 = 60;
 const MAX_EA_N1   = 40;
 
