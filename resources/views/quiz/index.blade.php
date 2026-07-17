@@ -1616,4 +1616,3 @@ window.addEventListener('resize', applyMobileLayout);
 </script>
 @endpush
 
-@endsection
