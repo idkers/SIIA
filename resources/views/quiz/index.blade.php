@@ -96,9 +96,10 @@
     }
 
     .quiz-fase-badge {
-        display:inline-block; font-size:.65rem; text-transform:uppercase;
+        display:inline-block; font-size:1rem; text-transform:uppercase;
         letter-spacing:.14em; color:#C8A84B; border:1px solid rgba(200,168,75,.3);
-        border-radius:20px; padding:.2rem .75rem; width:fit-content;
+        border-radius:20px; padding:.45rem 1.25rem; width:fit-content;
+        font-weight:700;
     }
 
     .quiz-fase-img-wrap {
@@ -112,6 +113,28 @@
         .quiz-fase-img-wrap { max-width:220px; }
         .quiz-fase-img-wrap img { height:120px; }
     }
+
+    /* ── Speak / disclaimer del quiz (solo visible en Fase 1) ── */
+    .quiz-disclaimer {
+        background:rgba(200,168,75,.06);
+        border:1px solid rgba(200,168,75,.25);
+        border-radius:10px;
+        padding:1rem 1.25rem;
+        display:flex;
+        flex-direction:column;
+        gap:.5rem;
+    }
+    .quiz-disclaimer p {
+        margin:0;
+        color:#F0EAD8;
+        font-size:.85rem;
+        line-height:1.6;
+        display:flex;
+        align-items:flex-start;
+        gap:.55rem;
+    }
+    .quiz-disclaimer p strong { color:#E8C96A; }
+    .quiz-disclaimer .icono { flex-shrink:0; }
 
     .quiz-pregunta {
         font-family:'Headland One',serif; font-size:1.4rem; color:#F0EAD8;
@@ -132,7 +155,7 @@
     .quiz-opcion.seleccionada { border-color:#C8A84B; background:rgba(200,168,75,.12); }
 
     .opcion-bullet {
-        width:20px; height:20px; border-radius:50%; border:2px solid #4A3560;
+        width:28px; height:28px; border-radius:50%; border:2px solid #4A3560;
         flex-shrink:0; display:flex; align-items:center; justify-content:center;
         transition:border-color .2s, background .2s;
     }
@@ -141,9 +164,9 @@
                          opacity:0; transition:opacity .15s; }
     .quiz-opcion.seleccionada .opcion-bullet-dot { opacity:1; }
 
-    .opcion-val  { font-size:.7rem; color:#4A3560; min-width:1.2rem; }
+    .opcion-val  { font-size:1.35rem; font-weight:800; color:#8D6627; min-width:1.6rem; text-align:center; }
     .opcion-text { font-size:.9rem; color:#F0EAD8; }
-    .quiz-opcion.seleccionada .opcion-val { color:#C8A84B; }
+    .quiz-opcion.seleccionada .opcion-val { color:#E8C96A; }
 
     /* ── En PC (>768px), aprovechar el ancho horizontal:
          las 5 opciones se acomodan en fila, cada una como una tarjeta
@@ -159,11 +182,12 @@
             padding:1.35rem 1rem;
         }
         .opcion-bullet { order:1; }
-        .opcion-val    { order:2; min-width:0; }
+        .opcion-val    { order:2; min-width:0; font-size:1.6rem; }
         .opcion-text   { order:3; font-size:.82rem; line-height:1.3; }
     }
 
-    .quiz-nav { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .quiz-nav { display:flex; justify-content:flex-end; align-items:center; flex-wrap:wrap; gap:1rem; }
+    #btn-anterior { margin-right:auto; }
 
     .btn-quiz {
         padding:.75rem 2rem; border-radius:6px; font-size:.9rem;
@@ -198,6 +222,14 @@
         background:rgba(20,20,31,.6); border:1px solid rgba(200,168,75,.2);
         border-radius:8px; padding:.4rem .8rem .4rem .4rem;
         max-width:100%;
+        text-decoration:none;
+        cursor:pointer;
+        transition:border-color .2s, background .2s, transform .15s;
+    }
+    .mini-result:hover {
+        border-color:rgba(200,168,75,.6);
+        background:rgba(200,168,75,.08);
+        transform:translateY(-2px);
     }
     .mini-result img {
         width:34px; height:34px; object-fit:contain; border-radius:6px;
@@ -902,6 +934,15 @@
                 <span class="quiz-fase-badge" id="quiz-badge">Intereses Generales</span>
             </div>
 
+            {{-- Speak / disclaimer del quiz — solo visible en Fase 1 --}}
+            <div class="quiz-disclaimer" id="quiz-disclaimer">
+                <p><span class="icono">✅</span> <span><strong>No hay respuestas correctas o incorrectas</strong> — responde según lo que realmente sientes, no lo que crees que "deberías" contestar.</span></p>
+                <p><span class="icono">🎓</span> <span>Contestar este quiz <strong>no garantiza tu admisión</strong> a la Universidad Tecnológica de León; es una herramienta de orientación, no un proceso de admisión.</span></p>
+                <p><span class="icono">🔎</span> <span>El resultado <strong>no es definitivo</strong>: es una guía para ayudarte a explorar opciones, no una etiqueta permanente sobre lo que debes estudiar.</span></p>
+                <p><span class="icono">💬</span> <span>Contesta de la manera <strong>más honesta posible</strong>. Entre más sincero seas, más útil será el resultado para ti.</span></p>
+                <p><span class="icono">⏱️</span> <span>Tómate tu tiempo: no hay límite ni penalización por pensar bien cada respuesta.</span></p>
+            </div>
+
             {{-- Imagen ilustrativa de la fase actual --}}
             <div class="quiz-fase-img-wrap" id="quiz-fase-img-wrap">
                 <img id="quiz-fase-img" src="" alt="">
@@ -1074,6 +1115,8 @@
 // ════════════════════════════════════════════════════════════════════════════
 //  DATOS DEL QUIZ — extraídos del Excel (OV_UTL_Final.xlsx)
 // ════════════════════════════════════════════════════════════════════════════
+
+const CASAS_URL = "{{ route('casas') }}";
 
 // ── NIVEL 1: 25 preguntas generales (discrimina TEII vs EA) — hoja "Encuesta área" ──
 const NIVEL1 = [
@@ -1337,6 +1380,17 @@ function cerrarPoliticaOverlay(e) { if (e.target === document.getElementById('po
 document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarPolitica(); });
 
 // ════════════════════════════════════════════════════════════════════════════
+//  Convierte un nombre de carrera en un "slug" (mismo criterio que Str::slug
+//  de Laravel: minúsculas, sin acentos, espacios y símbolos como guiones).
+// ════════════════════════════════════════════════════════════════════════════
+function slugify(texto) {
+    return texto.toString().trim().toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+}
+
+// ════════════════════════════════════════════════════════════════════════════
 //  BARRA DE PROGRESO FLOTANTE (móvil) — sigue al usuario cuando la barra
 //  original sale del viewport, mostrando el mismo avance en la parte superior.
 // ════════════════════════════════════════════════════════════════════════════
@@ -1401,6 +1455,9 @@ function renderPregunta() {
     // Fase badge
     const faseMap = { 1:'Intereses Generales', 2:'Actividades Específicas', 3:'Confirmación' };
     document.getElementById('quiz-badge').textContent = faseMap[estado.fase] || '';
+
+    // Speak/disclaimer: solo visible durante la Fase 1
+    document.getElementById('quiz-disclaimer').style.display = (estado.fase === 1) ? 'flex' : 'none';
 
     // Imagen ilustrativa según la fase (y el área elegida si es fase 2)
     const imgKey = estado.fase === 2 ? ('2-' + estado.areaElegida) : estado.fase;
@@ -1549,21 +1606,23 @@ function mostrarResultado() {
                      font-size:.82rem;">${c.dominio}</span>
     `;
 
-    // Top 2 y Top 3 (versión pequeña, con nombre de casa y carrera)
+    // Top 2 y Top 3 (versión pequeña, con nombre de casa y carrera).
+    // Cada tarjeta es un enlace que lleva directo a Casas y resalta esa carrera.
     const top23El = document.getElementById('stage-4-top23');
     const rankingRestante = (estado.rankingFinal || []).slice(1, 3); // 2º y 3er lugar
     top23El.innerHTML = rankingRestante.map((carreraKey, i) => {
         const cc = CARRERAS[carreraKey];
         if (!cc) return '';
         const lugar = i === 0 ? '2do lugar' : '3er lugar';
+        const slug  = slugify(cc.carrera);
         return `
-            <div class="mini-result">
+            <a class="mini-result" href="${CASAS_URL}?casa=${slug}">
                 <img src="/${cc.imagen}" alt="${cc.nombre}">
                 <div class="mini-result-info">
                     <span class="mini-result-rank">${lugar}</span>
                     <span class="mini-result-name">${cc.nombre} <span class="mini-result-carrera">(${cc.carrera})</span></span>
                 </div>
-            </div>
+            </a>
         `;
     }).join('');
 
@@ -1615,4 +1674,3 @@ applyMobileLayout();
 window.addEventListener('resize', applyMobileLayout);
 </script>
 @endpush
-

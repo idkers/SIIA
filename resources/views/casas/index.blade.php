@@ -56,6 +56,17 @@
     .casa-card.oculta { display:none !important; }
     .casa-card-body { padding:1.5rem; display:flex; flex-direction:column; height:100%; }
 
+    /* Resaltado temporal para la card llegada por enlace directo (?casa=) */
+    @keyframes destacarCasa {
+        0%   { box-shadow:0 0 0 1px rgba(200,168,75,.4), 0 0 18px rgba(200,168,75,.18); }
+        50%  { box-shadow:0 0 0 3px rgba(200,168,75,.9), 0 0 34px rgba(200,168,75,.55); }
+        100% { box-shadow:0 0 0 1px rgba(200,168,75,.4), 0 0 18px rgba(200,168,75,.18); }
+    }
+    .casa-card.destacada {
+        border-color:rgba(200,168,75,.9);
+        animation: destacarCasa 1.4s ease-in-out 3;
+    }
+
     /* Modal */
     .modal-overlay {
         display:none; position:fixed; inset:0;
@@ -574,7 +585,7 @@ $casas = [
 <section class="casas-grid-section" style="max-width:1400px;margin:auto;padding:0 2rem 4rem;">
     <div id="casasGrid">
         @foreach($casas as $casa)
-        <div class="casa-card" data-dominio="{{ $casa['dominio'] }}">
+        <div class="casa-card" data-dominio="{{ $casa['dominio'] }}" data-slug="{{ Str::slug($casa['nombre']) }}">
             <div style="height:8px;background:{{ $casa['color'] }};"></div>
             <div class="casa-card-body">
                 <div class="casa-img-wrap"
@@ -770,6 +781,29 @@ function cerrarModalOverlay(e) {
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal(); });
+
+// ── Enlace directo a una carrera (?casa=slug) — llega desde el Top 2 / Top 3
+//    del resultado del Quiz. Hace scroll hasta esa card y la resalta. ──
+function irACasaDestacada() {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('casa');
+    if (!slug) return;
+
+    const card = document.querySelector(`.casa-card[data-slug="${slug}"]`);
+    if (!card) return;
+
+    // Asegura que el filtro "Todos" esté activo para que la card sea visible
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+    document.querySelector('.filtro-btn')?.classList.add('activo');
+    document.querySelectorAll('.casa-card').forEach(c => c.classList.remove('oculta'));
+
+    setTimeout(() => {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('destacada');
+        setTimeout(() => card.classList.remove('destacada'), 4500);
+    }, 150);
+}
+document.addEventListener('DOMContentLoaded', irACasaDestacada);
 
 // ── Menú hamburguesa ──
 const hamburgerBtn = document.getElementById('hamburgerBtn');
