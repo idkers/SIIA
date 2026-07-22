@@ -527,59 +527,50 @@ $casas = [
 {{-- GRID --}}
 <style>
     #casasGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.5rem;
-    align-items: stretch;
-    justify-content: start; /* evita que las cards se estiren si sobra espacio en la última fila */
-}
-
-.casa-card {
-    display: flex;
-    flex-direction: column;
-    background: #14141F;
-    border-radius: 12px;
-    overflow: hidden;
-    width: 100%;
-    max-width: 280px; /* límite extra de seguridad para que no crezcan de más */
-}
-
-.casa-card-body {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    padding: 1.5rem;
-}
-
-.btn-ver-mas {
-    margin-top: auto;
-}
-
-/* Tablet */
-@media (max-width: 900px) {
-    #casasGrid {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 1.25rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        align-items: stretch;
     }
+
     .casa-card {
-        max-width: 240px;
+        display: flex;
+        flex-direction: column;
+        background: #14141F;
+        border-radius: 12px;
+        overflow: hidden;
+        width: 100%;
     }
-}
 
-/* Celular: 1 columna */
-@media (max-width: 600px) {
-    #casasGrid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        justify-content: stretch;
-    }
-    .casa-card {
-        max-width: 100%;
-    }
     .casa-card-body {
-        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        padding: 1.5rem;
     }
-}
+
+    .btn-ver-mas {
+        margin-top: auto;
+    }
+
+    /* Tablet: 2 columnas */
+    @media (max-width: 900px) {
+        #casasGrid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+    }
+
+    /* Celular: 1 columna */
+    @media (max-width: 600px) {
+        #casasGrid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .casa-card-body {
+            padding: 1rem;
+        }
+    }
 </style>
 
 <section class="casas-grid-section" style="max-width:1400px;margin:auto;padding:0 2rem 4rem;">
