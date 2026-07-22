@@ -936,11 +936,11 @@
 
             {{-- Speak / disclaimer del quiz — solo visible en Fase 1 --}}
             <div class="quiz-disclaimer" id="quiz-disclaimer">
-                <p><span class="icono">✅</span> <span><strong>No hay respuestas correctas o incorrectas</strong> — responde según lo que realmente sientes, no lo que crees que "deberías" contestar.</span></p>
-                <p><span class="icono">🎓</span> <span>Contestar este quiz <strong>no garantiza tu admisión</strong> a la Universidad Tecnológica de León; es una herramienta de orientación, no un proceso de admisión.</span></p>
-                <p><span class="icono">🔎</span> <span>El resultado <strong>no es definitivo</strong>: es una guía para ayudarte a explorar opciones, no una etiqueta permanente sobre lo que debes estudiar.</span></p>
-                <p><span class="icono">💬</span> <span>Contesta de la manera <strong>más honesta posible</strong>. Entre más sincero seas, más útil será el resultado para ti.</span></p>
-                <p><span class="icono">⏱️</span> <span>Tómate tu tiempo: no hay límite ni penalización por pensar bien cada respuesta.</span></p>
+                <p><span><strong>No hay respuestas correctas o incorrectas</strong> — responde según lo que realmente sientes, no lo que crees que "deberías" contestar.</span></p>
+                <p><span>Contestar este quiz <strong>no garantiza tu admisión</strong> a la Universidad Tecnológica de León; es una herramienta de orientación, no un proceso de admisión.</span></p>
+                <p><span>El resultado <strong>no es definitivo</strong>: es una guía para ayudarte a explorar opciones, no una etiqueta permanente sobre lo que debes estudiar.</span></p>
+                <p><span>Contesta de la manera <strong>más honesta posible</strong>. Entre más sincero seas, más útil será el resultado para ti.</span></p>
+                <p><span>Tómate tu tiempo: no hay límite ni penalización por pensar bien cada respuesta.</span></p>
             </div>
 
             {{-- Imagen ilustrativa de la fase actual --}}
