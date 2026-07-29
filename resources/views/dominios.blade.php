@@ -3,6 +3,10 @@
 
 @section('content')
 
+<p style="color:white;text-align:center;">
+    Dominios recibidos desde la base de datos: {{ $dominios->count() }}
+</p>
+
 {{-- ═══ ESTILOS GLOBALES ═══════════════════════════════════════════════════ --}}
 <style>
     *, *::before, *::after { box-sizing: border-box; }

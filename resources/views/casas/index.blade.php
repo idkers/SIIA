@@ -2,6 +2,9 @@
 @section('title', 'Casas — NOVA')
 
 @section('content')
+<p style="color:white;text-align:center;">
+    Casas recibidas desde la base de datos: {{ $casas->count() }}
+</p>
 
 <style>
     .nav-links-casas { display:flex; gap:2rem; }
