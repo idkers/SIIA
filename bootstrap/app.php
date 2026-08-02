@@ -12,13 +12,39 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        /*
+        |--------------------------------------------------------------------------
+        | Proxy de Render
+        |--------------------------------------------------------------------------
+        |
+        | Permite que Laravel reconozca correctamente que la conexión pública
+        | utiliza HTTPS, aunque Render la reenvíe internamente mediante proxy.
+        |
+        */
+
+        $middleware->trustProxies(at: '*');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Redirección de usuarios sin sesión
+        |--------------------------------------------------------------------------
+        */
+
         $middleware->redirectGuestsTo(
             fn (Request $request) => route('ingresar')
         );
+
+        /*
+        |--------------------------------------------------------------------------
+        | Middleware personalizados
+        |--------------------------------------------------------------------------
+        */
+
         $middleware->alias([
             'quiz.no.realizado' => \App\Http\Middleware\QuizNoRealizado::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
-    })->create();
+    })
+    ->create();
