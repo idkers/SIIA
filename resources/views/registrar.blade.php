@@ -6,22 +6,6 @@
 <style>
     *, *::before, *::after { box-sizing: border-box; }
 
-    /* ── Navbar ── */
-    .nav-links { display:flex; gap:2rem; }
-    .nav-auth  { display:flex; align-items:center; gap:.75rem; }
-    .hamburger { display:none; background:none; border:none; cursor:pointer;
-                 padding:.25rem; flex-direction:column; gap:5px; }
-    .hamburger span { display:block; width:22px; height:2px;
-                      background:#C8A84B; border-radius:2px; }
-    .mobile-menu { display:none; flex-direction:column;
-                   background:rgba(6,6,15,0.97); padding:.5rem 0; }
-    .mobile-menu a { display:block; padding:.75rem 2rem; font-size:.85rem;
-                     color:#B0A898; text-decoration:none; letter-spacing:.08em;
-                     text-transform:uppercase;
-                     border-bottom:1px solid rgba(43,31,61,0.4); }
-    .mobile-menu a:last-child { border-bottom:none; }
-    .mobile-menu.open { display:flex; }
-
     /* ── Layout ── */
     .login-page {
         min-height: calc(100vh - 88px);
@@ -269,12 +253,6 @@
     #footer-casas-grid {
         display: flex; justify-content:space-around; flex-wrap:wrap; gap:3rem;
     }
-
-    @media (max-width: 768px) {
-        .nav-links { display:none !important; }
-        .nav-auth  { display:none !important; }
-        .hamburger { display:flex !important; }
-    }
     @media (max-width: 600px) {
         .login-card { padding: 2rem 1.5rem; }
         #footer-casas { padding: 2.5rem 1.25rem; }
@@ -282,98 +260,9 @@
         #footer-casas-grid > div { max-width:100% !important; }
     }
 </style>
-{{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
-<style>
-  .nav-links{
-    flex:1;
-    display:flex;
-    justify-content:center;
-    gap:3rem;
-}
+@include('partials.navbar')
 
-.nav-links a{
-    color:#B0A898;
-    text-decoration:none;
-    font-size:.88rem;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    transition:.25s;
-}
-
-.nav-links a:hover{
-    color:#E8C96A;
-}
-    .nav-auth  { display:flex; align-items:center; gap:.75rem; }
-    .hamburger { display:none; background:none; border:none; cursor:pointer;
-                 padding:.25rem; flex-direction:column; gap:5px; }
-    .hamburger span { display:block; width:22px; height:2px; background:#C8A84B; border-radius:2px; }
-    .mobile-menu { display:none; flex-direction:column; gap:0;
-                   position:fixed; left:0; right:0; top:0; z-index:99;
-                   max-height:calc(100vh - 70px); overflow-y:auto;
-                   background:rgba(6,6,15,0.97); padding:.5rem 0; }
-    .mobile-menu a { display:block; padding:.75rem 2rem;
-                     font-size:.85rem; color:#B0A898; text-decoration:none;
-                     letter-spacing:.08em; text-transform:uppercase;
-                     border-bottom:1px solid rgba(43,31,61,0.4); }
-    .mobile-menu a:last-child { border-bottom:none; }
-    .mobile-menu.open { display:flex; }
-
-    @media (max-width: 768px) {
-        .nav-links { display:none !important; }
-        .nav-auth  { display:none !important; }
-        .hamburger { display:flex !important; }
-    }
-</style>
-<nav style="
-    display:flex;
-    align-items:center;
-    padding:1.6rem 2rem;
-    background:rgba(6,6,15,.6);
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-    position:sticky;
-    top:0;
-    z-index:100;
-">
-
-    <img src="{{ asset('imagenes/isotipo_dorado.webp') }}"
-         alt="UTL"
-         style="height:2.6rem;">
-
-    <div class="nav-links" style="
-        flex:1;
-        display:flex;
-        justify-content:center;
-        gap:3rem;
-    ">
-        <a href="{{ route('welcome') }}">Inicio</a>
-        <a href="{{ route('quiz') }}">Quiz</a>
-        <a href="{{ route('recorrido') }}">Recorrido</a>
-        <a href="{{ route('dominios') }}">Dominios</a>
-        <a href="{{ route('casas') }}">Casas</a>
-        <a href="{{ route('ingresar') }}">Ingresar</a>
-    </div>
-
-    <button class="hamburger"
-            id="hamburgerBtn"
-            aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-
-</nav>
-
-<div class="mobile-menu" id="mobileMenu">
-    <a href="{{ route('welcome') }}">Inicio</a>
-    <a href="{{ route('quiz') }}">Quiz</a>
-    <a href="{{ route('recorrido') }}">Recorrido</a>
-    <a href="{{ route('dominios') }}">Dominios</a>
-    <a href="{{ route('casas') }}">Casas</a>
-    <a href="{{ route('ingresar') }}" style="color:#E8C96A;">Ingresar</a>
-</div>
-
-{{-- ═══ LOGIN ═══════════════════════════════════════════════════════════════ --}}
+{{-- ═══ REGISTRO ═══════════════════════════════════════════════════════════════ --}}
 <div class="login-page">
     <div class="login-card">
 
@@ -493,6 +382,40 @@
                 </span>
             </div>
 
+            {{-- Confirmar contraseña --}}
+            <div class="form-group">
+                <label class="form-label" for="password_confirmation">Confirmar contraseña</label>
+                <div class="input-wrap">
+                    <span class="input-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                    </span>
+                    <input type="password"
+                           id="password_confirmation"
+                           name="password_confirmation"
+                           class="form-input"
+                           placeholder="Repite tu contraseña"
+                           autocomplete="new-password">
+                    <button type="button" class="toggle-pass"
+                            onclick="togglePasswordConfirmation()"
+                            aria-label="Mostrar confirmación de contraseña">
+                        <svg id="eyeIconConfirmation" width="16" height="16" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+                </div>
+                <span class="field-error" id="passConfirmationError">
+                    Las contraseñas no coinciden.
+                </span>
+            </div>
+
             <button type="submit" class="btn-login">
                 Crear cuenta
             </button>
@@ -548,26 +471,7 @@
 
 @push('extra-js')
 <script>
-    // Hamburger
-    const btn  = document.getElementById('hamburgerBtn');
-    const menu = document.getElementById('mobileMenu');
-    const navEl = btn.closest('nav');
-    function posicionarMenuMovil() {
-        if (navEl) menu.style.top = navEl.getBoundingClientRect().bottom + 'px';
-    }
-    btn.addEventListener('click', () => {
-        posicionarMenuMovil();
-        menu.classList.toggle('open');
-        btn.setAttribute('aria-expanded', menu.classList.contains('open'));
-    });
-    document.addEventListener('click', e => {
-        if (!btn.contains(e.target) && !menu.contains(e.target))
-            menu.classList.remove('open');
-    });
-    window.addEventListener('resize', posicionarMenuMovil);
-    window.addEventListener('scroll', () => {
-        if (menu.classList.contains('open')) posicionarMenuMovil();
-    });
+
 
     // Toggle contraseña
     function togglePassword() {
@@ -586,24 +490,28 @@
                 <circle cx="12" cy="12" r="3"/>`;
         }
     }
-
+\n    function togglePasswordConfirmation() {\n        const input = document.getElementById('password_confirmation');\n        const icon  = document.getElementById('eyeIconConfirmation');\n\n        if (input.type === 'password') {\n            input.type = 'text';\n            icon.innerHTML = `\n                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>\n                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>\n                <line x1="1" y1="1" x2="23" y2="23"/>`;\n        } else {\n            input.type = 'password';\n            icon.innerHTML = `\n                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>\n                <circle cx="12" cy="12" r="3"/>`;\n        }\n    }\n
     // Validación del formulario de registro: nombre completo, correo y contraseña
     function validarRegistro(e) {
         let valido = true;
         const nombreInput = document.getElementById('nombre');
         const emailInput  = document.getElementById('email');
         const passInput   = document.getElementById('password');
+        const passConfirmationInput = document.getElementById('password_confirmation');
         const nombreError = document.getElementById('nombreError');
         const emailError  = document.getElementById('emailError');
         const passError   = document.getElementById('passError');
+        const passConfirmationError = document.getElementById('passConfirmationError');
 
         // Reset
         nombreInput.classList.remove('error');
         emailInput.classList.remove('error');
         passInput.classList.remove('error');
+        passConfirmationInput.classList.remove('error');
         nombreError.classList.remove('visible');
         emailError.classList.remove('visible');
         passError.classList.remove('visible');
+        passConfirmationError.classList.remove('visible');
 
         // Nombre completo: al menos dos palabras (nombre y apellido)
         const nombreVal = nombreInput.value.trim();
@@ -633,6 +541,14 @@
             passInput.classList.add('error');
             passError.textContent = 'Ingresa una contraseña de al menos 8 caracteres.';
             passError.classList.add('visible');
+            valido = false;
+        }
+
+        // Confirmación de contraseña
+        if (!passConfirmationInput.value || passConfirmationInput.value !== passInput.value) {
+            passConfirmationInput.classList.add('error');
+            passConfirmationError.textContent = 'Las contraseñas no coinciden.';
+            passConfirmationError.classList.add('visible');
             valido = false;
         }
 

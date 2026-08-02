@@ -8,30 +8,6 @@
     body { display:flex; flex-direction:column; min-height:100vh; }
     .page-content-wrapper { flex:1 0 auto; display:flex; flex-direction:column; }
 
-    /* ── Navbar ── */
-    .nav-links { flex:1; display:flex; justify-content:center; gap:3rem; }
-    .nav-links a { color:#B0A898; text-decoration:none; font-size:.88rem;
-                   letter-spacing:.08em; text-transform:uppercase; transition:.25s; }
-    .nav-links a:hover { color:#E8C96A; }
-    .nav-auth  { display:flex; align-items:center; }
-    .hamburger { display:none; background:none; border:none; cursor:pointer;
-                 padding:.25rem; flex-direction:column; gap:5px; }
-    .hamburger span { display:block; width:22px; height:2px; background:#C8A84B; border-radius:2px; }
-    .mobile-menu { display:none; flex-direction:column;
-                   position:fixed; left:0; right:0; top:0; z-index:99;
-                   max-height:calc(100vh - 70px); overflow-y:auto;
-                   background:rgba(6,6,15,.97); padding:.5rem 0; }
-    .mobile-menu a { display:block; padding:.75rem 2rem; font-size:.85rem; color:#B0A898;
-                     text-decoration:none; letter-spacing:.08em; text-transform:uppercase;
-                     border-bottom:1px solid rgba(43,31,61,.4); }
-    .mobile-menu a:last-child { border-bottom:none; }
-    .mobile-menu.open { display:flex; }
-    @media (max-width:768px) {
-        .nav-links { display:none !important; }
-        .nav-auth  { display:none !important; }
-        .hamburger { display:flex !important; }
-    }
-
     /* ── Stage wrap ── */
     .stage-wrap { padding:2rem; flex:1; display:flex; flex-direction:column;
                   overflow-x:hidden; box-sizing:border-box; width:100%; }
@@ -306,31 +282,8 @@
 </style>
 
 {{-- NAVBAR --}}
-<nav style="display:flex;align-items:center;padding:1.6rem 2rem;background:rgba(6,6,15,.6);
-            backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-            position:sticky;top:0;z-index:100;">
-    <img src="{{ asset('imagenes/isotipo_dorado.webp') }}" alt="UTL" style="height:2.6rem;">
-    <div class="nav-links">
-        <a href="{{ route('welcome') }}">Inicio</a>
-        <a href="{{ route('quiz') }}">Quiz</a>
-        <a href="{{ route('recorrido') }}">Recorrido</a>
-        <a href="{{ route('dominios') }}">Dominios</a>
-        <a href="{{ route('casas') }}">Casas</a>
-        <a href="{{ route('ingresar') }}">Ingresar</a>
-    </div>
-    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú">
-        <span></span><span></span><span></span>
-    </button>
-</nav>
+@include('partials.navbar')
 
-<div class="mobile-menu" id="mobileMenu">
-    <a href="{{ route('welcome') }}">Inicio</a>
-    <a href="{{ route('quiz') }}" style="color:#E8C96A;">Quiz</a>
-    <a href="{{ route('recorrido') }}">Recorrido</a>
-    <a href="{{ route('dominios') }}">Dominios</a>
-    <a href="{{ route('casas') }}">Casas</a>
-    <a href="{{ route('ingresar') }}">Ingresar</a>
-</div>
 
 {{-- Barra de progreso flotante (solo móvil): sigue al usuario cuando la
      barra original sale del viewport --}}
@@ -1117,6 +1070,10 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 const CASAS_URL = "{{ route('casas') }}";
+const RESULTADOS_URL = "{{ route('resultados.guardar') }}";
+const CSRF_TOKEN = "{{ csrf_token() }}";
+
+let resultadoGuardado = false;
 
 // ── NIVEL 1: 25 preguntas generales (discrimina TEII vs EA) — hoja "Encuesta área" ──
 const NIVEL1 = [
@@ -1437,7 +1394,17 @@ function updateProgressUI(pct, faseTxt, progressTxt) {
 //  LÓGICA DEL QUIZ
 // ════════════════════════════════════════════════════════════════════════════
 function iniciarQuiz() {
-    estado = { fase:1, preguntas:NIVEL1, indice:0, respuestas:{}, areaElegida:null, carreraFinal:null };
+    resultadoGuardado = false;
+
+    estado = {
+        fase: 1,
+        preguntas: NIVEL1,
+        indice: 0,
+        respuestas: {},
+        areaElegida: null,
+        carreraFinal: null
+    };
+
     goToStage(2);
     quizProgressFloatEl.classList.add('activo');
     renderPregunta();
@@ -1579,54 +1546,114 @@ function procesarNivel3() {
     goToStage(3);
 }
 
+async function guardarResultado(casa) {
+    if (resultadoGuardado) {
+        return;
+    }
+
+    try {
+        const respuesta = await fetch(RESULTADOS_URL, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': CSRF_TOKEN
+            },
+            body: JSON.stringify({
+                nombre_casa: casa.nombre
+            })
+        });
+
+        const datos = await respuesta.json();
+
+        if (!respuesta.ok) {
+            throw new Error(
+                datos.message || 'No fue posible guardar el resultado.'
+            );
+        }
+
+        resultadoGuardado = true;
+
+        console.log('Resultado guardado correctamente:', datos);
+    } catch (error) {
+        console.error('Error al guardar el resultado:', error);
+    }
+}
+
 // ── Muestra resultado ─────────────────────────────────────────────────────
 function mostrarResultado() {
     const key = estado.carreraFinal;
-    const c   = CARRERAS[key] || CARRERAS['DSM'];
+    const c = CARRERAS[key] || CARRERAS['DSM'];
 
     document.getElementById('stage-4-result-title').textContent = c.nombre;
-    document.getElementById('stage-4-casa-nombre').textContent  = c.carrera;
-    document.getElementById('stage-4-frase').textContent        = '"' + c.frase + '"';
-    document.getElementById('stage-4-desc').textContent         = c.desc;
-    document.getElementById('stage-4-img').src                  = '/' + c.imagen;
+    document.getElementById('stage-4-casa-nombre').textContent = c.carrera;
+    document.getElementById('stage-4-frase').textContent = '"' + c.frase + '"';
+    document.getElementById('stage-4-desc').textContent = c.desc;
+    document.getElementById('stage-4-img').src = '/' + c.imagen;
 
-    // Instagram card
-    document.getElementById('ig-img').src    = '/' + c.imagen;
+    // Tarjeta para compartir en Instagram
+    document.getElementById('ig-img').src = '/' + c.imagen;
     document.getElementById('ig-title').textContent = c.nombre;
-    document.getElementById('ig-casa').textContent  = c.carrera;
+    document.getElementById('ig-casa').textContent = c.carrera;
     document.getElementById('ig-frase').textContent = '"' + c.frase + '"';
 
-    // Dominio badge
+    // Dominio académico
     const domEl = document.getElementById('stage-4-scores');
+
     domEl.innerHTML = `
         <span style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
-                     color:#707085;display:block;margin-bottom:.4rem;">Dominio académico</span>
-        <span style="background:rgba(200,168,75,.1);border:1px solid rgba(200,168,75,.3);
-                     border-radius:20px;padding:.35rem .9rem;color:#E8C96A;
-                     font-size:.82rem;">${c.dominio}</span>
+                     color:#707085;display:block;margin-bottom:.4rem;">
+            Dominio académico
+        </span>
+
+        <span style="background:rgba(200,168,75,.1);
+                     border:1px solid rgba(200,168,75,.3);
+                     border-radius:20px;
+                     padding:.35rem .9rem;
+                     color:#E8C96A;
+                     font-size:.82rem;">
+            ${c.dominio}
+        </span>
     `;
 
-    // Top 2 y Top 3 (versión pequeña, con nombre de casa y carrera).
-    // Cada tarjeta es un enlace que lleva directo a Casas y resalta esa carrera.
+    // Segundo y tercer lugar
     const top23El = document.getElementById('stage-4-top23');
-    const rankingRestante = (estado.rankingFinal || []).slice(1, 3); // 2º y 3er lugar
+    const rankingRestante = (estado.rankingFinal || []).slice(1, 3);
+
     top23El.innerHTML = rankingRestante.map((carreraKey, i) => {
         const cc = CARRERAS[carreraKey];
-        if (!cc) return '';
+
+        if (!cc) {
+            return '';
+        }
+
         const lugar = i === 0 ? '2do lugar' : '3er lugar';
-        const slug  = slugify(cc.carrera);
+        const slug = slugify(cc.carrera);
+
         return `
             <a class="mini-result" href="${CASAS_URL}?casa=${slug}">
                 <img src="/${cc.imagen}" alt="${cc.nombre}">
+
                 <div class="mini-result-info">
                     <span class="mini-result-rank">${lugar}</span>
-                    <span class="mini-result-name">${cc.nombre} <span class="mini-result-carrera">(${cc.carrera})</span></span>
+
+                    <span class="mini-result-name">
+                        ${cc.nombre}
+                        <span class="mini-result-carrera">
+                            (${cc.carrera})
+                        </span>
+                    </span>
                 </div>
             </a>
         `;
     }).join('');
 
+    // Mostrar la pantalla final
     goToStage(4);
+
+    // Guardar únicamente el resultado ganador
+    guardarResultado(c);
 }
 
 // ── Compartir resultado ───────────────────────────────────────────────────
@@ -1646,24 +1673,6 @@ function descargarResultado() {
 // ════════════════════════════════════════════════════════════════════════════
 //  HAMBURGER + MOBILE LAYOUT
 // ════════════════════════════════════════════════════════════════════════════
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const mobileMenu   = document.getElementById('mobileMenu');
-function posicionarMenuMovil() {
-    if (quizNavEl) mobileMenu.style.top = quizNavEl.getBoundingClientRect().bottom + 'px';
-}
-hamburgerBtn.addEventListener('click', () => {
-    posicionarMenuMovil();
-    mobileMenu.classList.toggle('open');
-    hamburgerBtn.setAttribute('aria-expanded', mobileMenu.classList.contains('open'));
-});
-document.addEventListener('click', e => {
-    if (!hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target))
-        mobileMenu.classList.remove('open');
-});
-window.addEventListener('resize', posicionarMenuMovil);
-window.addEventListener('scroll', () => {
-    if (mobileMenu.classList.contains('open')) posicionarMenuMovil();
-});
 
 function applyMobileLayout() {
     const inner = document.getElementById('stage-1-inner');

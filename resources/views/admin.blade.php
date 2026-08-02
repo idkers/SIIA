@@ -1,104 +1,173 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Panel Administrativo — NOVA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Headland+One&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Headland+One&display=swap"
+        rel="stylesheet"
+    >
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         :root {
-            --gold:      #C8A84B;
-            --gold-lt:   #E8C96A;
-            --gold-dk:   #8D6627;
-            --bg:        #06060F;
-            --bg2:       #0D0D1A;
-            --bg3:       #14141F;
-            --border:    rgba(200,168,75,.18);
-            --border-hi: rgba(200,168,75,.55);
-            --text:      #F0EAD8;
-            --text-muted:#B0A898;
+            --gold: #C8A84B;
+            --gold-lt: #E8C96A;
+            --gold-dk: #8D6627;
+            --bg: #06060F;
+            --bg2: #0D0D1A;
+            --bg3: #14141F;
+            --border: rgba(200, 168, 75, .18);
+            --border-hi: rgba(200, 168, 75, .55);
+            --text: #F0EAD8;
+            --text-muted: #B0A898;
+            --success: #4BC864;
             --sidebar-w: 240px;
         }
 
-        html, body { height: 100%; background: var(--bg); color: var(--text);
-                     font-family: system-ui, -apple-system, sans-serif; }
+        html,
+        body {
+            min-height: 100%;
+            background: var(--bg);
+            color: var(--text);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
 
-        /* ═══ LAYOUT ═══════════════════════════════════════════════════ */
-        .admin-wrap { display: flex; min-height: 100vh; }
+        button,
+        input {
+            font-family: inherit;
+        }
 
-        /* ─── SIDEBAR ─────────────────────────────────────────────────── */
+        /* ================================================================
+           ESTRUCTURA GENERAL
+        ================================================================= */
+
+        .admin-wrap {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ================================================================
+           SIDEBAR
+        ================================================================= */
+
         .sidebar {
-            width: var(--sidebar-w);
-            background: var(--bg2);
-            border-right: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 50;
+
             display: flex;
             flex-direction: column;
-            position: fixed;
-            top: 0; left: 0; bottom: 0;
-            z-index: 50;
-            transition: transform .3s;
+
+            width: var(--sidebar-w);
+
+            background: var(--bg2);
+            border-right: 1px solid var(--border);
+
+            transition: transform .3s ease;
         }
 
         .sidebar-logo {
             display: flex;
             align-items: center;
             gap: .75rem;
+
             padding: 1.5rem 1.25rem;
+
             border-bottom: 1px solid var(--border);
         }
 
-        .sidebar-logo img { height: 2rem; width: auto; }
+        .sidebar-logo img {
+            width: auto;
+            height: 2rem;
+            object-fit: contain;
+        }
 
         .sidebar-logo span {
-            font-family: 'Headland One', serif;
             color: var(--gold);
-            font-size: 1.1rem;
+            font-family: "Headland One", serif;
+            font-size: 1.05rem;
             letter-spacing: .08em;
         }
 
-        .sidebar-nav { flex: 1; padding: 1rem 0; overflow-y: auto; }
+        .sidebar-nav {
+            flex: 1;
+            padding: 1rem 0;
+            overflow-y: auto;
+        }
 
         .nav-section-label {
-            font-size: .62rem;
-            text-transform: uppercase;
-            letter-spacing: .15em;
-            color: #4A4060;
             padding: .85rem 1.25rem .35rem;
+
+            color: #595069;
+            font-size: .62rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
         }
 
         .nav-item {
             display: flex;
             align-items: center;
             gap: .75rem;
-            padding: .7rem 1.25rem;
+
+            width: 100%;
+            padding: .75rem 1.25rem;
+
+            background: none;
+            border: none;
+            border-left: 3px solid transparent;
+
             color: var(--text-muted);
-            text-decoration: none;
+            cursor: pointer;
             font-size: .85rem;
             letter-spacing: .03em;
-            border-left: 3px solid transparent;
-            transition: background .15s, color .15s, border-color .15s;
-            cursor: pointer;
-            background: none;
-            border-top: none;
-            border-right: none;
-            border-bottom: none;
-            width: 100%;
             text-align: left;
+
+            transition:
+                background .15s,
+                color .15s,
+                border-color .15s;
         }
 
-        .nav-item:hover { background: rgba(200,168,75,.06); color: var(--gold-lt); }
+        .nav-item:hover {
+            background: rgba(200, 168, 75, .06);
+            color: var(--gold-lt);
+        }
 
         .nav-item.active {
-            background: rgba(200,168,75,.1);
-            color: var(--gold-lt);
+            background: rgba(200, 168, 75, .10);
             border-left-color: var(--gold);
+            color: var(--gold-lt);
         }
 
-        .nav-item svg { flex-shrink: 0; opacity: .7; }
-        .nav-item.active svg, .nav-item:hover svg { opacity: 1; }
+        .nav-item svg {
+            flex-shrink: 0;
+            opacity: .75;
+        }
+
+        .nav-item:hover svg,
+        .nav-item.active svg {
+            opacity: 1;
+        }
 
         .sidebar-footer {
             padding: 1rem 1.25rem;
@@ -108,629 +177,1574 @@
         .btn-logout {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: .6rem;
+
             width: 100%;
-            padding: .65rem 1rem;
-            background: rgba(224,82,82,.08);
-            border: 1px solid rgba(224,82,82,.25);
+            padding: .7rem 1rem;
+
+            background: rgba(224, 82, 82, .08);
+            border: 1px solid rgba(224, 82, 82, .25);
             border-radius: 6px;
+
             color: #E05252;
-            font-size: .82rem;
             cursor: pointer;
+            font-size: .82rem;
+
             transition: background .2s;
-            font-family: inherit;
         }
-        .btn-logout:hover { background: rgba(224,82,82,.18); }
 
-        /* ─── MAIN ────────────────────────────────────────────────────── */
+        .btn-logout:hover {
+            background: rgba(224, 82, 82, .18);
+        }
+
+        /* ================================================================
+           CONTENIDO PRINCIPAL
+        ================================================================= */
+
         .main {
-            margin-left: var(--sidebar-w);
-            flex: 1;
             display: flex;
+            flex: 1;
             flex-direction: column;
+
+            min-width: 0;
             min-height: 100vh;
+            margin-left: var(--sidebar-w);
         }
 
-        /* ─── TOPBAR ──────────────────────────────────────────────────── */
         .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 2rem;
-            background: rgba(13,13,26,.8);
-            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
             z-index: 40;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 1rem 2rem;
+
+            background: rgba(13, 13, 26, .82);
+            border-bottom: 1px solid var(--border);
             backdrop-filter: blur(12px);
         }
 
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         .topbar-title {
-            font-family: 'Headland One', serif;
-            font-size: 1.15rem;
             color: var(--text);
+            font-family: "Headland One", serif;
+            font-size: 1.15rem;
+            font-weight: 400;
             letter-spacing: .04em;
         }
 
         .topbar-badge {
-            font-size: .72rem;
-            background: rgba(200,168,75,.12);
+            padding: .25rem .75rem;
+
+            background: rgba(200, 168, 75, .12);
             border: 1px solid var(--border);
             border-radius: 20px;
-            padding: .25rem .75rem;
+
             color: var(--gold);
+            font-size: .72rem;
             letter-spacing: .08em;
             text-transform: uppercase;
         }
 
-        /* hamburger móvil */
         .hamburger-admin {
             display: none;
+            flex-direction: column;
+            gap: 5px;
+
+            padding: .25rem;
+
             background: none;
             border: none;
             cursor: pointer;
-            padding: .25rem;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .hamburger-admin span { display:block;width:22px;height:2px;background:var(--gold);border-radius:2px; }
-
-        /* ─── CONTENIDO ───────────────────────────────────────────────── */
-        .content { flex: 1; padding: 2rem; overflow-x: hidden; }
-
-        /* Secciones ocultas por defecto */
-        .panel-section { display: none; }
-        .panel-section.active { display: block; }
-
-        /* ─── STAT CARDS ──────────────────────────────────────────────── */
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-            margin-bottom: 2rem;
         }
 
-        .stat-card {
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .stat-icon {
-            width: 48px; height: 48px;
-            border-radius: 10px;
-            background: rgba(200,168,75,.1);
-            border: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .stat-val { font-size: 2rem; font-weight: 700; color: var(--gold-lt); line-height: 1; }
-        .stat-label { font-size: .78rem; color: var(--text-muted); margin-top: .25rem; text-transform: uppercase; letter-spacing: .08em; }
-
-        /* ─── CHART CARDS ─────────────────────────────────────────────── */
-        .chart-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        .chart-card {
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-        }
-
-        .chart-card.full { grid-column: 1 / -1; }
-
-        .card-title {
-            font-family: 'Headland One', serif;
-            font-size: .95rem;
-            color: var(--text);
-            margin-bottom: 1.25rem;
-            letter-spacing: .04em;
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-        }
-
-        .card-title::before {
-            content: '';
+        .hamburger-admin span {
             display: block;
-            width: 3px;
-            height: 1rem;
+
+            width: 22px;
+            height: 2px;
+
             background: var(--gold);
             border-radius: 2px;
         }
 
-        .chart-wrap { position: relative; height: 280px; }
+        .content {
+            flex: 1;
+            padding: 2rem;
+            overflow-x: hidden;
+        }
 
-        /* ─── MÁS / MENOS ASIGNACIONES ───────────────────────────────── */
-        .mm-grid {
+        .panel-section {
+            display: none;
+        }
+
+        .panel-section.active {
+            display: block;
+        }
+
+        /* ================================================================
+           ENCABEZADOS DE SECCIÓN
+        ================================================================= */
+
+        .section-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            margin-bottom: .4rem;
+
+            color: var(--text);
+            font-family: "Headland One", serif;
+            font-size: 1.45rem;
+            font-weight: 400;
+            letter-spacing: .03em;
+        }
+
+        .section-description {
+            max-width: 760px;
+            color: var(--text-muted);
+            font-size: .88rem;
+            line-height: 1.6;
+        }
+
+        /* ================================================================
+           TARJETAS
+        ================================================================= */
+
+        .chart-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.25rem;
+
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-card {
+            min-width: 0;
+            padding: 1.5rem;
+
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .chart-card.full {
+            grid-column: 1 / -1;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+
+            margin-bottom: 1.25rem;
+
+            color: var(--text);
+            font-family: "Headland One", serif;
+            font-size: .95rem;
+            font-weight: 400;
+            letter-spacing: .04em;
+        }
+
+        .card-title::before {
+            content: "";
+
+            display: block;
+
+            width: 3px;
+            height: 1rem;
+
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        /* ================================================================
+           MÁS Y MENOS ELEGIDAS
+        ================================================================= */
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1rem;
         }
 
-        .mm-item {
+        .comparison-item {
+            padding: 1.5rem;
+
             background: var(--bg2);
             border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 1.5rem;
+
             text-align: center;
         }
 
-        .mm-label {
+        .comparison-label {
             display: block;
-            font-size: .68rem;
-            text-transform: uppercase;
-            letter-spacing: .12em;
+
+            margin-bottom: .65rem;
+
             color: var(--text-muted);
-            margin-bottom: .6rem;
+            font-size: .68rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
         }
 
-        .mm-name {
+        .comparison-name {
             display: block;
+
+            margin-bottom: .3rem;
+
+            color: var(--text);
             font-size: 1.05rem;
             font-weight: 600;
-            color: var(--text);
-            margin-bottom: .3rem;
+            overflow-wrap: anywhere;
         }
 
-        .mm-value {
-            font-size: 1.6rem;
+        .comparison-secondary {
+            display: block;
+
+            margin-bottom: .8rem;
+
+            color: var(--text-muted);
+            font-size: .76rem;
+        }
+
+        .comparison-value {
+            display: block;
+
+            color: var(--gold-lt);
+            font-size: 1.8rem;
             font-weight: 700;
             line-height: 1;
         }
 
-        .mm-item.mm-top .mm-value  { color: #4BC864; }
-        .mm-item.mm-low .mm-value  { color: var(--text-muted); }
-
-        @media (max-width: 600px) {
-            .mm-grid { grid-template-columns: 1fr; }
+        .comparison-item.top .comparison-value {
+            color: var(--success);
         }
 
-        /* ─── TABLAS ──────────────────────────────────────────────────── */
+        .comparison-item.low .comparison-value {
+            color: var(--text-muted);
+        }
+
+        .comparison-caption {
+            display: block;
+
+            margin-top: .35rem;
+
+            color: var(--text-muted);
+            font-size: .72rem;
+        }
+
+        /* ================================================================
+           GRÁFICAS
+        ================================================================= */
+
+        .chart-wrap {
+            position: relative;
+            width: 100%;
+            height: 350px;
+        }
+
+        .chart-wrap.domain-chart {
+            height: 360px;
+        }
+
+        /* ================================================================
+           TABLAS
+        ================================================================= */
+
+        .table-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+
+            margin-bottom: 1.25rem;
+        }
+
+        .table-summary {
+            color: var(--text-muted);
+            font-size: .82rem;
+        }
+
+        .search-input {
+            width: 270px;
+            padding: .6rem 1rem;
+
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            outline: none;
+
+            color: var(--text);
+            font-size: .84rem;
+
+            transition: border-color .2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--gold);
+        }
+
+        .search-input::placeholder {
+            color: #62596F;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
         .data-table {
             width: 100%;
+            min-width: 720px;
+
             border-collapse: collapse;
+
             font-size: .85rem;
         }
 
         .data-table th {
-            text-align: left;
-            font-size: .68rem;
-            text-transform: uppercase;
-            letter-spacing: .12em;
-            color: var(--gold);
-            padding: .6rem .85rem;
+            padding: .7rem .85rem;
+
             border-bottom: 1px solid var(--border);
+
+            color: var(--gold);
+            font-size: .68rem;
             font-weight: 600;
+            letter-spacing: .12em;
+            text-align: left;
+            text-transform: uppercase;
         }
 
         .data-table td {
-            padding: .75rem .85rem;
+            padding: .8rem .85rem;
+
+            border-bottom: 1px solid rgba(200, 168, 75, .08);
+
             color: var(--text-muted);
-            border-bottom: 1px solid rgba(43,31,61,.4);
             vertical-align: middle;
         }
 
-        .data-table tr:last-child td { border-bottom: none; }
-        .data-table tr:hover td { background: rgba(200,168,75,.04); color: var(--text); }
-
-        .badge-dom {
-            font-size: .68rem;
-            padding: 2px 8px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            color: var(--gold);
-            background: rgba(200,168,75,.08);
+        .data-table tbody tr:last-child td {
+            border-bottom: none;
         }
 
-        /* ─── BARRA DE PROGRESO ───────────────────────────────────────── */
-        .progress-bar-wrap { display: flex; align-items: center; gap: .75rem; }
-        .progress-track { flex: 1; height: 6px; background: var(--bg2); border-radius: 3px; overflow: hidden; }
-        .progress-fill  { height: 100%; border-radius: 3px; background: linear-gradient(to right, var(--gold-dk), var(--gold)); transition: width .6s ease; }
-        .progress-val   { font-size: .78rem; color: var(--gold-lt); min-width: 2.5rem; text-align: right; }
+        .data-table tbody tr:hover td {
+            background: rgba(200, 168, 75, .04);
+            color: var(--text);
+        }
 
-        /* ─── GESTIÓN (preguntas / casas / dominios) ──────────────────── */
-        .mgmt-toolbar {
+        .position-number {
+            color: var(--gold-lt);
+            font-weight: 700;
+        }
+
+        .name-cell {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
+            gap: .65rem;
 
-        .mgmt-search {
-            padding: .55rem 1rem;
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            border-radius: 6px;
             color: var(--text);
-            font-size: .85rem;
-            font-family: inherit;
-            outline: none;
-            width: 260px;
-            transition: border-color .2s;
+            font-weight: 600;
         }
-        .mgmt-search:focus { border-color: var(--gold); }
-        .mgmt-search::placeholder { color: #3D3550; }
-
-        .btn-primary {
-            padding: .55rem 1.25rem;
-            background: linear-gradient(135deg, #C6A050, #8D6627);
-            border: none;
-            border-radius: 6px;
-            color: #1A1000;
-            font-size: .82rem;
-            font-weight: 700;
-            cursor: pointer;
-            font-family: inherit;
-            letter-spacing: .04em;
-            transition: opacity .2s;
-        }
-        .btn-primary:hover { opacity: .88; }
-
-        .btn-sm {
-            padding: .3rem .75rem;
-            border-radius: 5px;
-            font-size: .72rem;
-            cursor: pointer;
-            font-family: inherit;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text-muted);
-            transition: background .15s, color .15s;
-        }
-        .btn-sm:hover { background: rgba(200,168,75,.1); color: var(--gold-lt); }
-        .btn-sm.danger { border-color: rgba(224,82,82,.3); color: #E05252; }
-        .btn-sm.danger:hover { background: rgba(224,82,82,.1); }
 
         .color-dot {
             display: inline-block;
-            width: 10px; height: 10px;
-            border-radius: 50%;
             flex-shrink: 0;
+
+            width: 11px;
+            height: 11px;
+
+            border: 1px solid rgba(255, 255, 255, .18);
+            border-radius: 50%;
         }
 
-        /* ─── EMPTY STATE ─────────────────────────────────────────────── */
+        .domain-badge {
+            display: inline-block;
+
+            padding: .25rem .65rem;
+
+            background: rgba(200, 168, 75, .08);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+
+            color: var(--gold-lt);
+            font-size: .7rem;
+        }
+
+        .progress-bar-wrap {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+
+            min-width: 170px;
+        }
+
+        .progress-track {
+            flex: 1;
+
+            height: 7px;
+
+            background: var(--bg2);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+
+            background: linear-gradient(
+                to right,
+                var(--gold-dk),
+                var(--gold)
+            );
+
+            border-radius: 20px;
+
+            transition: width .6s ease;
+        }
+
+        .progress-value {
+            min-width: 42px;
+
+            color: var(--gold-lt);
+            font-size: .76rem;
+            text-align: right;
+        }
+
+        .result-count {
+            color: var(--gold-lt);
+            font-weight: 700;
+        }
+
+        /* ================================================================
+           ESTADO VACÍO
+        ================================================================= */
+
         .empty-state {
-            text-align: center;
             padding: 3rem 1rem;
+
             color: var(--text-muted);
             font-size: .88rem;
+            line-height: 1.6;
+            text-align: center;
         }
 
-        /* ═══ RESPONSIVE ════════════════════════════════════════════════ */
-        @media (max-width: 900px) {
-            .stat-grid  { grid-template-columns: repeat(2, 1fr); }
-            .chart-grid { grid-template-columns: 1fr; }
-            .chart-card.full { grid-column: 1; }
+        .empty-icon {
+            display: block;
+
+            margin-bottom: .75rem;
+
+            color: var(--gold);
+            font-size: 2rem;
+        }
+
+        /* ================================================================
+           RESPONSIVE
+        ================================================================= */
+
+        @media (max-width: 1000px) {
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-card.full {
+                grid-column: 1;
+            }
         }
 
         @media (max-width: 768px) {
-            :root { --sidebar-w: 0px; }
+            :root {
+                --sidebar-w: 0px;
+            }
 
             .sidebar {
-                transform: translateX(-240px);
                 width: 240px;
+                transform: translateX(-240px);
             }
-            .sidebar.open { transform: translateX(0); }
 
-            .main { margin-left: 0; }
+            .sidebar.open {
+                transform: translateX(0);
+            }
 
-            .hamburger-admin { display: flex !important; }
+            .main {
+                margin-left: 0;
+            }
 
-            .stat-grid { grid-template-columns: 1fr; }
-            .content   { padding: 1.25rem 1rem; }
-            .topbar    { padding: .85rem 1.25rem; }
+            .hamburger-admin {
+                display: flex;
+            }
 
-            .mgmt-search { width: 100%; }
-            .mgmt-toolbar { flex-direction: column; align-items: flex-start; }
+            .content {
+                padding: 1.25rem 1rem;
+            }
+
+            .topbar {
+                padding: .85rem 1.25rem;
+            }
+
+            .topbar-title {
+                font-size: 1rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .table-toolbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .chart-wrap {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chart-card {
+                padding: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .chart-wrap {
+                height: 270px;
+            }
+
+            .topbar-badge {
+                display: none;
+            }
         }
     </style>
 </head>
+
 <body>
+
+@php
+    $casaMaxima = $casas->max('resultados_count') ?? 0;
+    $dominioMaximo = $dominios->max('resultados_count') ?? 0;
+@endphp
 
 <div class="admin-wrap">
 
-    {{-- ═══ SIDEBAR ═══════════════════════════════════════════════════ --}}
-    <aside class="sidebar" id="adminSidebar">
+    {{-- ================================================================
+         SIDEBAR
+    ================================================================= --}}
 
+    <aside
+        class="sidebar"
+        id="adminSidebar"
+    >
         <div class="sidebar-logo">
-            <img src="{{ asset('imagenes/isotipo_dorado.webp') }}" alt="UTL">
+            <img
+                src="{{ asset('imagenes/isotipo_dorado.webp') }}"
+                alt="NOVA"
+            >
+
             <span>NOVA Admin</span>
         </div>
 
         <nav class="sidebar-nav">
 
-            <div class="nav-section-label">Panel</div>
+            <div class="nav-section-label">
+                Panel
+            </div>
 
-            <button class="nav-item active" onclick="showSection('estadisticas', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
-                    <line x1="6" y1="20" x2="6" y2="14"/>
+            <button
+                type="button"
+                class="nav-item active"
+                data-section="estadisticas"
+                onclick="showSection('estadisticas', this)"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="14"></line>
                 </svg>
+
                 Estadísticas
             </button>
 
-            <div class="nav-section-label">Gestión</div>
+            <div class="nav-section-label">
+                Resultados generales
+            </div>
 
-            <button class="nav-item" onclick="showSection('preguntas', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+            <button
+                type="button"
+                class="nav-item"
+                data-section="casas"
+                onclick="showSection('casas', this)"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
-                Gestión Preguntas
+
+                Estadísticas de casas
             </button>
 
-            <button class="nav-item" onclick="showSection('casas', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            <button
+                type="button"
+                class="nav-item"
+                data-section="dominios"
+                onclick="showSection('dominios', this)"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    <path d="M4.93 4.93a10 10 0 0 0 0 14.14"></path>
                 </svg>
-                Gestión Casas
-            </button>
 
-            <button class="nav-item" onclick="showSection('dominios', this)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
-                </svg>
-                Gestión Dominios
+                Estadísticas de dominios
             </button>
 
         </nav>
 
         <div class="sidebar-footer">
-            <a href="{{ route('ingresar') }}" class="btn-logout" style="text-decoration:none;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                    <polyline points="16 17 21 12 16 7"/>
-                    <line x1="21" y1="12" x2="9" y2="12"/>
-                </svg>
-                Cerrar sesión
-            </a>
-        </div>
 
+            <form
+                action="{{ route('salir') }}"
+                method="POST"
+            >
+                @csrf
+
+                <button
+                    type="submit"
+                    class="btn-logout"
+                >
+                    <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+
+                    Cerrar sesión
+                </button>
+            </form>
+
+        </div>
     </aside>
 
-    {{-- ═══ MAIN ═══════════════════════════════════════════════════════ --}}
+    {{-- ================================================================
+         CONTENIDO PRINCIPAL
+    ================================================================= --}}
+
     <div class="main">
 
-        {{-- Topbar --}}
         <header class="topbar">
-            <div style="display:flex;align-items:center;gap:1rem;">
-                <button class="hamburger-admin" id="adminHamburger" aria-label="Menú">
-                    <span></span><span></span><span></span>
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    class="hamburger-admin"
+                    id="adminHamburger"
+                    aria-label="Abrir menú administrativo"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
-                <h1 class="topbar-title" id="topbarTitle">Estadísticas</h1>
+
+                <h1
+                    class="topbar-title"
+                    id="topbarTitle"
+                >
+                    Estadísticas
+                </h1>
+
             </div>
-            <span class="topbar-badge">Admin</span>
+
+            <span class="topbar-badge">
+                Administrador
+            </span>
+
         </header>
 
-        {{-- Contenido --}}
         <main class="content">
 
-            {{-- ══════════════════════════════════════════════════════════
-                 SECCIÓN: ESTADÍSTICAS
-                 ══════════════════════════════════════════════════════════ --}}
-            <section class="panel-section active" id="sec-estadisticas">
+            {{-- ============================================================
+                 SECCIÓN GENERAL
+            ============================================================= --}}
 
-                {{-- Stat cards --}}
-                <div class="stat-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8A84B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <div class="stat-val">0</div>
-                            <div class="stat-label">Total alumnos</div>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4BC864" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                                <polyline points="9 22 9 12 15 12 15 22"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <div class="stat-val" style="color:#4BC864;">0</div>
-                            <div class="stat-label">Con casa asignada</div>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8C96A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <div class="stat-val" style="color:#E8C96A;">0</div>
-                            <div class="stat-label">Sin casa aún</div>
-                        </div>
-                    </div>
+            <section
+                class="panel-section active"
+                id="sec-estadisticas"
+            >
+
+                <div class="section-header">
+                    <h2 class="section-title">
+                        Estadísticas generales
+                    </h2>
+
+                    <p class="section-description">
+                        En este apartado se presenta una comparación general de las
+                        casas y dominios obtenidos mediante el Quiz vocacional.
+                        La información se actualiza de acuerdo con los resultados
+                        almacenados en el sistema.
+                    </p>
                 </div>
 
-                {{-- Gráficas --}}
                 <div class="chart-grid">
 
-                    {{-- Casas: más y menos asignaciones --}}
-                    <div class="chart-card full">
-                        <div class="card-title">Casas</div>
-                        <div class="mm-grid">
-                            <div class="mm-item mm-top">
-                                <span class="mm-label">Más asignada</span>
-                                <span class="mm-name">—</span>
-                                <span class="mm-value">0</span>
+                    {{-- Casas más y menos elegidas --}}
+
+                    <article class="chart-card">
+
+                        <h3 class="card-title">
+                            Casas
+                        </h3>
+
+                        <div class="comparison-grid">
+
+                            <div class="comparison-item top">
+
+                                <span class="comparison-label">
+                                    Más elegida
+                                </span>
+
+                                <span class="comparison-name">
+                                    {{ $casaMasElegida?->nombre_casa ?? 'Sin resultados' }}
+                                </span>
+
+                                <span class="comparison-secondary">
+                                    {{ $casaMasElegida?->nombre ?? '—' }}
+                                </span>
+
+                                <span class="comparison-value">
+                                    {{ $casaMasElegida?->resultados_count ?? 0 }}
+                                </span>
+
+                                <span class="comparison-caption">
+                                    resultados
+                                </span>
+
                             </div>
-                            <div class="mm-item mm-low">
-                                <span class="mm-label">Menos asignada</span>
-                                <span class="mm-name">—</span>
-                                <span class="mm-value">0</span>
+
+                            <div class="comparison-item low">
+
+                                <span class="comparison-label">
+                                    Menos elegida
+                                </span>
+
+                                <span class="comparison-name">
+                                    {{ $casaMenosElegida?->nombre_casa ?? 'Sin resultados' }}
+                                </span>
+
+                                <span class="comparison-secondary">
+                                    {{ $casaMenosElegida?->nombre ?? '—' }}
+                                </span>
+
+                                <span class="comparison-value">
+                                    {{ $casaMenosElegida?->resultados_count ?? 0 }}
+                                </span>
+
+                                <span class="comparison-caption">
+                                    resultados
+                                </span>
+
                             </div>
+
                         </div>
-                    </div>
 
-                    {{-- Dominios: más y menos asignaciones --}}
-                    <div class="chart-card full">
-                        <div class="card-title">Dominios</div>
-                        <div class="mm-grid">
-                            <div class="mm-item mm-top">
-                                <span class="mm-label">Más asignado</span>
-                                <span class="mm-name">—</span>
-                                <span class="mm-value">0</span>
+                    </article>
+
+                    {{-- Dominios más y menos elegidos --}}
+
+                    <article class="chart-card">
+
+                        <h3 class="card-title">
+                            Dominios
+                        </h3>
+
+                        <div class="comparison-grid">
+
+                            <div class="comparison-item top">
+
+                                <span class="comparison-label">
+                                    Más elegido
+                                </span>
+
+                                <span class="comparison-name">
+                                    {{ $dominioMasElegido?->nombre ?? 'Sin resultados' }}
+                                </span>
+
+                                <span class="comparison-secondary">
+                                    {{ $dominioMasElegido?->nombre_casa ?? '—' }}
+                                </span>
+
+                                <span class="comparison-value">
+                                    {{ $dominioMasElegido?->resultados_count ?? 0 }}
+                                </span>
+
+                                <span class="comparison-caption">
+                                    resultados
+                                </span>
+
                             </div>
-                            <div class="mm-item mm-low">
-                                <span class="mm-label">Menos asignado</span>
-                                <span class="mm-name">—</span>
-                                <span class="mm-value">0</span>
+
+                            <div class="comparison-item low">
+
+                                <span class="comparison-label">
+                                    Menos elegido
+                                </span>
+
+                                <span class="comparison-name">
+                                    {{ $dominioMenosElegido?->nombre ?? 'Sin resultados' }}
+                                </span>
+
+                                <span class="comparison-secondary">
+                                    {{ $dominioMenosElegido?->nombre_casa ?? '—' }}
+                                </span>
+
+                                <span class="comparison-value">
+                                    {{ $dominioMenosElegido?->resultados_count ?? 0 }}
+                                </span>
+
+                                <span class="comparison-caption">
+                                    resultados
+                                </span>
+
                             </div>
+
                         </div>
-                    </div>
 
-                </div>
+                    </article>
 
-                {{-- Tabla: top casas --}}
-                <div class="chart-card">
-                    <div class="card-title">Gráficas generales — Top Casas</div>
-                    <div class="empty-state">Aún no hay datos de casas asignadas.</div>
+                    {{-- Gráfica general de casas --}}
+
+                    <article class="chart-card full">
+
+                        <h3 class="card-title">
+                            Resultados por casa
+                        </h3>
+
+                        @if ($casas->isNotEmpty())
+
+                            <div class="chart-wrap">
+                                <canvas id="graficaCasasGeneral"></canvas>
+                            </div>
+
+                        @else
+
+                            <div class="empty-state">
+                                <span class="empty-icon">⌂</span>
+                                Todavía no existen casas registradas en la base de datos.
+                            </div>
+
+                        @endif
+
+                    </article>
+
+                    {{-- Gráfica general de dominios --}}
+
+                    <article class="chart-card full">
+
+                        <h3 class="card-title">
+                            Resultados por dominio
+                        </h3>
+
+                        @if ($dominios->isNotEmpty())
+
+                            <div class="chart-wrap domain-chart">
+                                <canvas id="graficaDominiosGeneral"></canvas>
+                            </div>
+
+                        @else
+
+                            <div class="empty-state">
+                                <span class="empty-icon">◉</span>
+                                Todavía no existen dominios registrados en la base de datos.
+                            </div>
+
+                        @endif
+
+                    </article>
+
                 </div>
 
             </section>
 
-            {{-- ══════════════════════════════════════════════════════════
-                 SECCIÓN: GESTIÓN PREGUNTAS
-                 ══════════════════════════════════════════════════════════ --}}
-            <section class="panel-section" id="sec-preguntas">
-                <div class="chart-card">
-                    <div class="mgmt-toolbar">
-                        <input type="text" class="mgmt-search" placeholder="Buscar pregunta..."
-                               oninput="filtrarTabla(this,'tablaPreguntas')">
-                        <button class="btn-primary" onclick="alert('Próximamente: formulario para agregar pregunta.')">
-                            + Nueva pregunta
-                        </button>
+            {{-- ============================================================
+                 SECCIÓN CASAS
+            ============================================================= --}}
+
+            <section
+                class="panel-section"
+                id="sec-casas"
+            >
+
+                <div class="section-header">
+
+                    <h2 class="section-title">
+                        Estadísticas por casa
+                    </h2>
+
+                    <p class="section-description">
+                        La tabla muestra todas las casas registradas, la carrera
+                        representada por cada una, su dominio y el número de veces
+                        que fueron obtenidas como resultado del Quiz.
+                    </p>
+
+                </div>
+
+                <article class="chart-card">
+
+                    <div class="table-toolbar">
+
+                        <span class="table-summary">
+                            {{ $casas->count() }}
+                            {{ $casas->count() === 1 ? 'casa registrada' : 'casas registradas' }}
+                        </span>
+
+                        <input
+                            type="search"
+                            class="search-input"
+                            id="buscarCasa"
+                            placeholder="Buscar casa, carrera o dominio..."
+                            autocomplete="off"
+                        >
+
                     </div>
 
-                    <table class="data-table" id="tablaPreguntas">
-                        <thead>
-                            <tr>
-                                <th>Orden</th>
-                                <th>Pregunta</th>
-                                <th>Casa asociada</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                    <div class="empty-state">Aún no hay preguntas registradas.</div>
-                </div>
+                    @if ($casas->isNotEmpty())
+
+                        <div class="table-responsive">
+
+                            <table
+                                class="data-table"
+                                id="tablaCasas"
+                            >
+
+                                <thead>
+                                    <tr>
+                                        <th>Posición</th>
+                                        <th>Casa</th>
+                                        <th>Carrera</th>
+                                        <th>Dominio</th>
+                                        <th>Resultados</th>
+                                        <th>Porcentaje</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach ($casas as $casa)
+
+                                        @php
+                                            $porcentajeCasa = $totalResultados > 0
+                                                ? round(($casa->resultados_count / $totalResultados) * 100, 1)
+                                                : 0;
+                                        @endphp
+
+                                        <tr>
+
+                                            <td>
+                                                <span class="position-number">
+                                                    {{ $loop->iteration }}
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <div class="name-cell">
+
+                                                    <span
+                                                        class="color-dot"
+                                                        style="background-color: {{ $casa->color ?: '#C8A84B' }};"
+                                                    ></span>
+
+                                                    {{ $casa->nombre_casa }}
+
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                {{ $casa->nombre }}
+                                            </td>
+
+                                            <td>
+                                                <span class="domain-badge">
+                                                    {{ $casa->dominio?->nombre ?? 'Sin dominio' }}
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <span class="result-count">
+                                                    {{ $casa->resultados_count }}
+                                                </span>
+                                            </td>
+
+                                            <td>
+
+                                                <div class="progress-bar-wrap">
+
+                                                    <div class="progress-track">
+                                                        <div
+                                                            class="progress-fill"
+                                                            style="width: {{ $porcentajeCasa }}%;"
+                                                        ></div>
+                                                    </div>
+
+                                                    <span class="progress-value">
+                                                        {{ $porcentajeCasa }}%
+                                                    </span>
+
+                                                </div>
+
+                                            </td>
+
+                                        </tr>
+
+                                    @endforeach
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    @else
+
+                        <div class="empty-state">
+                            <span class="empty-icon">⌂</span>
+                            Aún no hay casas registradas.
+                        </div>
+
+                    @endif
+
+                </article>
+
             </section>
 
-            {{-- ══════════════════════════════════════════════════════════
-                 SECCIÓN: GESTIÓN CASAS
-                 ══════════════════════════════════════════════════════════ --}}
-            <section class="panel-section" id="sec-casas">
-                <div class="chart-card">
-                    <div class="mgmt-toolbar">
-                        <input type="text" class="mgmt-search" placeholder="Buscar casa..."
-                               oninput="filtrarTabla(this,'tablaCasas')">
-                        <button class="btn-primary" onclick="alert('Próximamente: formulario para agregar casa.')">
-                            + Nueva casa
-                        </button>
+            {{-- ============================================================
+                 SECCIÓN DOMINIOS
+            ============================================================= --}}
+
+            <section
+                class="panel-section"
+                id="sec-dominios"
+            >
+
+                <div class="section-header">
+
+                    <h2 class="section-title">
+                        Estadísticas por dominio
+                    </h2>
+
+                    <p class="section-description">
+                        La tabla presenta los dominios académicos, la cantidad de
+                        casas que pertenecen a cada uno y el número de resultados
+                        obtenidos dentro del Quiz vocacional.
+                    </p>
+
+                </div>
+
+                <article class="chart-card">
+
+                    <div class="table-toolbar">
+
+                        <span class="table-summary">
+                            {{ $dominios->count() }}
+                            {{ $dominios->count() === 1 ? 'dominio registrado' : 'dominios registrados' }}
+                        </span>
+
+                        <input
+                            type="search"
+                            class="search-input"
+                            id="buscarDominio"
+                            placeholder="Buscar dominio..."
+                            autocomplete="off"
+                        >
+
                     </div>
 
-                    <table class="data-table" id="tablaCasas">
-                        <thead>
-                            <tr>
-                                <th>Color</th>
-                                <th>Nombre</th>
-                                <th>Dominio</th>
-                                <th>Carrera</th>
-                                <th>Alumnos</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                    <div class="empty-state">Aún no hay casas registradas.</div>
-                </div>
-            </section>
+                    @if ($dominios->isNotEmpty())
 
-            {{-- ══════════════════════════════════════════════════════════
-                 SECCIÓN: GESTIÓN DOMINIOS
-                 ══════════════════════════════════════════════════════════ --}}
-            <section class="panel-section" id="sec-dominios">
-                <div class="chart-card">
-                    <div class="mgmt-toolbar">
-                        <input type="text" class="mgmt-search" placeholder="Buscar dominio..."
-                               oninput="filtrarTabla(this,'tablaDominios')">
-                        <button class="btn-primary" onclick="alert('Próximamente: formulario para agregar dominio.')">
-                            + Nuevo dominio
-                        </button>
-                    </div>
+                        <div class="table-responsive">
 
-                    <table class="data-table" id="tablaDominios">
-                        <thead>
-                            <tr>
-                                <th>Color</th>
-                                <th>Nombre</th>
-                                <th>Carreras</th>
-                                <th>Afinidad</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                    <div class="empty-state">Aún no hay dominios registrados.</div>
-                </div>
+                            <table
+                                class="data-table"
+                                id="tablaDominios"
+                            >
+
+                                <thead>
+                                    <tr>
+                                        <th>Posición</th>
+                                        <th>Dominio</th>
+                                        <th>Nombre simbólico</th>
+                                        <th>Casas</th>
+                                        <th>Resultados</th>
+                                        <th>Porcentaje</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach ($dominios as $dominio)
+
+                                        @php
+                                            $porcentajeDominio = $totalResultados > 0
+                                                ? round(($dominio->resultados_count / $totalResultados) * 100, 1)
+                                                : 0;
+                                        @endphp
+
+                                        <tr>
+
+                                            <td>
+                                                <span class="position-number">
+                                                    {{ $loop->iteration }}
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <div class="name-cell">
+
+                                                    <span
+                                                        class="color-dot"
+                                                        style="background-color: {{ $dominio->color ?: '#C8A84B' }};"
+                                                    ></span>
+
+                                                    {{ $dominio->nombre }}
+
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                {{ $dominio->nombre_casa ?: '—' }}
+                                            </td>
+
+                                            <td>
+                                                {{ $dominio->casas_count }}
+                                            </td>
+
+                                            <td>
+                                                <span class="result-count">
+                                                    {{ $dominio->resultados_count }}
+                                                </span>
+                                            </td>
+
+                                            <td>
+
+                                                <div class="progress-bar-wrap">
+
+                                                    <div class="progress-track">
+                                                        <div
+                                                            class="progress-fill"
+                                                            style="width: {{ $porcentajeDominio }}%;"
+                                                        ></div>
+                                                    </div>
+
+                                                    <span class="progress-value">
+                                                        {{ $porcentajeDominio }}%
+                                                    </span>
+
+                                                </div>
+
+                                            </td>
+
+                                        </tr>
+
+                                    @endforeach
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    @else
+
+                        <div class="empty-state">
+                            <span class="empty-icon">◉</span>
+                            Aún no hay dominios registrados.
+                        </div>
+
+                    @endif
+
+                </article>
+
             </section>
 
         </main>
-    </div>{{-- /main --}}
 
-</div>{{-- /admin-wrap --}}
+    </div>
+
+</div>
 
 <script>
-// ── Navegación entre secciones ────────────────────────────────────────
-const sectionTitles = {
-    estadisticas: 'Estadísticas',
-    preguntas:    'Gestión Preguntas',
-    casas:        'Gestión Casas',
-    dominios:     'Gestión Dominios',
-};
+    /*
+    |--------------------------------------------------------------------------
+    | Datos enviados por Laravel
+    |--------------------------------------------------------------------------
+    */
 
-function showSection(id, btn) {
-    document.querySelectorAll('.panel-section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    document.getElementById('sec-' + id).classList.add('active');
-    btn.classList.add('active');
-    document.getElementById('topbarTitle').textContent = sectionTitles[id] || id;
-    // cierra sidebar en móvil
-    document.getElementById('adminSidebar').classList.remove('open');
-}
+    const casasLabels = @json(
+        $casas->map(
+            fn ($casa) => $casa->nombre_casa ?: $casa->nombre
+        )->values()
+    );
 
-// ── Hamburger ────────────────────────────────────────────────────────
-document.getElementById('adminHamburger').addEventListener('click', () => {
-    document.getElementById('adminSidebar').classList.toggle('open');
-});
-document.addEventListener('click', e => {
-    const sb  = document.getElementById('adminSidebar');
-    const hbg = document.getElementById('adminHamburger');
-    if (sb.classList.contains('open') && !sb.contains(e.target) && !hbg.contains(e.target))
-        sb.classList.remove('open');
-});
+    const casasResultados = @json(
+        $casas->pluck('resultados_count')->values()
+    );
 
+    const casasColores = @json(
+        $casas->map(
+            fn ($casa) => $casa->color ?: '#C8A84B'
+        )->values()
+    );
 
+    const dominiosLabels = @json(
+        $dominios->pluck('nombre')->values()
+    );
+
+    const dominiosResultados = @json(
+        $dominios->pluck('resultados_count')->values()
+    );
+
+    const dominiosColores = @json(
+        $dominios->map(
+            fn ($dominio) => $dominio->color ?: '#C8A84B'
+        )->values()
+    );
+
+    /*
+    |--------------------------------------------------------------------------
+    | Configuración general de Chart.js
+    |--------------------------------------------------------------------------
+    */
+
+    Chart.defaults.color = '#B0A898';
+    Chart.defaults.borderColor = 'rgba(200, 168, 75, .10)';
+    Chart.defaults.font.family =
+        'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+
+    /*
+    |--------------------------------------------------------------------------
+    | Gráfica de casas
+    |--------------------------------------------------------------------------
+    */
+
+    const canvasCasas = document.getElementById('graficaCasasGeneral');
+
+    if (canvasCasas) {
+        new Chart(canvasCasas, {
+            type: 'bar',
+
+            data: {
+                labels: casasLabels,
+
+                datasets: [
+                    {
+                        label: 'Resultados',
+                        data: casasResultados,
+                        backgroundColor: casasColores,
+                        borderColor: casasColores,
+                        borderWidth: 1,
+                        borderRadius: 5,
+                        maxBarThickness: 42,
+                    }
+                ]
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+
+                interaction: {
+                    intersect: false,
+                    mode: 'index',
+                },
+
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+
+                    tooltip: {
+                        backgroundColor: '#0D0D1A',
+                        borderColor: 'rgba(200, 168, 75, .35)',
+                        borderWidth: 1,
+                        titleColor: '#F0EAD8',
+                        bodyColor: '#B0A898',
+                        padding: 12,
+
+                        callbacks: {
+                            label: function (context) {
+                                const value = context.raw ?? 0;
+
+                                return `${value} ${
+                                    value === 1 ? 'resultado' : 'resultados'
+                                }`;
+                            }
+                        }
+                    }
+                },
+
+                scales: {
+                    x: {
+                        grid: {
+                            display: false,
+                        },
+
+                        ticks: {
+                            maxRotation: 55,
+                            minRotation: 25,
+                            font: {
+                                size: 10,
+                            }
+                        }
+                    },
+
+                    y: {
+                        beginAtZero: true,
+
+                        ticks: {
+                            precision: 0,
+                            stepSize: 1,
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Gráfica de dominios
+    |--------------------------------------------------------------------------
+    */
+
+    const canvasDominios = document.getElementById(
+        'graficaDominiosGeneral'
+    );
+
+    if (canvasDominios) {
+        new Chart(canvasDominios, {
+            type: 'doughnut',
+
+            data: {
+                labels: dominiosLabels,
+
+                datasets: [
+                    {
+                        data: dominiosResultados,
+                        backgroundColor: dominiosColores,
+                        borderColor: '#14141F',
+                        borderWidth: 4,
+                        hoverOffset: 8,
+                    }
+                ]
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '58%',
+
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+
+                        labels: {
+                            padding: 18,
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                        }
+                    },
+
+                    tooltip: {
+                        backgroundColor: '#0D0D1A',
+                        borderColor: 'rgba(200, 168, 75, .35)',
+                        borderWidth: 1,
+                        titleColor: '#F0EAD8',
+                        bodyColor: '#B0A898',
+                        padding: 12,
+
+                        callbacks: {
+                            label: function (context) {
+                                const value = context.raw ?? 0;
+                                const total = context.dataset.data.reduce(
+                                    (acumulado, cantidad) =>
+                                        acumulado + Number(cantidad),
+                                    0
+                                );
+
+                                const porcentaje = total > 0
+                                    ? ((value / total) * 100).toFixed(1)
+                                    : 0;
+
+                                return `${context.label}: ${value} (${porcentaje}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Navegación del panel
+    |--------------------------------------------------------------------------
+    */
+
+    const sectionTitles = {
+        estadisticas: 'Estadísticas',
+        casas: 'Estadísticas de casas',
+        dominios: 'Estadísticas de dominios',
+    };
+
+    function showSection(id, button) {
+        document
+            .querySelectorAll('.panel-section')
+            .forEach(section => {
+                section.classList.remove('active');
+            });
+
+        document
+            .querySelectorAll('.nav-item')
+            .forEach(navItem => {
+                navItem.classList.remove('active');
+            });
+
+        const section = document.getElementById(`sec-${id}`);
+
+        if (!section) {
+            return;
+        }
+
+        section.classList.add('active');
+        button.classList.add('active');
+
+        document.getElementById('topbarTitle').textContent =
+            sectionTitles[id] || 'Panel administrativo';
+
+        document
+            .getElementById('adminSidebar')
+            .classList.remove('open');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Menú móvil
+    |--------------------------------------------------------------------------
+    */
+
+    const adminSidebar = document.getElementById('adminSidebar');
+    const adminHamburger = document.getElementById('adminHamburger');
+
+    adminHamburger.addEventListener('click', function () {
+        adminSidebar.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function (event) {
+        const sidebarEstaAbierto =
+            adminSidebar.classList.contains('open');
+
+        const clicDentroDelSidebar =
+            adminSidebar.contains(event.target);
+
+        const clicEnHamburguesa =
+            adminHamburger.contains(event.target);
+
+        if (
+            sidebarEstaAbierto &&
+            !clicDentroDelSidebar &&
+            !clicEnHamburguesa
+        ) {
+            adminSidebar.classList.remove('open');
+        }
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Buscadores de tablas
+    |--------------------------------------------------------------------------
+    */
+
+    function configurarBuscador(inputId, tableId) {
+        const input = document.getElementById(inputId);
+        const table = document.getElementById(tableId);
+
+        if (!input || !table) {
+            return;
+        }
+
+        input.addEventListener('input', function () {
+            const searchValue = input.value
+                .toLowerCase()
+                .trim();
+
+            const rows = table.querySelectorAll('tbody tr');
+
+            rows.forEach(function (row) {
+                const rowText = row.textContent
+                    .toLowerCase()
+                    .trim();
+
+                row.style.display = rowText.includes(searchValue)
+                    ? ''
+                    : 'none';
+            });
+        });
+    }
+
+    configurarBuscador('buscarCasa', 'tablaCasas');
+    configurarBuscador('buscarDominio', 'tablaDominios');
 </script>
 
 </body>

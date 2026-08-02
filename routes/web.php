@@ -1,19 +1,43 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CasaController;
 use App\Http\Controllers\DominioController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\ResultadoController;
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
+
+/*
+|--------------------------------------------------------------------------
+| Página principal
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+/*
+|--------------------------------------------------------------------------
+| Quiz vocacional
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/quiz', function () {
-    return view('quiz');
-})->name('quiz');
+    return view('quiz.index');
+})
+    ->middleware(['auth', 'quiz.no.realizado'])
+    ->name('quiz');
+
+Route::post('/resultados', [ResultadoController::class, 'guardar'])
+    ->middleware('auth')
+    ->name('resultados.guardar');
+
+/*
+|--------------------------------------------------------------------------
+| Casas y dominios
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/casas', [CasaController::class, 'index'])
     ->name('casas');
@@ -21,66 +45,60 @@ Route::get('/casas', [CasaController::class, 'index'])
 Route::get('/dominios', [DominioController::class, 'index'])
     ->name('dominios');
 
+/*
+|--------------------------------------------------------------------------
+| Recorrido virtual
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/recorrido', function () {
     return view('recorrido');
 })->name('recorrido');
 
-Route::get('/ingresar', function () {
-    return view('ingresar');
-})->name('ingresar');
+/*
+|--------------------------------------------------------------------------
+| Autenticación
+|--------------------------------------------------------------------------
+|
+| Estas rutas solamente pueden ser utilizadas por personas que todavía
+| no han iniciado sesión.
+|
+*/
 
-Route::post('/ingresar', function (Request $request) {
-    $credenciales = $request->validate([
-        'email' => ['required', 'email'],
-        'password' => ['required'],
-    ]);
+Route::middleware('guest')->group(function () {
+    Route::get('/ingresar', [AuthController::class, 'mostrarIngreso'])
+        ->name('ingresar');
 
-    $usuario = User::where('email', $credenciales['email'])->first();
+    Route::post('/ingresar', [AuthController::class, 'ingresar'])
+        ->name('ingresar.post');
 
-    if (!$usuario || !Hash::check($credenciales['password'], $usuario->password)) {
-        return back()
-            ->withErrors([
-                'email' => 'Las credenciales no son correctas.',
-            ])
-            ->onlyInput('email');
-    }
+    Route::get('/registrar', [AuthController::class, 'mostrarRegistro'])
+        ->name('registrar');
 
-    session([
-        'usuario_id' => $usuario->id,
-        'usuario_nombre' => $usuario->name,
-        'usuario_rol' => $usuario->rol,
-    ]);
+    Route::post('/registrar', [AuthController::class, 'registrar'])
+        ->name('registrar.post');
+});
 
-    return redirect()->route('welcome');
-})->name('ingresar.post');
+/*
+|--------------------------------------------------------------------------
+| Cierre de sesión
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/registrar', function () {
-    return view('registrar');
-})->name('registrar');
+Route::post('/salir', [AuthController::class, 'salir'])
+    ->middleware('auth')
+    ->name('salir');
 
-Route::post('/registrar', function (Request $request) {
-    $datos = $request->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-        'password' => ['required', 'string', 'min:8', 'confirmed'],
-    ]);
+/*
+|--------------------------------------------------------------------------
+| Administración
+|--------------------------------------------------------------------------
+|
+| Se requiere una sesión iniciada. El controlador también verifica que
+| el usuario tenga el rol de administrador.
+|
+*/
 
-    $usuario = User::create([
-        'name' => $datos['name'],
-        'email' => $datos['email'],
-        'password' => $datos['password'],
-        'rol' => 'usuario',
-    ]);
-
-    session([
-        'usuario_id' => $usuario->id,
-        'usuario_nombre' => $usuario->name,
-        'usuario_rol' => $usuario->rol,
-    ]);
-
-    return redirect()->route('welcome');
-})->name('registrar.post');
-
-Route::get('/admin', function () {
-    return view('admin');
-})->name('admin');
+Route::get('/admin', [AdminController::class, 'index'])
+    ->middleware('auth')
+    ->name('admin');

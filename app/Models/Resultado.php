@@ -16,15 +16,7 @@ class Resultado extends Model
         'user_id',
         'dominio_id',
         'casa_id',
-        'porcentaje',
     ];
-
-    protected function casts(): array
-    {
-        return [
-            'porcentaje' => 'decimal:2',
-        ];
-    }
 
     public function usuario(): BelongsTo
     {
@@ -33,11 +25,11 @@ class Resultado extends Model
 
     public function dominio(): BelongsTo
     {
-        return $this->belongsTo(Dominio::class);
+        return $this->belongsTo(Dominio::class, 'dominio_id');
     }
 
     public function casa(): BelongsTo
     {
-        return $this->belongsTo(Casa::class);
+        return $this->belongsTo(Casa::class, 'casa_id');
     }
 }

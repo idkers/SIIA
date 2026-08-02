@@ -7,22 +7,6 @@
 <style>
     *, *::before, *::after { box-sizing: border-box; }
 
-    /* ── Navbar ── */
-    .nav-links { display:flex; gap:2rem; }
-    .nav-auth  { display:flex; align-items:center; gap:.75rem; }
-    .hamburger { display:none; background:none; border:none; cursor:pointer;
-                 padding:.25rem; flex-direction:column; gap:5px; }
-    .hamburger span { display:block; width:24px; height:2px;
-                      background:#C8A84B; border-radius:2px; }
-    .mobile-menu { display:none; flex-direction:column;
-                   background:rgba(6,6,15,0.97); padding:.5rem 0; }
-    .mobile-menu a { display:block; padding:.85rem 2rem; font-size:.9rem;
-                     color:#B0A898; text-decoration:none; letter-spacing:.08em;
-                     text-transform:uppercase;
-                     border-bottom:1px solid rgba(43,31,61,0.4); }
-    .mobile-menu a:last-child { border-bottom:none; }
-    .mobile-menu.open { display:flex; }
-
     /* ── Page layout ── */
 .page-wrap { 
     display:flex; 
@@ -99,10 +83,6 @@
        MÓVIL ≤ 600px
        ══════════════════════ */
     @media (max-width: 600px) {
-        .nav-links { display:none !important; }
-        .nav-auth  { display:none !important; }
-        .hamburger { display:flex !important; }
-
         .page-content    { padding: 1rem; }
         .hero-text       { padding: 2rem 1.25rem 1rem; text-align:center; }
         .hero-title      { font-size: 2.4rem; }
@@ -121,96 +101,8 @@
     }
 </style>
 
-</div>{{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
-<style>
-  .nav-links{
-    flex:1;
-    display:flex;
-    justify-content:center;
-    gap:3rem;
-}
 
-.nav-links a{
-    color:#B0A898;
-    text-decoration:none;
-    font-size:.88rem;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    transition:.25s;
-}
-
-.nav-links a:hover{
-    color:#E8C96A;
-}
-    .nav-auth  { display:flex; align-items:center; gap:.75rem; }
-    .hamburger { display:none; background:none; border:none; cursor:pointer;
-                 padding:.25rem; flex-direction:column; gap:5px; }
-    .hamburger span { display:block; width:22px; height:2px; background:#C8A84B; border-radius:2px; }
-    .mobile-menu { display:none; flex-direction:column; gap:0;
-                   position:fixed; left:0; right:0; top:0; z-index:99;
-                   max-height:calc(100vh - 70px); overflow-y:auto;
-                   background:rgba(6,6,15,0.97); padding:.5rem 0; }
-    .mobile-menu a { display:block; padding:.75rem 2rem;
-                     font-size:.85rem; color:#B0A898; text-decoration:none;
-                     letter-spacing:.08em; text-transform:uppercase;
-                     border-bottom:1px solid rgba(43,31,61,0.4); }
-    .mobile-menu a:last-child { border-bottom:none; }
-    .mobile-menu.open { display:flex; }
-
-    @media (max-width: 768px) {
-        .nav-links { display:none !important; }
-        .nav-auth  { display:none !important; }
-        .hamburger { display:flex !important; }
-    }
-</style>
-<nav style="
-    display:flex;
-    align-items:center;
-    padding:1.6rem 2rem;
-    background:rgba(6,6,15,.6);
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-    position:sticky;
-    top:0;
-    z-index:100;
-">
-
-    <img src="{{ asset('imagenes/isotipo_dorado.webp') }}"
-         alt="UTL"
-         style="height:2.6rem;">
-
-    <div class="nav-links" style="
-        flex:1;
-        display:flex;
-        justify-content:center;
-        gap:3rem;
-    ">
-        <a href="{{ route('welcome') }}">Inicio</a>
-        <a href="{{ route('quiz') }}">Quiz</a>
-        <a href="{{ route('recorrido') }}">Recorrido</a>
-        <a href="{{ route('dominios') }}">Dominios</a>
-        <a href="{{ route('casas') }}">Casas</a>
-        <a href="{{ route('ingresar') }}">Ingresar</a>
-    </div>
-
-    <button class="hamburger"
-            id="hamburgerBtn"
-            aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-
-</nav>
-
-<div class="mobile-menu" id="mobileMenu">
-    <a href="{{ route('welcome') }}">Inicio</a>
-    <a href="{{ route('quiz') }}">Quiz</a>
-    <a href="{{ route('recorrido') }}" style="color:#E8C96A;">Recorrido</a>
-    <a href="{{ route('dominios') }}">Dominios</a>
-    <a href="{{ route('casas') }}">Casas</a>
-    <a href="{{ route('ingresar') }}">Ingresar</a>
-</div>
+@include('partials.navbar')
 
 {{-- ═══ CONTENIDO ══════════════════════════════════════════════════════════ --}}
 <div class="page-wrap">
@@ -548,32 +440,19 @@
 
 @push('extra-js')
 <script>
-    const btn  = document.getElementById('hamburgerBtn');
-    const menu = document.getElementById('mobileMenu');
-    const navEl = btn.closest('nav');
-    function posicionarMenuMovil() {
-        if (navEl) menu.style.top = navEl.getBoundingClientRect().bottom + 'px';
-    }
-    btn.addEventListener('click', () => {
-        posicionarMenuMovil();
-        menu.classList.toggle('open');
-        btn.setAttribute('aria-expanded', menu.classList.contains('open'));
-    });
-    document.addEventListener('click', e => {
-        if (!btn.contains(e.target) && !menu.contains(e.target))
-            menu.classList.remove('open');
-    });
-    window.addEventListener('resize', posicionarMenuMovil);
-    window.addEventListener('scroll', () => {
-        if (menu.classList.contains('open')) posicionarMenuMovil();
-    });
-
     function toggleAccordion(btn) {
         const body = btn.nextElementSibling;
         const arrow = btn.querySelector('.accordion-arrow');
-        const open  = body.style.display === 'block';
-        document.querySelectorAll('.accordion-body').forEach(b => b.style.display = 'none');
-        document.querySelectorAll('.accordion-arrow').forEach(a => a.style.transform = '');
+        const open = body.style.display === 'block';
+
+        document.querySelectorAll('.accordion-body').forEach((elemento) => {
+            elemento.style.display = 'none';
+        });
+
+        document.querySelectorAll('.accordion-arrow').forEach((elemento) => {
+            elemento.style.transform = '';
+        });
+
         if (!open) {
             body.style.display = 'block';
             arrow.style.transform = 'rotate(180deg)';

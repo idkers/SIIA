@@ -4,74 +4,7 @@
 @section('content')
 
 <style>
-    .nav-links-casas {
-        display: flex;
-        gap: 2rem;
-    }
-
-    .nav-auth-casas {
-        display: flex;
-        align-items: center;
-        gap: .75rem;
-    }
-
-    .hamburger-casas {
-        display: none;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: .25rem;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .hamburger-casas span {
-        display: block;
-        width: 22px;
-        height: 2px;
-        background: #C8A84B;
-        border-radius: 2px;
-    }
-
-    .mobile-menu-casas {
-        display: none;
-        flex-direction: column;
-        background: rgba(6, 6, 15, 0.97);
-        padding: .5rem 0;
-    }
-
-    .mobile-menu-casas a {
-        display: block;
-        padding: .75rem 2rem;
-        font-size: .85rem;
-        color: #B0A898;
-        text-decoration: none;
-        letter-spacing: .08em;
-        text-transform: uppercase;
-        border-bottom: 1px solid rgba(43, 31, 61, 0.4);
-    }
-
-    .mobile-menu-casas a:last-child {
-        border-bottom: none;
-    }
-
-    .mobile-menu-casas.open {
-        display: flex;
-    }
-
     @media (max-width: 768px) {
-        .nav-links-casas {
-            display: none !important;
-        }
-
-        .nav-auth-casas {
-            display: none !important;
-        }
-
-        .hamburger-casas {
-            display: flex !important;
-        }
-
         .casas-header-section {
             padding: 3rem 1.25rem !important;
         }
@@ -278,7 +211,6 @@
         color: #FFFFFF;
     }
 
-    /* Lista de oferta educativa */
     .modal-oferta-list {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -313,161 +245,9 @@
             grid-template-columns: 1fr;
         }
     }
-
-    #footer-casas-grid {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        gap: 3rem;
-    }
 </style>
 
-{{-- ═══ NAVBAR ══════════════════════════════════════════════════════════════ --}}
-<style>
-    .nav-links {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        gap: 3rem;
-    }
-
-    .nav-links a {
-        color: #B0A898;
-        text-decoration: none;
-        font-size: .88rem;
-        letter-spacing: .08em;
-        text-transform: uppercase;
-        transition: .25s;
-    }
-
-    .nav-links a:hover {
-        color: #E8C96A;
-    }
-
-    .nav-auth {
-        display: flex;
-        align-items: center;
-        gap: .75rem;
-    }
-
-    .hamburger {
-        display: none;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: .25rem;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .hamburger span {
-        display: block;
-        width: 22px;
-        height: 2px;
-        background: #C8A84B;
-        border-radius: 2px;
-    }
-
-    .mobile-menu {
-        display: none;
-        flex-direction: column;
-        gap: 0;
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        z-index: 99;
-        max-height: calc(100vh - 70px);
-        overflow-y: auto;
-        background: rgba(6, 6, 15, 0.97);
-        padding: .5rem 0;
-    }
-
-    .mobile-menu a {
-        display: block;
-        padding: .75rem 2rem;
-        font-size: .85rem;
-        color: #B0A898;
-        text-decoration: none;
-        letter-spacing: .08em;
-        text-transform: uppercase;
-        border-bottom: 1px solid rgba(43, 31, 61, 0.4);
-    }
-
-    .mobile-menu a:last-child {
-        border-bottom: none;
-    }
-
-    .mobile-menu.open {
-        display: flex;
-    }
-
-    @media (max-width: 768px) {
-        .nav-links {
-            display: none !important;
-        }
-
-        .nav-auth {
-            display: none !important;
-        }
-
-        .hamburger {
-            display: flex !important;
-        }
-    }
-</style>
-
-<nav style="
-    display:flex;
-    align-items:center;
-    padding:1.6rem 2rem;
-    background:rgba(6,6,15,.6);
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-    position:sticky;
-    top:0;
-    z-index:100;
-">
-    <img
-        src="{{ asset('imagenes/isotipo_dorado.webp') }}"
-        alt="UTL"
-        style="height:2.6rem;"
-    >
-
-    <div class="nav-links" style="
-        flex:1;
-        display:flex;
-        justify-content:center;
-        gap:3rem;
-    ">
-        <a href="{{ route('welcome') }}">Inicio</a>
-        <a href="{{ route('quiz') }}">Quiz</a>
-        <a href="{{ route('recorrido') }}">Recorrido</a>
-        <a href="{{ route('dominios') }}">Dominios</a>
-        <a href="{{ route('casas') }}">Casas</a>
-        <a href="{{ route('ingresar') }}">Ingresar</a>
-    </div>
-
-    <button
-        class="hamburger"
-        id="hamburgerBtn"
-        aria-label="Abrir menú"
-        aria-expanded="false"
-    >
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-</nav>
-
-<div class="mobile-menu" id="mobileMenu">
-    <a href="{{ route('welcome') }}">Inicio</a>
-    <a href="{{ route('quiz') }}">Quiz</a>
-    <a href="{{ route('recorrido') }}">Recorrido</a>
-    <a href="{{ route('dominios') }}">Dominios</a>
-    <a href="{{ route('casas') }}" style="color:#E8C96A;">Casas</a>
-    <a href="{{ route('ingresar') }}">Ingresar</a>
-</div>
+@include('partials.navbar')
 
 {{-- ENCABEZADO --}}
 <section
@@ -846,243 +626,109 @@
     </a>
 </section>
 
-{{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
-<style>
-    #footer-casas {
-        padding: 3rem 4rem;
-        background: #06060F;
-        border-top: 1px solid #2B1F3D;
-        position: relative;
-        z-index: 10;
-        isolation: isolate;
-    }
-
-    #footer-casas-grid {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        gap: 3rem;
-    }
-
-    @media (max-width: 600px) {
-        #footer-casas {
-            padding: 2.5rem 1.25rem;
-        }
-
-        #footer-casas-grid {
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        #footer-casas-grid > div {
-            max-width: 100% !important;
-        }
-
-        #footer-casas-grid h3 {
-            font-size: 1.1rem !important;
-        }
-    }
-</style>
-
-<footer id="footer-casas">
-    <div id="footer-casas-grid">
-        <div style="text-align:left;max-width:400px;">
-            <h3 style="
-                font-family:'Headland One',serif;
-                color:#C8A84B;
-                margin-bottom:1rem;
-                font-size:1.4rem;
-            ">
-                Universidad Tecnológica de León
-            </h3>
-
-            <p style="color:#F0EAD8;line-height:1.8;margin:0;">
-                Blvd. Universidad Tecnológica #225 Col. San Carlos<br>
-                C.P. 37670 León, Gto. México<br><br>
-                comunicacionutl@utleon.edu.mx<br><br>
-                (477) 7 10 00 20
-            </p>
-        </div>
-
-        <div style="text-align:left;max-width:450px;">
-            <h3 style="
-                font-family:'Headland One',serif;
-                color:#C8A84B;
-                margin-bottom:1rem;
-                font-size:1.4rem;
-            ">
-                Desarrolladores del Proyecto
-            </h3>
-
-            <p style="color:#F0EAD8;line-height:2;margin:0;">
-                <strong>Citlalli Méndez</strong><br>
-                Documentadora y Administradora de Base de Datos<br>
-                citlallialejandrams@gmail.com<br><br>
-
-                <strong>Miryam Muñoz</strong><br>
-                Diseñadora<br>
-                miryammunoz26@gmail.com<br><br>
-
-                <strong>Carlo Flores</strong><br>
-                Programador<br>
-                carlofernandoflores2006@gmail.com
-            </p>
-        </div>
-    </div>
-
-    <div style="
-        margin-top:2.5rem;
-        border-top:1px solid rgba(200,168,75,.15);
-        padding-top:1.5rem;
-        text-align:center;
-        color:#707085;
-        font-size:.8rem;
-        letter-spacing:.08em;
-    ">
-        © {{ date('Y') }} NOVA · Navegador de Orientación Vocacional y Aptitudes
-    </div>
-</footer>
+{{-- FOOTER --}}
+@include('partials.footer')
 
 @endsection
 
 @push('extra-js')
 <script>
-    // ── FILTROS ──────────────────────────────────────────────────────────────
-    const botonesFiltro = document.querySelectorAll('.filtro-btn');
-    const tarjetasCasas = document.querySelectorAll('.casa-card');
+    document.addEventListener('DOMContentLoaded', () => {
+        // FILTROS
+        const botonesFiltro = document.querySelectorAll('.filtro-btn');
+        const tarjetasCasas = document.querySelectorAll('.casa-card');
 
-    botonesFiltro.forEach((boton) => {
-        boton.addEventListener('click', () => {
-            const dominioSeleccionado = boton.dataset.dominio;
+        botonesFiltro.forEach((boton) => {
+            boton.addEventListener('click', () => {
+                const dominioSeleccionado = boton.dataset.dominio;
 
-            botonesFiltro.forEach((otroBoton) => {
-                otroBoton.classList.remove('activo');
+                botonesFiltro.forEach((otroBoton) => {
+                    otroBoton.classList.remove('activo');
+                });
+
+                boton.classList.add('activo');
+
+                tarjetasCasas.forEach((tarjeta) => {
+                    const coincide =
+                        dominioSeleccionado === 'Todos' ||
+                        tarjeta.dataset.dominio === dominioSeleccionado;
+
+                    tarjeta.classList.toggle('oculta', !coincide);
+                });
+            });
+        });
+
+        // MODAL
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalClose = document.getElementById('modalClose');
+        const modalNombre = document.getElementById('modalNombre');
+        const modalDominio = document.getElementById('modalDominio');
+        const modalHeaderBar = document.getElementById('modalHeaderBar');
+        const modalOferta = document.getElementById('modalOferta');
+        const modalLink = document.getElementById('modalLink');
+
+        function abrirModalDesdeBoton(boton) {
+            const nombre = boton.dataset.nombre ?? '';
+            const dominio = boton.dataset.dominio ?? '';
+            const oferta = boton.dataset.oferta ?? '';
+            const link = boton.dataset.link ?? '';
+            const color = boton.dataset.color ?? '#C8A84B';
+
+            modalNombre.textContent = nombre;
+            modalDominio.textContent = dominio;
+            modalHeaderBar.style.background = color;
+
+            const materias = oferta
+                .split(',')
+                .map((materia) => materia.trim())
+                .filter((materia) => materia.length > 0);
+
+            const lista = document.createElement('ul');
+            lista.className = 'modal-oferta-list';
+
+            materias.forEach((materia) => {
+                const elemento = document.createElement('li');
+                elemento.textContent = materia;
+                lista.appendChild(elemento);
             });
 
-            boton.classList.add('activo');
+            modalOferta.innerHTML = '';
+            modalOferta.appendChild(lista);
 
-            tarjetasCasas.forEach((tarjeta) => {
-                const coincide =
-                    dominioSeleccionado === 'Todos' ||
-                    tarjeta.dataset.dominio === dominioSeleccionado;
+            modalLink.href = link;
+            modalLink.textContent = link;
 
-                tarjeta.classList.toggle('oculta', !coincide);
+            modalOverlay.classList.add('abierto');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function cerrarModal() {
+            modalOverlay.classList.remove('abierto');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.btn-ver-mas').forEach((boton) => {
+            boton.addEventListener('click', () => {
+                abrirModalDesdeBoton(boton);
             });
         });
-    });
 
-    // ── MODAL ────────────────────────────────────────────────────────────────
-    const modalOverlay = document.getElementById('modalOverlay');
-    const modalClose = document.getElementById('modalClose');
-    const modalNombre = document.getElementById('modalNombre');
-    const modalDominio = document.getElementById('modalDominio');
-    const modalHeaderBar = document.getElementById('modalHeaderBar');
-    const modalOferta = document.getElementById('modalOferta');
-    const modalLink = document.getElementById('modalLink');
+        modalClose.addEventListener('click', cerrarModal);
 
-    function abrirModalDesdeBoton(boton) {
-        const nombre = boton.dataset.nombre ?? '';
-        const dominio = boton.dataset.dominio ?? '';
-        const oferta = boton.dataset.oferta ?? '';
-        const link = boton.dataset.link ?? '';
-        const color = boton.dataset.color ?? '#C8A84B';
-
-        modalNombre.textContent = nombre;
-        modalDominio.textContent = dominio;
-        modalHeaderBar.style.background = color;
-
-        const materias = oferta
-            .split(',')
-            .map((materia) => materia.trim())
-            .filter((materia) => materia.length > 0);
-
-        const lista = document.createElement('ul');
-        lista.className = 'modal-oferta-list';
-
-        materias.forEach((materia) => {
-            const elemento = document.createElement('li');
-            elemento.textContent = materia;
-            lista.appendChild(elemento);
+        modalOverlay.addEventListener('click', (event) => {
+            if (event.target === modalOverlay) {
+                cerrarModal();
+            }
         });
 
-        modalOferta.innerHTML = '';
-        modalOferta.appendChild(lista);
-
-        modalLink.href = link;
-        modalLink.textContent = link;
-
-        modalOverlay.classList.add('abierto');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function cerrarModal() {
-        modalOverlay.classList.remove('abierto');
-        document.body.style.overflow = '';
-    }
-
-    document.querySelectorAll('.btn-ver-mas').forEach((boton) => {
-        boton.addEventListener('click', () => {
-            abrirModalDesdeBoton(boton);
-        });
-    });
-
-    modalClose.addEventListener('click', cerrarModal);
-
-    modalOverlay.addEventListener('click', (event) => {
-        if (event.target === modalOverlay) {
-            cerrarModal();
-        }
-    });
-
-    document.addEventListener('keydown', (event) => {
-        if (
-            event.key === 'Escape' &&
-            modalOverlay.classList.contains('abierto')
-        ) {
-            cerrarModal();
-        }
-    });
-
-    // ── MENÚ HAMBURGUESA ────────────────────────────────────────────────────
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const navEl = hamburgerBtn ? hamburgerBtn.closest('nav') : null;
-
-    function posicionarMenuMovil() {
-        if (navEl && mobileMenu) {
-            mobileMenu.style.top =
-                navEl.getBoundingClientRect().bottom + 'px';
-        }
-    }
-
-    if (hamburgerBtn && mobileMenu) {
-        hamburgerBtn.addEventListener('click', () => {
-            posicionarMenuMovil();
-            mobileMenu.classList.toggle('open');
-
-            hamburgerBtn.setAttribute(
-                'aria-expanded',
-                mobileMenu.classList.contains('open')
-            );
-        });
-
-        document.addEventListener('click', (event) => {
+        document.addEventListener('keydown', (event) => {
             if (
-                !hamburgerBtn.contains(event.target) &&
-                !mobileMenu.contains(event.target)
+                event.key === 'Escape' &&
+                modalOverlay.classList.contains('abierto')
             ) {
-                mobileMenu.classList.remove('open');
-                hamburgerBtn.setAttribute('aria-expanded', 'false');
+                cerrarModal();
             }
         });
-
-        window.addEventListener('resize', posicionarMenuMovil);
-
-        window.addEventListener('scroll', () => {
-            if (mobileMenu.classList.contains('open')) {
-                posicionarMenuMovil();
-            }
-        });
-    }
+    });
 </script>
 @endpush
