@@ -289,6 +289,14 @@
     </a>
 
     <div class="siia-navbar-links">
+
+        {{-- Saludo de bienvenida: extremo izquierdo del menú --}}
+        @auth
+            <span class="siia-navbar-user">
+                Hola, {{ auth()->user()->name }}
+            </span>
+        @endauth
+
         <a
             href="{{ route('welcome') }}"
             class="{{ request()->routeIs('welcome') ? 'activo' : '' }}"
@@ -363,6 +371,7 @@
                 </a>
             @endif
 
+            {{-- Casa: entre "Casas" y "Cerrar sesión", extremo derecho --}}
             @if($resultadoNavbar && $resultadoNavbar->casa)
                 <div class="siia-navbar-house">
                     <img
@@ -375,10 +384,6 @@
                         {{ $resultadoNavbar->casa->nombre_casa }}
                     </span>
                 </div>
-            @else
-                <span class="siia-navbar-user">
-                    Hola, {{ auth()->user()->name }}
-                </span>
             @endif
 
             <form
@@ -413,6 +418,14 @@
 </nav>
 
 <div class="siia-mobile-menu" id="siiaMobileMenu">
+
+    {{-- Saludo de bienvenida: primero, arriba del todo --}}
+    @auth
+        <span class="siia-mobile-user">
+            Hola, {{ auth()->user()->name }}
+        </span>
+    @endauth
+
     <a
         href="{{ route('welcome') }}"
         class="{{ request()->routeIs('welcome') ? 'activo' : '' }}"
@@ -478,6 +491,7 @@
     @endguest
 
     @auth
+        {{-- Casa: entre "Casas" y "Cerrar sesión", hasta abajo --}}
         @if($resultadoNavbar && $resultadoNavbar->casa)
             <div class="siia-mobile-house">
                 <img
@@ -496,10 +510,6 @@
                     </span>
                 </div>
             </div>
-        @else
-            <span class="siia-mobile-user">
-                Hola, {{ auth()->user()->name }}
-            </span>
         @endif
 
         @if(auth()->user()->rol === 'admin')
