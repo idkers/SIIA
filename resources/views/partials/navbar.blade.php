@@ -419,11 +419,33 @@
 
 <div class="siia-mobile-menu" id="siiaMobileMenu">
 
-    {{-- Saludo de bienvenida: primero, arriba del todo --}}
+    {{-- Saludo de bienvenida --}}
     @auth
         <span class="siia-mobile-user">
             Hola, {{ auth()->user()->name }}
         </span>
+
+         {{-- Casa--}}
+        @if($resultadoNavbar && $resultadoNavbar->casa)
+            <div class="siia-mobile-house">
+                <img
+                    src="{{ asset($resultadoNavbar->casa->imagen) }}"
+                    alt="{{ $resultadoNavbar->casa->nombre_casa }}"
+                    class="siia-mobile-house-img"
+                >
+
+                <div class="siia-mobile-house-info">
+                    <span class="siia-mobile-house-label">
+                        Tu casa
+                    </span>
+
+                    <span class="siia-mobile-house-name">
+                        {{ $resultadoNavbar->casa->nombre_casa }}
+                    </span>
+                </div>
+            </div>
+        @endif
+
     @endauth
 
     <a
@@ -491,26 +513,7 @@
     @endguest
 
     @auth
-        {{-- Casa: entre "Casas" y "Cerrar sesión", hasta abajo --}}
-        @if($resultadoNavbar && $resultadoNavbar->casa)
-            <div class="siia-mobile-house">
-                <img
-                    src="{{ asset($resultadoNavbar->casa->imagen) }}"
-                    alt="{{ $resultadoNavbar->casa->nombre_casa }}"
-                    class="siia-mobile-house-img"
-                >
-
-                <div class="siia-mobile-house-info">
-                    <span class="siia-mobile-house-label">
-                        Tu casa
-                    </span>
-
-                    <span class="siia-mobile-house-name">
-                        {{ $resultadoNavbar->casa->nombre_casa }}
-                    </span>
-                </div>
-            </div>
-        @endif
+       
 
         @if(auth()->user()->rol === 'admin')
             <a
