@@ -165,6 +165,15 @@
     .quiz-nav { display:flex; justify-content:flex-end; align-items:center; flex-wrap:wrap; gap:1rem; }
     #btn-anterior { margin-right:auto; }
 
+    /* ── En móvil, apilar los botones de navegación en vez de que
+         se acomoden torcidos al envolver en dos líneas. ── */
+    @media (max-width:600px) {
+        .quiz-nav { flex-direction:column; align-items:stretch; gap:.75rem; }
+        #btn-anterior { margin-right:0; order:2; }
+        #btn-siguiente { order:1; }
+        .quiz-nav .btn-quiz { width:100%; text-align:center; }
+    }
+
     .btn-quiz {
         padding:.75rem 2rem; border-radius:6px; font-size:.9rem;
         font-weight:700; cursor:pointer; font-family:inherit; letter-spacing:.04em;
@@ -230,6 +239,7 @@
                        display:flex; align-items:center; justify-content:center; padding:1.25rem; }
     #privacy-box { background:#14141F; border:1px solid rgba(200,168,75,.35); border-radius:16px;
                    padding:2.5rem 2rem; max-width:480px; width:100%;
+                   max-height:90vh; max-height:90dvh; overflow-y:auto;
                    box-shadow:0 0 40px rgba(200,168,75,.10); display:flex; flex-direction:column; gap:1.25rem; }
     #privacy-box h2 { font-family:'Headland One',serif; color:#C8A84B; font-size:1.4rem; margin:0; }
     #privacy-box > p { color:#B0A898; font-size:.88rem; line-height:1.75; margin:0; }
@@ -321,6 +331,9 @@
         padding: 2.5rem 2rem;
         max-width: 480px;
         width: 100%;
+        max-height: 90vh;
+        max-height: 90dvh;
+        overflow-y: auto;
         box-shadow: 0 0 40px rgba(200,168,75,.10);
         display: flex;
         flex-direction: column;
@@ -1317,18 +1330,44 @@ function goToStage(n) {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-//  PRIVACIDAD
+//  PRIVACIDAD — bloqueo de scroll robusto (fija el body para que la página
+//  no se pueda deslizar mientras el modal está abierto, sin importar si el
+//  scroll real ocurre en <body> o en <html>).
 // ════════════════════════════════════════════════════════════════════════════
+let scrollYAntesDelModal = 0;
+
+function bloquearScroll() {
+    scrollYAntesDelModal = window.scrollY || document.documentElement.scrollTop || 0;
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollYAntesDelModal}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+}
+
+function desbloquearScroll() {
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, scrollYAntesDelModal);
+}
+
 function toggleContinue(cb) {
     document.getElementById('privacy-continue').classList.toggle('activo', cb.checked);
 }
 function abrirAviso() {
     document.getElementById('privacy-overlay').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+    bloquearScroll();
 }
 function aceptarPrivacidad() {
     document.getElementById('privacy-overlay').style.display = 'none';
-    document.body.style.overflow = '';
+    desbloquearScroll();
     iniciarQuiz();
 }
 function abrirPolitica(e) { e.preventDefault(); document.getElementById('policy-modal').classList.add('abierto'); }
