@@ -257,6 +257,8 @@
 </section>
 
 {{-- ═══ SECCIÓN: DOMINIOS ACADÉMICOS ══════════════════════════════════════ --}}
+
+
 <style>
     #dominios { padding:3rem 4rem; }
 
@@ -460,6 +462,7 @@ $activoIdx = 0;
 </section>
 
 {{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
+
 <style>
     #footer-casas {
         padding:3rem 4rem; background:#06060F;
@@ -513,27 +516,6 @@ $activoIdx = 0;
 
 @push('extra-js')
 <script>
-    {{-- Hamburger --}}
-    const btn  = document.getElementById('hamburgerBtn');
-    const menu = document.getElementById('mobileMenu');
-    const navEl = btn.closest('nav');
-    function posicionarMenuMovil() {
-        if (navEl) menu.style.top = navEl.getBoundingClientRect().bottom + 'px';
-    }
-    btn.addEventListener('click', () => {
-        posicionarMenuMovil();
-        menu.classList.toggle('open');
-        btn.setAttribute('aria-expanded', menu.classList.contains('open'));
-    });
-    document.addEventListener('click', e => {
-        if (!btn.contains(e.target) && !menu.contains(e.target))
-            menu.classList.remove('open');
-    });
-    window.addEventListener('resize', posicionarMenuMovil);
-    window.addEventListener('scroll', () => {
-        if (menu.classList.contains('open')) posicionarMenuMovil();
-    });
-
     {{-- Dominios --}}
     @php
     $dominiosDataJs = array_map(fn($d) => [
