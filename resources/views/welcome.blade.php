@@ -367,7 +367,7 @@ $dominiosHome = [
         ],
     ],
 ];
-$activoIdx = 0;
+$activoIdx = 4;
 @endphp
 
 <section id="dominios" style="background:rgba(6,6,15,0.15);">
