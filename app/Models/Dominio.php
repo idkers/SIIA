@@ -18,6 +18,7 @@ class Dominio extends Model
         'nombre_casa',
         'color',
         'descripcion',
+        'imagen',       
     ];
 
     public function casas(): HasMany
