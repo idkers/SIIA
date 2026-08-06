@@ -1252,7 +1252,10 @@ const FASE_IMAGENES = {
     3:        'imagenes/quiz/nivel3-confirmacion.webp',
 };
 
-
+// ── Imagen DESCARGABLE de resultado por carrera (botón "Compartir resultado") ──
+// Nombre de archivo (sin extensión) tal como ya las tienen guardadas.
+// Ruta asumida: imagenes/quiz/resultados/{archivo}.webp — ajusta este prefijo
+// si las tienen guardadas en otra carpeta de /public.
 const RESULTADO_IMG_PATH = 'imagenes/quiz/resultados/';
 const IMAGENES_DESCARGABLES = {
     DSM:      'softwareResultado',
