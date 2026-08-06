@@ -13,7 +13,7 @@ public function up(): void
 {
     if (!Schema::hasColumn('dominios', 'imagen')) {
         Schema::table('dominios', function (Blueprint $table) {
-            $table->string('imagen')->nullable()->after('descripcion');
+            $table->string('imagen')->nullable();
         });
     }
 }
