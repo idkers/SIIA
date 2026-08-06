@@ -1623,7 +1623,7 @@ async function guardarResultado(casa) {
 
         if (!respuesta.ok) {
             throw new Error(
-                datos.message || 'No fue posible guardar el resultado.'
+                datos.message || 'No fue posible guardar el resultado'
             );
         }
 
