@@ -1026,18 +1026,6 @@
 
         </section>
     </div>
-
-    {{-- Tarjeta Instagram (oculta) --}}
-    <div id="instagram-card"
-         style="width:1080px;height:1920px;background:#06060F;display:flex;flex-direction:column;
-                justify-content:center;align-items:center;padding:80px;box-sizing:border-box;
-                position:absolute;left:-99999px;">
-        <img id="ig-img" src="" style="width:600px;max-width:100%;margin-bottom:60px;object-fit:contain;">
-        <p style="color:#E8C96A;letter-spacing:8px;font-size:32px;margin-bottom:16px;">TU DESTINO ES</p>
-        <h1 id="ig-title" style="font-family:'Headland One',serif;color:#C8A84B;font-size:80px;text-align:center;margin:0;"></h1>
-        <p id="ig-casa" style="color:#FFFFFF;font-size:48px;text-align:center;margin:20px 0;"></p>
-        <p id="ig-frase" style="color:#E8C96A;font-style:italic;font-size:38px;text-align:center;max-width:800px;"></p>
-    </div>
 </div>
 
 </div>{{-- /page-content-wrapper --}}
@@ -1076,7 +1064,6 @@
 @endsection
 
 @push('extra-js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 // ════════════════════════════════════════════════════════════════════════════
 //  DATOS DEL QUIZ — extraídos del Excel (OV_UTL_Final.xlsx)
@@ -1263,6 +1250,31 @@ const FASE_IMAGENES = {
     '2-TEII': 'imagenes/quiz/nivel2-tecnologico.webp',
     '2-EA':   'imagenes/quiz/nivel2-economico.webp',
     3:        'imagenes/quiz/nivel3-confirmacion.webp',
+};
+
+
+const RESULTADO_IMG_PATH = 'imagenes/quiz/resultados/';
+const IMAGENES_DESCARGABLES = {
+    DSM:      'softwareResultado',
+    REDES:    'redesResultado',
+    IA:       'iaResultado',
+    DATOS:    'datosResultados',
+    MULT:     'entornosResultado',
+    MECAAUTO: 'automatizacionResultado',
+    MECAOPTO: 'optomecatrónicaResultado',
+    MECASMF:  'manufacturaResultado',
+    PRO:      'procesosResultado',
+    AUTO:     'automotrizResultado',
+    PLAS:     'moldeoResultado',
+    CALZ:     'calzadoResultado',
+    MANT:     'mantenimientoResultado',
+    AMBI:     'ambientalResultado',
+    ELECTRO:  'electromovilidadResultado',
+    LOG:      'logisticaResultado',
+    ADM:      'administracionResultado',
+    MKT:      'mercadotecniaResultado',
+    GAST:     'gastronomiaResultado',
+    TUR:      'turismoResultado',
 };
 
 const CARRERAS = {
@@ -1631,12 +1643,6 @@ function mostrarResultado() {
     document.getElementById('stage-4-desc').textContent = c.desc;
     document.getElementById('stage-4-img').src = '/' + c.imagen;
 
-    // Tarjeta para compartir en Instagram
-    document.getElementById('ig-img').src = '/' + c.imagen;
-    document.getElementById('ig-title').textContent = c.nombre;
-    document.getElementById('ig-casa').textContent = c.carrera;
-    document.getElementById('ig-frase').textContent = '"' + c.frase + '"';
-
     // Dominio académico
     const domEl = document.getElementById('stage-4-scores');
 
@@ -1695,18 +1701,22 @@ function mostrarResultado() {
     guardarResultado(c);
 }
 
-// ── Compartir resultado ───────────────────────────────────────────────────
+// ── Descargar imagen de resultado (ya prediseñada por carrera) ────────────
 function descargarResultado() {
-    const card = document.getElementById('instagram-card');
-    html2canvas(card, {
-        width:1080, height:1920, scale:1,
-        backgroundColor:'#06060F', useCORS:true
-    }).then(canvas => {
-        const link = document.createElement('a');
-        link.download = 'resultado-nova.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-    });
+    const key = estado.carreraFinal;
+    const archivo = IMAGENES_DESCARGABLES[key];
+
+    if (!archivo) {
+        console.error('No hay imagen de resultado configurada para la carrera:', key);
+        return;
+    }
+
+    const link = document.createElement('a');
+    link.href = '/' + RESULTADO_IMG_PATH + archivo + '.webp';
+    link.download = archivo + '.webp';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
 }
 
 // ════════════════════════════════════════════════════════════════════════════
