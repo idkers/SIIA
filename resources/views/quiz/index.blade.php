@@ -165,15 +165,6 @@
     .quiz-nav { display:flex; justify-content:flex-end; align-items:center; flex-wrap:wrap; gap:1rem; }
     #btn-anterior { margin-right:auto; }
 
-    /* ── En móvil, apilar los botones de navegación en vez de que
-         se acomoden torcidos al envolver en dos líneas. ── */
-    @media (max-width:600px) {
-        .quiz-nav { flex-direction:column; align-items:stretch; gap:.75rem; }
-        #btn-anterior { margin-right:0; order:2; }
-        #btn-siguiente { order:1; }
-        .quiz-nav .btn-quiz { width:100%; text-align:center; }
-    }
-
     .btn-quiz {
         padding:.75rem 2rem; border-radius:6px; font-size:.9rem;
         font-weight:700; cursor:pointer; font-family:inherit; letter-spacing:.04em;
@@ -239,7 +230,6 @@
                        display:flex; align-items:center; justify-content:center; padding:1.25rem; }
     #privacy-box { background:#14141F; border:1px solid rgba(200,168,75,.35); border-radius:16px;
                    padding:2.5rem 2rem; max-width:480px; width:100%;
-                   max-height:90vh; max-height:90dvh; overflow-y:auto;
                    box-shadow:0 0 40px rgba(200,168,75,.10); display:flex; flex-direction:column; gap:1.25rem; }
     #privacy-box h2 { font-family:'Headland One',serif; color:#C8A84B; font-size:1.4rem; margin:0; }
     #privacy-box > p { color:#B0A898; font-size:.88rem; line-height:1.75; margin:0; }
@@ -331,9 +321,6 @@
         padding: 2.5rem 2rem;
         max-width: 480px;
         width: 100%;
-        max-height: 90vh;
-        max-height: 90dvh;
-        overflow-y: auto;
         box-shadow: 0 0 40px rgba(200,168,75,.10);
         display: flex;
         flex-direction: column;
@@ -1026,6 +1013,18 @@
 
         </section>
     </div>
+
+    {{-- Tarjeta Instagram (oculta) --}}
+    <div id="instagram-card"
+         style="width:1080px;height:1920px;background:#06060F;display:flex;flex-direction:column;
+                justify-content:center;align-items:center;padding:80px;box-sizing:border-box;
+                position:absolute;left:-99999px;">
+        <img id="ig-img" src="" style="width:600px;max-width:100%;margin-bottom:60px;object-fit:contain;">
+        <p style="color:#E8C96A;letter-spacing:8px;font-size:32px;margin-bottom:16px;">TU DESTINO ES</p>
+        <h1 id="ig-title" style="font-family:'Headland One',serif;color:#C8A84B;font-size:80px;text-align:center;margin:0;"></h1>
+        <p id="ig-casa" style="color:#FFFFFF;font-size:48px;text-align:center;margin:20px 0;"></p>
+        <p id="ig-frase" style="color:#E8C96A;font-style:italic;font-size:38px;text-align:center;max-width:800px;"></p>
+    </div>
 </div>
 
 </div>{{-- /page-content-wrapper --}}
@@ -1064,6 +1063,7 @@
 @endsection
 
 @push('extra-js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 // ════════════════════════════════════════════════════════════════════════════
 //  DATOS DEL QUIZ — extraídos del Excel (OV_UTL_Final.xlsx)
@@ -1252,34 +1252,6 @@ const FASE_IMAGENES = {
     3:        'imagenes/quiz/nivel3-confirmacion.webp',
 };
 
-// ── Imagen DESCARGABLE de resultado por carrera (botón "Compartir resultado") ──
-// Nombre de archivo (sin extensión) tal como ya las tienen guardadas.
-// Ruta asumida: imagenes/quiz/resultados/{archivo}.webp — ajusta este prefijo
-// si las tienen guardadas en otra carpeta de /public.
-const RESULTADO_IMG_PATH = 'imagenes/quiz/resultados/';
-const IMAGENES_DESCARGABLES = {
-    DSM:      'softwareResultado',
-    REDES:    'redesResultado',
-    IA:       'iaResultado',
-    DATOS:    'datosResultados',
-    MULT:     'entornosResultado',
-    MECAAUTO: 'automatizacionResultado',
-    MECAOPTO: 'optomecatrónicaResultado',
-    MECASMF:  'manufacturaResultado',
-    PRO:      'procesosResultado',
-    AUTO:     'automotrizResultado',
-    PLAS:     'moldeoResultado',
-    CALZ:     'calzadoResultado',
-    MANT:     'mantenimientoResultado',
-    AMBI:     'ambientalResultado',
-    ELECTRO:  'electromovilidadResultado',
-    LOG:      'logisticaResultado',
-    ADM:      'administracionResultado',
-    MKT:      'mercadotecniaResultado',
-    GAST:     'gastronomiaResultado',
-    TUR:      'turismoResultado',
-};
-
 const CARRERAS = {
     DSM:      { nombre:'CODARIS', carrera:'Desarrollo de Software Multiplataforma', dominio:'Tecnologías de la Información', frase:'Cada línea construye el futuro',              imagen:'imagenes/casas/software.webp',
         desc:'Tu perfil muestra una afinidad natural con la casa Codaris, los Arquitectos del Código. Eres una persona que convierte ideas abstractas en herramientas reales mediante una combinación única de lógica afilada y curiosidad constante. Prosperas en ambientes que cambian rápido, utilizando tu capacidad de aprender nuevas tecnologías para resolver cualquier reto sin perder el rumbo. Tu mayor virtud es la persistencia: entiendes la programación como un lenguaje vivo donde cada error es una pista y cada solución abre la puerta a algo más grande.' },
@@ -1345,44 +1317,18 @@ function goToStage(n) {
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-//  PRIVACIDAD — bloqueo de scroll robusto (fija el body para que la página
-//  no se pueda deslizar mientras el modal está abierto, sin importar si el
-//  scroll real ocurre en <body> o en <html>).
+//  PRIVACIDAD
 // ════════════════════════════════════════════════════════════════════════════
-let scrollYAntesDelModal = 0;
-
-function bloquearScroll() {
-    scrollYAntesDelModal = window.scrollY || document.documentElement.scrollTop || 0;
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollYAntesDelModal}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
-}
-
-function desbloquearScroll() {
-    document.documentElement.style.overflow = '';
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.width = '';
-    window.scrollTo(0, scrollYAntesDelModal);
-}
-
 function toggleContinue(cb) {
     document.getElementById('privacy-continue').classList.toggle('activo', cb.checked);
 }
 function abrirAviso() {
     document.getElementById('privacy-overlay').style.display = 'flex';
-    bloquearScroll();
+    document.body.style.overflow = 'hidden';
 }
 function aceptarPrivacidad() {
     document.getElementById('privacy-overlay').style.display = 'none';
-    desbloquearScroll();
+    document.body.style.overflow = '';
     iniciarQuiz();
 }
 function abrirPolitica(e) { e.preventDefault(); document.getElementById('policy-modal').classList.add('abierto'); }
@@ -1623,7 +1569,7 @@ async function guardarResultado(casa) {
 
         if (!respuesta.ok) {
             throw new Error(
-                datos.message || 'No fue posible guardar el resultado'
+                datos.message || 'No fue posible guardar el resultado.'
             );
         }
 
@@ -1645,6 +1591,12 @@ function mostrarResultado() {
     document.getElementById('stage-4-frase').textContent = '"' + c.frase + '"';
     document.getElementById('stage-4-desc').textContent = c.desc;
     document.getElementById('stage-4-img').src = '/' + c.imagen;
+
+    // Tarjeta para compartir en Instagram
+    document.getElementById('ig-img').src = '/' + c.imagen;
+    document.getElementById('ig-title').textContent = c.nombre;
+    document.getElementById('ig-casa').textContent = c.carrera;
+    document.getElementById('ig-frase').textContent = '"' + c.frase + '"';
 
     // Dominio académico
     const domEl = document.getElementById('stage-4-scores');
@@ -1704,22 +1656,18 @@ function mostrarResultado() {
     guardarResultado(c);
 }
 
-// ── Descargar imagen de resultado (ya prediseñada por carrera) ────────────
+// ── Compartir resultado ───────────────────────────────────────────────────
 function descargarResultado() {
-    const key = estado.carreraFinal;
-    const archivo = IMAGENES_DESCARGABLES[key];
-
-    if (!archivo) {
-        console.error('No hay imagen de resultado configurada para la carrera:', key);
-        return;
-    }
-
-    const link = document.createElement('a');
-    link.href = '/' + RESULTADO_IMG_PATH + archivo + '.webp';
-    link.download = archivo + '.webp';
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
+    const card = document.getElementById('instagram-card');
+    html2canvas(card, {
+        width:1080, height:1920, scale:1,
+        backgroundColor:'#06060F', useCORS:true
+    }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'resultado-nova.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    });
 }
 
 // ════════════════════════════════════════════════════════════════════════════
