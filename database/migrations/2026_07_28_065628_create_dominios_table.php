@@ -18,7 +18,6 @@ return new class extends Migration
     $table->string('nombre_casa');
     $table->string('color', 7);
     $table->text('descripcion');
-    $table->string('imagen')->nullable();
     $table->timestamps();
 });
     }
