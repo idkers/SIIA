@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dominios', function (Blueprint $table) {
-            $table->id();
-            $table->string('slug')->unique();
-            $table->string('nombre');
-            $table->string('nombre_casa');
-            $table->string('color', 7);
-            $table->text('descripcion');
-            $table->timestamps();
-        });
+    $table->id();
+    $table->string('slug')->unique();
+    $table->string('nombre');
+    $table->string('nombre_casa');
+    $table->string('color', 7);
+    $table->text('descripcion');
+    $table->string('imagen')->nullable();
+    $table->timestamps();
+});
     }
 
     /**
