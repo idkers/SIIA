@@ -58,4 +58,4 @@ RUN mkdir -p \
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "php artisan optimize:clear && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}"]
+CMD ["sh", "-c", "php artisan optimize:clear && php artisan migrate --force && php artisan db:seed --class=DominioSeeder --force && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}"]
