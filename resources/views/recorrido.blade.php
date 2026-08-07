@@ -335,7 +335,7 @@
             </h2>
 
             
-            <style>
+           <style>
     .nova-map-outer {
         position: relative; /* aquí vive el tooltip, SIN overflow:hidden */
     }
@@ -409,12 +409,10 @@
 
 <div class="nova-map-outer" id="novaMapaOuter">
     <div class="nova-map-stage" id="novaMapaStage">
-        <img src="{{ asset('imagenes/mapaArrugade.jpeg') }}" alt="Mapa del campus 1 UTL">
-    </div>
+                <img src="{{ asset('imagenes/mapaCampusCentral.webp') }}" alt="Mapa del campus UTL">
+                  </div>
     <div class="nova-map-tooltip" id="novaMapaTooltip"><h4></h4><p></p></div>
 </div>
-
-        </div>
     </section>
 
 </div>{{-- /page-content --}}
@@ -450,7 +448,7 @@
 @push('extra-js')
 <script>
 (function () {
-    
+
     var zonasMapa = [
         { top: 4,  left: 24.5, width: 8.5, height: 32, title: "Edificio A", desc: "Info edificio" },
         { top: 8,  left: 34.5, width: 8,   height: 26, title: "Edificio B", desc: "Info edificio" },
@@ -468,8 +466,33 @@
     ];
 
     var stage = document.getElementById('novaMapaStage');
-    if (!stage) return;
+    var outer = document.getElementById('novaMapaOuter');
+    if (!stage || !outer) return;
     var tooltip = document.getElementById('novaMapaTooltip');
+
+    function isMobile() {
+        return window.matchMedia('(max-width: 600px)').matches;
+    }
+
+    function showTooltip(z) {
+        tooltip.querySelector('h4').textContent = z.title;
+        tooltip.querySelector('p').textContent = z.desc;
+        tooltip.classList.add('show');
+    }
+
+    function positionTooltip(e) {
+        // en móvil la posición ya la define el CSS (fixed abajo), no se calcula
+        if (isMobile()) return;
+
+        var rect = outer.getBoundingClientRect();
+        var x = e.clientX - rect.left + 16;
+        var y = e.clientY - rect.top + 16;
+        var tw = 240, th = 90;
+        if (x + tw > rect.width)  x = e.clientX - rect.left - tw - 16;
+        if (y + th > rect.height) y = e.clientY - rect.top - th - 16;
+        tooltip.style.left = x + 'px';
+        tooltip.style.top  = y + 'px';
+    }
 
     zonasMapa.forEach(function (z) {
         var el = document.createElement('div');
@@ -479,26 +502,31 @@
         el.style.width = z.width + '%';
         el.style.height = z.height + '%';
 
+        // Escritorio: hover
         el.addEventListener('mouseenter', function () {
-            tooltip.querySelector('h4').textContent = z.title;
-            tooltip.querySelector('p').textContent = z.desc;
-            tooltip.classList.add('show');
+            if (isMobile()) return;
+            showTooltip(z);
         });
-        el.addEventListener('mousemove', function (e) {
-            var rect = stage.getBoundingClientRect();
-            var x = e.clientX - rect.left + 16;
-            var y = e.clientY - rect.top + 16;
-            var tw = 240, th = 90;
-            if (x + tw > rect.width)  x = e.clientX - rect.left - tw - 16;
-            if (y + th > rect.height) y = e.clientY - rect.top - th - 16;
-            tooltip.style.left = x + 'px';
-            tooltip.style.top  = y + 'px';
-        });
+        el.addEventListener('mousemove', positionTooltip);
         el.addEventListener('mouseleave', function () {
+            if (isMobile()) return;
             tooltip.classList.remove('show');
         });
 
+        // Móvil: toque
+        el.addEventListener('touchstart', function (e) {
+            e.stopPropagation();
+            showTooltip(z);
+        }, { passive: true });
+
         stage.appendChild(el);
+    });
+
+    // En móvil, tocar fuera de un hotspot cierra el tooltip
+    document.addEventListener('touchstart', function (e) {
+        if (isMobile() && tooltip.classList.contains('show') && !stage.contains(e.target)) {
+            tooltip.classList.remove('show');
+        }
     });
 })();
 </script>
