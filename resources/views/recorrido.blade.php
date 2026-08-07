@@ -336,66 +336,83 @@
 
             
             <style>
-                .nova-map-stage {
-                    position: relative;
-                    width: 100%;
-                    line-height: 0;
-                    border-radius: 8px;
-                    overflow: hidden;
-                    border: 2px solid #C6A050;
-                }
-                .nova-map-stage img {
-                    width: 100%;
-                    display: block;
-                }
-                .nova-map-hotspot {
-                    position: absolute;
-                    border: 1.5px solid transparent;
-                    border-radius: 3px;
-                    cursor: pointer;
-                    transition: background .15s ease, border-color .15s ease;
-                }
-                .nova-map-hotspot:hover {
-                    background: rgba(200,168,75,0.18);
-                    border-color: rgba(200,168,75,0.9);
-                    box-shadow: 0 0 14px rgba(200,168,75,0.35) inset;
-                }
-                .nova-map-tooltip {
-                    position: absolute;
-                    z-index: 20;
-                    max-width: 240px;
-                    background: linear-gradient(180deg,#1a1a2e,#0d0d1a);
-                    border: 1px solid #C6A050;
-                    border-radius: 6px;
-                    padding: 12px 14px;
-                    pointer-events: none;
-                    opacity: 0;
-                    transform: translateY(4px);
-                    transition: opacity .12s ease, transform .12s ease;
-                    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-                }
-                .nova-map-tooltip.show { opacity: 1; transform: translateY(0); }
-                .nova-map-tooltip h4 {
-                    margin: 0 0 4px;
-                    font-family: 'Headland One', serif;
-                    font-size: .95rem;
-                    color: #E8C96A;
-                }
-                .nova-map-tooltip p {
-                    margin: 0;
-                    font-size: .85rem;
-                    line-height: 1.5;
-                    color: #B0A898;
-                }
-                @media (max-width: 600px) {
-                    .nova-map-stage { border-radius: 6px; }
-                }
-            </style>
+    .nova-map-outer {
+        position: relative; /* aquí vive el tooltip, SIN overflow:hidden */
+    }
+    .nova-map-stage {
+        position: relative;
+        width: 100%;
+        line-height: 0;
+        border-radius: 8px;
+        overflow: hidden; /* esto solo recorta la imagen, ya no al tooltip */
+        border: 2px solid #C6A050;
+    }
+    .nova-map-stage img {
+        width: 100%;
+        display: block;
+    }
+    .nova-map-hotspot {
+        position: absolute;
+        border: 1.5px solid transparent;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background .15s ease, border-color .15s ease;
+    }
+    .nova-map-hotspot:hover {
+        background: rgba(200,168,75,0.18);
+        border-color: rgba(200,168,75,0.9);
+        box-shadow: 0 0 14px rgba(200,168,75,0.35) inset;
+    }
+    .nova-map-tooltip {
+        position: absolute;
+        z-index: 999;
+        max-width: 240px;
+        background: linear-gradient(180deg,#1a1a2e,#0d0d1a);
+        border: 1px solid #C6A050;
+        border-radius: 6px;
+        padding: 12px 14px;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(4px);
+        transition: opacity .12s ease, transform .12s ease;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .nova-map-tooltip.show { opacity: 1; transform: translateY(0); }
+    .nova-map-tooltip h4 {
+        margin: 0 0 4px;
+        font-family: 'Headland One', serif;
+        font-size: .95rem;
+        color: #E8C96A;
+    }
+    .nova-map-tooltip p {
+        margin: 0;
+        font-size: .85rem;
+        line-height: 1.5;
+        color: #B0A898;
+    }
 
-            <div class="nova-map-stage" id="novaMapaStage">
-                <img src="{{ asset('imagenes/mapaArrugade.jpeg') }}" alt="Mapa del campus 1 UTL">
-                <div class="nova-map-tooltip" id="novaMapaTooltip"><h4></h4><p></p></div>
-            </div>
+    /* Móvil: posición fija predecible, ya no se calcula con el toque */
+    @media (max-width: 600px) {
+        .nova-map-stage { border-radius: 6px; }
+        .nova-map-tooltip {
+            position: fixed !important;
+            left: 1rem !important;
+            right: 1rem !important;
+            bottom: 1rem !important;
+            top: auto !important;
+            max-width: none;
+            width: calc(100% - 2rem);
+            z-index: 9999;
+        }
+    }
+</style>
+
+<div class="nova-map-outer" id="novaMapaOuter">
+    <div class="nova-map-stage" id="novaMapaStage">
+        <img src="{{ asset('imagenes/mapaArrugade.jpeg') }}" alt="Mapa del campus 1 UTL">
+    </div>
+    <div class="nova-map-tooltip" id="novaMapaTooltip"><h4></h4><p></p></div>
+</div>
 
         </div>
     </section>
