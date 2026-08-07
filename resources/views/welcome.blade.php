@@ -11,22 +11,44 @@
     #hero-desc    { font-size:1.03rem; max-width:480px; }
     #hero-btns a  { padding:.85rem 3rem; font-size:1rem; }
 
-    @media (max-width:768px) {
-        #hero { height:100svh !important; }
-        #hero-bg { background-position:center center !important; }
-        #hero-overlay-left {
-            background:linear-gradient(to bottom,
-                rgba(6,6,15,0.55) 0%,rgba(6,6,15,0.30) 40%,
-                rgba(6,6,15,0.70) 75%,rgba(6,6,15,1) 100%) !important;
-        }
-        #hero-content {
-            width:100% !important; padding:0 1.5rem !important;
-            justify-content:flex-end !important; padding-bottom:3.5rem !important;
-        }
-        #hero-desc { font-size:.92rem !important; max-width:100% !important; }
-        #hero-btns { flex-direction:column !important; align-items:stretch !important; width:100% !important; }
-        #hero-btns a { padding:.85rem 1.5rem !important; font-size:.9rem !important; text-align:center !important; }
+@media (max-width:768px) {
+    #hero { height:100svh !important; }
+    #hero-bg { background-position:center center !important; }
+    #hero-overlay-left {
+        background:linear-gradient(to bottom,
+            rgba(6,6,15,0.55) 0%,rgba(6,6,15,0.30) 40%,
+            rgba(6,6,15,0.70) 75%,rgba(6,6,15,1) 100%) !important;
     }
+    #hero-content {
+        width:100% !important;
+        box-sizing:border-box !important;
+        padding:0 1.5rem !important;
+        justify-content:flex-end !important;
+        align-items:center !important;
+        padding-bottom:3.5rem !important;
+        margin:0 !important;
+    }
+    #hero-title { margin:0 auto !important; }
+    #hero-desc {
+        font-size:.92rem !important;
+        max-width:100% !important;
+        text-align:center !important;
+    }
+    #hero-btns {
+        flex-direction:column !important;
+        align-items:stretch !important;
+        width:100% !important;
+        box-sizing:border-box !important;
+        margin:0 !important;
+    }
+    #hero-btns a {
+        box-sizing:border-box !important;
+        width:100% !important;
+        padding:.85rem 1.5rem !important;
+        font-size:.9rem !important;
+        text-align:center !important;
+    }
+}
 </style>
 
 <section id="hero" style="position:relative;height:calc(100vh - 50px);overflow:hidden;background:#06060F;">
@@ -257,7 +279,7 @@ $dominiosHome = [
         ],
     ],
 ];
-$activoIdx = 0;
+$activoIdx = 4;
 @endphp
 
 <section id="dominios" style="background:rgba(6,6,15,0.15);">
