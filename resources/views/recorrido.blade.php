@@ -393,7 +393,7 @@
             </style>
 
             <div class="nova-map-stage" id="novaMapaStage">
-                <img src="{{ asset('imagenes/mapaArrugade.jpeg') }}" alt="Mapa del campus 1 UTL">
+                <img src="{{ asset('imagenes/mapaCampusCentral.webp') }}" alt="Mapa del campus UTL">
                 <div class="nova-map-tooltip" id="novaMapaTooltip"><h4></h4><p></p></div>
             </div>
 
@@ -433,21 +433,32 @@
 @push('extra-js')
 <script>
 (function () {
-    
+
+  
     var zonasMapa = [
-        { top: 4,  left: 24.5, width: 8.5, height: 32, title: "Edificio A", desc: "Info edificio" },
-        { top: 8,  left: 34.5, width: 8,   height: 26, title: "Edificio B", desc: "Info edificio" },
-        { top: 12, left: 43.5, width: 8,   height: 22, title: "Edificio C", desc: "Info edificio" },
-        { top: 12, left: 52.5, width: 8,   height: 22, title: "Edificio D", desc: "Info edificio" },
-        { top: 15, left: 61.5, width: 8,   height: 25, title: "Edificio D", desc: "Info edificio" },
-        { top: 16, left: 78.5, width: 8,   height: 28, title: "Edificio F", desc: "Info edificio" },
-        { top: 35, left: 87,   width: 10,  height: 42, title: "Edificio de Rectoria", desc: "Info edificio" },
-        { top: 62, left: 38,   width: 7,   height: 32, title: "Edificio A P", desc: "Info edificio" },
-        { top: 66, left: 45,   width: 7,   height: 30, title: "Edificio B P", desc: "Info edificio" },
-        { top: 58, left: 55.5, width: 6,   height: 32, title: "Biblioteca", desc: "Info edificio" },
-        { top: 64, left: 61.5, width: 5,   height: 26, title: "Cafeteria", desc: "Info edificio" },
-        { top: 58, left: 67.5, width: 6,   height: 30, title: "Edificio CVD", desc: "Info edificio" },
-        { top: 63, left: 81,   width: 13,  height: 32, title: "Estacionamiento", desc: "Estacionamiento" }
+        // ── Edificios ──
+        { top: 16.8, left: 62.1, width: 7.5, height: 6.6,  title: "A Pesado", desc: "Info edificio" },
+        { top: 25,   left: 63.8, width: 8.2, height: 8.6,  title: "Edificio A", desc: "Info edificio" },
+        { top: 60.9, left: 9.5,  width: 5.6, height: 14.1, title: "Edificio F", desc: "Info edificio" },
+        { top: 60.9, left: 16,   width: 5.6, height: 14.1, title: "Edificio E", desc: "Info edificio" },
+        { top: 60.9, left: 22.9, width: 5.6, height: 14.1, title: "Edificio D", desc: "Info edificio" },
+        { top: 60.9, left: 29.4, width: 5.9, height: 14.1, title: "C Pesado", desc: "Info edificio" },
+        { top: 60.9, left: 36.6, width: 5.9, height: 14.1, title: "Edificio C", desc: "Info edificio" },
+        { top: 60.9, left: 43.5, width: 5.9, height: 14.1, title: "Edificio B", desc: "Info edificio" },
+        { top: 60.9, left: 50.7, width: 5.9, height: 14.1, title: "B Pesado", desc: "Info edificio" },
+
+        // ──  ──
+        { top: 19.5, left: 13.7, width: 6.5, height: 16.4, title: "Edificio CVD", desc: "Info edificio" },
+        { top: 27.3, left: 22.9, width: 4.3, height: 8.6,  title: "Cajeros BBVA", desc: "Info edificio" },
+        { top: 21.9, left: 27.8, width: 6.5, height: 14.1, title: "Cafetería", desc: "Info edificio" },
+        { top: 27.3, left: 35.3, width: 7.2, height: 8.6,  title: "Centro de Información", desc: "Info edificio" },
+
+        // ── Otros otros ──
+        { top: 15.6, left: 72.9, width: 10.8, height: 20.3, title: "Cancha de fútbol", desc: "Info edificio" },
+        { top: 60.9, left: 71.9, width: 11.8, height: 17.2, title: "Cancha de básquetbol", desc: "Info edificio" },
+        { top: 68.7, left: 63.1, width: 2.9,  height: 9.4,  title: "Planta de tratamiento", desc: "Info edificio" },
+        { top: 73.4, left: 31.2, width: 4.3,  height: 6.2,  title: "Casetas de alimentos", desc: "Info edificio" },
+        { top: 38.3, left: 1.3,  width: 9.5,  height: 16.4, title: "Olimpo", desc: "Info edificio" }
     ];
 
     var stage = document.getElementById('novaMapaStage');
