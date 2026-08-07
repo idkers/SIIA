@@ -907,6 +907,7 @@
                 <p><span>El resultado <strong>no es definitivo</strong>: es una guía para ayudarte a explorar opciones, no una etiqueta permanente sobre lo que debes estudiar.</span></p>
                 <p><span>Contesta de la manera <strong>más honesta posible</strong>. Entre más sincero seas, más útil será el resultado para ti.</span></p>
                 <p><span>Tómate tu tiempo: no hay límite ni penalización por pensar bien cada respuesta.</span></p>
+                <p><span>Este quiz es de un solo intento, por lo que es importante que respondas con atención.</span></p>
             </div>
 
             {{-- Imagen ilustrativa de la fase actual --}}
