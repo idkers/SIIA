@@ -331,13 +331,13 @@
             <h2 class="section-title"
                 style="text-align:center;color:#FFFFFF;
                        font-family:'Headland One',serif;margin-bottom:2rem;">
-                ───── MAPA DEL CAMPUS ─────
+                ─── MAPA DEL CAMPUS ────
             </h2>
 
             
             <style>
     .nova-map-outer {
-        position: relative; /* aquí vive el tooltip, SIN overflow:hidden */
+        position: relative; 
     }
     .nova-map-stage {
         position: relative;
@@ -404,14 +404,54 @@
             width: calc(100% - 2rem);
             z-index: 9999;
         }
+    }.nova-map-tooltip {
+    position: fixed;
+    z-index: 9999;
+    max-width: 280px;
+    max-height: 70vh;
+    overflow-y: auto;
+    background: linear-gradient(180deg,#1a1a2e,#0d0d1a);
+    border: 1px solid #C6A050;
+    border-radius: 6px;
+    padding: 12px 14px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity .12s ease, transform .12s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+.nova-map-tooltip.show { opacity: 1; transform: translateY(0); }
+.nova-map-tooltip h4 {
+    margin: 0 0 4px;
+    font-family: 'Headland One', serif;
+    font-size: .95rem;
+    color: #E8C96A;
+}
+.nova-map-tooltip p {
+    margin: 0;
+    font-size: .85rem;
+    line-height: 1.5;
+    color: #B0A898;
+    white-space: pre-line; /* respeta los \n del texto */
+}
+
+@media (max-width: 600px) {
+    .nova-map-tooltip {
+        left: 1rem !important;
+        right: 1rem !important;
+        bottom: 1rem !important;
+        top: auto !important;
+        max-width: none;
+        width: calc(100% - 2rem);
     }
+}
 </style>
 <div class="nova-map-outer" id="novaMapaOuter">
     <div class="nova-map-stage" id="novaMapaStage">
         <img src="{{ asset('imagenes/mapaCampusCentral.webp') }}" alt="Mapa del campus UTL">
     </div>
-    <div class="nova-map-tooltip" id="novaMapaTooltip"><h4></h4><p></p></div>
 </div>
+<div class="nova-map-tooltip" id="novaMapaTooltip"><h4></h4><p></p></div>
     </section>
 
 </div>{{-- /page-content --}}
@@ -526,20 +566,20 @@ var zonasMapa = [
         tooltip.querySelector('p').textContent = z.desc;
         tooltip.classList.add('show');
     }
+function positionTooltip(e) {
+    if (isMobile()) return; // en móvil la posición la fija el CSS
 
-    function positionTooltip(e) {
-        // en móvil la posición ya la define el CSS (fixed abajo), no se calcula
-        if (isMobile()) return;
+    var x = e.clientX + 16;
+    var y = e.clientY + 16;
+    var tw = 280, th = tooltip.offsetHeight || 90;
 
-        var rect = outer.getBoundingClientRect();
-        var x = e.clientX - rect.left + 16;
-        var y = e.clientY - rect.top + 16;
-        var tw = 240, th = 90;
-        if (x + tw > rect.width)  x = e.clientX - rect.left - tw - 16;
-        if (y + th > rect.height) y = e.clientY - rect.top - th - 16;
-        tooltip.style.left = x + 'px';
-        tooltip.style.top  = y + 'px';
-    }
+    if (x + tw > window.innerWidth)  x = e.clientX - tw - 16;
+    if (y + th > window.innerHeight) y = window.innerHeight - th - 16;
+    if (y < 8) y = 8;
+
+    tooltip.style.left = x + 'px';
+    tooltip.style.top  = y + 'px';
+}
 
     zonasMapa.forEach(function (z) {
         var el = document.createElement('div');
