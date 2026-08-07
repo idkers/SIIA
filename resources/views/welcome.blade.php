@@ -184,21 +184,24 @@
     }
 
     /* Título DOMINIOS */
-    #dominios h1,
+@media (max-width:768px){
+
     #dominios h2{
 
-        font-size:clamp(2rem,9vw,3.2rem) !important;
+        font-size:clamp(1.6rem,6vw,2.2rem) !important;
+        line-height:1.2;
+        letter-spacing:.08em;
 
-        line-height:1.15 !important;
-
-        white-space:normal !important;
-
-        word-break:break-word;
-
-        overflow-wrap:anywhere;
+        white-space:normal;
+        word-break:normal;
+        overflow-wrap:normal;
 
         text-align:center;
+        max-width:90%;
+        margin:0 auto;
     }
+
+}
 
     /* Subtítulo */
     #dominios p{

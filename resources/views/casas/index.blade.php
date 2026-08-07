@@ -136,7 +136,7 @@
 {{-- ENCABEZADO --}}
 <section class="casas-header-section"
          style="padding:5rem 2rem;text-align:center;
-                background:url('{{ asset('imagenes/casas/hero-casas.png') }}');
+                background:url('{{ asset('imagenes/casas/hero-casas.webp') }}');
                 background-size:cover;background-position:center;
                 border-bottom:1px solid rgba(200,168,75,.15);">
     <p style="color:#E8C96A;text-transform:uppercase;letter-spacing:.2em;font-size:.75rem;margin-bottom:.8rem;">

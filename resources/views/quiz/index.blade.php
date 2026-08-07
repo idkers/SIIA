@@ -923,7 +923,7 @@
                 $opciones = [
                     [0, 'Nada me interesa'],
                     [1, 'Poco me interesa'],
-                    [2, 'Me es indiferente'],
+                    [2, 'No tengo preferencia'],
                     [3, 'Me interesa'],
                     [4, 'Me interesa mucho'],
                 ];
