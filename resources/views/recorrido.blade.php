@@ -435,26 +435,68 @@
 (function () {
 
   
-    var zonasMapa = [
-        { top: 20.0, left: 63.5, width: 7.5, height: 6.6, title: "A Pesado", desc: "Info edificio" },
-        { top: 30.9, left: 65.1, width: 8.2, height: 8.6, title: "Edificio A", desc: "Info edificio" },
-        { top: 68.2, left: 10.5, width: 7.1, height: 10.7, title: "Edificio F", desc: "Info edificio" },
-        { top: 71.8, left: 19.0, width: 7.3, height: 12.1, title: "Edificio E", desc: "Info edificio" },
-        { top: 68.0, left: 28.1, width: 7.7, height: 12.5, title: "Edificio D", desc: "Info edificio" },
-        { top: 69.2, left: 36.8, width: 5.9, height: 14.1, title: "C Pesado", desc: "Info edificio" },
-        { top: 70.8, left: 44.5, width: 7.3, height: 10.3, title: "Edificio C", desc: "Info edificio" },
-        { top: 69.0, left: 54.1, width: 6.8, height: 10.1, title: "Edificio B", desc: "Info edificio" },
-        { top: 67.6, left: 63.1, width: 7.2, height: 9.9, title: "B Pesado", desc: "Info edificio" },
-        { top: 22.7, left: 17.5, width: 6.5, height: 16.4, title: "Edificio CVD", desc: "Info edificio" },
-        { top: 33.0, left: 27.4, width: 4.6, height: 10.0, title: "Cajeros BBVA", desc: "Info edificio" },
-        { top: 27.8, left: 33.8, width: 6.5, height: 14.1, title: "Cafetería", desc: "Info edificio" },
-        { top: 34.0, left: 42.0, width: 7.2, height: 8.6, title: "Centro de Información", desc: "Info edificio" },
-        { top: 18.0, left: 74.7, width: 19.5, height: 17.7, title: "Canchas de fútbol", desc: "Info edificio" },
-        { top: 67.4, left: 81.4, width: 11.8, height: 17.2, title: "Cancha de básquetbol", desc: "Info edificio" },
-        { top: 77.4, left: 73.9, width: 2.9, height: 9.4, title: "Planta de tratamiento", desc: "Info edificio" },
-        { top: 87.1, left: 37.9, width: 4.3, height: 6.2, title: "Casetas de alimentos", desc: "Info edificio" },
-        { top: 44.0, left: 2.1, width: 9.5, height: 16.4, title: "Olimpo", desc: "Info edificio" },
-    ];
+var zonasMapa = [
+    {
+        top: 20.0, left: 63.5, width: 7.5, height: 6.6, title: "A Pesado",
+        desc: "PA:\n- Laboratorio de Metrología\n- Oficina Sindical\n- Almacén\n- Laboratorio de Química\n- Laboratorio de Termodinámica\n- Laboratorio de Análisis Fisicoquímicos\n- Laboratorio de Análisis Espectrofotométricos\n- Baños\n- Laboratorio de Biotecnología"
+    },
+    {
+        top: 30.9, left: 65.1, width: 8.2, height: 8.6, title: "Edificio A",
+        desc: "PA:\n- Aulas A11-A20\n- Cubículos de profesorado de Tiempo completo de TSU\n- Sala de Juntas Académicas\n- Órgano Interno de Control\n- Sala de Asignatura\n\nPB:\n- Aulas A01-A10\n- Cubículos de profesorado de Tiempo completo de TSU\n- Auditorio A\n- Dirección de Área de Tecnologías Emergentes e Industriales"
+    },
+    {
+        top: 68.2, left: 10.5, width: 7.1, height: 10.7, title: "Edificio F",
+        desc: "PA:\n- Aulas F08-F14\n- Cubículos de Profesorado de Tiempo Completo de TSU\n- Sala de Juntas\n- Subdirección de Industrial Sustentable\n- Self Access Centre (SAC)\n- Cubículos de Profesorado de Tiempo Completo de Comunicación y Habilidades Digitales\n- Cubículos de Profesorado de Tiempo Completo de Francés\n\nPB:\n- Aulas F01-F07\n- Cubículos de Profesorado de Tiempo Completo de TSU\n- Auditorio F\n- Sala de Asignatura\n- Laboratorio de Operaciones Unitarias\n- Cubículos de profesorado de Tiempo Completo de Inglés\n- Coordinación de Investigación y Posgrado"
+    },
+    {
+        top: 71.8, left: 19.0, width: 7.3, height: 12.1, title: "Edificio E",
+        desc: "PA:\n- Gestoría de la Carrera de Infraestructura de Redes Digitales\n- Laboratorio de CCNA Práctica\n- Profesores de Tiempo Completo\n- Laboratorio de CCNA de Lectura\n- Laboratorio de Electrónica\n- Almacén del Área de Tecnologías de la Información e Innovación Digital\n- Laboratorio de CCNA de Práctica\n- Aula Virtual\n- Laboratorio de Seguridad\n- Laboratorio de Sistemas Operativos de Red\n\nPB:\n- Centros de Cómputo\n- Centro de Datos (SITE)\n- Dirección de Servicios Informáticos\n- Infraestructura y Mantenimiento Informático\n- Sistemas de información"
+    },
+    {
+        top: 68.0, left: 28.1, width: 7.7, height: 12.5, title: "Edificio D",
+        desc: "PA:\n- Aulas D09-D14\n- Laboratorio de Negocios Electrónicos\n- Laboratorio de Base de Datos\n- Laboratorio de Desarrollo Web\n- Laboratorio de Producción Audiovisual\n- Laboratorio de Animación 3D\n- Laboratorio de Multimedia\n- Laboratorio de Desarrollo Multiplataforma\n- Laboratorio de IOT\n- Laboratorio de Ingeniería de Software\n- Cubículo de Profesores de Tiempo Completo\n\nPB:\n- Aulas D01-D08-D15\n- Auditorio D\n- Subdirección de Tecnologías de la Información\n- Cubículo de profesorado de Tiempo Completo"
+    },
+    {
+        top: 69.2, left: 36.8, width: 5.9, height: 14.1, title: "C Pesado",
+        desc: "Acceso 1:\n- Baños\n\nAcceso 2:\n- Laboratorio de Óptica\n- Laboratorio de Electrónica Digital\n- Laboratorio de Electrónica Analógica\n\nAcceso 3:\n- Laboratorio de Automatización y Robótica\n- Laboratorio de Neumática e Hidráulica\n- Laboratorio de Instrumentación I\n- Laboratorio de Instrumentación II\n\nPasillo Exterior:\n- Aulas CP-01 al CP-06"
+    },
+    {
+        top: 70.8, left: 44.5, width: 7.3, height: 10.3, title: "Edificio C",
+        desc: "PA:\n- Aulas C11-C19\n- Aula de Matemáticas\n- Cubículos de profesorado de Tiempo completo ing.\n- Cubículos de profesorado de Tiempo completo de matemáticas\n- Sala de profesores\n- Sala de juntas\n\nPB:\n- Aulas C01-C10\n- Auditorio C\n- Salón de Espejos\n- Desarrollo Integral del Alumnado"
+    },
+    {
+        top: 69.0, left: 54.1, width: 6.8, height: 10.1, title: "Edificio B",
+        desc: "PA:\n- Aulas B11-B21\n- Dirección del Área Económico Administrativa\n- Cubículos de profesorado de Tiempo completo de LIC/TSU\n- Coordinación de Carrera y Academia LTU-LGCH VP-LNM VP\n- Sala de Juntas del Profesorado / Asesorías\n- Área de Asistente de Dirección\n- Sanitarios de docentes\n\nPB:\n- Aulas B01-B10\n- Sala de Usos Múltiples (SUM-B)\n- Cubículo de Profesorado de Tiempo Completo LIC/TSU\n- Coordinación de Carrera y Academia LTM-GAST-LDGR\n- Sala de Juntas del profesorado\n- Sala de Consulta del Profesorado\n- Recepción Asistente Académico\n- Baños alumnado"
+    },
+    {
+        top: 67.6, left: 63.1, width: 7.2, height: 9.9, title: "B Pesado",
+        desc: "- Laboratorio de Transporte\n- Laboratorio de Calzado\n- Laboratorio de Polímeros\n- Laboratorio de Electricidad\n- Laboratorio de Pruebas Mecánicas\n- Laboratorio de Métodos de Trabajo\n- Baños\n- Laboratorio de Alimentos y Bebidas"
+    },
+    {
+        top: 22.7, left: 17.5, width: 6.5, height: 16.4, title: "Edificio CVD",
+        desc: "PA:\n- Dirección de Desarrollo Académico y Docente\n- Psicopedagógico\n- Innovación y Tecnología Educativa\n- Investigación y Posgrados\n\nPB:\n- Salud Integral\n- Desempeño de Egresados y Bolsa de Trabajo\n- Prácticas, Estadías e Internacionalización\n- Servicios Escolares\n- Aula Pecera\n- Aula Magna\n- Lactario"
+    },
+    { top: 33.0, left: 27.4, width: 4.6, height: 10.0, title: "Cajeros BBVA", desc: "" },
+    { top: 27.8, left: 33.8, width: 6.5, height: 14.1, title: "Cafetería", desc: "Laboratorio de Gastronomía" },
+    {
+        top: 34.0, left: 42.0, width: 7.2, height: 8.6, title: "Centro de Información",
+        desc: "- Rectoría\n- Biblioteca\n- Videoteca"
+    },
+    {
+        top: 18.0, left: 74.7, width: 19.5, height: 17.7, title: "Canchas de fútbol",
+        desc: "- Fútbol\n- Fútbol Americano"
+    },
+    {
+        top: 67.4, left: 81.4, width: 11.8, height: 17.2, title: "Cancha de básquetbol",
+        desc: "- Voleibol\n- Baloncesto"
+    },
+    { top: 77.4, left: 73.9, width: 2.9, height: 9.4, title: "Planta de tratamiento", desc: "" },
+    { top: 87.1, left: 37.9, width: 4.3, height: 6.2, title: "Casetas de alimentos", desc: "" },
+    {
+        top: 44.0, left: 2.1, width: 9.5, height: 16.4, title: "Olimpo",
+        desc: "PA:\n- Sala de Rectores\n- Gimnasio de Emprendimiento e Innovación\n- Centro Incubador de Empresas -CIEM-\n- Sala Coworking / Design Thinking\n- Zona Emprende -explanada-\n\nPB:\n- Desarrollo Humano y Organizacional\n- Servicios Administrativos\n- Contabilidad y Presupuesto\n- Nómina\n- Servicios de Apoyo al Sector Productivo y Social\n- Promoción de Carreras\n- Caja\n- Secretaría de Vinculación\n- Extensión y Educación Continua"
+    },
+];
 
     var stage = document.getElementById('novaMapaStage');
     if (!stage) return;
