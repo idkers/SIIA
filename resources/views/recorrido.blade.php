@@ -436,29 +436,24 @@
 
   
     var zonasMapa = [
-        // ── Edificios ──
-        { top: 16.8, left: 62.1, width: 7.5, height: 6.6,  title: "A Pesado", desc: "Info edificio" },
-        { top: 25,   left: 63.8, width: 8.2, height: 8.6,  title: "Edificio A", desc: "Info edificio" },
-        { top: 60.9, left: 9.5,  width: 5.6, height: 14.1, title: "Edificio F", desc: "Info edificio" },
-        { top: 60.9, left: 16,   width: 5.6, height: 14.1, title: "Edificio E", desc: "Info edificio" },
-        { top: 60.9, left: 22.9, width: 5.6, height: 14.1, title: "Edificio D", desc: "Info edificio" },
-        { top: 60.9, left: 29.4, width: 5.9, height: 14.1, title: "C Pesado", desc: "Info edificio" },
-        { top: 60.9, left: 36.6, width: 5.9, height: 14.1, title: "Edificio C", desc: "Info edificio" },
-        { top: 60.9, left: 43.5, width: 5.9, height: 14.1, title: "Edificio B", desc: "Info edificio" },
-        { top: 60.9, left: 50.7, width: 5.9, height: 14.1, title: "B Pesado", desc: "Info edificio" },
-
-        // ──  ──
-        { top: 19.5, left: 13.7, width: 6.5, height: 16.4, title: "Edificio CVD", desc: "Info edificio" },
-        { top: 27.3, left: 22.9, width: 4.3, height: 8.6,  title: "Cajeros BBVA", desc: "Info edificio" },
-        { top: 21.9, left: 27.8, width: 6.5, height: 14.1, title: "Cafetería", desc: "Info edificio" },
-        { top: 27.3, left: 35.3, width: 7.2, height: 8.6,  title: "Centro de Información", desc: "Info edificio" },
-
-        // ── Otros otros ──
-        { top: 15.6, left: 72.9, width: 10.8, height: 20.3, title: "Cancha de fútbol", desc: "Info edificio" },
-        { top: 60.9, left: 71.9, width: 11.8, height: 17.2, title: "Cancha de básquetbol", desc: "Info edificio" },
-        { top: 68.7, left: 63.1, width: 2.9,  height: 9.4,  title: "Planta de tratamiento", desc: "Info edificio" },
-        { top: 73.4, left: 31.2, width: 4.3,  height: 6.2,  title: "Casetas de alimentos", desc: "Info edificio" },
-        { top: 38.3, left: 1.3,  width: 9.5,  height: 16.4, title: "Olimpo", desc: "Info edificio" }
+        { top: 20.0, left: 63.5, width: 7.5, height: 6.6, title: "A Pesado", desc: "Info edificio" },
+        { top: 30.9, left: 65.1, width: 8.2, height: 8.6, title: "Edificio A", desc: "Info edificio" },
+        { top: 68.2, left: 10.5, width: 7.1, height: 10.7, title: "Edificio F", desc: "Info edificio" },
+        { top: 71.8, left: 19.0, width: 7.3, height: 12.1, title: "Edificio E", desc: "Info edificio" },
+        { top: 68.0, left: 28.1, width: 7.7, height: 12.5, title: "Edificio D", desc: "Info edificio" },
+        { top: 69.2, left: 36.8, width: 5.9, height: 14.1, title: "C Pesado", desc: "Info edificio" },
+        { top: 70.8, left: 44.5, width: 7.3, height: 10.3, title: "Edificio C", desc: "Info edificio" },
+        { top: 69.0, left: 54.1, width: 6.8, height: 10.1, title: "Edificio B", desc: "Info edificio" },
+        { top: 67.6, left: 63.1, width: 7.2, height: 9.9, title: "B Pesado", desc: "Info edificio" },
+        { top: 22.7, left: 17.5, width: 6.5, height: 16.4, title: "Edificio CVD", desc: "Info edificio" },
+        { top: 33.0, left: 27.4, width: 4.6, height: 10.0, title: "Cajeros BBVA", desc: "Info edificio" },
+        { top: 27.8, left: 33.8, width: 6.5, height: 14.1, title: "Cafetería", desc: "Info edificio" },
+        { top: 34.0, left: 42.0, width: 7.2, height: 8.6, title: "Centro de Información", desc: "Info edificio" },
+        { top: 18.0, left: 74.7, width: 19.5, height: 17.7, title: "Canchas de fútbol", desc: "Info edificio" },
+        { top: 67.4, left: 81.4, width: 11.8, height: 17.2, title: "Cancha de básquetbol", desc: "Info edificio" },
+        { top: 77.4, left: 73.9, width: 2.9, height: 9.4, title: "Planta de tratamiento", desc: "Info edificio" },
+        { top: 87.1, left: 37.9, width: 4.3, height: 6.2, title: "Casetas de alimentos", desc: "Info edificio" },
+        { top: 44.0, left: 2.1, width: 9.5, height: 16.4, title: "Olimpo", desc: "Info edificio" },
     ];
 
     var stage = document.getElementById('novaMapaStage');
