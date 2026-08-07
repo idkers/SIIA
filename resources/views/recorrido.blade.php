@@ -406,9 +406,9 @@
         }
     }
 </style>
-
-            <div class="nova-map-stage" id="novaMapaStage">
-                <img src="{{ asset('imagenes/mapaCampusCentral.webp') }}" alt="Mapa del campus UTL">
+<div class="nova-map-outer" id="novaMapaOuter">
+    <div class="nova-map-stage" id="novaMapaStage">
+        <img src="{{ asset('imagenes/mapaCampusCentral.webp') }}" alt="Mapa del campus UTL">
     </div>
     <div class="nova-map-tooltip" id="novaMapaTooltip"><h4></h4><p></p></div>
 </div>
