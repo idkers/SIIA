@@ -66,78 +66,84 @@ class AdminController extends Controller
     /**
      * Descarga en CSV (compatible con Excel) los resultados por casa.
      */
-    public function exportarCasas(Request $request): StreamedResponse
-    {
-        abort_unless(
-            $request->user() && $request->user()->rol === 'admin',
-            403,
-            'No tienes permiso para acceder al panel administrativo.'
-        );
+public function exportarCasas(Request $request): StreamedResponse
+{
+    abort_unless(
+        $request->user() && $request->user()->rol === 'admin',
+        403,
+        'No tienes permiso para acceder al panel administrativo.'
+    );
 
-        $casas = Casa::query()
-            ->with('dominio')
-            ->withCount('resultados')
-            ->orderByDesc('resultados_count')
-            ->orderBy('nombre_casa')
-            ->get();
+    $casas = Casa::query()
+        ->with('dominio')
+        ->withCount('resultados')
+        ->orderByDesc('resultados_count')
+        ->orderBy('nombre_casa')
+        ->get();
 
-        $totalResultados = $casas->sum('resultados_count');
+    $totalResultados = $casas->sum('resultados_count');
 
-        $filas = $casas->map(function (Casa $casa) use ($totalResultados) {
-            $porcentaje = $totalResultados > 0
-                ? round(($casa->resultados_count / $totalResultados) * 100, 1)
-                : 0;
+    $filas = $casas->map(function (Casa $casa) use ($totalResultados) {
+        $porcentaje = $totalResultados > 0
+            ? round(($casa->resultados_count / $totalResultados) * 100, 1)
+            : 0;
 
-            return [
+        return array_map(
+            fn ($valor) => $this->quitarAcentos($valor),
+            [
                 'Casa'        => $casa->nombre_casa,
                 'Carrera'     => $casa->nombre,
                 'Dominio'     => $casa->dominio?->nombre ?? 'Sin dominio',
                 'Resultados'  => $casa->resultados_count,
                 'Porcentaje'  => $porcentaje . '%',
-            ];
-        })->all();
+            ]
+        );
+    })->all();
 
-        return $this->descargarCsv($filas, 'estadisticas-casas-nova.csv');
-    }
+    return $this->descargarCsv($filas, 'estadisticas-casas-nova.csv');
+}
 
     /**
      * Descarga en CSV (compatible con Excel) los resultados por dominio.
      */
-    public function exportarDominios(Request $request): StreamedResponse
-    {
-        abort_unless(
-            $request->user() && $request->user()->rol === 'admin',
-            403,
-            'No tienes permiso para acceder al panel administrativo.'
-        );
+  public function exportarDominios(Request $request): StreamedResponse
+{
+    abort_unless(
+        $request->user() && $request->user()->rol === 'admin',
+        403,
+        'No tienes permiso para acceder al panel administrativo.'
+    );
 
-        $dominios = Dominio::query()
-            ->withCount([
-                'casas',
-                'resultados',
-            ])
-            ->orderByDesc('resultados_count')
-            ->orderBy('nombre')
-            ->get();
+    $dominios = Dominio::query()
+        ->withCount([
+            'casas',
+            'resultados',
+        ])
+        ->orderByDesc('resultados_count')
+        ->orderBy('nombre')
+        ->get();
 
-        $totalResultados = $dominios->sum('resultados_count');
+    $totalResultados = $dominios->sum('resultados_count');
 
-        $filas = $dominios->map(function (Dominio $dominio) use ($totalResultados) {
-            $porcentaje = $totalResultados > 0
-                ? round(($dominio->resultados_count / $totalResultados) * 100, 1)
-                : 0;
+    $filas = $dominios->map(function (Dominio $dominio) use ($totalResultados) {
+        $porcentaje = $totalResultados > 0
+            ? round(($dominio->resultados_count / $totalResultados) * 100, 1)
+            : 0;
 
-            return [
+        return array_map(
+            fn ($valor) => $this->quitarAcentos($valor),
+            [
                 'Dominio'            => $dominio->nombre,
-                'Nombre simbólico'   => $dominio->nombre_casa ?: '—',
+                'Nombre simbolico'   => $dominio->nombre_casa ?: '-',
                 'Casas'              => $dominio->casas_count,
                 'Resultados'         => $dominio->resultados_count,
                 'Porcentaje'         => $porcentaje . '%',
-            ];
-        })->all();
+            ]
+        );
+    })->all();
 
-        return $this->descargarCsv($filas, 'estadisticas-dominios-nova.csv');
-    }
+    return $this->descargarCsv($filas, 'estadisticas-dominios-nova.csv');
+}
 
     /**
      * Genera una respuesta CSV descargable a partir de un arreglo de filas
@@ -169,5 +175,15 @@ private function descargarCsv(array $filas, string $nombreArchivo): StreamedResp
     return response()->streamDownload($callback, $nombreArchivo, [
         'Content-Type' => 'text/csv; charset=UTF-8',
     ]);
+}
+private function quitarAcentos(mixed $valor): mixed
+{
+    if (! is_string($valor)) {
+        return $valor;
+    }
+
+    $sinAcentos = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $valor);
+
+    return $sinAcentos !== false ? $sinAcentos : $valor;
 }
 }
