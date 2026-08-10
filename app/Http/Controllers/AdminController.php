@@ -144,27 +144,30 @@ class AdminController extends Controller
      * (cada fila es un arreglo asociativo columna => valor). Usa BOM UTF-8
      * para que Excel muestre correctamente acentos y ñ.
      */
-  private function descargarCsv(array $filas, string $nombreArchivo): StreamedResponse
-    {
-        $columnas = ! empty($filas) ? array_keys($filas[0]) : [];
+private function descargarCsv(array $filas, string $nombreArchivo): StreamedResponse
+{
+    $columnas = ! empty($filas) ? array_keys($filas[0]) : [];
 
-        $callback = function () use ($filas, $columnas) {
-            $salida = fopen('php://output', 'w');
+    $callback = function () use ($filas, $columnas) {
+        $salida = fopen('php://output', 'w');
 
-            // BOM para que Excel detecte UTF-8 correctamente
-            fwrite($salida, "\xEF\xBB\xBF");
+        // BOM para que Excel detecte UTF-8 correctamente
+        fwrite($salida, "\xEF\xBB\xBF");
 
-            fputcsv($salida, $columnas, ';');
+        // Le dice a Excel explícitamente qué separador usar
+        fwrite($salida, "sep=;\r\n");
 
-            foreach ($filas as $fila) {
-                fputcsv($salida, $fila, ';');
-            }
+        fputcsv($salida, $columnas, ';');
 
-            fclose($salida);
-        };
+        foreach ($filas as $fila) {
+            fputcsv($salida, $fila, ';');
+        }
 
-        return response()->streamDownload($callback, $nombreArchivo, [
-            'Content-Type' => 'text/csv; charset=UTF-8',
-        ]);
-    }
+        fclose($salida);
+    };
+
+    return response()->streamDownload($callback, $nombreArchivo, [
+        'Content-Type' => 'text/csv; charset=UTF-8',
+    ]);
+}
 }
