@@ -1,4 +1,3 @@
-
 {{-- FOOTER --}}
 <style>
     #footer-casas {
@@ -15,6 +14,24 @@
         justify-content: space-around;
         flex-wrap: wrap;
         gap: 3rem;
+    }
+
+    .footer-acerca-link {
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        margin-top: 1rem;
+        color: #E8C96A;
+        text-decoration: none;
+        font-size: .85rem;
+        letter-spacing: .04em;
+        border-bottom: 1px solid rgba(200,168,75,.35);
+        padding-bottom: 2px;
+        transition: color .2s, border-color .2s;
+    }
+    .footer-acerca-link:hover {
+        color: #fff;
+        border-color: #fff;
     }
 
     @media (max-width: 600px) {
@@ -64,22 +81,24 @@
                 margin-bottom:1rem;
                 font-size:1.4rem;
             ">
-                Desarrolladores del Proyecto
+                Sobre NOVA
             </h3>
 
-            <p style="color:#F0EAD8;line-height:2;margin:0;">
-                <strong>Citlalli Méndez</strong><br>
-                Documentadora y Administradora de Base de Datos<br>
-                citlallialejandrams@gmail.com<br><br>
-
-                <strong>Miryam Muñoz</strong><br>
-                Diseñadora<br>
-                miryammunoz26@gmail.com<br><br>
-
-                <strong>Carlo Flores</strong><br>
-                Programador<br>
-                carlofernandoflores2006@gmail.com
+            <p style="color:#F0EAD8;line-height:1.8;margin:0;">
+                Navegador de Orientación Vocacional y Aptitudes de la UTL.
+                Descubre la casa académica que mejor representa tus
+                intereses, habilidades y visión profesional a través de
+                un quiz interactivo.
             </p>
+
+            <a href="{{ route('acerca') }}" class="footer-acerca-link">
+                Conoce más acerca de la página
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <polyline points="12 5 19 12 12 19"/>
+                </svg>
+            </a>
         </div>
     </div>
 
