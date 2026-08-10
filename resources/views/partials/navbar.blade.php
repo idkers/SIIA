@@ -345,7 +345,7 @@
             Casas
         </a>
 
-        
+           <a
             href="{{ route('acerca') }}"
             class="{{ request()->routeIs('acerca') ? 'activo' : '' }}"
         >
@@ -503,7 +503,7 @@
         Casas
     </a>
 
-    
+       <a
         href="{{ route('acerca') }}"
         class="{{ request()->routeIs('acerca') ? 'activo' : '' }}"
     >
