@@ -102,3 +102,5 @@ Route::post('/salir', [AuthController::class, 'salir'])
 Route::get('/admin', [AdminController::class, 'index'])
     ->middleware('auth')
     ->name('admin');
+Route::get('/admin/exportar/casas', [AdminController::class, 'exportarCasas'])->name('admin.exportar.casas');
+Route::get('/admin/exportar/dominios', [AdminController::class, 'exportarDominios'])->name('admin.exportar.dominios');

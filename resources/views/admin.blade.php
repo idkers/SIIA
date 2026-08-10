@@ -475,7 +475,29 @@
             color: var(--text-muted);
             font-size: .82rem;
         }
-
+.btn-export {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .6rem 1.1rem;
+    background: rgba(200, 168, 75, .10);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--gold-lt);
+    font-size: .82rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background .2s, border-color .2s;
+}
+.btn-export:hover {
+    background: rgba(200, 168, 75, .18);
+    border-color: var(--border-hi);
+}
+.table-toolbar { flex-wrap: wrap; }
+@media (max-width: 768px) {
+    .btn-export { width: 100%; justify-content: center; }
+}
         .search-input {
             width: 270px;
             padding: .6rem 1rem;
@@ -705,6 +727,8 @@
                 align-items: flex-start;
                 flex-direction: column;
             }
+
+            
 
             .search-input {
                 width: 100%;
@@ -1143,22 +1167,34 @@
 
                 <article class="chart-card">
 
-                    <div class="table-toolbar">
+<div class="table-toolbar">
 
-                        <span class="table-summary">
-                            {{ $casas->count() }}
-                            {{ $casas->count() === 1 ? 'casa registrada' : 'casas registradas' }}
-                        </span>
+    <span class="table-summary">
+        {{ $casas->count() }}
+        {{ $casas->count() === 1 ? 'casa registrada' : 'casas registradas' }}
+    </span>
 
-                        <input
-                            type="search"
-                            class="search-input"
-                            id="buscarCasa"
-                            placeholder="Buscar casa, carrera o dominio..."
-                            autocomplete="off"
-                        >
+    <div style="display:flex; gap:.75rem; flex-wrap:wrap; align-items:center;">
+        <input
+            type="search"
+            class="search-input"
+            id="buscarCasa"
+            placeholder="Buscar casa, carrera o dominio..."
+            autocomplete="off"
+        >
 
-                    </div>
+        <a href="{{ route('admin.exportar.casas') }}" class="btn-export">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Descargar Excel
+        </a>
+    </div>
+
+</div>
 
                     @if ($casas->isNotEmpty())
 
@@ -1294,22 +1330,34 @@
 
                 <article class="chart-card">
 
-                    <div class="table-toolbar">
+                 <div class="table-toolbar">
 
-                        <span class="table-summary">
-                            {{ $dominios->count() }}
-                            {{ $dominios->count() === 1 ? 'dominio registrado' : 'dominios registrados' }}
-                        </span>
+    <span class="table-summary">
+        {{ $dominios->count() }}
+        {{ $dominios->count() === 1 ? 'dominio registrado' : 'dominios registrados' }}
+    </span>
 
-                        <input
-                            type="search"
-                            class="search-input"
-                            id="buscarDominio"
-                            placeholder="Buscar dominio..."
-                            autocomplete="off"
-                        >
+    <div style="display:flex; gap:.75rem; flex-wrap:wrap; align-items:center;">
+        <input
+            type="search"
+            class="search-input"
+            id="buscarDominio"
+            placeholder="Buscar dominio..."
+            autocomplete="off"
+        >
 
-                    </div>
+        <a href="{{ route('admin.exportar.dominios') }}" class="btn-export">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Descargar Excel
+        </a>
+    </div>
+
+</div>
 
                     @if ($dominios->isNotEmpty())
 
