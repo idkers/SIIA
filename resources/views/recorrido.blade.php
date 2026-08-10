@@ -420,6 +420,28 @@
     transition: opacity .12s ease, transform .12s ease;
     box-shadow: 0 8px 24px rgba(0,0,0,0.5);
 }
+.nova-map-tooltip.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.nova-map-tooltip-close {
+    display: none;
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #C6A050;
+    background: rgba(198,160,80,0.12);
+    color: #E8C96A;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 600px) {
+    .nova-map-tooltip-close { display: flex; }
+    .nova-map-tooltip { padding-top: 32px; }
+}
 .nova-map-tooltip.show { opacity: 1; transform: translateY(0); }
 .nova-map-tooltip h4 {
     margin: 0 0 4px;
@@ -451,7 +473,11 @@
         <img src="{{ asset('imagenes/mapaCampusCentral.webp') }}" alt="Mapa del campus UTL">
     </div>
 </div>
-<div class="nova-map-tooltip" id="novaMapaTooltip"><h4></h4><p></p></div>
+<div class="nova-map-tooltip" id="novaMapaTooltip">
+    <button type="button" class="nova-map-tooltip-close" id="novaMapaTooltipClose" aria-label="Cerrar">&times;</button>
+    <h4></h4>
+    <p></p>
+</div>
     </section>
 
 </div>{{-- /page-content --}}
@@ -609,12 +635,17 @@ function positionTooltip(e) {
         stage.appendChild(el);
     });
 
-    // En móvil, tocar fuera de un hotspot cierra el tooltip
-    document.addEventListener('touchstart', function (e) {
-        if (isMobile() && tooltip.classList.contains('show') && !stage.contains(e.target)) {
+var closeBtn = document.getElementById('novaMapaTooltipClose');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
             tooltip.classList.remove('show');
-        }
-    });
+        });
+        closeBtn.addEventListener('touchstart', function (e) {
+            e.stopPropagation();
+            tooltip.classList.remove('show');
+        }, { passive: true });
+    }
 })();
 </script>
 @endpush
