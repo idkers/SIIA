@@ -101,7 +101,41 @@
         line-height: 1.7;
         margin: 0;
     }
-
+/* ── Colaboradores ── */
+    .collab-group {
+        margin-bottom: 1.75rem;
+    }
+    .collab-group:last-child {
+        margin-bottom: 0;
+    }
+    .collab-group-title {
+        font-family: 'Headland One', serif;
+        color: #C8A84B;
+        font-size: 1rem;
+        margin: 0 0 1rem;
+        padding-bottom: .6rem;
+        border-bottom: 1px solid rgba(200,168,75,.15);
+    }
+    .collab-list {
+        display: flex;
+        flex-direction: column;
+        gap: .9rem;
+    }
+    .collab-item {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: .1rem .5rem;
+    }
+    .collab-item .collab-name {
+        color: #F0EAD8;
+        font-weight: 700;
+        font-size: .92rem;
+    }
+    .collab-item .collab-role {
+        color: #B0A898;
+        font-size: .85rem;
+    }
     /* ── Desarrolladores ── */
     .dev-grid {
         display: grid;
@@ -271,7 +305,42 @@
 
         </div>
     </section>
+{{-- ── Colaboradores ── --}}
+    <section class="panel">
+        <h2>Colaboradores</h2>
 
+        <div class="collab-group">
+            <h3 class="collab-group-title">Departamento de Comunicación Estratégica Digital</h3>
+            <div class="collab-list">
+                <div class="collab-item">
+                    <span class="collab-name">Allan Ignacio González Gómez</span>
+                    <span class="collab-role">— Jefe de Departamento de Comunicación Estratégica y Digital</span>
+                </div>
+                <div class="collab-item">
+                    <span class="collab-name">Nancy Morales Tapia</span>
+                    <span class="collab-role">— Coordinadora de Comunicación Digital</span>
+                </div>
+                <div class="collab-item">
+                    <span class="collab-name">Juan Jesús Ibarra Moncada</span>
+                    <span class="collab-role">— Coordinador de Comunicación</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="collab-group">
+            <h3 class="collab-group-title">Dirección de Desarrollo Académico y Docente</h3>
+            <div class="collab-list">
+                <div class="collab-item">
+                    <span class="collab-name">Liliana González Arredondo</span>
+                    <span class="collab-role">— Jefa de Departamento de Innovación Educativa</span>
+                </div>
+                <div class="collab-item">
+                    <span class="collab-name">Reyna Gabriela Martínez García</span>
+                    <span class="collab-role">— Jefa de Departamento de Psicopedagógico</span>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 @include('partials.footer')
