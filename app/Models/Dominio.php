@@ -17,6 +17,7 @@ class Dominio extends Model
         'nombre',
         'nombre_casa',
         'color',
+        'imagen',
         'descripcion',
     ];
 

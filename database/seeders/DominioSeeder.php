@@ -18,6 +18,7 @@ class DominioSeeder extends Seeder
                 'nombre' => 'Ingenierías',
                 'nombre_casa' => 'AURELION',
                 'color' => '#075E56',
+                'imagen' => 'imagenes/dominios/Ingenierias.webp',
                 'descripcion' => 'Carreras enfocadas en la optimización de sistemas, procesos industriales y sostenibilidad.',
             ],
             [
@@ -25,6 +26,7 @@ class DominioSeeder extends Seeder
                 'nombre' => 'Tecnologías de la Información',
                 'nombre_casa' => 'NEXORIA',
                 'color' => '#420FDB',
+                'imagen' => 'imagenes/dominios/Tecnologias_de_la_Informacion.webp',
                 'descripcion' => 'Carreras enfocadas en el desarrollo tecnológico y la innovación digital.',
             ],
             [
@@ -32,6 +34,7 @@ class DominioSeeder extends Seeder
                 'nombre' => 'Ingenierías Industriales',
                 'nombre_casa' => 'VALTORIS',
                 'color' => '#CC7135',
+                'imagen' => 'imagenes/dominios/Ingenieria_Industrial.webp',
                 'descripcion' => 'Carreras orientadas a la mejora de procesos productivos.',
             ],
             [
@@ -39,6 +42,7 @@ class DominioSeeder extends Seeder
                 'nombre' => 'Mecatrónicas',
                 'nombre_casa' => 'MECHARIS',
                 'color' => '#A81E1E',
+                'imagen' => 'imagenes/dominios/mecatronicaBaseSinTextura.webp',
                 'descripcion' => 'Integración de automatización, robótica y sistemas inteligentes.',
             ],
             [
@@ -46,6 +50,7 @@ class DominioSeeder extends Seeder
                 'nombre' => 'Licenciaturas',
                 'nombre_casa' => 'ELYRIA',
                 'color' => '#B89A10',
+                'imagen' => 'imagenes/dominios/Licenciaturas.webp',
                 'descripcion' => 'Formación profesional enfocada en servicios, negocios y gestión.',
             ],
         ];
