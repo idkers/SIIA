@@ -1,12 +1,15 @@
 @extends('layouts.app')
+
 @section('title', 'Crear cuenta — NOVA')
 
 @section('content')
 
 <style>
+
     *, *::before, *::after { box-sizing: border-box; }
 
     /* ── Layout ── */
+
     .login-page {
         min-height: calc(100vh - 88px);
         display: flex;
@@ -19,6 +22,7 @@
     }
 
     /* Fondo decorativo */
+
     .login-page::before {
         content: '';
         position: absolute;
@@ -28,6 +32,7 @@
         background: radial-gradient(circle, rgba(200,168,75,.06) 0%, transparent 70%);
         pointer-events: none;
     }
+
     .login-page::after {
         content: '';
         position: absolute;
@@ -39,6 +44,7 @@
     }
 
     /* ── Card ── */
+
     .login-card {
         background: #14141F;
         border: 1px solid rgba(200,168,75,.2);
@@ -52,6 +58,7 @@
     }
 
     /* Franja dorada superior */
+
     .login-card::before {
         content: '';
         position: absolute;
@@ -62,17 +69,20 @@
     }
 
     /* ── Logo ── */
+
     .login-logo {
         display: flex;
         justify-content: center;
         margin-bottom: 1.75rem;
     }
+
     .login-logo img {
         height: 3.5rem;
         width: auto;
     }
 
     /* ── Títulos ── */
+
     .login-title {
         font-family: 'Headland One', serif;
         color: #FFFFFF;
@@ -81,6 +91,7 @@
         margin: 0 0 .35rem;
         letter-spacing: .04em;
     }
+
     .login-subtitle {
         color: #707085;
         font-size: .8rem;
@@ -91,12 +102,14 @@
     }
 
     /* ── Formulario ── */
+
     .form-group {
         display: flex;
         flex-direction: column;
         gap: .45rem;
         margin-bottom: 1.25rem;
     }
+
     .form-label {
         font-size: .75rem;
         text-transform: uppercase;
@@ -109,6 +122,7 @@
         display: flex;
         align-items: center;
     }
+
     .input-icon {
         position: absolute;
         left: .9rem;
@@ -118,6 +132,7 @@
         pointer-events: none;
         transition: color .2s;
     }
+
     .form-input {
         width: 100%;
         background: #0D0D1A;
@@ -130,15 +145,21 @@
         outline: none;
         transition: border-color .2s, box-shadow .2s;
     }
+
     .form-input::placeholder { color: #3D3550; }
+
     .form-input:focus {
         border-color: #C8A84B;
         box-shadow: 0 0 0 3px rgba(200,168,75,.1);
     }
-    .form-input:focus + .input-focus-icon,
-    .input-wrap:focus-within .input-icon { color: #C8A84B; }
 
-    /* Toggle contraseña */
+    .form-input:focus + .input-focus-icon,
+    .input-wrap:focus-within .input-icon {
+        color: #C8A84B;
+    }
+
+    /* ── Toggle contraseña ── */
+
     .toggle-pass {
         position: absolute;
         right: .9rem;
@@ -151,21 +172,25 @@
         padding: 0;
         transition: color .2s;
     }
+
     .toggle-pass:hover { color: #C8A84B; }
 
-    /* Nota de dominio */
+    /* ── Nota de dominio ── */
+
     .domain-hint {
         font-size: .75rem;
         color: #4A3560;
         margin-top: .3rem;
         padding-left: .25rem;
     }
+
     .domain-hint span {
         color: #8D6627;
         font-style: italic;
     }
 
-    /* Error */
+    /* ── Error ── */
+
     .field-error {
         font-size: .75rem;
         color: #E05252;
@@ -173,11 +198,17 @@
         padding-left: .25rem;
         display: none;
     }
+
     .field-error.visible { display: block; }
+
     .form-input.error { border-color: #E05252; }
-    .form-input.error:focus { box-shadow: 0 0 0 3px rgba(224,82,82,.1); }
+
+    .form-input.error:focus {
+        box-shadow: 0 0 0 3px rgba(224,82,82,.1);
+    }
 
     /* ── Botón principal ── */
+
     .btn-login {
         width: 100%;
         padding: .9rem;
@@ -193,22 +224,27 @@
         transition: opacity .2s, transform .15s;
         margin-top: .5rem;
     }
-    .btn-login:hover  { opacity: .9; }
+
+    .btn-login:hover { opacity: .9; }
+
     .btn-login:active { transform: scale(.98); }
 
     /* ── Divisor ── */
+
     .divider {
         display: flex;
         align-items: center;
         gap: .75rem;
         margin: 1.5rem 0;
     }
+
     .divider::before, .divider::after {
         content: '';
         flex: 1;
         height: 1px;
         background: #2B1F3D;
     }
+
     .divider span {
         font-size: .72rem;
         color: #4A3560;
@@ -218,19 +254,23 @@
     }
 
     /* ── Registro ── */
+
     .register-prompt {
         text-align: center;
         font-size: .83rem;
         color: #707085;
     }
+
     .register-prompt a {
         color: #E8C96A;
         text-decoration: none;
         font-weight: 600;
     }
+
     .register-prompt a:hover { color: #fff; }
 
     /* ── Info alumno nuevo ── */
+
     .new-student-note {
         margin-top: 1.5rem;
         padding: .85rem 1rem;
@@ -242,71 +282,116 @@
         line-height: 1.6;
         text-align: center;
     }
+
     .new-student-note strong { color: #C8A84B; }
 
     /* ── Footer ── */
+
     #footer-casas {
         padding: 3rem 4rem;
         background: #06060F;
         border-top: 1px solid #2B1F3D;
     }
+
     #footer-casas-grid {
-        display: flex; justify-content:space-around; flex-wrap:wrap; gap:3rem;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 3rem;
     }
+
     @media (max-width: 600px) {
-        .login-card { padding: 2rem 1.5rem; }
-        #footer-casas { padding: 2.5rem 1.25rem; }
-        #footer-casas-grid { flex-direction:column; gap:2rem; }
-        #footer-casas-grid > div { max-width:100% !important; }
+        .login-card {
+            padding: 2rem 1.5rem;
+        }
+
+        #footer-casas {
+            padding: 2.5rem 1.25rem;
+        }
+
+        #footer-casas-grid {
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        #footer-casas-grid > div {
+            max-width: 100% !important;
+        }
     }
+
 </style>
+
 @include('partials.navbar')
 
 {{-- ═══ REGISTRO ═══════════════════════════════════════════════════════════════ --}}
+
 <div class="login-page">
+
     <div class="login-card">
 
         {{-- Logo --}}
+
         <div class="login-logo">
             <img src="{{ asset('imagenes/isotipo_dorado.webp') }}" alt="UTL SIIA">
         </div>
 
         <h1 class="login-title">Crea tu cuenta</h1>
-        <p class="login-subtitle">Navegador de Orientación Vocacional y Aptitudes</p>
+
+        <p class="login-subtitle">
+            Navegador de Orientación Vocacional y Aptitudes
+        </p>
 
         {{-- Mensajes de error del servidor --}}
+
         @if(session('error'))
-        <div style="background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.3);
-                    border-radius:8px;padding:.75rem 1rem;margin-bottom:1.25rem;
-                    font-size:.83rem;color:#E05252;text-align:center;">
-            {{ session('error') }}
-        </div>
+            <div style="background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.3);
+                        border-radius:8px;padding:.75rem 1rem;margin-bottom:1.25rem;
+                        font-size:.83rem;color:#E05252;text-align:center;">
+                {{ session('error') }}
+            </div>
         @endif
 
         @if(session('success'))
-        <div style="background:rgba(75,200,100,.1);border:1px solid rgba(75,200,100,.3);
-                    border-radius:8px;padding:.75rem 1rem;margin-bottom:1.25rem;
-                    font-size:.83rem;color:#4BC864;text-align:center;">
-            {{ session('success') }}
-        </div>
+            <div style="background:rgba(75,200,100,.1);border:1px solid rgba(75,200,100,.3);
+                        border-radius:8px;padding:.75rem 1rem;margin-bottom:1.25rem;
+                        font-size:.83rem;color:#4BC864;text-align:center;">
+                {{ session('success') }}
+            </div>
         @endif
 
         {{-- Formulario --}}
-        <form method="POST" action="{{ route('registrar.post') }}" onsubmit="return validarRegistro(event);">
+
+        <form method="POST"
+              action="{{ route('registrar.post') }}"
+              onsubmit="return validarRegistro(event);">
+
             @csrf
 
             {{-- Nombre completo --}}
+
             <div class="form-group">
-                <label class="form-label" for="nombre">Nombre completo</label>
+
+                <label class="form-label" for="nombre">
+                    Nombre completo
+                </label>
+
                 <div class="input-wrap">
+
                     <span class="input-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2"
-                             stroke-linecap="round" stroke-linejoin="round">
+
+                        <svg width="16" height="16" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                             <circle cx="12" cy="7" r="4"/>
+
                         </svg>
+
                     </span>
+
                     <input type="text"
                            id="nombre"
                            name="nombre"
@@ -314,24 +399,47 @@
                            placeholder="Ej. Ana Sofía Ramírez López"
                            value="{{ old('nombre') }}"
                            autocomplete="name">
+
                 </div>
-                <span class="field-error @error('nombre') visible @enderror" id="nombreError">
-                    @error('nombre') {{ $message }} @else Ingresa tu nombre completo. @enderror
+
+                <span class="field-error @error('nombre') visible @enderror"
+                      id="nombreError">
+
+                    @error('nombre')
+                        {{ $message }}
+                    @else
+                        Ingresa tu nombre completo.
+                    @enderror
+
                 </span>
+
             </div>
 
             {{-- Correo --}}
+
             <div class="form-group">
-                <label class="form-label" for="email">Correo</label>
+
+                <label class="form-label" for="email">
+                    Correo
+                </label>
+
                 <div class="input-wrap">
+
                     <span class="input-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2"
-                             stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+
+                        <svg width="16" height="16" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2-2-2z"/>
                             <polyline points="22,6 12,13 2,6"/>
+
                         </svg>
+
                     </span>
+
                     <input type="text"
                            id="email"
                            name="email"
@@ -340,80 +448,319 @@
                            value="{{ old('email') }}"
                            autocomplete="username"
                            inputmode="email">
+
                 </div>
+
                 <p class="domain-hint">
-                    Solo se permite correos <span>webmail o institucionales</span>
+                    Solo se permite correos
+                    <span>webmail o institucionales</span>
                 </p>
-                <span class="field-error @error('email') visible @enderror" id="emailError">
-                    @error('email') {{ $message }} @else Ingresa tu correo personal o correo institucional válido. @enderror
+
+                <span class="field-error @error('email') visible @enderror"
+                      id="emailError">
+
+                    @error('email')
+                        {{ $message }}
+                    @else
+                        Ingresa tu correo personal o correo institucional válido.
+                    @enderror
+
                 </span>
+
+            </div>
+
+            {{-- Edad --}}
+
+            <div class="form-group">
+
+                <label class="form-label" for="edad">
+                    Edad
+                </label>
+
+                <div class="input-wrap">
+
+                    <span class="input-icon">
+
+                        <svg width="16" height="16"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <circle cx="12" cy="7" r="4"/>
+                            <path d="M5.5 21a6.5 6.5 0 0 1 13 0"/>
+
+                        </svg>
+
+                    </span>
+
+                    <input type="number"
+                           id="edad"
+                           name="edad"
+                           class="form-input @error('edad') error @enderror"
+                           placeholder="Ej. 18"
+                           value="{{ old('edad') }}"
+                           min="13"
+                           max="99"
+                           inputmode="numeric">
+
+                </div>
+
+                <span class="field-error @error('edad') visible @enderror"
+                      id="edadError">
+
+                    @error('edad')
+                        {{ $message }}
+                    @else
+                        Ingresa una edad válida.
+                    @enderror
+
+                </span>
+
+            </div>
+
+            {{-- Lugar de residencia --}}
+
+            <div class="form-group">
+
+                <label class="form-label" for="lugar_residencia">
+                    Lugar de residencia
+                </label>
+
+                <div class="input-wrap">
+
+                    <span class="input-icon">
+
+                        <svg width="16" height="16"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/>
+                            <circle cx="12" cy="10" r="2.5"/>
+
+                        </svg>
+
+                    </span>
+
+                    <input type="text"
+                           id="lugar_residencia"
+                           name="lugar_residencia"
+                           class="form-input @error('lugar_residencia') error @enderror"
+                           placeholder="Ej. León, Guanajuato"
+                           value="{{ old('lugar_residencia') }}"
+                           autocomplete="address-level2">
+
+                </div>
+
+                <span class="field-error @error('lugar_residencia') visible @enderror"
+                      id="lugarResidenciaError">
+
+                    @error('lugar_residencia')
+                        {{ $message }}
+                    @else
+                        Ingresa tu lugar de residencia.
+                    @enderror
+
+                </span>
+
+            </div>
+
+            {{-- Preparatoria --}}
+
+            <div class="form-group">
+
+                <label class="form-label" for="preparatoria">
+                    Preparatoria de procedencia
+                </label>
+
+                <div class="input-wrap">
+
+                    <span class="input-icon">
+
+                        <svg width="16" height="16"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M3 21h18"/>
+                            <path d="M5 21V10l7-4 7 4v11"/>
+                            <path d="M9 21v-5h6v5"/>
+                            <path d="M9 11h.01"/>
+                            <path d="M15 11h.01"/>
+
+                        </svg>
+
+                    </span>
+
+                    <input type="text"
+                           id="preparatoria"
+                           name="preparatoria"
+                           class="form-input @error('preparatoria') error @enderror"
+                           placeholder="Ej. Preparatoria Oficial de León"
+                           value="{{ old('preparatoria') }}"
+                           autocomplete="organization">
+
+                </div>
+
+                <span class="field-error @error('preparatoria') visible @enderror"
+                      id="preparatoriaError">
+
+                    @error('preparatoria')
+                        {{ $message }}
+                    @else
+                        Ingresa el nombre de tu preparatoria.
+                    @enderror
+
+                </span>
+
             </div>
 
             {{-- Contraseña --}}
+
             <div class="form-group">
-                <label class="form-label" for="password">Contraseña</label>
+
+                <label class="form-label" for="password">
+                    Contraseña
+                </label>
+
                 <div class="input-wrap">
+
                     <span class="input-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2"
-                             stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+
+                        <svg width="16" height="16"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <rect x="3" y="11" width="18" height="11"
+                                  rx="2" ry="2"/>
+
                             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+
                         </svg>
+
                     </span>
+
                     <input type="password"
                            id="password"
                            name="password"
                            class="form-input @error('password') error @enderror"
                            placeholder="Mínimo 8 caracteres"
                            autocomplete="new-password">
-                    <button type="button" class="toggle-pass"
-                            onclick="togglePassword()" aria-label="Mostrar contraseña">
-                        <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24"
-                             fill="none" stroke="currentColor" stroke-width="2"
-                             stroke-linecap="round" stroke-linejoin="round">
+
+                    <button type="button"
+                            class="toggle-pass"
+                            onclick="togglePassword()"
+                            aria-label="Mostrar contraseña">
+
+                        <svg id="eyeIcon"
+                             width="16"
+                             height="16"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                             <circle cx="12" cy="12" r="3"/>
+
                         </svg>
+
                     </button>
+
                 </div>
-                <span class="field-error @error('password') visible @enderror" id="passError">
-                    @error('password') {{ $message }} @else Ingresa una contraseña de al menos 8 caracteres. @enderror
+
+                <span class="field-error @error('password') visible @enderror"
+                      id="passError">
+
+                    @error('password')
+                        {{ $message }}
+                    @else
+                        Ingresa una contraseña de al menos 8 caracteres.
+                    @enderror
+
                 </span>
+
             </div>
 
             {{-- Confirmar contraseña --}}
+
             <div class="form-group">
-                <label class="form-label" for="password_confirmation">Confirmar contraseña</label>
+
+                <label class="form-label" for="password_confirmation">
+                    Confirmar contraseña
+                </label>
+
                 <div class="input-wrap">
+
                     <span class="input-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2"
-                             stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+
+                        <svg width="16" height="16"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <rect x="3" y="11" width="18" height="11"
+                                  rx="2" ry="2"/>
+
                             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+
                         </svg>
+
                     </span>
+
                     <input type="password"
                            id="password_confirmation"
                            name="password_confirmation"
                            class="form-input"
                            placeholder="Repite tu contraseña"
                            autocomplete="new-password">
-                    <button type="button" class="toggle-pass"
+
+                    <button type="button"
+                            class="toggle-pass"
                             onclick="togglePasswordConfirmation()"
                             aria-label="Mostrar confirmación de contraseña">
-                        <svg id="eyeIconConfirmation" width="16" height="16" viewBox="0 0 24 24"
-                             fill="none" stroke="currentColor" stroke-width="2"
-                             stroke-linecap="round" stroke-linejoin="round">
+
+                        <svg id="eyeIconConfirmation"
+                             width="16"
+                             height="16"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                             <circle cx="12" cy="12" r="3"/>
+
                         </svg>
+
                     </button>
+
                 </div>
+
                 <span class="field-error" id="passConfirmationError">
                     Las contraseñas no coinciden.
                 </span>
+
             </div>
 
             <button type="submit" class="btn-login">
@@ -422,7 +769,9 @@
 
         </form>
 
-        <div class="divider"><span>o</span></div>
+        <div class="divider">
+            <span>o</span>
+        </div>
 
         <p class="register-prompt">
             ¿Ya tienes cuenta?
@@ -430,119 +779,255 @@
         </p>
 
     </div>
+
 </div>
 
 {{-- ═══ FOOTER ════════════════════════════════════════════════════════════ --}}
+
 @include('partials.footer')
 
 @endsection
 
 @push('extra-js')
+
 <script>
+
     // Toggle contraseña
+
     function togglePassword() {
+
         const input = document.getElementById('password');
-        const icon  = document.getElementById('eyeIcon');
+        const icon = document.getElementById('eyeIcon');
+
         if (input.type === 'password') {
+
             input.type = 'text';
+
             icon.innerHTML = `
                 <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
                 <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
-                <line x1="1" y1="1" x2="23" y2="23"/>`;
+                <line x1="1" y1="1" x2="23" y2="23"/>
+            `;
+
         } else {
+
             input.type = 'password';
+
             icon.innerHTML = `
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                <circle cx="12" cy="12" r="3"/>`;
+                <circle cx="12" cy="12" r="3"/>
+            `;
         }
     }
+
 
     // Toggle confirmar contraseña
+
     function togglePasswordConfirmation() {
+
         const input = document.getElementById('password_confirmation');
-        const icon  = document.getElementById('eyeIconConfirmation');
+        const icon = document.getElementById('eyeIconConfirmation');
 
         if (input.type === 'password') {
+
             input.type = 'text';
+
             icon.innerHTML = `
                 <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
                 <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
-                <line x1="1" y1="1" x2="23" y2="23"/>`;
+                <line x1="1" y1="1" x2="23" y2="23"/>
+            `;
+
         } else {
+
             input.type = 'password';
+
             icon.innerHTML = `
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                <circle cx="12" cy="12" r="3"/>`;
+                <circle cx="12" cy="12" r="3"/>
+            `;
         }
     }
 
-    // Validación del formulario de registro: nombre completo, correo y contraseña
+
+    // Validación del formulario de registro
+
     function validarRegistro(e) {
+
         let valido = true;
+
         const nombreInput = document.getElementById('nombre');
-        const emailInput  = document.getElementById('email');
-        const passInput   = document.getElementById('password');
+        const emailInput = document.getElementById('email');
+        const edadInput = document.getElementById('edad');
+        const lugarResidenciaInput = document.getElementById('lugar_residencia');
+        const preparatoriaInput = document.getElementById('preparatoria');
+        const passInput = document.getElementById('password');
         const passConfirmationInput = document.getElementById('password_confirmation');
+
         const nombreError = document.getElementById('nombreError');
-        const emailError  = document.getElementById('emailError');
-        const passError   = document.getElementById('passError');
+        const emailError = document.getElementById('emailError');
+        const edadError = document.getElementById('edadError');
+        const lugarResidenciaError = document.getElementById('lugarResidenciaError');
+        const preparatoriaError = document.getElementById('preparatoriaError');
+        const passError = document.getElementById('passError');
         const passConfirmationError = document.getElementById('passConfirmationError');
 
+
         // Reset
+
         nombreInput.classList.remove('error');
         emailInput.classList.remove('error');
+        edadInput.classList.remove('error');
+        lugarResidenciaInput.classList.remove('error');
+        preparatoriaInput.classList.remove('error');
         passInput.classList.remove('error');
         passConfirmationInput.classList.remove('error');
+
         nombreError.classList.remove('visible');
         emailError.classList.remove('visible');
+        edadError.classList.remove('visible');
+        lugarResidenciaError.classList.remove('visible');
+        preparatoriaError.classList.remove('visible');
         passError.classList.remove('visible');
         passConfirmationError.classList.remove('visible');
 
-        // Nombre completo: al menos dos palabras (nombre y apellido)
+
+        // Nombre completo
+
         const nombreVal = nombreInput.value.trim();
-        if (!/^\S+(\s+\S+)+$/.test(nombreVal)) {
+
+        if (!/^\S+(?:\s+\S+)+$/u.test(nombreVal)) {
+
             nombreInput.classList.add('error');
-            nombreError.textContent = 'Ingresa tu nombre completo (nombre y apellidos).';
+
+            nombreError.textContent =
+                'Ingresa tu nombre completo (nombre y apellidos).';
+
             nombreError.classList.add('visible');
+
             valido = false;
         }
+
+
+        // Correo
 
         const val = emailInput.value.trim();
 
         // Acepta: solo números (matrícula) O cualquier correo válido
-        // (gmail, outlook, hotmail, institucional @utleon.edu.mx, etc.)
+
         const esMatricula = /^\d{6,10}$/.test(val);
-        const esCorreo    = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(val);
+
+        const esCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(val);
 
         if (!esMatricula && !esCorreo) {
+
             emailInput.classList.add('error');
-            emailError.textContent = '@gmail.com, @utleon.edu.mx, @outlook.com, etc.';
+
+            emailError.textContent =
+                '@gmail.com, @utleon.edu.mx, @outlook.com, etc.';
+
             emailError.classList.add('visible');
+
             valido = false;
         }
 
-        // Contraseña: mínimo 8 caracteres
-        if (passInput.value.length < 8) {
-            passInput.classList.add('error');
-            passError.textContent = 'Ingresa una contraseña de al menos 8 caracteres.';
-            passError.classList.add('visible');
+
+        // Edad
+
+        const edadVal = edadInput.value.trim();
+        const edadNumero = Number(edadVal);
+
+        if (
+            !edadVal ||
+            !Number.isInteger(edadNumero) ||
+            edadNumero < 13 ||
+            edadNumero > 99
+        ) {
+
+            edadInput.classList.add('error');
+
+            edadError.textContent =
+                'Ingresa una edad válida entre 13 y 99 años.';
+
+            edadError.classList.add('visible');
+
             valido = false;
         }
+
+
+        // Lugar de residencia
+
+        if (!lugarResidenciaInput.value.trim()) {
+
+            lugarResidenciaInput.classList.add('error');
+
+            lugarResidenciaError.textContent =
+                'Ingresa tu lugar de residencia.';
+
+            lugarResidenciaError.classList.add('visible');
+
+            valido = false;
+        }
+
+
+        // Preparatoria
+
+        if (!preparatoriaInput.value.trim()) {
+
+            preparatoriaInput.classList.add('error');
+
+            preparatoriaError.textContent =
+                'Ingresa el nombre de tu preparatoria.';
+
+            preparatoriaError.classList.add('visible');
+
+            valido = false;
+        }
+
+
+        // Contraseña
+
+        if (passInput.value.length < 8) {
+
+            passInput.classList.add('error');
+
+            passError.textContent =
+                'Ingresa una contraseña de al menos 8 caracteres.';
+
+            passError.classList.add('visible');
+
+            valido = false;
+        }
+
 
         // Confirmación de contraseña
-        if (!passConfirmationInput.value || passConfirmationInput.value !== passInput.value) {
+
+        if (
+            !passConfirmationInput.value ||
+            passConfirmationInput.value !== passInput.value
+        ) {
+
             passConfirmationInput.classList.add('error');
-            passConfirmationError.textContent = 'Las contraseñas no coinciden.';
+
+            passConfirmationError.textContent =
+                'Las contraseñas no coinciden.';
+
             passConfirmationError.classList.add('visible');
+
             valido = false;
         }
 
-        // Si solo pusieron matrícula, convertir a correo antes de enviar
+
+        // Si solo pusieron matrícula,
+        // convertir a correo antes de enviar
+
         if (valido && esMatricula) {
             emailInput.value = val + '@utleon.edu.mx';
         }
 
         return valido;
     }
+
 </script>
+
 @endpush

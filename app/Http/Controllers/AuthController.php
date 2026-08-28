@@ -76,6 +76,22 @@ class AuthController extends Controller
                     'max:255',
                     'unique:users,email',
                 ],
+                'edad' => [
+                    'required',
+                    'integer',
+                    'min:13',
+                    'max:99',
+                ],
+                'lugar_residencia' => [
+                    'required',
+                    'string',
+                    'max:255',
+                ],
+                'preparatoria' => [
+                    'required',
+                    'string',
+                    'max:255',
+                ],
                 'password' => [
                     'required',
                     'string',
@@ -94,6 +110,19 @@ class AuthController extends Controller
                 'email.max' => 'El correo no puede superar los 255 caracteres.',
                 'email.unique' => 'Ya existe una cuenta registrada con este correo.',
 
+                'edad.required' => 'Ingresa tu edad.',
+                'edad.integer' => 'La edad debe ser un número entero.',
+                'edad.min' => 'La edad debe ser de al menos 13 años.',
+                'edad.max' => 'Ingresa una edad válida.',
+
+                'lugar_residencia.required' => 'Ingresa tu lugar de residencia.',
+                'lugar_residencia.string' => 'El lugar de residencia debe ser un texto válido.',
+                'lugar_residencia.max' => 'El lugar de residencia no puede superar los 255 caracteres.',
+
+                'preparatoria.required' => 'Ingresa el nombre de tu preparatoria.',
+                'preparatoria.string' => 'La preparatoria debe ser un texto válido.',
+                'preparatoria.max' => 'El nombre de la preparatoria no puede superar los 255 caracteres.',
+
                 'password.required' => 'Ingresa una contraseña.',
                 'password.string' => 'La contraseña debe ser un texto válido.',
                 'password.min' => 'La contraseña debe contener al menos 8 caracteres.',
@@ -104,6 +133,9 @@ class AuthController extends Controller
         $usuario = User::create([
             'name' => $datos['nombre'],
             'email' => $datos['email'],
+            'edad' => $datos['edad'],
+            'lugar_residencia' => $datos['lugar_residencia'],
+            'preparatoria' => $datos['preparatoria'],
             'password' => $datos['password'],
             'rol' => 'usuario',
         ]);

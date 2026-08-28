@@ -436,7 +436,7 @@
                     <button onclick="descargarResultado()"
                             style="background:transparent;border:1px solid #8B6914;color:#F0EAD8;
                                    padding:.9rem 2rem;cursor:pointer;border-radius:4px;font-family:inherit;">
-                        Compartir resultado
+                        Comparte tu resultado en redes sociales!
                     </button>
                 </div>
             </div>
@@ -684,7 +684,7 @@ const CARRERAS = {
         desc:'Tu perfil muestra una afinidad natural con la casa Globaris, los Guardianes del Descubrimiento. Eres una persona que conecta a las personas con el mundo mediante una combinación única de calidez humana y espíritu aventurero. Prosperas en ambientes diversos y en constante movimiento, utilizando tu sensibilidad cultural para crear experiencias memorables. Tu mayor virtud es la empatía: entiendes el turismo como un puente entre culturas, donde la hospitalidad y el descubrimiento se unen para transformar cada viaje en un recuerdo que perdura.' },
 };
 // ── Mapeo carrera 
-const RESULTADOS_IMG_EXT = 'webp';
+const RESULTADOS_IMG_EXT = 'png';
 
 const RESULTADOS_IMG = {
     ADM:      'administracionResultado',

@@ -249,7 +249,7 @@
             <p class="modal-label">Casa Académica</p>
             <h2 class="modal-title" id="modalNombre"></h2>
             <p class="modal-dominio" id="modalDominio"></p>
-            <p class="modal-section-title">Plan de Estudios</p>
+            <p class="modal-section-title">Tu Especialidad</p>
             <div class="modal-oferta-text" id="modalOferta"></div>
             <p class="modal-section-title">Más Información</p>
             <p class="modal-link">
